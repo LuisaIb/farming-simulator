@@ -1,5 +1,9 @@
 package simulator;
-
+/**
+ * 
+ * @author Isabel
+ *
+ */
 public class Game {
 	private int cash;
 	private int filling;
