@@ -1,7 +1,7 @@
 package simulator;
 /**
  * 
- * @author Isabel
+ * @author 
  *
  */
 public class Launcher {
