@@ -7,6 +7,7 @@ import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import simulator.Game;
 import gameboard.GameBoard;
+import gameboard.tiles.Tile;
 import datastorage.jsonb.GetJsonb;
 import simulator.LevelOfDifficulty;
 
@@ -42,11 +43,22 @@ public class GetPojo {
 	/**
 	 * @return
 	 */
-	public GameBoard toDeserializePosition() {
+	public GameBoard toDeserializePosition() {  //eventuell mit Vererbung für die Geräte und den Menschen
 		//Klassenobjekt	
 		GetJsonb gjb = new GetJsonb();
 		Jsonb jb = JsonbBuilder.create();
 		GameBoard deserialized = jb.fromJson(gjb.toSerializePosition(), GameBoard.class);
+		return deserialized;	
+	}
+	
+	/**
+	 * @return
+	 */
+	public Tile toDeserializeTiles() {  //eventuell mit Vererbung für die Felder 1-3
+		//Klassenobjekt	
+		GetJsonb gjb = new GetJsonb();
+		Jsonb jb = JsonbBuilder.create();
+		Tile deserialized = jb.fromJson(gjb.toSerializeTiles(), Tile.class);
 		return deserialized;	
 	}
 }

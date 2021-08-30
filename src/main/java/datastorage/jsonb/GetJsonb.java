@@ -8,6 +8,7 @@ import javax.json.bind.JsonbBuilder;
 import simulator.Game;
 import simulator.LevelOfDifficulty;
 import gameboard.GameBoard;
+import gameboard.tiles.Tile;
 
 /**
  * @author Isabel
@@ -57,4 +58,18 @@ public class GetJsonb {
 		//System.out.println("serialized " + serialized);
 		return serialized;
 	}
+	
+	/**
+	 * @return
+	 */
+	public String toSerializeTiles() {
+		//Klassenobjekt
+		Tile gb = new Tile();
+		
+		Jsonb jsonb = JsonbBuilder.create();
+		String serialized = jsonb.toJson(gb);
+		//System.out.println("serialized " + serialized);
+		return serialized;
+	}
+
 }
