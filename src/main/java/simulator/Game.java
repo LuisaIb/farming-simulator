@@ -6,11 +6,15 @@ package simulator;
  */
 public class Game {
 	private int cash;
-	private int filling;
+	private double filling;
 	
-	public Game(int cash, int filling, int level) {
+	public Game(int cash, double filling) {
 		cash = 0; 
 		filling = 100; 
+	}
+	
+	public Game() {
+		
 	}
 
 	public int getCash() {		
@@ -25,7 +29,7 @@ public class Game {
 		return filling;
 	}
 
-	public void setFilling(int filling) {
+	public void setFilling(double filling) {
 		this.filling = filling;
 	}
 

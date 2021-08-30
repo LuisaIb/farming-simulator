@@ -20,9 +20,9 @@ public class GetJsonb {
 	 */
 	public String toSerialize() {
 		//Klassenobjekt
-		Game game = new Game(0, 0, 0);
+		Game game = new Game(0, 0.0);
 		game.setCash(50);
-		game.setFilling(110);
+		game.setFilling(110.0);
 		
 		Jsonb jsonb = JsonbBuilder.create();
 		String serialized = jsonb.toJson(game);
