@@ -28,4 +28,11 @@ public class Game {
 	public void setFilling(int filling) {
 		this.filling = filling;
 	}
+
+	@Override
+	public String toString() {
+		return "Game [cash=" + cash + ", filling=" + filling + "]";
+	}
+	
+	
 }
