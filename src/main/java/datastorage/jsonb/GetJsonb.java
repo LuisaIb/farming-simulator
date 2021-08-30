@@ -8,7 +8,8 @@ import javax.json.bind.JsonbBuilder;
 import simulator.Game;
 import simulator.LevelOfDifficulty;
 import gameboard.GameBoard;
-import gameboard.tiles.Tile;
+import gameboard.tiles.FieldTile;
+
 
 /**
  * @author Isabel
@@ -34,7 +35,7 @@ public class GetJsonb {
 	}
 	
 	/**
-	 * @return
+	 * @return serialized as a JSONB object of the level of difficulty
 	 */
 	public String toSerializeLevel() {
 		//Klassenobjekt
@@ -47,9 +48,9 @@ public class GetJsonb {
 	}
 	
 	/**
-	 * @return
+	 * @return serialized as a JSONB object of the farmer's and machine's positions
 	 */
-	public String toSerializePosition() {
+	public String toSerializePosition() { //eventuell mit Vererbung für die Geräte und den Menschen
 		//Klassenobjekt
 		GameBoard gb = new GameBoard();
 		
@@ -60,11 +61,11 @@ public class GetJsonb {
 	}
 	
 	/**
-	 * @return
+	 * @return serialized as a JSONB object of the fieldtile's contitions
 	 */
-	public String toSerializeTiles() {
+	public String toSerializeTiles() { //eventuell mit Vererbung für die Felder 1-3
 		//Klassenobjekt
-		Tile gb = new Tile();
+		FieldTile gb = new FieldTile();
 		
 		Jsonb jsonb = JsonbBuilder.create();
 		String serialized = jsonb.toJson(gb);

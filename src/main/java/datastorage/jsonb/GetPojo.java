@@ -7,7 +7,7 @@ import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import simulator.Game;
 import gameboard.GameBoard;
-import gameboard.tiles.Tile;
+import gameboard.tiles.FieldTile;
 import datastorage.jsonb.GetJsonb;
 import simulator.LevelOfDifficulty;
 
@@ -18,7 +18,7 @@ import simulator.LevelOfDifficulty;
 public class GetPojo {
 	
 	/**
-	 * @return deserialized as a new game object the cash and filling values
+	 * @return deserialized as a new game object of the cash and filling values
 	 */
 	public Game toDeserializeGame() {
 		//Klassenobjekt	
@@ -30,7 +30,7 @@ public class GetPojo {
 	}
 	
 	/**
-	 * @return
+	 * @return deserialized as a new Enum object of the level of difficulty
 	 */
 	public LevelOfDifficulty toDeserializeLevel() {
 		//Klassenobjekt	
@@ -41,7 +41,7 @@ public class GetPojo {
 	}
 	
 	/**
-	 * @return
+	 * @return deserialized as a new GameBoard object of the farmer's and machine's positions
 	 */
 	public GameBoard toDeserializePosition() {  //eventuell mit Vererbung für die Geräte und den Menschen
 		//Klassenobjekt	
@@ -52,13 +52,13 @@ public class GetPojo {
 	}
 	
 	/**
-	 * @return
+	 * @return deserialized as a new GameBoard object of the fieldtile's contitions
 	 */
-	public Tile toDeserializeTiles() {  //eventuell mit Vererbung für die Felder 1-3
+	public FieldTile toDeserializeTiles() {  //eventuell mit Vererbung für die Felder 1-3
 		//Klassenobjekt	
 		GetJsonb gjb = new GetJsonb();
 		Jsonb jb = JsonbBuilder.create();
-		Tile deserialized = jb.fromJson(gjb.toSerializeTiles(), Tile.class);
+		FieldTile deserialized = jb.fromJson(gjb.toSerializeTiles(), FieldTile.class);
 		return deserialized;	
 	}
 }
