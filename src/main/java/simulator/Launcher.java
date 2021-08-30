@@ -1,7 +1,5 @@
 package simulator;
 
-
-
 /**
  * 
  * @author 

@@ -6,6 +6,8 @@ package datastorage.jsonb;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import simulator.Game;
+import simulator.LevelOfDifficulty;
+import gameboard.GameBoard;
 
 /**
  * @author Isabel
@@ -16,29 +18,43 @@ public class GetJsonb {
 	// in einer eigenden MEthode werden dann alle objekte zusammengefügt und zurück gegeben oder gespeichert
 
 	/**
-	 * @return serialized as a JSONB object
+	 * @return serialized as a JSONB object of the cash and filling values
 	 */
-	public String toSerialize() {
+	public String toSerializeGame() {
 		//Klassenobjekt
 		Game game = new Game(0, 0.0);
-		game.setCash(50);
-		game.setFilling(110.0);
+//		game.setCash(50);
+//		game.setFilling(110.0);
 		
 		Jsonb jsonb = JsonbBuilder.create();
 		String serialized = jsonb.toJson(game);
-		System.out.println("serialized " + serialized);
+		//System.out.println("serialized " + serialized);
 		return serialized;
-		}
+	}
 	
 	/**
-	 * @return deserialized as a new class object
+	 * @return
 	 */
-	public Game toDeserialize() {
-		//Klassenobjekt	
-		Jsonb jb = JsonbBuilder.create();
-		Game deserialized = jb.fromJson(toSerialize(), Game.class);
-		System.out.println("deserialized, neues Klassenobjekt = " + deserialized);
-		return deserialized;
+	public String toSerializeLevel() {
+		//Klassenobjekt
+		LevelOfDifficulty lod = new LevelOfDifficulty();
 		
+		Jsonb jsonb = JsonbBuilder.create();
+		String serialized = jsonb.toJson(lod);
+		//System.out.println("serialized " + serialized);
+		return serialized;
+	}
+	
+	/**
+	 * @return
+	 */
+	public String toSerializePosition() {
+		//Klassenobjekt
+		GameBoard gb = new GameBoard();
+		
+		Jsonb jsonb = JsonbBuilder.create();
+		String serialized = jsonb.toJson(gb);
+		//System.out.println("serialized " + serialized);
+		return serialized;
 	}
 }
