@@ -10,7 +10,7 @@ import javafx.stage.Stage;
  */
 public class ViewManager {
     private Stage mainStage = new Stage();
-    protected static final int HEIGHT = 800;
+    protected static final int HEIGHT = 900;
     protected static final int WIDTH = 1400;
 
     /**
@@ -32,8 +32,4 @@ public class ViewManager {
         MenuScene menuScene = new MenuScene();
         mainStage.setScene(menuScene.getMenuScene());
     }
-
-
-
-
 }
