@@ -36,9 +36,19 @@ public class Matchfield {
     private static final String PATH_TO_LAND_TRADE = "../view/resources/buildings/landTrade.png";
     private static final String PATH_TO_SILO = "../view/resources/buildings/silo.png";
 
-
     protected Matchfield(){
 
+    }
+
+    protected Matchfield(int stageOfGrowthField1, int stageOfGrowthField2, int stageOfGrowthField3){
+        initializeMatchfield();
+        fillWithGrassland();
+        fillWithForest();
+        fillWithBuildings();
+        fillWithPath();
+        setField1(stageOfGrowthField1);
+        setField2(stageOfGrowthField2);
+        setField3(stageOfGrowthField3);
     }
 
     private void initializeMatchfield(){
@@ -63,10 +73,21 @@ public class Matchfield {
     }
 
     private void fillWithGrassland(){
+        Image imageGrasslands = getImage(PATH_TO_GRASSLANDS, false);
         for (int i = 0; i < NUMBER_COLUMNS; i++){
             for (int j = 0; j < NUMBER_ROWS; j++) {
-                ImageView imageViewGrassland = new ImageView(getImage(PATH_TO_GRASSLANDS, false));
+                ImageView imageViewGrassland = new ImageView(imageGrasslands);
                 addToGridPane(imageViewGrassland, i, j);
+            }
+        }
+    }
+
+    private void fillWithForest(){
+        Image imageForest = getImage(PATH_TO_FOREST, false);
+        for (int i = 0; i < 7; i+=2){
+            for (int j = 0; j < NUMBER_ROWS; j+=2) {
+                ImageView imageViewForest = new ImageView(imageForest);
+                addToGridPane(imageViewForest, i, 2, j, 2);
             }
         }
     }
@@ -85,10 +106,39 @@ public class Matchfield {
         addToGridPane(imageViewLandTrade, 25, 5, 0, 5);
     }
 
+    private void fillWithPath(){
+        Image imagePath = getImage(PATH_TO_PATH, false);
+
+        for (int i = 0; i < NUMBER_ROWS; i++) {
+            ImageView imageViewPath = new ImageView(imagePath);
+            addToGridPane(imageViewPath, 8, i);
+        }
+
+        for (int i = 9; i < NUMBER_ROWS; i++) {
+            ImageView imageViewPath = new ImageView(imagePath);
+            addToGridPane(imageViewPath, i, 13);
+        }
+
+        for (int i = 5; i < NUMBER_ROWS; i++) {
+            ImageView imageViewPath = new ImageView(imagePath);
+            addToGridPane(imageViewPath, 19, i);
+        }
+
+        for (int i = 0; i < NUMBER_ROWS; i++) {
+            ImageView imageViewPath = new ImageView(imagePath);
+            addToGridPane(imageViewPath, i, 5);
+        }
+
+        for (int i = 0; i < 5; i++) {
+            ImageView imageViewPath = new ImageView(imagePath);
+            addToGridPane(imageViewPath, 24, i);
+        }
+    }
+
     private void setField1(int stageOfGrowth){
         for (int i = 20; i < NUMBER_COLUMNS; i++){
             for (int j = 14; j < NUMBER_ROWS; j++) {
-                ImageView imageViewField = getImageView(stageOfGrowth);
+                ImageView imageViewField = getImageViewField(stageOfGrowth);
                 addToGridPane(imageViewField, i, j);
             }
         }
@@ -97,7 +147,7 @@ public class Matchfield {
     private void setField2(int stageOfGrowth){
         for (int i = 9; i < 19; i++){
             for (int j = 14; j < NUMBER_ROWS; j++) {
-                ImageView imageViewField = getImageView(stageOfGrowth);
+                ImageView imageViewField = getImageViewField(stageOfGrowth);
                 addToGridPane(imageViewField, i, j);
             }
         }
@@ -106,7 +156,7 @@ public class Matchfield {
     private void setField3(int stageOfGrowth){
         for (int i = 20; i < NUMBER_COLUMNS; i++){
             for (int j = 6; j < 13; j++) {
-                ImageView imageViewField = getImageView(stageOfGrowth);
+                ImageView imageViewField = getImageViewField(stageOfGrowth);
                 addToGridPane(imageViewField, i, j);
             }
         }
@@ -131,7 +181,7 @@ public class Matchfield {
         return image;
     }
 
-    private ImageView getImageView(int stageOfGrowth){
+    private ImageView getImageViewField(int stageOfGrowth){
         ImageView imageViewField = null;
         switch(stageOfGrowth){
             case 1:
