@@ -65,7 +65,7 @@ public class GetJsonb {
 	 */
 	public String toSerializeFieldtiles() { //eventuell mit Vererbung für die Felder 1-3
 		//Klassenobjekt
-		FieldTile gb = new FieldTile();
+		FieldTile gb = new FieldTile(0);
 		
 		Jsonb jsonb = JsonbBuilder.create();
 		String serialized = jsonb.toJson(gb);
