@@ -18,6 +18,7 @@ public class LSTextField extends TextField {
 
     /** Constructs an object of the class LandwirtschaftssimulatorTextField. As you can tell by the name of the class,
      * it creates a text field.
+     *
      * @param text - text, that is shown in the text field
      * @param height - height of the text field, handed to the method setTextFieldStyle()
      * @param width - width of the text field, handed to the method setTextFieldStyle()
@@ -31,8 +32,8 @@ public class LSTextField extends TextField {
         this.setTextFieldStyle(height, width, layoutX, layoutY);
     }
 
-    /** Sets the font of the text field to Verdana and the size of the font to the fontSize. As the method will never
-     * be used outside this class, it is private.
+    /** Sets the font of the text field to Verdana and the size of the font to the fontSize.
+     *
      * @param fontSize - size of the font on the text field
      */
     private void setTextFieldFont(int fontSize){
@@ -41,7 +42,8 @@ public class LSTextField extends TextField {
 
     /** Defines the style of the text field. It makes the text field not editable by the user, sets the background
      * image, using the method getImage() of the class ImageManager, the final variable and the parameters. The
-     * alignment of the text is set to the center. As the method will never be used outside this class, it is private.
+     * alignment of the text is set to the center.
+     *
      * @param height - height of the text field
      * @param width - width of the text field
      * @param layoutX - distance on the x-axis from the top left corner
