@@ -1,16 +1,14 @@
 /**
  * 
  */
-package datastorage.jsonb;
+package datastorage.pojo;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import simulator.Game;
-import gameboard.GameBoard;
 import gameboard.tiles.FieldTile;
 import datastorage.jsonb.GetJsonbValue;
 import simulator.LevelOfDifficulty;
-import javax.json.bind.JsonbBuilder;
 
 /**
  * @author Isabel
@@ -25,7 +23,6 @@ public class GetPojoValue {
 		GetJsonbValue jbv = new GetJsonbValue();
 		Jsonb jb = JsonbBuilder.create();
 		Game deserializedgame = jb.fromJson(jbv.toSerializeGame(), Game.class);
-//		System.out.println("deserialized, neues Klassenobjekt = " + deserialized);
 		deserializedgame.getCash();
 		return deserializedgame; // kann nun als neues Objekt der Klasse Game() verwendet werden um den Konstruktor zu befüllen
 	}

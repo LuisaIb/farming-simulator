@@ -1,9 +1,9 @@
 /**
  * 
  */
-package datastorage.information;
+package datastorage.information.fromjsonb;
 
-import datastorage.jsonb.GetPojoValue;
+import datastorage.pojo.GetPojoValue;
 import gameboard.tiles.FieldTile;
 import simulator.Game;
 import simulator.LevelOfDifficulty;

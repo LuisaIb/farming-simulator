@@ -1,11 +1,12 @@
 /**
  * 
  */
-package datastorage.jsonb;
+package datastorage.pojo;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
+import datastorage.jsonb.GetJsonbPosition;
 import gameboard.GameBoard;
 
 /**
