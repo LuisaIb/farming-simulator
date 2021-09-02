@@ -8,17 +8,19 @@ package gameboard.tiles;
  */
 public class Tile {
 	
-	private final int id; // id for recognizing each kind of tile in the field
+	private int id; // id for recognizing each kind of tile in the field
 	
 	/**
 	 * the constructor is there to set the id
 	 * 
-	 * @param id
 	 */
 	public Tile(int id) {
-		this.id = id; 
+		 this.id = id;
 	}
 	
+	public Tile() {
+		
+	}
 	/**
 	 * this method is supposed to get the id of each tile
 	 * @return
