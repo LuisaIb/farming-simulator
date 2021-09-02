@@ -1,21 +1,32 @@
 package gameboard.tiles;
 
 /**
- * This class represents a tile, which is a field
+ * This class represents a tile, which is a field with its several properties
  * @author Luisaibele
  *
  */
 public class FieldTile extends Tile{
-	private int growthState; //representing the state of growth of a field
+	private int growthState; //representing the state of growth of the first field
+	private int growthState2; //representing the state of growth of the second field
+	private int growthState3; //representing the state of growth of the third field
 
-	public FieldTile(int id) {
+	/**
+	 * @param id
+	 * @param growthState
+	 */
+	public FieldTile(int id, int growthState) {
 		super(id);
+		this.growthState = growthState;
+	}
+	
+	public FieldTile() {
+		
 	}
 		
 	/**
-	 * this method returns a boolean to check wether the field Tile
-	 * is solid or not
-	 * @return the checked boolean variable
+	 * this method is supposed to check whether the farmer can run over 
+	 * a field tile or not
+	 * @return the checked boolean value
 	 */
 	public boolean isSolid() {
 		return true;
@@ -27,6 +38,21 @@ public class FieldTile extends Tile{
 
 	public void setGrowthState(int growthState) {
 		this.growthState = growthState;
+	}
+	public int getGrowthState2() {
+		return growthState2;
+	}
+
+	public void setGrowthState2(int growthState2) {
+		this.growthState2 = growthState2;
+	}
+
+	public int getGrowthState3() {
+		return growthState3;
+	}
+
+	public void setGrowthState3(int growthState3) {
+		this.growthState3 = growthState3;
 	}
 
 }
