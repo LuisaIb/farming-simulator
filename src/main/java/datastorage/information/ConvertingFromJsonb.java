@@ -73,7 +73,7 @@ public class ConvertingFromJsonb {
 			FieldTile deserializedft3 = gpv.toDeserializeFieldtiles();
 			int ft3 = deserializedft3.getGrowthState3();
 			
-			FieldTile updatedFieldTile = new FieldTile(null,ft1, ft2, ft3);
+			FieldTile updatedFieldTile = new FieldTile(0, ft1, ft2, ft3);
 					
 	}
 }
