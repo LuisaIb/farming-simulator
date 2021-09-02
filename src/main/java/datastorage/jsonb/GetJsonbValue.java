@@ -16,14 +16,14 @@ import gameboard.tiles.FieldTile;
  */
 public class GetJsonbValue {
 	// serialize und deserialize Methode für alle zu speichernden Elemente, 
-	// in einer eigenden MEthode werden dann alle objekte zusammengefügt und zurück gegeben oder gespeichert
+	// in einer eigenden Methode werden dann alle objekte zusammengefügt und zurück gegeben oder gespeichert
 
 	/**
 	 * @return serialized as a JSONB object of the cash, filling values and the day
 	 */
 	public String toSerializeGame() {
 		Game game = new Game();
-		game.getCash();
+		game.setCash(2);
 		game.getFilling();
 		game.getDay();
 		
@@ -47,8 +47,10 @@ public class GetJsonbValue {
 	 * @return serialized as a JSONB object of the fieldtile's contitions
 	 */
 	public String toSerializeFieldtiles() { 
-		FieldTile ft = new FieldTile(0);
-		// get Field id of the three fields
+		FieldTile ft = new FieldTile();
+		ft.getGrowthState(); // get Field id + status of the three fields
+		ft.getGrowthState2();
+		ft.getGrowthState3();
 		Jsonb jsonb = JsonbBuilder.create();
 		String serializedft = jsonb.toJson(ft);
 		return serializedft;

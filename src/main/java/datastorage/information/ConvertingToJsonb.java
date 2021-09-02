@@ -15,7 +15,7 @@ public class ConvertingToJsonb {
 	 * This method is converting all the data into a JSONB file
 	 * 
 	 */
-	public void toSerialize() {
+	public void SetSavingInformation() {// Methodenname wird noch geändert
 	// all numeric values
 		GetJsonbValue gjv = new GetJsonbValue();
 			gjv.toSerializeGame();
