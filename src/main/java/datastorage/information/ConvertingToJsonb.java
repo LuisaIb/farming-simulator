@@ -20,12 +20,12 @@ public class ConvertingToJsonb {
 		GetJsonbValue gjv = new GetJsonbValue();
 			gjv.toSerializeGame();
 			gjv.toSerializeLevel();
-			gjv.toSerializeFieldtiles();
+			gjv.toSerializeFieldtiles();// Exception
 			
 	// all position values	
 		GetJsonbPosition gjp = new GetJsonbPosition();
 			gjp.toSerializeFarmersPosition();
 			gjp.toSerializeTractorsPosition();
-			gjp.toSerializeHarvestersPosition();
+			gjp.toSerializeHarvestersPosition();// Exception
 	}
 }

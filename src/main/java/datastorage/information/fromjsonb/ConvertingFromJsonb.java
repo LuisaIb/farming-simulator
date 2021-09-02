@@ -19,13 +19,13 @@ public class ConvertingFromJsonb {
 		siv.GetSavingInformationGame();
 //		siv.GetSavingInformationLevel();
 		siv.GetSavingInformationFieldtiles();
-		siv.GetSavingInformationFieldtiles();
+		siv.GetSavingInformationFieldtiles();// Exception
 		
 	// all positions
 	GetSavingInformationPosition sip = new GetSavingInformationPosition();
 		sip.GetSavingInformationFarmer();
 		sip.GetSavingInformationTractor();
-		sip.GetSavingInformationHarvester();
+		sip.GetSavingInformationHarvester();// Exception
 			
 		
 	}
