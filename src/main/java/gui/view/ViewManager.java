@@ -20,7 +20,8 @@ public class ViewManager {
     public void initializeStage(){
         mainStage.setTitle("Landwirtschaftssimulator");
         mainStage.setResizable(false);
-        //mainStage.getIcons().add(new Image(getClass().getResourceAsStream("resources/machines/tractorSide.png"), 40, 40, false, false));
+        Image iconImage = new ImageManager().getImage("src/main/java/gui/view/resources/machines/tractorSide.png", 40, 40, false, false);
+        mainStage.getIcons().add(iconImage);
         initilizeScene();
         mainStage.show();
     }

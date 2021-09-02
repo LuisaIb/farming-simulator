@@ -24,7 +24,7 @@ public class ImageManager {
      * @return the requested image
      */
     public Image getImage(String path, double width, double height, boolean preserveRatio, boolean smooth) {
-        Image image = new Image(getClass().getResourceAsStream(path), width, height, preserveRatio, smooth);
+        Image image = new Image("file:" + path, width, height, preserveRatio, smooth);
         return image;
     }
 
