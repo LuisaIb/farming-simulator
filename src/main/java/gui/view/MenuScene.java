@@ -46,14 +46,14 @@ public class MenuScene {
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         Background background = new Background(backgroundImage);
         menuPane.setBackground(background);
-        initilizeButtons();
+        initializeButtons();
     }
 
     /**
-     * This method implements the buttons of the menu. Therefore it uses a VBox.
+     * This method implements the buttons of the menu. Therefore, it uses a VBox.
      */
-    private void initilizeButtons(){
-        VBox menuBox = new VBox();
+    private void initializeButtons(){
+        VBox menuBox = new VBox(10);
         menuBox.setLayoutX(WIDTH/2 - 100);
         menuBox.setLayoutY(HEIGHT/2 - 150);
 
