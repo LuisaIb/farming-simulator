@@ -4,9 +4,9 @@ import gui.view.ViewManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+
 /**
- * 
- * @author 
+ * @author Luisaibele, Isabel
  *
  */
 public class Launcher extends Application {
@@ -15,6 +15,9 @@ public class Launcher extends Application {
 		launch(args);
 	}
 
+	/**
+	 *this method is supposed to start the farmer simulator
+	 */
 	@Override
 	public void start(Stage stage) throws Exception {
 		ViewManager viewManager = new ViewManager();

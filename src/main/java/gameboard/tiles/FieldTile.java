@@ -6,6 +6,7 @@ package gameboard.tiles;
  *
  */
 public class FieldTile extends Tile{
+	private int growthState; //representing the state of growth of a field
 
 	public FieldTile(int id) {
 		super(id);
@@ -18,6 +19,14 @@ public class FieldTile extends Tile{
 	 */
 	public boolean isSolid() {
 		return true;
+	}
+	
+	public int getGrowthState() {
+		return growthState;
+	}
+
+	public void setGrowthState(int growthState) {
+		this.growthState = growthState;
 	}
 
 }
