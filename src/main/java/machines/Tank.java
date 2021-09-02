@@ -1,8 +1,7 @@
 package machines;
 
 public class Tank{
-	 
-	int petrolCapacity;
+
     private int petrolLevel;
     private int y;
     private int x;
