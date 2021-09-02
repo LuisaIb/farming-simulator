@@ -18,7 +18,7 @@ import simulator.LevelOfDifficulty;
 public class GetPojo {
 	
 	/**
-	 * @return deserialized as a new game object of the cash and filling values
+	 * @return deserialized as a new game object of the cash, filling values and the day
 	 */
 	public Game toDeserializeGame() {
 		//Klassenobjekt	

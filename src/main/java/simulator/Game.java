@@ -27,16 +27,19 @@ public class Game {
 	 * @param cash
 	 * @param filling
 	 */
-	public Game(int cash, double filling) {
-		cash = 0; 
-		filling = 100; 
+	public Game(int cash, double filling, int day) {
+		this.cash = cash;
+		this.filling = filling; 
+		this.day = day;
 	}
 	
 	/**
 	 * 
 	 */
 	public Game() {
-		
+		cash = 100;
+		filling = 100.0;
+		day = 1;
 	}
 
 	/**

@@ -9,6 +9,7 @@ import simulator.Game;
 import simulator.LevelOfDifficulty;
 import gameboard.GameBoard;
 import gameboard.tiles.FieldTile;
+import gui.view.Matchfield;
 
 
 /**
@@ -20,13 +21,14 @@ public class GetJsonb {
 	// in einer eigenden MEthode werden dann alle objekte zusammengefügt und zurück gegeben oder gespeichert
 
 	/**
-	 * @return serialized as a JSONB object of the cash and filling values
+	 * @return serialized as a JSONB object of the cash, filling values and the day
 	 */
 	public String toSerializeGame() {
 		//Klassenobjekt
-		Game game = new Game(0, 0.0);
+		Game game = new Game(0, 0.0, 1);
 //		game.setCash(50);
 //		game.setFilling(110.0);
+//		game.setDay(0);
 		
 		Jsonb jsonb = JsonbBuilder.create();
 		String serialized = jsonb.toJson(game);
