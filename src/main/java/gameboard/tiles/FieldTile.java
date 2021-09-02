@@ -14,9 +14,11 @@ public class FieldTile extends Tile{
 	 * @param id
 	 * @param growthState
 	 */
-	public FieldTile(int id, int growthState) {
+	public FieldTile(int id, int growthState, int growthState2, int growthState3 ) {
 		super(id);
 		this.growthState = growthState;
+		this.growthState2 = growthState2;
+		this.growthState3 = growthState3;
 	}
 	
 	public FieldTile() {

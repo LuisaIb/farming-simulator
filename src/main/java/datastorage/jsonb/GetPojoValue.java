@@ -26,6 +26,7 @@ public class GetPojoValue {
 		Jsonb jb = JsonbBuilder.create();
 		Game deserializedgame = jb.fromJson(jbv.toSerializeGame(), Game.class);
 //		System.out.println("deserialized, neues Klassenobjekt = " + deserialized);
+		deserializedgame.getCash();
 		return deserializedgame; // kann nun als neues Objekt der Klasse Game() verwendet werden um den Konstruktor zu befüllen
 	}
 	
