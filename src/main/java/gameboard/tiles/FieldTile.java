@@ -40,6 +40,14 @@ public class FieldTile extends Tile{
 
 	public void setGrowthState(int growthState) {
 		this.growthState = growthState;
+		if(growthState == 4) {
+			System.out.println("The first field is ready to harvest!");
+			//timer.stop
+		}else if(growthState == 5){
+			System.out.println("The first field is ready to get seeded!");
+		}else {
+			System.out.println("The first field is growing now!");
+		}
 	}
 	public int getGrowthState2() {
 		return growthState2;
