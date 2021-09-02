@@ -7,8 +7,11 @@ package simulator;
  * @author Isabel
  *
  */
-public enum LevelOfDifficulty {
+public class LevelOfDifficulty {
 
+	enum Level {
 		LOW, MEDIUM, HIGH;
 	}
 
+	
+}
