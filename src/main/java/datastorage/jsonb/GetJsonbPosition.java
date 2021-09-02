@@ -46,4 +46,6 @@ public class GetJsonbPosition {
 		String serializedgbh = jsonb.toJson(gbh);
 		return serializedgbh;
 	}
+	
+	// fehlende Geräte folgen
 }

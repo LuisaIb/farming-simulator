@@ -1,9 +1,9 @@
 /**
  * 
  */
-package datastorage.information;
+package datastorage.information.fromjsonb;
 
-import datastorage.jsonb.GetPojoValue;
+import datastorage.pojo.GetPojoValue;
 import gameboard.tiles.FieldTile;
 import simulator.Game;
 import simulator.LevelOfDifficulty;
@@ -32,16 +32,16 @@ public class GetSavingInformationValue {
 		Game updatedGame = new Game(cash, filling, day);
 	}
 	
-	/**
-	 * 
-	 */
-	public void GetSavingInformationLevel() {
-		GetPojoValue gpv = new GetPojoValue();
-			LevelOfDifficulty deserializedlevel = gpv.toDeserializeLevel();
-			LevelOfDifficulty level = deserializedlevel.HIGH;
-					
-		// wird noch geändert im Bezug auf ENUM
-	}
+//	/**
+//	 * 
+//	 */
+//	public void GetSavingInformationLevel() {
+//		GetPojoValue gpv = new GetPojoValue();
+//			LevelOfDifficulty deserializedlevel = gpv.toDeserializeLevel();
+//			LevelOfDifficulty level = deserializedlevel.HIGH;
+//					
+//		// wird noch geändert im Bezug auf ENUM
+//	}
 	
 	/**
 	 * 
@@ -57,7 +57,7 @@ public class GetSavingInformationValue {
 			FieldTile deserializedft3 = gpv.toDeserializeFieldtiles();
 			int ft3 = deserializedft3.getGrowthState3();
 			
-			FieldTile updatedFieldTile = new FieldTile(0, ft1, ft2, ft3);
+		FieldTile updatedFieldTile = new FieldTile(0, ft1, ft2, ft3);
 					
 	}
 }

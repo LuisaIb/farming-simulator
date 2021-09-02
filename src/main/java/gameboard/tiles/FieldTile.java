@@ -65,4 +65,10 @@ public class FieldTile extends Tile{
 		this.growthState3 = growthState3;
 	}
 
+	@Override
+	public String toString() {
+		return "FieldTile [growthState=" + growthState + ", growthState2=" + growthState2 + ", growthState3="
+				+ growthState3 + "]";
+	}
+
 }

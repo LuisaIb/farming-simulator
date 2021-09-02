@@ -23,7 +23,7 @@ public class GetJsonbValue {
 	 */
 	public String toSerializeGame() {
 		Game game = new Game();
-		game.setCash(2);
+		game.getCash();
 		game.getFilling();
 		game.getDay();
 		

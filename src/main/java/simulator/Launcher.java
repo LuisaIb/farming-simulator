@@ -24,5 +24,6 @@ public class Launcher extends Application {
 		viewManager.initializeStage();
 		
 		
+		
 	}
 }
