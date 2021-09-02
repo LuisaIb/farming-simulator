@@ -20,6 +20,7 @@ import static gui.view.ViewManager.WIDTH;
 public class MenuScene {
     private Pane menuPane = new Pane();
     private Scene menuScene = new Scene(menuPane, WIDTH, HEIGHT);
+    private static final String PATH_TO_BACKGROUND_IMAGE = "src/main/java/gui/view/resources/background/field.jpg";
     private LSButton buttonNewGame;
     private LSButton buttonContinueGame;
     private LSButton buttonLoadGame;
@@ -40,20 +41,19 @@ public class MenuScene {
     private void initializeMenuPane(){
         menuPane.setPrefWidth(WIDTH);
         menuPane.setPrefHeight(HEIGHT);
-        //Image image = new ImageManager().getImage("../view/resources/background/field.jpg",
-        //        WIDTH, HEIGHT, false, false);
-        //BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
-        //        BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        //Background background = new Background(backgroundImage);
-        //menuPane.setBackground(background);
-        initilizeButtons();
+        Image image = new ImageManager().getImage(PATH_TO_BACKGROUND_IMAGE, WIDTH, HEIGHT, false, false);
+        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Background background = new Background(backgroundImage);
+        menuPane.setBackground(background);
+        initializeButtons();
     }
 
     /**
-     * This method implements the buttons of the menu. Therefore it uses a VBox.
+     * This method implements the buttons of the menu. Therefore, it uses a VBox.
      */
-    private void initilizeButtons(){
-        VBox menuBox = new VBox();
+    private void initializeButtons(){
+        VBox menuBox = new VBox(10);
         menuBox.setLayoutX(WIDTH/2 - 100);
         menuBox.setLayoutY(HEIGHT/2 - 150);
 

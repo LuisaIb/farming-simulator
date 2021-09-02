@@ -12,9 +12,8 @@ import javafx.scene.text.Font;
  * @author Judith Romer
  */
 public class LSTextField extends TextField {
-    /* A variable, that saves the path to the background image of the text field in a String. As it will never be used
-       outside this class and never be changed it is private and final. */
-    private final String IMAGE_PATH = "resources/background.png";
+    /* A variable, that saves the path to the background image of the text field in a String. */
+    private final String IMAGE_PATH = "src/main/java/gui/model/resources/background.png";
 
     /** Constructs an object of the class LandwirtschaftssimulatorTextField. As you can tell by the name of the class,
      * it creates a text field.
@@ -64,5 +63,4 @@ public class LSTextField extends TextField {
         this.setLayoutY(layoutY);
         this.setAlignment(Pos.CENTER);
     }
-
 }

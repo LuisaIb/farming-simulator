@@ -1,8 +1,10 @@
 package gui.model;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 
@@ -11,9 +13,8 @@ import javafx.scene.text.Font;
  * @author Judith Romer
  */
 public class LSButton  extends Button {
-    /* A variable, that saves the path to the background image of the button in a String. As it will never be used
-   outside this class and never be changed it is private and final. */
-    private final String IMAGE_PATH = "resources/background.png";
+    /* A variable, that saves the path to the background image of the button in a String. */
+    private final String IMAGE_PATH = "src/main/java/gui/model/resources/background.png";
 
     /** Constructs an object of the class LandwirtschaftssimulatorButton with text on it and a nice background image
      * by using the methode setButtonBackground().
@@ -75,11 +76,11 @@ public class LSButton  extends Button {
      * @param width - width of the image, the same as the button
      */
     private void setButtonBackground(int height, int width){
-        //Image image = new ImageManager().getImage(IMAGE_PATH, width, height, false, false);
-        //BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
-        //        BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        //Background background = new Background(backgroundImage);
-        //this.setBackground(background);
+        Image image = new ImageManager().getImage(IMAGE_PATH, width, height, false, false);
+        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Background background = new Background(backgroundImage);
+        this.setBackground(background);
     }
 
     /** Sets the background image, using the image of the parameter. As the method will never be used outside this
