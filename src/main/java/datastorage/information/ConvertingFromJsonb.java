@@ -22,10 +22,6 @@ public class ConvertingFromJsonb {
 		siv.GetSavingInformationFieldtiles();
 		
 			
-		GetPojoPosition gpp = new GetPojoPosition();	
-			gpp.toDeserializeFarmersPosition();
-			gpp.toDeserializeTractorsPosition();
-			gpp.toDeserializeHarvestersPosition();
 		
 	}
 	
