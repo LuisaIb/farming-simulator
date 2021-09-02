@@ -7,4 +7,17 @@ package gameboard.tiles;
  */
 public class FieldTile extends Tile{
 
+	public FieldTile(int id) {
+		super(id);
+	}
+		
+	/**
+	 * this method returns a boolean to check wether the field Tile
+	 * is solid or not
+	 * @return the checked boolean variable
+	 */
+	public boolean isSolid() {
+		return true;
+	}
+
 }

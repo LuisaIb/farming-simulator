@@ -54,11 +54,12 @@ public class GetPojo {
 	/**
 	 * @return deserialized as a new GameBoard object of the fieldtile's contitions
 	 */
-	public FieldTile toDeserializeTiles() {  //eventuell mit Vererbung für die Felder 1-3
+	public FieldTile toDeserializeFieldtiles() {  //eventuell mit Vererbung für die Felder 1-3
 		//Klassenobjekt	
 		GetJsonb gjb = new GetJsonb();
 		Jsonb jb = JsonbBuilder.create();
-		FieldTile deserialized = jb.fromJson(gjb.toSerializeTiles(), FieldTile.class);
+		FieldTile deserialized = jb.fromJson(gjb.toSerializeFieldtiles(), FieldTile.class);
 		return deserialized;	
 	}
+	
 }

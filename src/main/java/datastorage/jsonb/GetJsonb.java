@@ -39,7 +39,7 @@ public class GetJsonb {
 	 */
 	public String toSerializeLevel() {
 		//Klassenobjekt
-		LevelOfDifficulty lod = new LevelOfDifficulty();
+		LevelOfDifficulty lod = null;
 		
 		Jsonb jsonb = JsonbBuilder.create();
 		String serialized = jsonb.toJson(lod);
@@ -63,9 +63,9 @@ public class GetJsonb {
 	/**
 	 * @return serialized as a JSONB object of the fieldtile's contitions
 	 */
-	public String toSerializeTiles() { //eventuell mit Vererbung für die Felder 1-3
+	public String toSerializeFieldtiles() { //eventuell mit Vererbung für die Felder 1-3
 		//Klassenobjekt
-		FieldTile gb = new FieldTile();
+		FieldTile gb = new FieldTile(0);
 		
 		Jsonb jsonb = JsonbBuilder.create();
 		String serialized = jsonb.toJson(gb);

@@ -17,6 +17,7 @@ public class LSButton  extends Button {
 
     /** Constructs an object of the class LandwirtschaftssimulatorButton with text on it and a nice background image
      * by using the methode setButtonBackground().
+     *
      * @param text - text, that is shown on the button
      * @param height - height of the button, handed to the methods setButtonLayout() and setButtonBackground()
      * @param width - width of the button, handed to the methods setButtonLayout() and setButtonBackground()
@@ -33,6 +34,7 @@ public class LSButton  extends Button {
 
     /** Constructs an object of the class LandwirtschaftssimulatorButton without text and background image, but with
      * an individualized image, that is given to the method as a parameter.
+     *
      * @param image - image, that is shown on the button, handed to the method setButtonBackground()
      * @param height - height of the button, handed to the methods setButtonLayout() and setButtonBackground
      * @param width - width of the button, handed to the methods setButtonLayout() and setButtonBackground
@@ -44,16 +46,16 @@ public class LSButton  extends Button {
         this.setButtonBackground(image, height, width);
     }
 
-    /** Sets the font of the button to Verdana and the size of the font to the fontSize. As the method will never
-     * be used outside this class, it is private.
+    /** Sets the font of the button to Verdana and the size of the font to the fontSize.
+     *
      * @param fontSize - size of the font on the button
      */
     private void setButtonFont(int fontSize){
         this.setFont(Font.font("Verdana", fontSize));
     }
 
-    /** Defines the size and alignment of the button. The alignment of the text is set to the center. As the
-     * method will never be used outside this class, it is private.
+    /** Defines the size and alignment of the button. The alignment of the text is set to the center.
+     *
      * @param height - height of the button
      * @param width - width of the button
      * @param layoutX - distance on the x-axis from the top left corner

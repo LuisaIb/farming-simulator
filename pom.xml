@@ -4,7 +4,7 @@
   <artifactId>Landwirtschaftssimulator_SE2</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 <dependencies>
-<dependency>
+	<dependency>
 		<groupId>org.glassfish</groupId>
 		<artifactId>javax.json</artifactId>
 		<version>1.1.2</version>
