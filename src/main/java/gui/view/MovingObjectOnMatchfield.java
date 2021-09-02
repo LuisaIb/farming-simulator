@@ -21,8 +21,4 @@ public class MovingObjectOnMatchfield {
     private void initializeMovingObject(){
 
     }
-
-
-
-
 }
