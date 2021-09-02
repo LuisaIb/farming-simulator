@@ -1,6 +1,7 @@
 package gui.view;
 
 import gui.model.ImageManager;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -19,8 +20,7 @@ public class ViewManager {
     public void initializeStage(){
         mainStage.setTitle("Landwirtschaftssimulator");
         mainStage.setResizable(false);
-        mainStage.getIcons().add(new ImageManager().getImage("../view/resources/machines/tractorSide.png",
-                40, 40, false, false));
+        //mainStage.getIcons().add(new Image(getClass().getResourceAsStream("resources/machines/tractorSide.png"), 40, 40, false, false));
         initilizeScene();
         mainStage.show();
     }

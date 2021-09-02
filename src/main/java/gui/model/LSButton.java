@@ -75,11 +75,11 @@ public class LSButton  extends Button {
      * @param width - width of the image, the same as the button
      */
     private void setButtonBackground(int height, int width){
-        Image image = new ImageManager().getImage(IMAGE_PATH, width, height, false, false);
-        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        Background background = new Background(backgroundImage);
-        this.setBackground(background);
+        //Image image = new ImageManager().getImage(IMAGE_PATH, width, height, false, false);
+        //BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+        //        BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        //Background background = new Background(backgroundImage);
+        //this.setBackground(background);
     }
 
     /** Sets the background image, using the image of the parameter. As the method will never be used outside this

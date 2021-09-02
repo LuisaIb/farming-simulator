@@ -40,12 +40,12 @@ public class MenuScene {
     private void initializeMenuPane(){
         menuPane.setPrefWidth(WIDTH);
         menuPane.setPrefHeight(HEIGHT);
-        Image image = new ImageManager().getImage("../view/resources/background/field.jpg",
-                WIDTH, HEIGHT, false, false);
-        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        Background background = new Background(backgroundImage);
-        menuPane.setBackground(background);
+        //Image image = new ImageManager().getImage("../view/resources/background/field.jpg",
+        //        WIDTH, HEIGHT, false, false);
+        //BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+        //        BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        //Background background = new Background(backgroundImage);
+        //menuPane.setBackground(background);
         initilizeButtons();
     }
 

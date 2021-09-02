@@ -1,5 +1,6 @@
 package simulator;
 
+import gui.view.ViewManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -16,6 +17,7 @@ public class Launcher extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-
+		ViewManager viewManager = new ViewManager();
+		viewManager.initializeStage();
 	}
 }
