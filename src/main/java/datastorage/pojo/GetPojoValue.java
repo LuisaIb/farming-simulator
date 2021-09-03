@@ -5,7 +5,7 @@ package datastorage.pojo;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
-import simulator.Game;
+import simulator.GameValue;
 import gameboard.tiles.FieldTile;
 import datastorage.jsonb.GetJsonbValue;
 import simulator.LevelOfDifficulty;
@@ -19,11 +19,10 @@ public class GetPojoValue {
 	/**
 	 * @return deserialized as a new game object of the cash, filling values and the day
 	 */
-	public Game toDeserializeGame() {
+	public GameValue toDeserializeGame() {
 		GetJsonbValue jbv = new GetJsonbValue();
 		Jsonb jb = JsonbBuilder.create();
-		Game deserializedgame = jb.fromJson(jbv.toSerializeGame(), Game.class);
-		deserializedgame.getCash();
+		GameValue deserializedgame = jb.fromJson(jbv.toSerializeGame(), GameValue.class);
 		return deserializedgame; // kann nun als neues Objekt der Klasse Game() verwendet werden um den Konstruktor zu befüllen
 	}
 	
@@ -50,7 +49,7 @@ public class GetPojoValue {
 	/**
 	 * @return deserialized as a new GameBoard object of the tank filling status
 	 */
-	public Game toDeserializeTank() {
+	public GameValue toDeserializeTank() {
 		GetJsonbValue jbv = new GetJsonbValue();
 		Jsonb jb = JsonbBuilder.create();
 		Class deserializedtank = jb.fromJson(jbv.toSerializeTank(), null);

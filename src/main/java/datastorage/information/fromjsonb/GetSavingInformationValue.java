@@ -5,7 +5,7 @@ package datastorage.information.fromjsonb;
 
 import datastorage.pojo.GetPojoValue;
 import gameboard.tiles.FieldTile;
-import simulator.Game;
+import simulator.GameValue;
 import simulator.LevelOfDifficulty;
 
 /**
@@ -20,16 +20,16 @@ public class GetSavingInformationValue {
 	 */
 	public void GetSavingInformationGame() {
 		GetPojoValue gpv = new GetPojoValue();
-			Game deserializedcash = gpv.toDeserializeGame();
+			GameValue deserializedcash = gpv.toDeserializeGame();
 			int cash = deserializedcash.getCash();
 			
-			Game deserializedfilling = gpv.toDeserializeGame();
+			GameValue deserializedfilling = gpv.toDeserializeGame();
 			double filling = deserializedfilling.getFilling();
 			
-			Game deserializedday = gpv.toDeserializeGame();
+			GameValue deserializedday = gpv.toDeserializeGame();
 			int day = deserializedday.getDay();
 		
-		Game updatedGame = new Game(cash, filling, day);
+			GameValue updatedGame = new GameValue(cash, filling, day);
 	}
 	
 //	/**

@@ -5,7 +5,7 @@ package datastorage.jsonb;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
-import simulator.Game;
+import simulator.GameValue;
 import simulator.LevelOfDifficulty;
 import gameboard.tiles.FieldTile;
 
@@ -22,7 +22,7 @@ public class GetJsonbValue {
 	 * @return serialized as a JSONB object of the cash, filling values and the day
 	 */
 	public String toSerializeGame() {
-		Game game = new Game();
+		GameValue game = new GameValue();
 		game.getCash();
 		game.getFilling();
 		game.getDay();

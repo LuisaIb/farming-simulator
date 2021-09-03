@@ -18,7 +18,12 @@ public class SavingProperties {
 	 * 
 	 */
 	public void CreateNewGame() {
-		
+		// alle Informationen für den Spielstart gesammelt aufrufen
+		// LEvelauswahl
+		//Game
+		//Poitionen der Ojekte
+		//Tank
+		//Silofüllstand
 	}
 	
 	/**
