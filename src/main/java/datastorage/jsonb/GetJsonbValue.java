@@ -55,5 +55,16 @@ public class GetJsonbValue {
 		String serializedft = jsonb.toJson(ft);
 		return serializedft;
 	}
+	
+	/**
+	 * @return serialized as a JSONB object of the tank filling status
+	 */
+	public String toSerializeTank() {
+		// Tankfüllstand der beiden Geräte speichern
+		
+		Jsonb jsonb = JsonbBuilder.create();
+		String serializedtank = jsonb.toJson(null);
+		return serializedtank;
+	}
 
 }

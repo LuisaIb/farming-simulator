@@ -20,7 +20,8 @@ public class ConvertingToJsonb {
 		GetJsonbValue gjv = new GetJsonbValue();
 			gjv.toSerializeGame();
 			gjv.toSerializeLevel();
-			gjv.toSerializeFieldtiles();// Exception
+			gjv.toSerializeFieldtiles();// Exception werfen um speicher vorgan zu prüfen
+			gjv.toSerializeTank();
 			
 	// all position values	
 		GetJsonbPosition gjp = new GetJsonbPosition();

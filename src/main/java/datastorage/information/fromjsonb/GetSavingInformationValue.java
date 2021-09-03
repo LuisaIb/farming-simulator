@@ -27,7 +27,7 @@ public class GetSavingInformationValue {
 			double filling = deserializedfilling.getFilling();
 			
 			Game deserializedday = gpv.toDeserializeGame();
-			int day = deserializedfilling.getDay();
+			int day = deserializedday.getDay();
 		
 		Game updatedGame = new Game(cash, filling, day);
 	}
@@ -59,5 +59,19 @@ public class GetSavingInformationValue {
 			
 		FieldTile updatedFieldTile = new FieldTile(0, ft1, ft2, ft3);
 					
+	}
+	
+	/**
+	 * 
+	 */
+	public void GetSavingInformationTank() {
+		GetPojoValue gpv = new GetPojoValue();
+//			Class deserializedtank1 = gpv.toDeserializeTank();
+//			int tank1 = deserializedcash.getCash();
+//			
+//			Class deserializedtank2 = gpv.toDeserializeTank();
+//			int tank2 = deserializedfilling.getFilling();
+//			
+//		Game updatedGame = new Game(cash, filling, day);
 	}
 }

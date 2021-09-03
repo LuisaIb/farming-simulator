@@ -4,7 +4,7 @@
 package gameboard;
 
 /**
- * @author Isabel
+ * @author 
  *
  */
 public class GetCoordinates {
