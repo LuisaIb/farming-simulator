@@ -19,6 +19,7 @@ public class GetJsonbValue {
 	// in einer eigenden Methode werden dann alle objekte zusammengefügt und zurück gegeben oder gespeichert
 
 	/**
+	 * This method gets the values of the cash, the filling and the gameday of the class GameValue.
 	 * @return serialized as a JSONB object of the cash, filling values and the day
 	 */
 	public String toSerializeGame() {
@@ -33,17 +34,19 @@ public class GetJsonbValue {
 	}
 	
 	/**
+	 * This method gets the value of the level of difficulty of the class LevelOfDifficulty.
 	 * @return serialized as a JSONB object of the level of difficulty
 	 */
 	public String toSerializeLevel() {
 		LevelOfDifficulty lod = null;
-		// get Enum level
+		// get game level
 		Jsonb jsonb = JsonbBuilder.create();
 		String serializedlod = jsonb.toJson(lod);
 		return serializedlod;
 	}
 	
 	/**
+	 * This method gets the growth state of all three fields of the class FieldTile.
 	 * @return serialized as a JSONB object of the fieldtile's contitions
 	 */
 	public String toSerializeFieldtiles() { 
@@ -57,6 +60,7 @@ public class GetJsonbValue {
 	}
 	
 	/**
+	 * This method get the tank filling state of the class .
 	 * @return serialized as a JSONB object of the tank filling status
 	 */
 	public String toSerializeTank() {

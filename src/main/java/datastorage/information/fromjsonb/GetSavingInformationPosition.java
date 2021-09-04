@@ -12,7 +12,8 @@ import datastorage.pojo.GetPojoPosition;
 public class GetSavingInformationPosition {
 	
 	/**
-	 * 
+	 * This method deserialize the JSONB file. It is also possible to get the position of the farmer.
+	 * It implements a new position (x and y value) of the farmer.
 	 */
 	public void GetSavingInformationFarmer() {
 		GetPojoPosition gpp = new GetPojoPosition();	
@@ -20,7 +21,8 @@ public class GetSavingInformationPosition {
 	}
 	
 	/**
-	 * 
+	 * This method deserialize the JSONB file. It is also possible to get the position of the tractor.
+	 * It implements a new position (x and y value) of the tractor.
 	 */
 	public void GetSavingInformationTractor() {
 		GetPojoPosition gpp = new GetPojoPosition();	
@@ -29,7 +31,8 @@ public class GetSavingInformationPosition {
 	}
 	
 	/**
-	 * 
+	 * This method deserialize the JSONB file. It is also possible to get the position of the harvester.
+	 * It implements a new position (x and y value) of the harvester.
 	 */
 	public void GetSavingInformationHarvester() {
 		GetPojoPosition gpp = new GetPojoPosition();	

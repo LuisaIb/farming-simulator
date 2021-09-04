@@ -15,6 +15,7 @@ import gameboard.GameBoard;
 public class GetJsonbPosition {
 
 	/**
+	 * This method gets the position of the farmer of the class...
 	 * @return serialized as a JSONB object of the farmer's position
 	 */
 	public String toSerializeFarmersPosition() { //eventuell mit Vererbung für die Geräte und den Menschen
@@ -26,6 +27,7 @@ public class GetJsonbPosition {
 	}
 	
 	/**
+	 * This method gets the position of the tractor of the class...
 	 * @return serialized as a JSONB object of the tractor's positions
 	 */
 	public String toSerializeTractorsPosition() { 
@@ -37,6 +39,7 @@ public class GetJsonbPosition {
 	}
 	
 	/**
+	 * This method gets the position of the harvester of the class...
 	 * @return serialized as a JSONB object of the tractor's positions
 	 */
 	public String toSerializeHarvestersPosition() { 

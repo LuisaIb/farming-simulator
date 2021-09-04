@@ -17,6 +17,7 @@ import simulator.LevelOfDifficulty;
 public class GetPojoValue {
 	
 	/**
+	 * This method creates an new object of the class GameValue.
 	 * @return deserialized as a new game object of the cash, filling values and the day
 	 */
 	public GameValue toDeserializeGame() {
@@ -27,6 +28,7 @@ public class GetPojoValue {
 	}
 	
 	/**
+	 * This method creates an new object of the class LevelOfDifficulty.
 	 * @return deserialized as a new Enum object of the level of difficulty
 	 */
 	public LevelOfDifficulty toDeserializeLevel() {
@@ -37,6 +39,7 @@ public class GetPojoValue {
 	}
 	
 	/**
+	 * This method creates an new object of the class FieldTile.
 	 * @return deserialized as a new GameBoard object of the fieldtile's contitions
 	 */
 	public FieldTile toDeserializeFieldtiles() {  
@@ -47,6 +50,7 @@ public class GetPojoValue {
 	}
 	
 	/**
+	 * This method creates an new object of the class ...
 	 * @return deserialized as a new GameBoard object of the tank filling status
 	 */
 	public GameValue toDeserializeTank() {

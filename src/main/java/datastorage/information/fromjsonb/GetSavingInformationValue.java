@@ -16,7 +16,8 @@ import simulator.LevelOfDifficulty;
 public class GetSavingInformationValue {
 
 	/**
-	 * 
+	 * This method deserialize the JSONB file. It is also possible to get the values of the cash, the tank filling and the gameday.
+	 * It implements a new GameValue object by using the class constructor.
 	 */
 	public void GetSavingInformationGame() {
 		GetPojoValue gpv = new GetPojoValue();
@@ -44,7 +45,8 @@ public class GetSavingInformationValue {
 //	}
 	
 	/**
-	 * 
+	 * This method deserialize the JSONB file. It is also possible to get the growth state of field one, the growth state of field two and the growth state of field three.
+	 * It implements a new FieldTile object by using the class constructor.
 	 */
 	public void GetSavingInformationFieldtiles() {
 		GetPojoValue gpv = new GetPojoValue();
@@ -62,7 +64,8 @@ public class GetSavingInformationValue {
 	}
 	
 	/**
-	 * 
+	 * This method deserialize the JSONB file. It is also possible to get the filling level of tank one and two.
+	 * It implements a new FieldTile object by using the class constructor.
 	 */
 	public void GetSavingInformationTank() {
 		GetPojoValue gpv = new GetPojoValue();

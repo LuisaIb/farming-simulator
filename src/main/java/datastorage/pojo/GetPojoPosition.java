@@ -16,6 +16,7 @@ import gameboard.GameBoard;
 public class GetPojoPosition {
 	
 	/**
+	 * This method creates an new object of the class ....
 	 * @return deserialized as a new GameBoard object of the farmer's positions
 	 */
 	public GameBoard toDeserializeFarmersPosition() {  
@@ -26,6 +27,7 @@ public class GetPojoPosition {
 	}
 	
 	/**
+	 * This method creates an new object of the class ....
 	 * @return deserialized as a new GameBoard object of the tractor's positions
 	 */
 	public GameBoard toDeserializeTractorsPosition() {  	
@@ -36,6 +38,7 @@ public class GetPojoPosition {
 	}
 	
 	/**
+	 * This method creates an new object of the class ....
 	 * @return deserialized as a new GameBoard object of the Harvester's positions
 	 */
 	public GameBoard toDeserializeHarvestersPosition() {  
