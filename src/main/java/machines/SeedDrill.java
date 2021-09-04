@@ -1,5 +1,5 @@
 package machines;
 
-public class SeedDrill {
+public class SeedDrill extends Machine {
 
 }

@@ -1,5 +1,5 @@
 package machines;
 
-public class Cultivator {
+public class Cultivator extends Machine {
 
 }
