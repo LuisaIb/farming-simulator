@@ -2,11 +2,14 @@ package machines;
 
 public class Tank{
 
-	private int petrolCapacity = 150;
     private int petrolLevel;
     private int y;
     private int x;
  
+    public Tank() {
+    	
+    }
+    
     /** 
      * this constructor sets the petrol level and the coordinates
      * @param petrolLevel, x, y
@@ -21,7 +24,7 @@ public class Tank{
      * this method minimizes the petrol level when the vehicle is moving
      * @return petrolLevel
      */
-    public int move(int petrolLevel, int x, int y) {
+    public int consumption(int petrolLevel, int x, int y) {
     	if(x == +-1 || y == +-1) {
     		petrolLevel--;
     	} return petrolLevel;
