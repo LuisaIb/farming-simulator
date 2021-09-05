@@ -1,7 +1,11 @@
 package gameboard;
 
 import gameboard.tiles.Tile;
-
+/**
+ * this class represents the gameboard itself
+ * @author Luisaibele
+ *
+ */
 public class GameBoard {
 	
 	private int width = 30, height = 20;
