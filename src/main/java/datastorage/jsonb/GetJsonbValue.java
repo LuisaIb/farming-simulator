@@ -47,7 +47,7 @@ public class GetJsonbValue {
 	
 	/**
 	 * This method gets the growth state of all three fields of the class FieldTile.
-	 * @return serialized as a JSONB object of the fieldtile's contitions
+	 * @return serialized as a JSONB object of the fieldtile's conditions
 	 */
 	public String toSerializeFieldtiles() { 
 		FieldTile ft = new FieldTile();
@@ -71,5 +71,5 @@ public class GetJsonbValue {
 		return serializedtank;
 	}
 
-	// Soli und Hofladen Zustand, Füllstände(Tank)
+	// Soli und Hofladen Zustand, // Silostand, hofladen
 }

@@ -34,7 +34,9 @@ public class LevelOfDifficulty {
 		
 		} else {
 			System.out.println("something went wrong"); // eventuell throw Exception
+			
 		}
+		
 	}
 	
 	public LevelOfDifficulty() {

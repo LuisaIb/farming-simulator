@@ -51,5 +51,6 @@ public class GetJsonbPosition {
 	}
 	
 	// fehlende Geräte folgen
-	// 
+	// allgemeine Informationen über position, Tankstand, Grainstand
+	
 }

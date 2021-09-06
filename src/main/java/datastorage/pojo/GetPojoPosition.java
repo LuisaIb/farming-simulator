@@ -48,3 +48,4 @@ public class GetPojoPosition {
 		return deserializedgbh;	
 	}
 }
+// Klassen müssen angepasst werden
