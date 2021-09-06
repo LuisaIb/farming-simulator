@@ -9,7 +9,16 @@ public class FieldTile extends Tile{
 	private int growthState; //representing the state of growth of the first field
 	private int growthState2; //representing the state of growth of the second field
 	private int growthState3; //representing the state of growth of the third field
-
+	/*
+	 * growthstate = 0 -> zur Aussaat bereit
+	 * growthstate = 1 -> Wachstumsstufe 1
+	 * growthstate = 2 -> Wachstumsstufe 2
+	 * growthstate = 3 -> Wachstumsstufe 3
+	 * growthstate = 4 -> erntereif
+	 * growthstate = 5 -> abgeerntet
+	 * 
+	 */
+	
 	/**
 	 * this constructor stands for a field tile
 	 * @param id
@@ -20,6 +29,7 @@ public class FieldTile extends Tile{
 		this.growthState = growthState;
 		this.growthState2 = growthState2;
 		this.growthState3 = growthState3;
+		
 	}
 	
 	public FieldTile() {
@@ -53,7 +63,9 @@ public class FieldTile extends Tile{
 			System.out.println("The first field is ready to harvest!");
 			//timer.stop
 		}else if(growthState == 5){
-			System.out.println("The first field is ready to get seeded!");
+			System.out.println("The first field is ready to get cultivated!");
+		}else if(growthState == 0){
+			System.out.println("The first field is ready for sowing!");
 		}else {
 			System.out.println("The first field is growing now!");
 		}
@@ -74,12 +86,14 @@ public class FieldTile extends Tile{
 	public void setGrowthState2(int growthState2) {
 		this.growthState2 = growthState2;
 		if(growthState2 == 4) {
-			System.out.println("The first field is ready to harvest!");
+			System.out.println("The second field is ready to harvest!");
 			//timer.stop
 		}else if(growthState2 == 5){
-			System.out.println("The first field is ready to get seeded!");
+			System.out.println("The second field is ready to get cultivated!");
+		}else if(growthState2 == 0){
+			System.out.println("The second field is ready for sowing!");
 		}else {
-			System.out.println("The first field is growing now!");
+			System.out.println("The second field is growing now!");
 		}
 	}
 
@@ -97,6 +111,16 @@ public class FieldTile extends Tile{
 	 */
 	public void setGrowthState3(int growthState3) {
 		this.growthState3 = growthState3;
+		if(growthState3 == 4) {
+			System.out.println("The third field is ready to harvest!");
+			//timer.stop
+		}else if(growthState3 == 5){
+			System.out.println("The third field is ready to get cultivated!");
+		}else if(growthState3 == 0){
+			System.out.println("The third field is ready for sowing!");
+		}else {
+			System.out.println("The third field is growing now!");
+		}
 	}
 
 	/**
