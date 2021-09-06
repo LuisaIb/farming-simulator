@@ -6,7 +6,7 @@ package machines;
  * @author Hanna
  */
 
-public class Machine {
+public class Machine extends MovingObject{
 
 	private double x;
 	private double y;

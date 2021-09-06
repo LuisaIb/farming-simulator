@@ -6,7 +6,7 @@ package machines;
  * @author Hanna
  */
 
-public class DumpTruck extends Machine {
+public class DumpTruck extends WorkingDevice {
 	
 	private int capacity;
 	private int fillLevel;

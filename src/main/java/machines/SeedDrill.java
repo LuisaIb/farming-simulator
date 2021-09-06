@@ -1,6 +1,6 @@
 package machines;
 
-public class SeedDrill extends Machine {
+public class SeedDrill extends WorkingDevice {
 	
 	public void seedGrain() {
 		//set field from ready to harvest to growth stage 0

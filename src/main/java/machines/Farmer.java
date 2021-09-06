@@ -1,5 +1,5 @@
 package machines;
 
-public class Farmer {
+public class Farmer extends MovingObject{
 
 }

@@ -1,5 +1,5 @@
 package machines;
 
-public class WorkingDevice {
+public class WorkingDevice extends MovingObject{
 
 }
