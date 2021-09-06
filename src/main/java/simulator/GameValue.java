@@ -2,6 +2,9 @@ package simulator;
 /**
  * 
  * @author Isabel
+ * @param cash
+ * @param filling
+ * @param day
  *
  */
 public class GameValue {
