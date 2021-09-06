@@ -2,14 +2,16 @@ package machines;
 
 /**
  * This class implements the methods, that are basic functions for every Machine.
- * 
  * @author Hanna
+ *
  */
-
 public class Machine extends MovingObject{
 
 	private double x;
 	private double y;
+	
+	private int tank; //stands for the petrol tank of the machines
+	private boolean attachement; //stands for the value if a device is attached or not
 	
 	public Machine() {
 	}
