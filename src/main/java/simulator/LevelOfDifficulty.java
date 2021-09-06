@@ -15,6 +15,7 @@ public class LevelOfDifficulty {
 	
 	/**
 	 * This constructor deals with setting a level of difficulty of the game.
+	 * It will be used for reloading and starting the game.
 	 * @param level
 	 */
 	public LevelOfDifficulty(int level) {
@@ -39,6 +40,9 @@ public class LevelOfDifficulty {
 		
 	}
 	
+	/**
+	 * This constructor deals with setting a level of difficulty of the game.
+	 */
 	public LevelOfDifficulty() {
 		
 	}

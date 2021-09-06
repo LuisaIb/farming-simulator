@@ -13,22 +13,6 @@ public class GameValue {
 	private int day;
 	
 	/**
-	 * This method gets the day's value.
-	 * @return the day
-	 */
-	public int getDay() {
-		return day;
-	}
-
-	/**
-	 * This method sets the day's value.
-	 * @param day the day to set
-	 */
-	public void setDay(int day) {
-		this.day = day;
-	}
-
-	/**
 	 * This constructor will be used for reloading the game.
 	 * @param cash
 	 * @param filling
@@ -50,6 +34,22 @@ public class GameValue {
 		cash = 100;
 		filling = 100.0;
 		day = 1;
+	}
+	
+	/**
+	 * This method gets the day's value.
+	 * @return the day
+	 */
+	public int getDay() {
+		return day;
+	}
+
+	/**
+	 * This method sets the day's value.
+	 * @param day the day to set
+	 */
+	public void setDay(int day) {
+		this.day = day;
 	}
 
 	/**
