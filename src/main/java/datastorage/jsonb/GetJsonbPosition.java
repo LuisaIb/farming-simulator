@@ -51,4 +51,5 @@ public class GetJsonbPosition {
 	}
 	
 	// fehlende Geräte folgen
+	// 
 }

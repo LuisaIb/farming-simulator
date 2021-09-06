@@ -71,4 +71,5 @@ public class GetJsonbValue {
 		return serializedtank;
 	}
 
+	// Soli und Hofladen Zustand, Füllstände(Tank)
 }

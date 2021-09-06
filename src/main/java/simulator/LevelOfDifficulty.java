@@ -8,10 +8,12 @@ package simulator;
  *
  */
 public class LevelOfDifficulty {
-
-	enum Level {
-		LOW, MEDIUM, HIGH;
+	// Enum bei den Positionen der Movemethode einsetzten UP DOWN, LEFT RIGHT...
+	
+	private int level;
+	
+	public LevelOfDifficulty(int level) {
+		
 	}
-
 	
 }

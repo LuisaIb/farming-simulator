@@ -1,7 +1,7 @@
 package simulator;
 /**
  * 
- * @author 
+ * @author Isabel
  *
  */
 public class GameValue {
@@ -10,6 +10,7 @@ public class GameValue {
 	private int day;
 	
 	/**
+	 * This method gets the day's value.
 	 * @return the day
 	 */
 	public int getDay() {
@@ -17,6 +18,7 @@ public class GameValue {
 	}
 
 	/**
+	 * This method sets the day's value.
 	 * @param day the day to set
 	 */
 	public void setDay(int day) {
@@ -24,8 +26,10 @@ public class GameValue {
 	}
 
 	/**
+	 * This constructor will be used for reloading the game.
 	 * @param cash
 	 * @param filling
+	 * @param day
 	 */
 	public GameValue(int cash, double filling, int day) {
 		this.cash = cash;
@@ -34,7 +38,10 @@ public class GameValue {
 	}
 	
 	/**
-	 * 
+	 * This constructor will be used for starting a new game.
+	 * @param cash
+	 * @param filling
+	 * @param day
 	 */
 	public GameValue() {
 		cash = 100;
@@ -43,6 +50,7 @@ public class GameValue {
 	}
 
 	/**
+	 * This method gets the cash value.
 	 * @return
 	 */
 	public int getCash() {		
@@ -50,6 +58,7 @@ public class GameValue {
 	}
 
 	/**
+	 * This method sets the cash value.
 	 * @param cash
 	 */
 	public void setCash(int cash) {
@@ -57,6 +66,7 @@ public class GameValue {
 	}
 
 	/**
+	 * This method gets the filling value.
 	 * @return
 	 */
 	public double getFilling() {
@@ -64,12 +74,16 @@ public class GameValue {
 	}
 
 	/**
+	 * This method sets the filling value.
 	 * @param filling
 	 */
 	public void setFilling(double filling) {
 		this.filling = filling;
 	}
 
+	/**
+	 *This method is needed for serializing this class into JSONB.
+	 */
 	@Override
 	public String toString() {
 		return "Game [cash=" + cash + ", filling=" + filling + ", day=" + day + "]";
