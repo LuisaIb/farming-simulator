@@ -33,16 +33,18 @@ public class GetSavingInformationValue {
 			GameValue updatedGame = new GameValue(cash, filling, day);
 	}
 	
-//	/**
-//	 * 
-//	 */
-//	public void GetSavingInformationLevel() {
-//		GetPojoValue gpv = new GetPojoValue();
-//			LevelOfDifficulty deserializedlevel = gpv.toDeserializeLevel();
-//			LevelOfDifficulty level = deserializedlevel.HIGH;
-//					
-//		// wird noch geändert im Bezug auf ENUM
-//	}
+	/**
+	 * This method deserialize the JSONB file. It is also possible to get the level of difficulty.
+	 * It implements a new LevelOfDifficulty object by using the class constructor.
+	 */
+	public void GetSavingInformationLevel() {
+		GetPojoValue gpv = new GetPojoValue();
+			LevelOfDifficulty deserializedlevel = gpv.toDeserializeLevel();
+			int newLevel = deserializedlevel.getLevel();
+			
+			LevelOfDifficulty updatedLevel = new LevelOfDifficulty(newLevel);
+					
+	}
 	
 	/**
 	 * This method deserialize the JSONB file. It is also possible to get the growth state of field one, the growth state of field two and the growth state of field three.

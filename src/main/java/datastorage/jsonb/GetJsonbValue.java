@@ -38,8 +38,8 @@ public class GetJsonbValue {
 	 * @return serialized as a JSONB object of the level of difficulty
 	 */
 	public String toSerializeLevel() {
-		LevelOfDifficulty lod = null;
-		// get game level
+		LevelOfDifficulty lod = new LevelOfDifficulty();
+		lod.getLevel();
 		Jsonb jsonb = JsonbBuilder.create();
 		String serializedlod = jsonb.toJson(lod);
 		return serializedlod;
@@ -67,7 +67,7 @@ public class GetJsonbValue {
 		// Tankfüllstand der beiden Geräte speichern
 		
 		Jsonb jsonb = JsonbBuilder.create();
-		String serializedtank = jsonb.toJson(null);
+		String serializedtank = jsonb.toJson(null); // wird in die machines klasse eingebunden
 		return serializedtank;
 	}
 

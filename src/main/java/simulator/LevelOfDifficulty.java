@@ -37,5 +37,32 @@ public class LevelOfDifficulty {
 		}
 	}
 	
-	
+	public LevelOfDifficulty() {
+		
+	}
+
+	/**
+	 * This method gets the level of difficulty.
+	 * @return the level
+	 */
+	public int getLevel() {
+		return level;
+	}
+
+	/**
+	 *This method sets the level of difficulty.
+	 * @param level the level to set
+	 */
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	/**
+	 * This method is needed for serializing this class into JSONB.
+	 */
+	@Override
+	public String toString() {
+		return "LevelOfDifficulty [level=" + level + "]";
+	}
+		
 }

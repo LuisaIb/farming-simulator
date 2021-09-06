@@ -15,7 +15,7 @@ public class ConvertingFromJsonb {
 	//all numeric values
 	GetSavingInformationValue siv = new GetSavingInformationValue();
 		siv.GetSavingInformationGame();
-//		siv.GetSavingInformationLevel();
+		siv.GetSavingInformationLevel();
 		siv.GetSavingInformationFieldtiles();// Exception
 		siv.GetSavingInformationTank();
 		
