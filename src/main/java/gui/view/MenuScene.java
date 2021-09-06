@@ -1,5 +1,6 @@
 package gui.view;
 
+import gui.controller.SceneController;
 import gui.model.ImageManager;
 import gui.model.LSButton;
 
@@ -27,11 +28,12 @@ public class MenuScene {
     private LSButton buttonSaveGame;
     private LSButton buttonHelp;
     private LSButton buttonEnd;
+    SceneController sceneController = new SceneController();
 
     /**
      * Constructs an object of the class MenuScene. It initializes the menuPane with the method initializeMenuPane().
      */
-    protected MenuScene(){
+    public MenuScene(){
         initializeMenuPane();
     }
 
@@ -59,6 +61,7 @@ public class MenuScene {
 
         buttonNewGame = new LSButton("Neues Spiel", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
+        buttonNewGame.setOnMouseClicked(sceneController.setSceneToDifficultyScene);
         buttonContinueGame = new LSButton("Spiel fortsetzen", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonLoadGame = new LSButton("Spiel laden",50, 250, HEIGHT/2,
@@ -76,10 +79,14 @@ public class MenuScene {
     }
 
     /**
-     * Getter for the MenuScene.
+     * Getter for the menuScene.
      * @return the requested menuScene.
      */
-    protected Scene getMenuScene(){
+    public Scene getMenuScene(){
         return menuScene;
+    }
+
+    public LSButton getButtonNewGame() {
+        return buttonNewGame;
     }
 }

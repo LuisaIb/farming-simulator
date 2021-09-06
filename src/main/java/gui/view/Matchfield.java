@@ -20,8 +20,8 @@ public class Matchfield {
     private static final int WIDTH_PANE = 1120;
     private static final int NUMBER_COLUMNS = 30;
     private static final int NUMBER_ROWS = 20;
-    private static final int TILE_HEIGHT = HEIGHT_PANE / NUMBER_ROWS;
-    private static final int TILE_WIDTH = WIDTH_PANE / NUMBER_COLUMNS;
+    protected static int TILE_HEIGHT = HEIGHT_PANE / NUMBER_ROWS;
+    protected static int TILE_WIDTH = WIDTH_PANE / NUMBER_COLUMNS;
     private static final String PATH_TO_GRASSLANDS = "src/main/java/gui/view/resources/ground/grasslands.png";
     private static final String PATH_TO_FOREST = "src/main/java/gui/view/resources/ground/forest.png";
     private static final String PATH_TO_GROWTH_STAGE_1 = "src/main/java/gui/view/resources/ground/growthStage1.png";
@@ -277,4 +277,5 @@ public class Matchfield {
     protected GridPane getMatchfield(){
         return matchfield;
     }
+
 }
