@@ -32,6 +32,9 @@ public class FieldTile extends Tile{
 		
 	}
 	
+	/**
+	 * this empty constructor is for starting a new game
+	 */
 	public FieldTile() {
 		
 	}
