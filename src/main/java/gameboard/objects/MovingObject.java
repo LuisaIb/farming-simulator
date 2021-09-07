@@ -1,4 +1,4 @@
-package machines;
+package gameboard.objects;
 /**
  * this class represents any object on the gameboard,
  * that is able to move

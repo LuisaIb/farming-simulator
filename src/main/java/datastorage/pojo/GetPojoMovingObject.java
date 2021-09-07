@@ -7,12 +7,12 @@ import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
 import datastorage.jsonb.GetJsonbMovingObject;
-import machines.Cultivator;
-import machines.DumpTruck;
-import machines.Farmer;
-import machines.Harvester;
-import machines.SeedDrill;
-import machines.Tractor;
+import gameboard.objects.Cultivator;
+import gameboard.objects.DumpTruck;
+import gameboard.objects.Farmer;
+import gameboard.objects.Harvester;
+import gameboard.objects.SeedDrill;
+import gameboard.objects.Tractor;
 
 /**
  * @author Isabel
@@ -87,4 +87,4 @@ public class GetPojoMovingObject {
 	}
 
 }
-// Klassen müssen angepasst werden
+// Klassen mï¿½ssen angepasst werden

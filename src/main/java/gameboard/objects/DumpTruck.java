@@ -1,4 +1,4 @@
-package machines;
+package gameboard.objects;
 
 /**
  * This class implements the methods, that are needed for a DumpTruck.

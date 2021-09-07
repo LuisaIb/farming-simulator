@@ -6,12 +6,12 @@ package datastorage.jsonb;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
-import machines.Cultivator;
-import machines.DumpTruck;
-import machines.Farmer;
-import machines.Harvester;
-import machines.SeedDrill;
-import machines.Tractor;
+import gameboard.objects.Cultivator;
+import gameboard.objects.DumpTruck;
+import gameboard.objects.Farmer;
+import gameboard.objects.Harvester;
+import gameboard.objects.SeedDrill;
+import gameboard.objects.Tractor;
 
 /**
  * @author Isabel
@@ -23,7 +23,7 @@ public class GetJsonbMovingObject {
 	 * This method gets the position of the farmer of the class...
 	 * @return serialized as a JSONB object of the farmer's position
 	 */
-	public String toSerializeFarmer() { //eventuell mit Vererbung für die Geräte und den Menschen
+	public String toSerializeFarmer() { //eventuell mit Vererbung fï¿½r die Gerï¿½te und den Menschen
 		Farmer gbf = new Farmer();
 		// getter und setter
 		Jsonb jsonb = JsonbBuilder.create();
@@ -90,8 +90,8 @@ public class GetJsonbMovingObject {
 		String serializedgbh = jsonb.toJson(gbh);
 		return serializedgbh;
 	}
-	// fehlende Geräte folgen
-	// allgemeine Informationen über position, Tankstand, Grainstand
+	// fehlende Gerï¿½te folgen
+	// allgemeine Informationen ï¿½ber position, Tankstand, Grainstand
 	// Kommentare anpassen DumpTruck SeedDrill
 	
 }

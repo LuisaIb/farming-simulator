@@ -1,4 +1,4 @@
-package machines;
+package gameboard.objects;
 
 import exceptions.datastorage.EmptyTankException;
 

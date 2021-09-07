@@ -1,4 +1,4 @@
-package machines;
+package gameboard.objects;
 
 public class Cultivator extends WorkingDevice {
 
