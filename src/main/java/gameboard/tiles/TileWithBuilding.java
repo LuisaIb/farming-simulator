@@ -16,6 +16,10 @@ public class TileWithBuilding extends Tile{
 		
 	}
 	
+	public TileWithBuilding() {
+		
+	}
+	
 	/**
 	 * this method checks if the farmer can run over a tile with a building on it 
 	 * and returns the equal boolean value
