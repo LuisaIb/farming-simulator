@@ -19,7 +19,7 @@ import simulator.LevelOfDifficulty;
  * @author Isabel
  *
  */
-public class NewGame {
+public class StartNewGame {
 
 	private int levelInput;
 	/**
