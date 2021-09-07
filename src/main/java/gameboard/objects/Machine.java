@@ -1,6 +1,6 @@
 package gameboard.objects;
 
-import exceptions.datastorage.EmptyTankException;
+import exceptions.EmptyTankException;
 
 /**
  * This class implements the methods, that are basic functions for every Machine.
