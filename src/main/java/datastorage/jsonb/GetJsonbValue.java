@@ -25,7 +25,6 @@ public class GetJsonbValue {
 	public String toSerializeGame() {
 		GameValue game = new GameValue();
 		game.getCash();
-		game.getFilling();
 		game.getDay();
 		
 		Jsonb jsonb = JsonbBuilder.create();

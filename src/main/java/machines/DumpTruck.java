@@ -21,6 +21,13 @@ public class DumpTruck extends WorkingDevice {
 	}
 	
 	/**
+	 * This constructor will be used for starting a new game.
+	 */
+	public DumpTruck() {
+		
+	}
+	
+	/**
 	 * this method loads the Dump Truck with harvest
 	 */
 	public void load() {

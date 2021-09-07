@@ -23,14 +23,11 @@ public class GetSavingInformationValue {
 		GetPojoValue gpv = new GetPojoValue();
 			GameValue deserializedcash = gpv.toDeserializeGame();
 			int cash = deserializedcash.getCash();
-			
-			GameValue deserializedfilling = gpv.toDeserializeGame();
-			double filling = deserializedfilling.getFilling();
-			
+						
 			GameValue deserializedday = gpv.toDeserializeGame();
 			int day = deserializedday.getDay();
 		
-			GameValue updatedGame = new GameValue(cash, filling, day);
+			GameValue updatedGame = new GameValue(cash, day);
 	}
 	
 	/**

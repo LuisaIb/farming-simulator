@@ -3,7 +3,7 @@
  */
 package datastorage.information;
 
-import datastorage.jsonb.GetJsonbPosition;
+import datastorage.jsonb.GetJsonbMovingObject;
 import datastorage.jsonb.GetJsonbValue;
 
 /**
@@ -24,9 +24,9 @@ public class ConvertingToJsonb {
 			gjv.toSerializeTank();
 			
 	// all position values	
-		GetJsonbPosition gjp = new GetJsonbPosition();
-			gjp.toSerializeFarmersPosition();
-			gjp.toSerializeTractorsPosition();
-			gjp.toSerializeHarvestersPosition();// Exception
+		GetJsonbMovingObject gjp = new GetJsonbMovingObject();
+			gjp.toSerializeFarmer();
+			gjp.toSerializeTractor();
+			gjp.toSerializeHarvester();// Exception
 	}
 }

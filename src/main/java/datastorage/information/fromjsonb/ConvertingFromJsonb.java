@@ -20,12 +20,13 @@ public class ConvertingFromJsonb {
 		siv.GetSavingInformationTank();
 		
 	// all positions
-	GetSavingInformationPosition sip = new GetSavingInformationPosition();
+	GetSavingInformationMovingObject sip = new GetSavingInformationMovingObject();
 		sip.GetSavingInformationFarmer();
 		sip.GetSavingInformationTractor();
-		sip.GetSavingInformationHarvester();// Exception
-			
-		
+		sip.GetSavingInformationHarvster();// Exception
+		sip.GetSavingInformationCultivator();
+		sip.GetSavingInformationDumpTruck();
+		sip.GetSavingInformationSeedDrill();	
 	}
 	
 }

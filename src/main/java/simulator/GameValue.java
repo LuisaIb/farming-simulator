@@ -3,13 +3,11 @@ package simulator;
  * 
  * @author Isabel
  * @param cash
- * @param filling
  * @param day
  *
  */
 public class GameValue {
 	private int cash;
-	private double filling;// muss besprochen werden wegen Tankklasse
 	private int day;
 	
 	/**
@@ -18,9 +16,8 @@ public class GameValue {
 	 * @param filling
 	 * @param day
 	 */
-	public GameValue(int cash, double filling, int day) {
+	public GameValue(int cash, int day) {
 		this.cash = cash;
-		this.filling = filling; 
 		this.day = day;
 	}
 	
@@ -32,7 +29,6 @@ public class GameValue {
 	 */
 	public GameValue() {
 		cash = 100;
-		filling = 100.0;
 		day = 1;
 	}
 	
@@ -69,27 +65,11 @@ public class GameValue {
 	}
 
 	/**
-	 * This method gets the filling value.
-	 * @return
-	 */
-	public double getFilling() {
-		return filling;
-	}
-
-	/**
-	 * This method sets the filling value.
-	 * @param filling
-	 */
-	public void setFilling(double filling) {
-		this.filling = filling;
-	}
-
-	/**
 	 *This method is needed for serializing this class into JSONB.
 	 */
 	@Override
 	public String toString() {
-		return "Game [cash=" + cash + ", filling=" + filling + ", day=" + day + "]";
+		return "Game [cash=" + cash + " +  day=" + day + "]";
 	}
 	
 	
