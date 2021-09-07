@@ -1,6 +1,8 @@
 package gameboard.objects;
 
 public class Tank{
+	
+	// ACTUALLY NOT NEEDED ANYMORE -> SAVING INFORMATION IN MACHINE CLASS
 
     private int petrolLevel;
     private int y;

@@ -1,11 +1,12 @@
 package gameboard.objects;
 
-/**
- * This class implements ...
- * 
- * @author Hanna
- */
+import exceptions.WrongMachineException;
 
+/**
+ * this class represents the harvester with its properties to harvest a field
+ * @author Hanna, Luisaibele
+ *
+ */
 public class Harvester implements Machine2 {
 
 	int tankCapacity = 200;
@@ -21,6 +22,20 @@ public class Harvester implements Machine2 {
 			
 		if(grainTankFillLevel == grainTankCapacity) {
 			System.out.println("The harvester needs to be unloaded");
+		}
+	}
+	
+	/**
+	 * this method represents the functionality to harvest a field 
+	 * when it's ready to do so
+	 * @param growthState
+	 */
+	public void harvest(int growthState) throws WrongMachineException{
+		//checking if harvester is at the right place for this action
+		if(growthState ==4) {
+			growthState++;
+		} else {
+			//to be implemented with exception if you can't harvest the field yet
 		}
 	}
 	
