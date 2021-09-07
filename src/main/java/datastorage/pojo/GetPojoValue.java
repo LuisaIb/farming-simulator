@@ -48,5 +48,5 @@ public class GetPojoValue {
 		FieldTile deserializedft = jb.fromJson(jbv.toSerializeFieldtiles(), FieldTile.class);
 		return deserializedft;	// kann nun als neues Objekt der Klasse FieldTile() verwendet werden um den Konstruktor zu befüllen
 	}
-	
+	// Silo Hofladen
 }

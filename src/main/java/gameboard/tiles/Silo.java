@@ -15,5 +15,12 @@ public class Silo extends TileWithBuilding{
 	public Silo(int id) {
 		super(id);
 	}
+	
+	/**
+	 * This constructor will be used for reloading the game.
+	 */
+	public Silo() {
+		super();
+	}
 
 }
