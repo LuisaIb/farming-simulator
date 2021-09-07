@@ -21,8 +21,7 @@ public class ConvertingToJsonb {
 			gjv.toSerializeGame();
 			gjv.toSerializeLevel();
 			gjv.toSerializeFieldtiles();// Exception werfen um speicher vorgan zu prüfen
-			gjv.toSerializeTank();
-			
+						
 	// all position values	
 		GetJsonbMovingObject gjp = new GetJsonbMovingObject();
 			gjp.toSerializeFarmer();

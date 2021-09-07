@@ -17,7 +17,6 @@ public class ConvertingFromJsonb {
 		siv.GetSavingInformationGame();
 		siv.GetSavingInformationLevel();
 		siv.GetSavingInformationFieldtiles();// Exception
-		siv.GetSavingInformationTank();
 		
 	// all positions
 	GetSavingInformationMovingObject sip = new GetSavingInformationMovingObject();

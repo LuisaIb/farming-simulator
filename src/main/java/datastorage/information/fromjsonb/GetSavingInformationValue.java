@@ -62,18 +62,4 @@ public class GetSavingInformationValue {
 					
 	}
 	
-	/**
-	 * This method deserialize the JSONB file. It is also possible to get the filling level of tank one and two.
-	 * It implements a new FieldTile object by using the class constructor.
-	 */
-	public void GetSavingInformationTank() {
-		GetPojoValue gpv = new GetPojoValue();
-//			Class deserializedtank1 = gpv.toDeserializeTank();
-//			int tank1 = deserializedcash.getCash();
-//			
-//			Class deserializedtank2 = gpv.toDeserializeTank();
-//			int tank2 = deserializedfilling.getFilling();
-//			
-//		Game updatedGame = new Game(cash, filling, day);
-	}
 }

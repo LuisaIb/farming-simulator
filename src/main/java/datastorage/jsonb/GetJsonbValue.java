@@ -58,17 +58,5 @@ public class GetJsonbValue {
 		return serializedft;
 	}
 	
-	/**
-	 * This method get the tank filling state of the class .
-	 * @return serialized as a JSONB object of the tank filling status
-	 */
-	public String toSerializeTank() {
-		// Tankfüllstand der beiden Geräte speichern
-		
-		Jsonb jsonb = JsonbBuilder.create();
-		String serializedtank = jsonb.toJson(null); // wird in die machines klasse eingebunden
-		return serializedtank;
-	}
-
-	// Soli und Hofladen Zustand, // Silostand, hofladen
+		// Soli und Hofladen Zustand, // Silostand, hofladen
 }

@@ -49,15 +49,4 @@ public class GetPojoValue {
 		return deserializedft;	// kann nun als neues Objekt der Klasse FieldTile() verwendet werden um den Konstruktor zu befüllen
 	}
 	
-	/**
-	 * This method creates an new object of the class ...
-	 * @return deserialized as a new GameBoard object of the tank filling status
-	 */
-	public GameValue toDeserializeTank() {
-		GetJsonbValue jbv = new GetJsonbValue();
-		Jsonb jb = JsonbBuilder.create();
-		Class deserializedtank = jb.fromJson(jbv.toSerializeTank(), null);
-		//deserializedtank.getDeclaredMethod(null, null);
-		return null; // Klassenaufruf findet hier statt, bezug zu der jeweiligen Klasse muss noch erstellt werden
-	}
 }

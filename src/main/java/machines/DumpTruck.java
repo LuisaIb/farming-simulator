@@ -5,7 +5,6 @@ package machines;
  * 
  * @author Hanna
  */
-
 public class DumpTruck extends WorkingDevice {
 	
 	private int capacity;
