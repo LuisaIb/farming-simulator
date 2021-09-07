@@ -4,7 +4,9 @@
 package datastorage.information.fromjsonb;
 
 import datastorage.pojo.GetPojoValue;
+import gameboard.tiles.CourtTrade;
 import gameboard.tiles.FieldTile;
+import gameboard.tiles.Silo;
 import simulator.GameValue;
 import simulator.LevelOfDifficulty;
 
@@ -62,4 +64,29 @@ public class GetSavingInformationValue {
 					
 	}
 	
+	/**
+	 * This method deserialize the JSONB file. It is also possible to get the capacity of the silo.
+	 * It implements a new Silo object by using the class constructor.
+	 */
+	public void GetSavingInformationSilo() {
+		GetPojoValue gpv = new GetPojoValue();
+			Silo deserializedlevel = gpv.toDeserializeSilo();
+//			int newLevel = deserializedlevel.getLevel();
+			
+//			LevelOfDifficulty updatedLevel = new LevelOfDifficulty(newLevel);
+					
+	}
+	
+	/**
+	 * This method deserialize the JSONB file. It is also possible to get the capacity of the silo.
+	 * It implements a new Silo object by using the class constructor.
+	 */
+	public void GetSavingInformationCourtTrade() {
+		GetPojoValue gpv = new GetPojoValue();
+		CourtTrade deserializedlevel = gpv.toDeserializeCourtTrade();
+//			int newLevel = deserializedlevel.getLevel();
+			
+//			LevelOfDifficulty updatedLevel = new LevelOfDifficulty(newLevel);
+					
+	}
 }
