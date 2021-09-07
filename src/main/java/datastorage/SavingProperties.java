@@ -18,6 +18,8 @@ public class SavingProperties {
 	 * This method deals with starting a new game, all necessary information of the game will be set in this method.
 	 */
 	public void CreateNewGame() {
+		NewGame ng = new NewGame();
+		ng.getGameInformation();
 		// alle Informationen für den Spielstart gesammelt aufrufen
 		// LEvelauswahl
 		//Game

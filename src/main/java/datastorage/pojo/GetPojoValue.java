@@ -70,7 +70,7 @@ public class GetPojoValue {
 		GetJsonbValue jbv = new GetJsonbValue();
 		Jsonb jb = JsonbBuilder.create();
 		CourtTrade deserializedft = jb.fromJson(jbv.toSerializeFieldtiles(), CourtTrade.class);
-		return deserializedft;	// kann nun als neues Objekt der Klasse FieldTile() verwendet werden um den Konstruktor zu befüllen
+		return deserializedft;	// kann nun als neues Objekt der Klasse CourtTrade() verwendet werden um den Konstruktor zu befüllen
 	}
-	// Silo Hofladen
+	
 }

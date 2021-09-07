@@ -36,6 +36,9 @@ public class FieldTile extends Tile{
 	 * this empty constructor is for starting a new game
 	 */
 	public FieldTile() {
+		growthState = 0;
+		growthState2 = 0;
+		growthState3 = 0;
 		
 	}
 		
