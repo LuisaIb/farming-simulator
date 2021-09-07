@@ -6,7 +6,7 @@ package machines;
  * @author Hanna
  */
 
-public class Harvester extends Machine {
+public class Harvester implements Machine2 {
 
 	int tankCapacity = 200;
 	int grainTankCapacity = 1; //grain capacity of 1 field
@@ -26,7 +26,7 @@ public class Harvester extends Machine {
 	
 }
 
-//Entlädt der Mähdrescher während der Animation?
+//Entlï¿½dt der Mï¿½hdrescher wï¿½hrend der Animation?
 //wenn ja brauchen wir dann fillTankWithGrain Methode? 
-//ist der Mähdrescher nach einer Animation entladen und Kipper voll?
-//oder Mähdrescher fährt bei Animation ohne Kipper und ist nach einem Feld voll?
+//ist der Mï¿½hdrescher nach einer Animation entladen und Kipper voll?
+//oder Mï¿½hdrescher fï¿½hrt bei Animation ohne Kipper und ist nach einem Feld voll?
