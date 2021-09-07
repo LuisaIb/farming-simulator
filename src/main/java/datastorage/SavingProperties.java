@@ -31,11 +31,7 @@ public class SavingProperties {
 	 */
 	public void SavingGame() {
 		ConvertingToJsonb ctj = new ConvertingToJsonb();
-		try {
-			ctj.SetSavingInformation();// Exception: SavingGameException einfügen
-		}catch(SavingGameException ie) {
-			System.out.println("Sorry, something went wrong during saving the game...\n Please try again");
-		}
+		ctj.SetSavingInformation();
 	}
 	
 	/**
@@ -43,10 +39,6 @@ public class SavingProperties {
 	 */
 	public void ReloadGame() {
 		ConvertingFromJsonb cfj = new ConvertingFromJsonb();
-		try {
-			cfj.GetSavingInformation();// Exception: ReloadGameException einfügen
-		}catch(ReloadGameException ie) {
-			System.out.println("Sorry, something went wrong during reloading the game state...\\n Please try again");
-		}
+		cfj.GetSavingInformation();
 	}
 }
