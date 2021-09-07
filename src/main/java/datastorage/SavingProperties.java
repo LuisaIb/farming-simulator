@@ -20,12 +20,14 @@ public class SavingProperties {
 	public void CreateNewGame() {
 		NewGame ng = new NewGame();
 		ng.getGameInformation();
+		
+		
 		// alle Informationen für den Spielstart gesammelt aufrufen
-		// LEvelauswahl
-		//Game
-		//Poitionen der Ojekte
-		//Tank
-		//Silofüllstand
+		// Levelauswahl
+		// Game
+		// Poitionen der Ojekte
+		// Tank
+		// Silofüllstand
 	}
 	
 	/**
