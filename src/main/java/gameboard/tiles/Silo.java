@@ -6,7 +6,7 @@ package gameboard.tiles;
  *
  */
 public class Silo extends TileWithBuilding{
-	private int capacity;
+	private int capacity; //represents the grain capacity of the silo
 	
 	/**
 	 * constructor for the Silo
@@ -17,10 +17,16 @@ public class Silo extends TileWithBuilding{
 	}
 	
 	/**
-	 * This constructor will be used for reloading the game.
+	 * This empty constructor will be used for reloading the game.
 	 */
 	public Silo() {
 		
 	}
 
+	/*
+	 * to be implemented
+	 * final variable for full capacity
+	 * throw exception if no capacity left
+	 * capacity = 100? or more?
+	 */
 }
