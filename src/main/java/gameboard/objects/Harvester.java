@@ -14,7 +14,7 @@ public class Harvester implements Machine2 {
 	int grainTankFillLevel;
 	
 	public Harvester() {
-		
+		grainTankFillLevel = 0;
 	}
 	
 	public void fillTankWithGrain() { //if animation worked 1 time then full?
