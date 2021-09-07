@@ -80,7 +80,7 @@ public class Machine extends MovingObject{
     public void lowPetrolLevel(int tank) throws EmptyTankException{
     	if(tank <= 50) {
     		System.out.println("The petrol level is only " + tank + "l.");
-    		System.out.println("Please refuel your vehicle!");
+    		System.out.println("Please go to the gasstation!");
     } 	else if (tank == 0) {
      		System.out.println("The tank is empty!");
     		System.out.println("Game Over!");		
