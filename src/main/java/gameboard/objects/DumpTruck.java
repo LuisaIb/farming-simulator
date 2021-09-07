@@ -9,6 +9,7 @@ public class DumpTruck extends WorkingDevice {
 	
 	private int capacity;
 	private int fillLevel;
+	// private int id = 2 -> for attachement on tractor
 	
 	/**
 	 * the constructor sets the harvest fill level of the Dump Truck
