@@ -122,6 +122,14 @@ public class FieldTile extends Tile{
 			System.out.println("The third field is growing now!");
 		}
 	}
+	
+	/**
+	 * this method is there so the field is able to grow by time
+	 * @param growthState
+	 */
+	public void growing(int growthState) {
+		
+	}
 
 	/**
 	 * this method is needed for serializing this class into JSONB
