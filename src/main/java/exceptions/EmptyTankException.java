@@ -1,4 +1,4 @@
-package exceptions.datastorage;
+package exceptions;
 
 public class EmptyTankException extends Exception{
 
