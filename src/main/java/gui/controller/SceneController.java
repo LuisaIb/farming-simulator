@@ -1,6 +1,7 @@
 package gui.controller;
 
 import gui.view.DifficultyScene;
+import gui.view.HelpScene;
 import gui.view.MenuScene;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -15,8 +16,7 @@ public class SceneController {
 
     public EventHandler<Event> setSceneToGameScene = event -> {
         // Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        // GameScene initialisieren
-        // timerInitiated = true;
+        // GameScene initialisieren - mit Hilfe einer Methode aus Game?
         // window.setScene(gameScene.getGameScene());
         // window.show();
     };
@@ -35,6 +35,12 @@ public class SceneController {
         window.show();
     };
 
+    public EventHandler<Event> setSceneToHelpScene = event -> {
+        HelpScene helpScene = new HelpScene();
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(helpScene.getHelpScene());
+        window.show();
+    };
 
 
 }

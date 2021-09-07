@@ -7,6 +7,7 @@ import gui.model.LSTextField;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import simulator.LevelOfDifficulty;
 
 import static gui.view.ViewManager.WIDTH;
 import static gui.view.ViewManager.HEIGHT;
@@ -45,7 +46,7 @@ public class DifficultyScene {
         Background background = new Background(backgroundImage);
         difficultyPane.setBackground(background);
         LSTextField headline = new LSTextField("Bitte waehle den Schwierigkeitsgrad aus",
-                50, 500, WIDTH/2-250, 150, 20);
+                50, 500, WIDTH/2-235, 150, 20);
         difficultyPane.getChildren().add(headline);
         initializeButtons();
     }
@@ -54,12 +55,15 @@ public class DifficultyScene {
      * This method implements the buttons of the scene. Therefore, it uses a VBox.
      */
     private void initializeButtons(){
+        LevelOfDifficulty levelOfDifficulty = new LevelOfDifficulty();
+
         VBox difficultyBox = new VBox(10);
         difficultyBox.setLayoutX(WIDTH/2 - 100);
         difficultyBox.setLayoutY(HEIGHT/2 - 150);
 
         buttonEasy = new LSButton("Leicht", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
+        //buttonEasy.setOnMouseClicked(levelOfDifficulty.setLevel(0));
         buttonMedium = new LSButton("Mittel", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonHard = new LSButton("Schwer",50, 250, HEIGHT/2,

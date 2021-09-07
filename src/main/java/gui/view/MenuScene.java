@@ -70,6 +70,7 @@ public class MenuScene {
                 WIDTH/2, 20);
         buttonHelp = new LSButton("Hilfe",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
+        buttonHelp.setOnMouseClicked(sceneController.setSceneToHelpScene);
         buttonEnd = new LSButton("Beenden",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
 
