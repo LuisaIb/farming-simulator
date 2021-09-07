@@ -1,8 +1,9 @@
 package machines;
 
+
 /**
  * This class implements the methods, that are basic functions for every Machine.
- * @author Hanna
+ * @author Luisaibele, Hanna
  *
  */
 public class Machine extends MovingObject{
@@ -56,5 +57,29 @@ public class Machine extends MovingObject{
 	public void setY(double y) {
 		this.y = y;
 	}
+	
+	 /** 
+     * this method minimizes the petrol level when the vehicle is moving
+     * @return petrolLevel
+     */
+    public int consumption(int tank, int x, int y) {
+    	if(x == +-1 || y == +-1) {
+    		tank--;
+    	} return tank;
+    }
+    
+    /** 
+     * this method warns the player when the petrol level is low
+     * and ends the game when the petrol is empty
+     */
+    public void lowPetrolLevel(int tank) {
+    	if(tank <= 50) {
+    		System.out.println("The petrol level is only " + tank + "l.");
+    		System.out.println("Please refuel your vehicle!");
+    } 	else if (tank == 0) {
+    		System.out.println("The tank is empty!");
+    		System.out.println("Game Over!");
+    }
+    }
 	
 }
