@@ -13,7 +13,6 @@ public class GameValue {
 	/**
 	 * This constructor will be used for reloading the game.
 	 * @param cash
-	 * @param filling
 	 * @param day
 	 */
 	public GameValue(int cash, int day) {
@@ -24,7 +23,6 @@ public class GameValue {
 	/**
 	 * This constructor will be used for starting a new game.
 	 * @param cash
-	 * @param filling
 	 * @param day
 	 */
 	public GameValue() {

@@ -22,6 +22,7 @@ public class CourtTrade extends TileWithBuilding{
 	public CourtTrade() {
 		
 	}
+	
 	/**
 	 * this method represents the functionality to sell grain to customers
 	 */
