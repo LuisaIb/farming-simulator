@@ -1,5 +1,7 @@
 package gameboard.objects;
 
+import java.util.HashMap;
+
 import exceptions.EmptyTankException;
 
 /**
@@ -15,6 +17,8 @@ public class Machine extends MovingObject{
 	
 	private int tank; //stands for the petrol tank of the machines
 	private boolean attachement; //stands for the value if a device is attached or not
+	//maybe for saving if something is attached to a machine:
+	HashMap<Boolean, Integer> deviceAttached = new HashMap<>();
 	
 	/**
 	 * this empty constructor is there for starting a new game
