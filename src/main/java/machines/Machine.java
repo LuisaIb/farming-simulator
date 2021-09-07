@@ -1,5 +1,6 @@
 package machines;
 
+import exceptions.datastorage.EmptyTankException;
 
 /**
  * This class implements the methods, that are basic functions for every Machine.
@@ -8,12 +9,16 @@ package machines;
  */
 public class Machine extends MovingObject{
 
+	private MovingObject mo = new MovingObject();
 	private double x;
 	private double y;
 	
 	private int tank; //stands for the petrol tank of the machines
 	private boolean attachement; //stands for the value if a device is attached or not
 	
+	/**
+	 * this empty constructor is there for starting a new game
+	 */
 	public Machine() {
 	}
 	
@@ -72,14 +77,26 @@ public class Machine extends MovingObject{
      * this method warns the player when the petrol level is low
      * and ends the game when the petrol is empty
      */
-    public void lowPetrolLevel(int tank) {
+    public void lowPetrolLevel(int tank) throws EmptyTankException{
     	if(tank <= 50) {
     		System.out.println("The petrol level is only " + tank + "l.");
     		System.out.println("Please refuel your vehicle!");
     } 	else if (tank == 0) {
-    		System.out.println("The tank is empty!");
-    		System.out.println("Game Over!");
+     		System.out.println("The tank is empty!");
+    		System.out.println("Game Over!");		
     }
+    	
+//    	if(tank >= 20) {
+//    		System.out.println("The petrol level is only " + tank + "l.");
+//    		System.out.println("Please go to the gasstation!");
+//    	} else {
+//    		try {
+//        		mo.move();
+//        	} catch(EmptyTankException e) {
+//        		System.out.println("The tank is empty!");
+//        		System.out.println("Game Over!");
+//        	}
+//    	}
     }
 	
 }
