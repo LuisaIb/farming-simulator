@@ -10,12 +10,13 @@ import java.util.TimerTask;
  */
 public class FieldTile extends Tile{
 	
-	private Timer timer = new Timer();
+	private Timer timer = new Timer(); //needed for the field growing on its own
 	
 	private int growthState; //representing the state of growth of the first field
 	private int growthState2; //representing the state of growth of the second field
 	private int growthState3; //representing the state of growth of the third field
-	/*
+	/* 
+	 * growthStates overview:
 	 * growthstate = 0 -> zur Aussaat bereit
 	 * growthstate = 1 -> Wachstumsstufe 1
 	 * growthstate = 2 -> Wachstumsstufe 2
@@ -32,7 +33,7 @@ public class FieldTile extends Tile{
 	 */
 	public FieldTile(int id, int growthState, int growthState2, int growthState3 ) {
 		super(id);
-//		this.growthState = growthState;
+		this.growthState = growthState;
 		this.growthState2 = growthState2;
 		this.growthState3 = growthState3;
 		
