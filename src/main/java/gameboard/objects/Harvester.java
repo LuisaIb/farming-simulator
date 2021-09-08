@@ -13,10 +13,17 @@ public class Harvester implements Machine2 {
 	int grainTankCapacity = 1; //grain capacity of 1 field
 	int grainTankFillLevel;
 	
+	/**
+	 * the constructor of the harvester represents...
+	 */
 	public Harvester() {
-		grainTankFillLevel = 0;
+		grainTankFillLevel = 0; // ?
 	}
 	
+	/**
+	 * this method stands for the operation of filling the tank 
+	 * of the harvester with grain
+	 */
 	public void fillTankWithGrain() { //if animation worked 1 time then full?
 			grainTankFillLevel++;
 			
