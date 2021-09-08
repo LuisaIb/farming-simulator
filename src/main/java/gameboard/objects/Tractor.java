@@ -1,7 +1,8 @@
 package gameboard.objects;
 
 /**
- * @author 
+ * this class represents one of the two main machines in our game, the tractor.
+ * @author Luisaibele
  *
  */
 public class Tractor implements Machine2 {
@@ -10,7 +11,7 @@ public class Tractor implements Machine2 {
 	
 
 	/**
-	 * 
+	 * the constructor sets all the values needed for using the tractor
 	 */
 	public Tractor() {
 		
