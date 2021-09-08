@@ -26,12 +26,12 @@ public class StartNewGame {
 	 * 
 	 */
 	public void getGameInformation() {
-		Farmer f = new Farmer();// leerer Konstruktor mit allen gesetzten Eigenschaften: Position
-		Tractor t = new Tractor();// leerer Konstruktor mit allen gesetzten Eigenschaften: Position, Bezintank
-		Harvester h = new Harvester();// leerer Konstruktor mit allen gesetzten Eigenschaften: Position, Bezintank, Getreidetank
+		Farmer f = new Farmer();// leerer Konstruktor mit allen gesetzten Eigenschaften:         Position
+		Tractor t = new Tractor();// leerer Konstruktor mit allen gesetzten Eigenschaften:       Position, Bezintank
+		Harvester h = new Harvester();// leerer Konstruktor mit allen gesetzten Eigenschaften:   Position, Bezintank, Getreidetank
 		Cultivator c = new Cultivator();// leerer Konstruktor mit allen gesetzten Eigenschaften: Position
-		//DumpTruck dt = DumpTruck();// leerer Konstruktor mit allen gesetzten Eigenschaften: Position, Getreidetank
-		//SeedDrill sd = SeedDrill();// leerer Konstruktor mit allen gesetzten Eigenschaften: Position
+		//DumpTruck dt = DumpTruck();// leerer Konstruktor mit allen gesetzten Eigenschaften:    Position, Getreidetank
+		//SeedDrill sd = SeedDrill();// leerer Konstruktor mit allen gesetzten Eigenschaften:    Position
 		
 		LevelOfDifficulty lod = new LevelOfDifficulty(levelInput);// Eingabe der Auswahlkästchen muss übergeben werden
 		

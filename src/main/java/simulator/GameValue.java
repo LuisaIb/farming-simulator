@@ -9,6 +9,7 @@ package simulator;
 public class GameValue {
 	private int cash;
 	private int day;
+	private int level;
 	
 	/**
 	 * This constructor will be used for reloading the game.
@@ -28,6 +29,22 @@ public class GameValue {
 	public GameValue() {
 		cash = 100;
 		day = 1;
+	}
+	
+	/**
+	 * This constructor will be used for starting a new game according to the level of difficulty.
+	 * @param cash
+	 * @param day
+	 */
+	public GameValue(int level) {//1-3
+		day = 1;
+		if(level == 1) {
+			cash = 100; //Bezin, Getreidetank voll, Hofladen voll
+		}else if(level == 2) {
+			cash = 50;//Bezin voll, Getreidetank halb leer, Hofladen halb leer
+		}else if(level ==2) {
+			cash = 50;// Bezin voll, Getreidetank leer, Hofladen leer
+		}
 	}
 	
 	/**
