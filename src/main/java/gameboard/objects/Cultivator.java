@@ -13,8 +13,11 @@ public class Cultivator extends WorkingDevice {
 	/**
 	 * @param growthState
 	 */
-	public void wrapField(int growthState) {
-		//set field from harvested to ready to harvest
+	public int wrapField(int growthState) {
+		if(growthState == 5) {
+			growthState++; 
+			} 
+		return growthState;
 	}
 
 
