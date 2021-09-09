@@ -17,12 +17,13 @@ public class FieldTile extends Tile{
 	private int growthState3; //representing the state of growth of the third field
 	/* 
 	 * growthStates overview:
-	 * growthstate = 0 -> zur Aussaat bereit
-	 * growthstate = 1 -> Wachstumsstufe 1
-	 * growthstate = 2 -> Wachstumsstufe 2
-	 * growthstate = 3 -> Wachstumsstufe 3
-	 * growthstate = 4 -> erntereif
-	 * growthstate = 5 -> abgeerntet
+	 * growthstate = 0 - > Wiese (noch nicht im Besitz)
+	 * growthstate = 1 -> zur Aussaat bereit
+	 * growthstate = 2 -> Wachstumsstufe 1
+	 * growthstate = 3 -> Wachstumsstufe 2
+	 * growthstate = 4 -> Wachstumsstufe 3
+	 * growthstate = 5 -> erntereif
+	 * growthstate = 6 -> abgeerntet
 	 * 
 	 */
 	
@@ -43,7 +44,7 @@ public class FieldTile extends Tile{
 	 * this empty constructor is for starting a new game
 	 */
 	public FieldTile() {
-		growthState = 0;
+		growthState = 1;
 		growthState2 = 0;
 		growthState3 = 0;
 		
@@ -115,12 +116,12 @@ public class FieldTile extends Tile{
 	 */
 	public void setGrowthState2(int growthState2) {
 		this.growthState2 = growthState2;
-		if(growthState2 == 4) {
+		if(growthState2 == 5) {
 			System.out.println("The second field is ready to harvest!");
 			//timer.stop
-		}else if(growthState2 == 5){
+		}else if(growthState2 == 6){
 			System.out.println("The second field is ready to get cultivated!");
-		}else if(growthState2 == 0){
+		}else if(growthState2 == 1){
 			System.out.println("The second field is ready for sowing!");
 		}else {
 			System.out.println("The second field is growing now!");
@@ -141,12 +142,12 @@ public class FieldTile extends Tile{
 	 */
 	public void setGrowthState3(int growthState3) {
 		this.growthState3 = growthState3;
-		if(growthState3 == 4) {
+		if(growthState3 == 5) {
 			System.out.println("The third field is ready to harvest!");
 			//timer.stop
-		}else if(growthState3 == 5){
+		}else if(growthState3 == 6){
 			System.out.println("The third field is ready to get cultivated!");
-		}else if(growthState3 == 0){
+		}else if(growthState3 == 1){
 			System.out.println("The third field is ready for sowing!");
 		}else {
 			System.out.println("The third field is growing now!");

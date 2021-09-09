@@ -247,6 +247,9 @@ public class Matchfield {
     private ImageView getImageViewField(int stageOfGrowth){
         ImageView imageViewField = null;
         switch(stageOfGrowth){
+            case 0:
+                imageViewField = new ImageView(getImage(PATH_TO_GRASSLANDS, false));
+                break;
             case 1:
                 imageViewField = new ImageView(getImage(PATH_TO_READY_FOR_SOWING, false));
                 break;
