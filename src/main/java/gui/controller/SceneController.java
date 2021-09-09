@@ -42,5 +42,12 @@ public class SceneController {
         window.show();
     };
 
+    public EventHandler<Event> endGame = event -> {
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        // Abfrage, ob Spiel gespeichert
+        // wenn ja, dann nachfragen, ob wirklich beenden
+        window.close();
+    };
+
 
 }

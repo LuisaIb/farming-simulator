@@ -1,4 +1,0 @@
-/**
- * 
- */
-package exceptions.datastorage;

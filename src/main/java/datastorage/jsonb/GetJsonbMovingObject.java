@@ -72,7 +72,7 @@ public class GetJsonbMovingObject {
 	 * @return serialized as a JSONB object of the tractor's positions
 	 */
 	public String toSerializeDumpTruck() { 
-		DumpTruck gbh = new DumpTruck(0);// leeren konstruktor erstellen
+		DumpTruck gbh = new DumpTruck();// leeren konstruktor erstellen
 		// getter und setter
 		Jsonb jsonb = JsonbBuilder.create();
 		String serializedgbh = jsonb.toJson(gbh);

@@ -73,6 +73,7 @@ public class MenuScene {
         buttonHelp.setOnMouseClicked(sceneController.setSceneToHelpScene);
         buttonEnd = new LSButton("Beenden",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
+        buttonEnd.setOnMouseClicked(sceneController.endGame);
 
         menuBox.getChildren().addAll(buttonNewGame, buttonContinueGame, buttonLoadGame, buttonSaveGame,
                 buttonHelp, buttonEnd);

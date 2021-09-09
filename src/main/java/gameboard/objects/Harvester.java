@@ -7,17 +7,20 @@ import exceptions.WrongMachineException;
  * @author Hanna, Luisaibele
  *
  */
-public class Harvester implements Machine2 {
-
-	int tankCapacity = 200;
-	int grainTankCapacity = 1; //grain capacity of 1 field
-	int grainTankFillLevel;
+public class Harvester extends Machine {
+	private final int GRAIN_TANK_CAPACITY = 60; //grain capacity of 1 field
+	private int grainTankFillLevel;
 	
 	/**
 	 * the constructor of the harvester represents...
 	 */
 	public Harvester() {
-		grainTankFillLevel = 0; // ?
+		grainTankFillLevel = 0;
+	}
+
+	public Harvester(int x, int y, boolean selected, int petrolTankFillLevel, int grainTankFillLevel){
+		super(x, y, selected, petrolTankFillLevel);
+		this.grainTankFillLevel = grainTankFillLevel;
 	}
 	
 	/**
@@ -27,11 +30,19 @@ public class Harvester implements Machine2 {
 	public void fillTankWithGrain() { //if animation worked 1 time then full?
 			grainTankFillLevel++;
 			
-		if(grainTankFillLevel == grainTankCapacity) {
+		if(grainTankFillLevel == GRAIN_TANK_CAPACITY) {
 			System.out.println("The harvester needs to be unloaded");
 		}
 	}
-	
+
+	public void unload(){
+		grainTankFillLevel = 0;
+	}
+
+	public int getGrainTankFillLevel() {
+		return grainTankFillLevel;
+	}
+
 	/**
 	 * this method represents the functionality to harvest a field 
 	 * when it's ready to do so

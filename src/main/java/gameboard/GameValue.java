@@ -1,4 +1,8 @@
 package gameboard;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 /**
  * 
  * @author Isabel
@@ -7,7 +11,8 @@ package gameboard;
  *
  */
 public class GameValue {
-	private int cash;
+	private IntegerProperty cashProperty;
+
 	private int day;
 	
 	/**
@@ -16,7 +21,7 @@ public class GameValue {
 	 * @param day
 	 */
 	public GameValue(int cash, int day) {
-		this.cash = cash;
+		this.cashProperty.set(cash);
 		this.day = day;
 	}
 	
@@ -26,8 +31,9 @@ public class GameValue {
 	 * @param day
 	 */
 	public GameValue() {
-//		cash = 100;
-//		day = 1;
+		cashProperty = new SimpleIntegerProperty();
+		cashProperty.set(100);
+		day = 1;
 	}
 	
 	/**
@@ -38,11 +44,11 @@ public class GameValue {
 	public GameValue(int level) {//1-3
 		day = 1;
 		if(level == 1) {
-			cash = 100; //Bezin, Getreidetank voll, Hofladen voll
+			cashProperty.set(100); //Bezin, Getreidetank voll, Hofladen voll
 		}else if(level == 2) {
-			cash = 50;//Bezin voll, Getreidetank halb leer, Hofladen halb leer
+			cashProperty.set(50); //Bezin voll, Getreidetank halb leer, Hofladen halb leer
 		}else if(level ==2) {
-			cash = 50;// Bezin voll, Getreidetank leer, Hofladen leer
+			cashProperty.set(50); // Bezin voll, Getreidetank leer, Hofladen leer
 		}
 	}
 	
@@ -67,7 +73,7 @@ public class GameValue {
 	 * @return
 	 */
 	public int getCash() {		
-		return cash;
+		return cashProperty.get();
 	}
 
 	/**
@@ -75,7 +81,7 @@ public class GameValue {
 	 * @param cash
 	 */
 	public void setCash(int cash) {
-		this.cash = cash;
+		this.cashProperty.set(cash);
 	}
 
 	/**
@@ -83,8 +89,12 @@ public class GameValue {
 	 */
 	@Override
 	public String toString() {
-		return "Game [cash=" + cash + " +  day=" + day + "]";
+		return "Game [cash=" + cashProperty + " +  day=" + day + "]";
 	}
-	
+
+	public IntegerProperty cashProperty(){
+		return cashProperty;
+	}
+
 	
 }

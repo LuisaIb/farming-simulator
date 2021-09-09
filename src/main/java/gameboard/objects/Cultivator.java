@@ -16,5 +16,9 @@ public class Cultivator extends WorkingDevice {
 	public void wrapField(int growthState) {
 		//set field from harvested to ready to harvest
 	}
+
+
+
+
 	
 }

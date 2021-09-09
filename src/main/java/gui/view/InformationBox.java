@@ -17,7 +17,6 @@ public class InformationBox {
     private LSTextField siloField;
     private LSTextField tractorField;
     private LSTextField harvesterField;
-    private LSTextField difficultyField;
     private LSTextField newsField;
     private LSTextField timeField;
     private LSButton menuButton;
@@ -25,7 +24,7 @@ public class InformationBox {
     /**
      * Constructs an object of the class InformationBox and initializes the box immediately.
      */
-    protected InformationBox(){
+    public InformationBox(){
         initializeInformationBox();
     }
 
@@ -49,12 +48,11 @@ public class InformationBox {
         siloField = new LSTextField("Silo Füllstand",40, 175, 0, 0, 16);
         tractorField = new LSTextField("Traktor Tank Füllstand",40, 175, 0, 0, 16);
         harvesterField = new LSTextField("Mähdrescher Tank Füllstand",40, 175, 0, 0, 16);
-        difficultyField = new LSTextField("Schwierigkeitsgrad",40, 150, 0, 0, 16);
         newsField = new LSTextField("News",40, 300, 0, 0, 16);
         timeField = new LSTextField("Zeit",40, 150, 0, 0, 16);
         menuButton = new LSButton("Menü", 40, 100,750, 0, 16);
 
-        informationBox.getChildren().addAll(moneyField, siloField, tractorField, harvesterField, difficultyField,
+        informationBox.getChildren().addAll(moneyField, siloField, tractorField, harvesterField,
                 newsField, timeField, menuButton);
     }
 
@@ -66,4 +64,7 @@ public class InformationBox {
         return informationBox;
     }
 
+    public LSTextField getNewsField() {
+        return newsField;
+    }
 }

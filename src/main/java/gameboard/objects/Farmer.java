@@ -7,11 +7,12 @@ package gameboard.objects;
  */
 public class Farmer extends MovingObject{
 
-	/**
-	 * this methode represents the functionality of the farmer 
-	 * to enter a machine
-	 */
-	public void enterMachine() {
-		
+	public Farmer(){
+		super(27, 6, true);
 	}
+
+	public Farmer(int x, int y, boolean selected){
+		super(x, y, selected);
+	}
+
 }

@@ -8,4 +8,12 @@ package gameboard.objects;
  */
 public class WorkingDevice extends MovingObject{
 
+    public WorkingDevice(){
+        super(18, 7, false);
+    }
+
+    public WorkingDevice(int x, int y, boolean select){
+        super(x, y, select);
+    }
+
 }

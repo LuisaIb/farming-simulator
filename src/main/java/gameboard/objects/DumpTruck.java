@@ -7,34 +7,35 @@ package gameboard.objects;
  */
 public class DumpTruck extends WorkingDevice {
 	
-	private int capacity;
-	private int fillLevel;
+	private final int GRAIN_TANK_CAPACITY = 120;
+	private int grainFillLevel;
 	// private int id = 2 -> for attachement on tractor
 	
 	/**
 	 * the constructor sets the harvest fill level of the Dump Truck
-	 * @param fillLevel 
+	 * @param grainFillLevel
 	 */
-	public DumpTruck(int fillLevel) {
-		this.fillLevel = fillLevel;
-		
+	public DumpTruck(int x, int y, boolean selected, int grainFillLevel) {
+		super(x, y, selected);
+		this.grainFillLevel = grainFillLevel;
 	}
 	
 	/**
 	 * This constructor will be used for starting a new game.
 	 */
 	public DumpTruck() {
-		
+		super(18, 7, false);
+		grainFillLevel = 0;
 	}
 	
 	/**
 	 * this method loads the Dump Truck with harvest
 	 */
 	public void load() {
-		if(fillLevel < capacity) {
-			fillLevel++;	
+		if(grainFillLevel < GRAIN_TANK_CAPACITY) {
+			grainFillLevel++;
 		} 
-		else if(fillLevel == capacity) {
+		else if(grainFillLevel == GRAIN_TANK_CAPACITY) {
 			System.out.println("The Dump Truck must be unloaded!");
 		}
 	}
@@ -43,9 +44,10 @@ public class DumpTruck extends WorkingDevice {
 	 * this method unloads the harvest in the Dump Truck into the Silo or the Land Trade
 	 */
 	public void unload() {
-		fillLevel = 0;
+		grainFillLevel = 0;
 	}
-	
-	
 
+	public int getFillLevel() {
+		return grainFillLevel;
 	}
+}

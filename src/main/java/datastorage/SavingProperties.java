@@ -5,8 +5,6 @@ package datastorage;
 
 import datastorage.information.ConvertingToJsonb;
 import datastorage.information.fromjsonb.ConvertingFromJsonb;
-import exceptions.datastorage.ReloadGameException;
-import exceptions.datastorage.SavingGameException;
 
 /**
  * @author Isabel
@@ -22,12 +20,12 @@ public class SavingProperties {
 		sng.getGameInformation();
 		
 		
-		// alle Informationen für den Spielstart gesammelt aufrufen
+		// alle Informationen fï¿½r den Spielstart gesammelt aufrufen
 		// Levelauswahl
 		// Game
 		// Poitionen der Ojekte
 		// Tank
-		// Silofüllstand
+		// Silofï¿½llstand
 	}
 	
 	/**

@@ -11,61 +11,28 @@ import exceptions.EmptyTankException;
  */
 public class Machine extends MovingObject{
 
-	private MovingObject mo = new MovingObject();
-	private double x;
-	private double y;
-	
-	private int tank; //stands for the petrol tank of the machines
-	private boolean attachement; //stands for the value if a device is attached or not
-	//maybe for saving if something is attached to a machine:
-	HashMap<Boolean, Integer> deviceAttached = new HashMap<>();
+	private final int PETROL_TANK_CAPACITY = 150;
+	private int petrolTankFillLevel; //stands for the petrol tank of the machines
+
 	
 	/**
 	 * this empty constructor is there for starting a new game
 	 */
 	public Machine() {
+		super(18, 7, false);
+		petrolTankFillLevel = 100;
 	}
 	
 	/**
 	 * the constructor sets the position in the coordinate system
 	 * @param id
 	 */
-	public Machine(double x, double y) {
-		this.x = x;
-		this.y = y;
+	public Machine(int x, int y, boolean selected, int petrolTankFillLevel) {
+		super(x, y, selected);
+		this.petrolTankFillLevel = petrolTankFillLevel;
 	}
 	
-    /** 
-     * hand over the x-Coordinate
-     * @return x
-     */
-	public double getX() {
-		return x;
-	}
-	
-    /** 
-     * Sets the x-Coordinate
-     * @param x - Coordinate
-     */
-	public void setX(double x) {
-		this.x = x;
-	}
-	
-    /** 
-     * hand over the y-Coordinate
-     * @return y
-     */
-	public double getY() {
-		return y;
-	}
-	
-    /** 
-     * Sets the y-Coordinate
-     * @param y - Coordinate
-     */
-	public void setY(double y) {
-		this.y = y;
-	}
+
 	
 	 /** 
      * this method minimizes the petrol level when the vehicle is moving

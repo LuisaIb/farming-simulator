@@ -1,5 +1,6 @@
 package simulator;
 
+import gameboard.objects.Tractor;
 import gui.view.ViewManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -22,6 +23,8 @@ public class Launcher extends Application {
 	public void start(Stage stage) throws Exception {
 		ViewManager viewManager = new ViewManager();
 		viewManager.initializeStage();
-		
+
+		Tractor tractor = new Tractor();
+		System.out.println(tractor.getX());
 	}
 }
