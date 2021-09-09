@@ -8,7 +8,15 @@ package gameboard.objects;
  */
 public class SeedDrill extends WorkingDevice {
 	// private int id = 1; -> for attachment hashmap
-	
+
+	public SeedDrill(){
+		super(18, 7, false);
+	}
+
+	public SeedDrill(int x, int y, boolean selected){
+		super(x, y, selected);
+	}
+
 	/**
 	 * this method is there to seed a field or to set it to growth stage 0
 	 */

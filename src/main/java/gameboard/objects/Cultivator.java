@@ -9,7 +9,15 @@ package gameboard.objects;
  */
 public class Cultivator extends WorkingDevice {
 	//private int id = 3; -> id for hashmap for attachement
-	
+
+	public Cultivator(){
+		super(18, 7, false);
+	}
+
+	public Cultivator(int x, int y, boolean selected){
+		super(x, y, selected);
+	}
+
 	/**
 	 * @param growthState
 	 */
