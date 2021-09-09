@@ -1,4 +1,4 @@
-package simulator;
+package gameboard;
 /**
  * 
  * @author Isabel
@@ -9,7 +9,6 @@ package simulator;
 public class GameValue {
 	private int cash;
 	private int day;
-	private int level;
 	
 	/**
 	 * This constructor will be used for reloading the game.
@@ -27,8 +26,8 @@ public class GameValue {
 	 * @param day
 	 */
 	public GameValue() {
-		cash = 100;
-		day = 1;
+//		cash = 100;
+//		day = 1;
 	}
 	
 	/**

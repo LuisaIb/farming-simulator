@@ -3,6 +3,7 @@
  */
 package datastorage;
 
+import gameboard.GameValue;
 import gameboard.objects.Cultivator;
 import gameboard.objects.DumpTruck;
 import gameboard.objects.Farmer;
@@ -12,7 +13,6 @@ import gameboard.objects.Tractor;
 import gameboard.tiles.CourtTrade;
 import gameboard.tiles.FieldTile;
 import gameboard.tiles.Silo;
-import simulator.GameValue;
 import simulator.LevelOfDifficulty;
 
 /**

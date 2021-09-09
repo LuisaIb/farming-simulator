@@ -5,8 +5,9 @@ package datastorage.jsonb;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
-import simulator.GameValue;
+
 import simulator.LevelOfDifficulty;
+import gameboard.GameValue;
 import gameboard.tiles.CourtTrade;
 import gameboard.tiles.FieldTile;
 import gameboard.tiles.Silo;

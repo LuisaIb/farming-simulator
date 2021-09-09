@@ -1,5 +1,6 @@
 package gui.view;
 
+import gui.controller.ButtonController;
 import gui.controller.SceneController;
 import gui.model.ImageManager;
 import gui.model.LSButton;
@@ -55,19 +56,20 @@ public class DifficultyScene {
      * This method implements the buttons of the scene. Therefore, it uses a VBox.
      */
     private void initializeButtons(){
-        LevelOfDifficulty levelOfDifficulty = new LevelOfDifficulty();
-
+    	ButtonController bc = new ButtonController();
         VBox difficultyBox = new VBox(10);
         difficultyBox.setLayoutX(WIDTH/2 - 100);
         difficultyBox.setLayoutY(HEIGHT/2 - 150);
 
         buttonEasy = new LSButton("Leicht", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
-        //buttonEasy.setOnMouseClicked(levelOfDifficulty.setLevel(0));
+        buttonEasy.setOnMouseClicked(bc.setDifficultyLevel1);
         buttonMedium = new LSButton("Mittel", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
+        buttonMedium.setOnMouseClicked(bc.setDifficultyLevel2);
         buttonHard = new LSButton("Schwer",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
+        buttonHard.setOnMouseClicked(bc.setDifficultyLevel3);
         buttonBackToScene = new LSButton("Zurueck",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonBackToScene.setOnMouseClicked(sceneController.setSceneToMenuScene);

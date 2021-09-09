@@ -4,10 +4,10 @@
 package datastorage.information.fromjsonb;
 
 import datastorage.pojo.GetPojoValue;
+import gameboard.GameValue;
 import gameboard.tiles.CourtTrade;
 import gameboard.tiles.FieldTile;
 import gameboard.tiles.Silo;
-import simulator.GameValue;
 import simulator.LevelOfDifficulty;
 
 /**
