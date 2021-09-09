@@ -22,7 +22,7 @@ public class Cultivator extends WorkingDevice {
 	 * @param growthState
 	 */
 	public int wrapField(int growthState) {
-		if(growthState == 5) {
+		if(growthState == 6) {
 			growthState++; 
 			} 
 		return growthState;

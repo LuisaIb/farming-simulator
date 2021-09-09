@@ -21,7 +21,7 @@ public class SeedDrill extends WorkingDevice {
 	 * this method is there to seed a field or to set it to growth stage 0
 	 */
 	public int seedGrain(int growthState) {
-		if(growthState == 0) {
+		if(growthState == 1) {
 			growthState++; 
 		} 
 		return growthState;

@@ -50,7 +50,7 @@ public class Harvester extends Machine {
 	 */
 	public void harvest(int growthState) throws WrongMachineException{
 		//checking if harvester is at the right place for this action
-		if(growthState ==4) {
+		if(growthState == 5) {
 			growthState++;
 		} else {
 			//to be implemented with exception if you can't harvest the field yet
