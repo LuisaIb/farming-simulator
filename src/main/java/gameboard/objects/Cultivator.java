@@ -28,8 +28,4 @@ public class Cultivator extends WorkingDevice {
 		return growthState;
 	}
 
-
-
-
-	
 }
