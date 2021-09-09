@@ -10,10 +10,9 @@ public class PathTile extends Tile{
 
 	/**
 	 * the constructor sets the id of each path tile
-	 * @param id
 	 */
-	public PathTile(int id) {
-		super(id);
+	public PathTile() {
+		super();
 		
 	}
 	

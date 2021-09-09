@@ -9,14 +9,9 @@ public class TileWithBuilding extends Tile{
 
 	/**
 	 * the constructor sets the id of each tile with a building
-	 * @param id
 	 */
-	public TileWithBuilding(int id) {
-		super(id);
-		
-	}
-	
 	public TileWithBuilding() {
+		super();
 		
 	}
 	

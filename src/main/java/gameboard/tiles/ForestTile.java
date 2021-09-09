@@ -9,11 +9,10 @@ public class ForestTile extends Tile{
 
 	/**
 	 * the constructor sets the id for each forest tile
-	 * @param id
 	 */
-	public ForestTile(int id) {
-		super(id);
-		// TODO Auto-generated constructor stub
+	public ForestTile() {
+		super();
+		
 	}
 	
 	/**

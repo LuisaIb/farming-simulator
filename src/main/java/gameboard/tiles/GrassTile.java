@@ -9,10 +9,9 @@ public class GrassTile extends Tile{
 
 	/**
 	 * the constructor sets the id for each grass tile
-	 * @param id
 	 */
-	public GrassTile(int id) {
-		super(id);
+	public GrassTile() {
+		super();
 		
 	}
 	

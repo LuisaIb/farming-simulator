@@ -9,13 +9,6 @@ public class Silo extends TileWithBuilding{
 	private int capacity; //represents the grain capacity of the silo
 	private final int CAPACITY = 100; // just inspiration
 	
-	/**
-	 * constructor for the Silo
-	 * @param id
-	 */
-	public Silo(int id) {
-		super(id);
-	}
 	
 	/**
 	 * This empty constructor will be used for reloading the game.

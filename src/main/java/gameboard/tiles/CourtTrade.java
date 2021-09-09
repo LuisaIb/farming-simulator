@@ -8,15 +8,6 @@ package gameboard.tiles;
 public class CourtTrade extends TileWithBuilding{
 
 	/**
-	 * the constructor is there to set the id of the Court Trade
-	 * @param id
-	 */
-	public CourtTrade(int id) {
-		super(id);
-		
-	}
-	
-	/**
 	 * This constructor will be used for reloading the game.
 	 */
 	public CourtTrade() {
