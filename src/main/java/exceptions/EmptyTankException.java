@@ -8,4 +8,8 @@ package exceptions;
  */
 public class EmptyTankException extends Exception{
 
+	public EmptyTankException(String s) {
+		
+	}
+
 }

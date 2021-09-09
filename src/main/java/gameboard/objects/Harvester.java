@@ -48,13 +48,14 @@ public class Harvester extends Machine {
 	 * when it's ready to do so
 	 * @param growthState
 	 */
-	public void harvest(int growthState) throws WrongMachineException{
+	public int harvest(int growthState) throws WrongMachineException{
 		//checking if harvester is at the right place for this action
 		if(growthState == 5) {
 			growthState++;
 		} else {
-			//to be implemented with exception if you can't harvest the field yet
+			throw new WrongMachineException("You can not use the harvester yet!");
 		}
+		return growthState;
 	}
 	
 }

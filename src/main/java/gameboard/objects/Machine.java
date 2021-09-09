@@ -1,7 +1,5 @@
 package gameboard.objects;
 
-import java.util.HashMap;
-
 import exceptions.EmptyTankException;
 
 /**
@@ -38,10 +36,11 @@ public class Machine extends MovingObject{
      * this method minimizes the petrol level when the vehicle is moving
      * @return petrolLevel
      */
-    public int consumption(int tank, int x, int y) {
+    public int caculateTankConsumption(int petrolTankFillLevel, int x, int y) {
+    	//check with pushing of buttons or with moving method of machine
     	if(x == +-1 || y == +-1) {
-    		tank--;
-    	} return tank;
+    		petrolTankFillLevel--;
+    	} return petrolTankFillLevel;
     }
     
     /** 
@@ -49,25 +48,15 @@ public class Machine extends MovingObject{
      * and ends the game when the petrol is empty
      */
     public void lowPetrolLevel(int tank) throws EmptyTankException{
-    	if(tank <= 50) {
-    		System.out.println("The petrol level is only " + tank + "l.");
+    	if(tank <= 50) { //little reminder to fuel the machine
+    		System.out.println("There are only " + tank + "l left in the tank.");
     		System.out.println("Please go to the gasstation!");
-    } 	else if (tank == 0) {
-     		System.out.println("The tank is empty!");
-    		System.out.println("Game Over!");		
+    		} 
+    	else if (tank == 0) { //tank is empty -> Game Over!
+    		throw new EmptyTankException("You can not move any further, "
+    				+ "the tank is empty! \n Game Over!");		
     }
     	
-//    	if(tank >= 20) {
-//    		System.out.println("The petrol level is only " + tank + "l.");
-//    		System.out.println("Please go to the gasstation!");
-//    	} else {
-//    		try {
-//        		mo.move();
-//        	} catch(EmptyTankException e) {
-//        		System.out.println("The tank is empty!");
-//        		System.out.println("Game Over!");
-//        	}
-//    	}
     }
 	
 }

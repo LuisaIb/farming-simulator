@@ -1,5 +1,7 @@
 package gameboard.objects;
 
+import exceptions.WrongMachineException;
+
 /**
  * this class represents the device SeedDrill with its functionality
  * to seed a field.
@@ -20,10 +22,12 @@ public class SeedDrill extends WorkingDevice {
 	/**
 	 * this method is there to seed a field or to set it to growth stage 0
 	 */
-	public int seedGrain(int growthState) {
+	public int seedGrain(int growthState) throws WrongMachineException{
 		if(growthState == 1) {
-			growthState++; 
-		} 
+			growthState++;
+		} else {
+			throw new WrongMachineException("You can not use the harvester yet!");
+		}
 		return growthState;
 	}
 

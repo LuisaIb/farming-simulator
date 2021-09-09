@@ -8,4 +8,8 @@ package exceptions;
  */
 public class WrongMachineException extends Exception{
 
+	public WrongMachineException(String s) {
+		
+	}
+
 }

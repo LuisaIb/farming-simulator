@@ -6,6 +6,8 @@ package gameboard.tiles;
  *
  */
 public class CourtTrade extends TileWithBuilding{
+	private int grainFillLevel;
+	private final int GRAIN_CAPACITY = 150;
 
 	/**
 	 * This constructor will be used for reloading the game.
@@ -17,8 +19,24 @@ public class CourtTrade extends TileWithBuilding{
 	/**
 	 * this method represents the functionality to sell grain to customers
 	 */
-	public void sellGrain() {
-		
+	public void sellGrain(int grainFillLevel, int cash) {
+		grainFillLevel = grainFillLevel - 50;
+		cash = cash + 50;
+	}
+	/**
+	 * Getter for the GrainFillLevel
+	 * @return
+	 */
+	public int getGrainFillLevel() {
+		return grainFillLevel;
+	}
+
+	/**
+	 * Setter for the GrainFillLevel
+	 * @param grainFillLevel
+	 */
+	public void setGrainFillLevel(int grainFillLevel) {
+		this.grainFillLevel = grainFillLevel;
 	}
 
 }
