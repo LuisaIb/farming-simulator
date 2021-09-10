@@ -47,7 +47,7 @@ public class DumpTruck extends WorkingDevice {
 		grainFillLevel = 0;
 	}
 
-	public int getFillLevel() {
+	public int getGrainFillLevel() {
 		return grainFillLevel;
 	}
 }

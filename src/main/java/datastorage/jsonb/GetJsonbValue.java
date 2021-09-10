@@ -67,7 +67,7 @@ public class GetJsonbValue {
 	 */
 	public String toSerializeSilo() { 
 		Silo s = new Silo();
-		//getter
+		s.getCapacity();
 		Jsonb jsonb = JsonbBuilder.create();
 		String serializeds = jsonb.toJson(s);
 		return serializeds;
@@ -79,7 +79,7 @@ public class GetJsonbValue {
 	 */
 	public String toSerializeCourtTrade() { 
 		CourtTrade ct = new CourtTrade();
-		//getter
+		ct.getGrainFillLevel();
 		Jsonb jsonb = JsonbBuilder.create();
 		String serializedct = jsonb.toJson(ct);
 		return serializedct;

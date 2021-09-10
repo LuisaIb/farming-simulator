@@ -14,6 +14,7 @@ public class Tractor extends Machine {
 	 * the constructor sets all the values needed for using the tractor
 	 */
 	public Tractor() {
+		super();
 		this.attachement = false;
 	}
 

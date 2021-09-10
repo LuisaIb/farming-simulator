@@ -58,5 +58,12 @@ public class Machine extends MovingObject{
     }
     	
     }
+
+	/**
+	 * @return the petrolTankFillLevel
+	 */
+	public int getPetrolTankFillLevel() {
+		return petrolTankFillLevel;
+	}
 	
 }

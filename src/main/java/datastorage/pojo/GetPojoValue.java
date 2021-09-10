@@ -59,8 +59,8 @@ public class GetPojoValue {
 	public Silo toDeserializeSilo() {  
 		GetJsonbValue jbv = new GetJsonbValue();
 		Jsonb jb = JsonbBuilder.create();
-		Silo deserializedft = jb.fromJson(jbv.toSerializeFieldtiles(), Silo.class);
-		return deserializedft;	// kann nun als neues Objekt der Klasse Silo() verwendet werden um den Konstruktor zu befüllen
+		Silo deserializeds = jb.fromJson(jbv.toSerializeFieldtiles(), Silo.class);
+		return deserializeds;	// kann nun als neues Objekt der Klasse Silo() verwendet werden um den Konstruktor zu befüllen
 	}
 	
 	/**
@@ -70,8 +70,8 @@ public class GetPojoValue {
 	public CourtTrade toDeserializeCourtTrade() {  
 		GetJsonbValue jbv = new GetJsonbValue();
 		Jsonb jb = JsonbBuilder.create();
-		CourtTrade deserializedft = jb.fromJson(jbv.toSerializeFieldtiles(), CourtTrade.class);
-		return deserializedft;	// kann nun als neues Objekt der Klasse CourtTrade() verwendet werden um den Konstruktor zu befüllen
+		CourtTrade deserializedct = jb.fromJson(jbv.toSerializeFieldtiles(), CourtTrade.class);
+		return deserializedct;	// kann nun als neues Objekt der Klasse CourtTrade() verwendet werden um den Konstruktor zu befüllen
 	}
 	
 }

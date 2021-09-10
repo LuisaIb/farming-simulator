@@ -4,6 +4,12 @@
 package datastorage.information.fromjsonb;
 
 import datastorage.pojo.GetPojoMovingObject;
+import gameboard.objects.Cultivator;
+import gameboard.objects.DumpTruck;
+import gameboard.objects.Farmer;
+import gameboard.objects.Harvester;
+import gameboard.objects.SeedDrill;
+import gameboard.objects.Tractor;
 
 /**
  * @author Isabel
@@ -17,7 +23,16 @@ public class GetSavingInformationMovingObject {
 	 */
 	public void GetSavingInformationFarmer() {
 		GetPojoMovingObject gpp = new GetPojoMovingObject();	
-		gpp.toDeserializeFarmer();
+		Farmer deserializedX = gpp.toDeserializeFarmer();
+		int x = deserializedX.getX();
+		
+		Farmer deserializedY = gpp.toDeserializeFarmer();
+		int y = deserializedY.getY();
+		
+		Farmer deserializedSelected = gpp.toDeserializeFarmer();
+		boolean selected = deserializedSelected.isSelected();
+		
+		Farmer updatedFarmer = new Farmer(x, y, selected);
 	}
 	
 	/**
@@ -26,7 +41,22 @@ public class GetSavingInformationMovingObject {
 	 */
 	public void GetSavingInformationTractor() {
 		GetPojoMovingObject gpp = new GetPojoMovingObject();	
-		gpp.toDeserializeTractor();
+		Tractor deserializedX = gpp.toDeserializeTractor();
+		int x = deserializedX.getX();
+		
+		Tractor deserializedY = gpp.toDeserializeTractor();
+		int y = deserializedY.getY();
+		
+		Tractor deserializedSelected = gpp.toDeserializeTractor();
+		boolean selected = deserializedSelected.isSelected();
+		
+		Tractor deserializedPetrolTankFillLevel = gpp.toDeserializeTractor();
+		int petrolTankFillLevel = deserializedPetrolTankFillLevel.getPetrolTankFillLevel();
+		
+		Tractor deserializedAttachement = gpp.toDeserializeTractor();
+		boolean attachement = deserializedSelected.isAttachement();
+		
+		Tractor updatedTractor = new Tractor(x, y, selected, petrolTankFillLevel, attachement);
 
 	}
 	
@@ -36,7 +66,23 @@ public class GetSavingInformationMovingObject {
 	 */
 	public void GetSavingInformationHarvster() {
 		GetPojoMovingObject gpp = new GetPojoMovingObject();	
-		gpp.toDeserializeHarvester();
+		Harvester deserializedX = gpp.toDeserializeHarvester();
+		int x = deserializedX.getX();
+		
+		Harvester deserializedY = gpp.toDeserializeHarvester();
+		int y = deserializedY.getY();
+		
+		Harvester deserializedSelected = gpp.toDeserializeHarvester();
+		boolean selected = deserializedSelected.isSelected();
+		
+		Harvester deserializedPetrolTankFillLevel = gpp.toDeserializeHarvester();
+		int petrolTankFillLevel = deserializedPetrolTankFillLevel.getPetrolTankFillLevel();
+		
+		Harvester deserializedGrainTankFillLevel = gpp.toDeserializeHarvester();
+		int grainTankFillLevel = deserializedGrainTankFillLevel.getGrainTankFillLevel();
+		
+		Harvester updatedHarvester = new Harvester(x, y, selected, petrolTankFillLevel, grainTankFillLevel);
+		
 	}
 	
 	/**
@@ -45,7 +91,16 @@ public class GetSavingInformationMovingObject {
 	 */
 	public void GetSavingInformationCultivator() {
 		GetPojoMovingObject gpp = new GetPojoMovingObject();	
-		gpp.toDeserializeCultivator();
+		Cultivator deserializedX = gpp.toDeserializeCultivator();
+		int x = deserializedX.getX();
+		
+		Cultivator deserializedY = gpp.toDeserializeCultivator();
+		int y = deserializedY.getY();
+		
+		Cultivator deserializedSelected = gpp.toDeserializeCultivator();
+		boolean selected = deserializedSelected.isSelected();
+		
+		Cultivator updatedCultivator = new Cultivator(x, y, selected);
 	}
 	
 	/**
@@ -54,7 +109,19 @@ public class GetSavingInformationMovingObject {
 	 */
 	public void GetSavingInformationDumpTruck() {
 		GetPojoMovingObject gpp = new GetPojoMovingObject();	
-		gpp.toDeserializeDumpTruck();
+		DumpTruck deserializedX = gpp.toDeserializeDumpTruck();
+		int x = deserializedX.getX();
+		
+		DumpTruck deserializedY = gpp.toDeserializeDumpTruck();
+		int y = deserializedY.getY();
+		
+		DumpTruck deserializedSelected = gpp.toDeserializeDumpTruck();
+		boolean selected = deserializedSelected.isSelected();
+		
+		DumpTruck deserializedGrainFillLevel = gpp.toDeserializeDumpTruck();
+		int grainFillLevel = deserializedGrainFillLevel.getGrainFillLevel();
+		
+		DumpTruck updatedDumpTruck = new DumpTruck(x, y, selected, grainFillLevel);
 	}
 	
 	/**
@@ -63,8 +130,16 @@ public class GetSavingInformationMovingObject {
 	 */
 	public void GetSavingInformationSeedDrill() {
 		GetPojoMovingObject gpp = new GetPojoMovingObject();	
-		gpp.toDeserializeSeedDrill();
+		SeedDrill deserializedX = gpp.toDeserializeSeedDrill();
+		int x = deserializedX.getX();
+		
+		SeedDrill deserializedY = gpp.toDeserializeSeedDrill();
+		int y = deserializedY.getY();
+		
+		SeedDrill deserializedSelected = gpp.toDeserializeSeedDrill();
+		boolean selected = deserializedSelected.isSelected();
+		
+		SeedDrill updatedSeedDrill = new SeedDrill(x, y, selected);
 	}
-	// Bezug auf das Koordinatensystem muss noch erzeugt werden
-	// x und y werte werden zurück gegebne und neu initialisiert
+	
 }

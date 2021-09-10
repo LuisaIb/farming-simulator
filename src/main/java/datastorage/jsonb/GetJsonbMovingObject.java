@@ -23,12 +23,14 @@ public class GetJsonbMovingObject {
 	 * This method gets the position of the farmer of the class...
 	 * @return serialized as a JSONB object of the farmer's position
 	 */
-	public String toSerializeFarmer() { //eventuell mit Vererbung f�r die Ger�te und den Menschen
-		Farmer gbf = new Farmer();
-		// getter und setter
+	public String toSerializeFarmer() { 
+		Farmer sf = new Farmer();
+		sf.getX();
+		sf.getY();
+		sf.isSelected();
 		Jsonb jsonb = JsonbBuilder.create();
-		String serializedgbf = jsonb.toJson(gbf);
-		return serializedgbf;
+		String serializedsf = jsonb.toJson(sf);
+		return serializedsf;
 	}
 	
 	/**
@@ -36,11 +38,15 @@ public class GetJsonbMovingObject {
 	 * @return serialized as a JSONB object of the tractor's positions
 	 */
 	public String toSerializeTractor() { 
-		Tractor gbt = new Tractor();
-		// getter und setter
+		Tractor st = new Tractor();
+		st.getX();
+		st.getY();
+		st.isSelected();
+		st.getPetrolTankFillLevel();
+		st.isAttachement();
 		Jsonb jsonb = JsonbBuilder.create();
-		String serializedgbt = jsonb.toJson(gbt);
-		return serializedgbt;
+		String serializedst = jsonb.toJson(st);
+		return serializedst;
 	}
 	
 	/**
@@ -48,11 +54,15 @@ public class GetJsonbMovingObject {
 	 * @return serialized as a JSONB object of the tractor's positions
 	 */
 	public String toSerializeHarvester() { 
-		Harvester gbh = new Harvester();
-		// getter und setter
+		Harvester sh = new Harvester();
+		sh.getX();
+		sh.getY();
+		sh.isSelected();
+		sh.getPetrolTankFillLevel();
+		sh.getGrainTankFillLevel();
 		Jsonb jsonb = JsonbBuilder.create();
-		String serializedgbh = jsonb.toJson(gbh);
-		return serializedgbh;
+		String serializedsh = jsonb.toJson(sh);
+		return serializedsh;
 	}
 	
 	/**
@@ -60,11 +70,13 @@ public class GetJsonbMovingObject {
 	 * @return serialized as a JSONB object of the tractor's positions
 	 */
 	public String toSerializeCultivator() { 
-		Cultivator gbh = new Cultivator();
-		// getter und setter
+		Cultivator sc = new Cultivator();
+		sc.getX();
+		sc.getY();
+		sc.isSelected();
 		Jsonb jsonb = JsonbBuilder.create();
-		String serializedgbh = jsonb.toJson(gbh);
-		return serializedgbh;
+		String serializedsc = jsonb.toJson(sc);
+		return serializedsc;
 	}
 	
 	/**
@@ -72,11 +84,14 @@ public class GetJsonbMovingObject {
 	 * @return serialized as a JSONB object of the tractor's positions
 	 */
 	public String toSerializeDumpTruck() { 
-		DumpTruck gbh = new DumpTruck();// leeren konstruktor erstellen
-		// getter und setter
+		DumpTruck sdt = new DumpTruck();// leeren konstruktor erstellen
+		sdt.getX();
+		sdt.getY();
+		sdt.isSelected();
+		sdt.getGrainFillLevel();
 		Jsonb jsonb = JsonbBuilder.create();
-		String serializedgbh = jsonb.toJson(gbh);
-		return serializedgbh;
+		String serializedsdt = jsonb.toJson(sdt);
+		return serializedsdt;
 	}
 	
 	/**
@@ -84,14 +99,13 @@ public class GetJsonbMovingObject {
 	 * @return serialized as a JSONB object of the tractor's positions
 	 */
 	public String toSerializeSeedDrill() { 
-		SeedDrill gbh = new SeedDrill();
-		// Koordinaten des Harvesters
+		SeedDrill ssd = new SeedDrill();
+		ssd.getX();
+		ssd.getY();
+		ssd.isSelected();
 		Jsonb jsonb = JsonbBuilder.create();
-		String serializedgbh = jsonb.toJson(gbh);
-		return serializedgbh;
+		String serializedssd = jsonb.toJson(ssd);
+		return serializedssd;
 	}
-	// fehlende Ger�te folgen
-	// allgemeine Informationen �ber position, Tankstand, Grainstand
-	// Kommentare anpassen DumpTruck SeedDrill
 	
 }

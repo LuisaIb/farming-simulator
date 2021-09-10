@@ -26,18 +26,18 @@ public class StartNewGame {
 	 * 
 	 */
 	public void getGameInformation() {
-		Farmer f = new Farmer();// leerer Konstruktor mit allen gesetzten Eigenschaften:         Position
-		Tractor t = new Tractor();// leerer Konstruktor mit allen gesetzten Eigenschaften:       Position, Bezintank
-		Harvester h = new Harvester();// leerer Konstruktor mit allen gesetzten Eigenschaften:   Position, Bezintank, Getreidetank
-		Cultivator c = new Cultivator();// leerer Konstruktor mit allen gesetzten Eigenschaften: Position
-		//DumpTruck dt = DumpTruck();// leerer Konstruktor mit allen gesetzten Eigenschaften:    Position, Getreidetank
-		//SeedDrill sd = SeedDrill();// leerer Konstruktor mit allen gesetzten Eigenschaften:    Position
+		Farmer f = new Farmer();// leerer Konstruktor mit allen gesetzten Eigenschaften:         Position, in Benutzung
+		Tractor t = new Tractor();// leerer Konstruktor mit allen gesetzten Eigenschaften:       Position, in Benutzung, Bezintank
+		Harvester h = new Harvester();// leerer Konstruktor mit allen gesetzten Eigenschaften:   Position, in Benutzung, Bezintank, Getreidetank
+		Cultivator c = new Cultivator();// leerer Konstruktor mit allen gesetzten Eigenschaften: Position, in Benutzung
+		DumpTruck dt = new DumpTruck();// leerer Konstruktor mit allen gesetzten Eigenschaften:    Position, in Benutzung, Getreidetank
+		SeedDrill sd = new SeedDrill();// leerer Konstruktor mit allen gesetzten Eigenschaften:    Position, in Benutzung
 		
 		LevelOfDifficulty lod = new LevelOfDifficulty(levelInput);// Eingabe der Auswahlkästchen muss übergeben werden
 		
 		GameValue gv = new GameValue();// leerer Konstruktor mit allen gesetzten Eigenschaften: cash = 100, day = 1
 		
-		FieldTile ft = new FieldTile();// leerer Konstruktor mit allen gesetzten Eigenschaften: Alle Felder auf Wachstumsstufe 0, growthstate = 0 -> zur Aussaat bereit
+		FieldTile ft = new FieldTile();// leerer Konstruktor mit allen gesetzten Eigenschaften: Alle Felder auf Wachstumsstufe 0, growthstate = 0 -> Wiese, ein Feld auf 1
 		
 		Silo s = new Silo();// leerer Konstruktor mit allen gesetzten Eigenschaften: Getreidefüllmege =
 		

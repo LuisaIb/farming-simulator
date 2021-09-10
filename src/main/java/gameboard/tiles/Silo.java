@@ -14,7 +14,25 @@ public class Silo extends TileWithBuilding{
 	 * This empty constructor will be used for reloading the game.
 	 */
 	public Silo() {
-		
+		capacity = 0;
+	}
+	
+	public Silo(int capacity) {
+		this.capacity = capacity;
+	}
+
+	/**
+	 * @return the capacity
+	 */
+	public int getCapacity() {
+		return capacity;
+	}
+
+	/**
+	 * @param capacity the capacity to set
+	 */
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
 	}
 
 	/*

@@ -61,7 +61,7 @@ public class GetSavingInformationValue {
 			FieldTile deserializedft3 = gpv.toDeserializeFieldtiles();
 			int ft3 = deserializedft3.getGrowthState3();
 			
-		FieldTile updatedFieldTile = new FieldTile(0, ft1, ft2, ft3);
+		FieldTile updatedFieldTile = new FieldTile(ft1, ft2, ft3);
 					
 	}
 	
@@ -71,10 +71,11 @@ public class GetSavingInformationValue {
 	 */
 	public void GetSavingInformationSilo() {
 		GetPojoValue gpv = new GetPojoValue();
-			Silo deserializedlevel = gpv.toDeserializeSilo();
-//			int newLevel = deserializedlevel.getLevel();
+			Silo deserializedcapacity = gpv.toDeserializeSilo();
+			int capacity = deserializedcapacity.getCapacity();
 			
-//			LevelOfDifficulty updatedLevel = new LevelOfDifficulty(newLevel);
+		Silo updatedSilo = new Silo (capacity);
+		
 					
 	}
 	
@@ -84,10 +85,12 @@ public class GetSavingInformationValue {
 	 */
 	public void GetSavingInformationCourtTrade() {
 		GetPojoValue gpv = new GetPojoValue();
-		CourtTrade deserializedlevel = gpv.toDeserializeCourtTrade();
-//			int newLevel = deserializedlevel.getLevel();
+			CourtTrade deserializedGrainFillLevel = gpv.toDeserializeCourtTrade();
+			int grainFillLevel = deserializedGrainFillLevel.getGrainFillLevel();
 			
-//			LevelOfDifficulty updatedLevel = new LevelOfDifficulty(newLevel);
+			//cash Variable, ggf GameValue löschen und cash zum hofladen
+			
+		CourtTrade updatedCourtTrade = new CourtTrade(grainFillLevel);
 					
 	}
 }

@@ -27,8 +27,8 @@ public class GetPojoMovingObject {
 	public Farmer toDeserializeFarmer() {  
 		GetJsonbMovingObject jbp = new GetJsonbMovingObject();
 		Jsonb jb = JsonbBuilder.create();
-		Farmer deserializedgbf = jb.fromJson(jbp.toSerializeFarmer(), Farmer.class);
-		return deserializedgbf;	
+		Farmer deserializeddf = jb.fromJson(jbp.toSerializeFarmer(), Farmer.class);
+		return deserializeddf;	
 	}
 	
 	/**
@@ -38,8 +38,8 @@ public class GetPojoMovingObject {
 	public Tractor toDeserializeTractor() {  	
 		GetJsonbMovingObject jbp = new GetJsonbMovingObject();
 		Jsonb jb = JsonbBuilder.create();
-		Tractor deserializedgbt = jb.fromJson(jbp.toSerializeTractor(), Tractor.class);
-		return deserializedgbt;	
+		Tractor deserializeddt = jb.fromJson(jbp.toSerializeTractor(), Tractor.class);
+		return deserializeddt;	
 	}
 	
 	/**
@@ -49,8 +49,8 @@ public class GetPojoMovingObject {
 	public Harvester toDeserializeHarvester() {  
 		GetJsonbMovingObject jbp = new GetJsonbMovingObject();
 		Jsonb jb = JsonbBuilder.create();
-		Harvester deserializedgbh = jb.fromJson(jbp.toSerializeHarvester(), Harvester.class);
-		return deserializedgbh;	
+		Harvester deserializeddh = jb.fromJson(jbp.toSerializeHarvester(), Harvester.class);
+		return deserializeddh;	
 	}
 	
 	/**
@@ -60,8 +60,8 @@ public class GetPojoMovingObject {
 	public Cultivator toDeserializeCultivator() {  
 		GetJsonbMovingObject jbp = new GetJsonbMovingObject();
 		Jsonb jb = JsonbBuilder.create();
-		Cultivator deserializedgbh = jb.fromJson(jbp.toSerializeCultivator(), Cultivator.class);
-		return deserializedgbh;	
+		Cultivator deserializedch = jb.fromJson(jbp.toSerializeCultivator(), Cultivator.class);
+		return deserializedch;	
 	}
 	
 	/**
@@ -71,8 +71,8 @@ public class GetPojoMovingObject {
 	public DumpTruck toDeserializeDumpTruck() {  
 		GetJsonbMovingObject jbp = new GetJsonbMovingObject();
 		Jsonb jb = JsonbBuilder.create();
-		DumpTruck deserializedgbh = jb.fromJson(jbp.toSerializeDumpTruck(), DumpTruck.class);
-		return deserializedgbh;	
+		DumpTruck deserializedddt = jb.fromJson(jbp.toSerializeDumpTruck(), DumpTruck.class);
+		return deserializedddt;	
 	}
 	
 	/**
@@ -82,9 +82,8 @@ public class GetPojoMovingObject {
 	public SeedDrill toDeserializeSeedDrill() {  
 		GetJsonbMovingObject jbp = new GetJsonbMovingObject();
 		Jsonb jb = JsonbBuilder.create();
-		SeedDrill deserializedgbh = jb.fromJson(jbp.toSerializeSeedDrill(), SeedDrill.class);
-		return deserializedgbh;	
+		SeedDrill deserializeddsd = jb.fromJson(jbp.toSerializeSeedDrill(), SeedDrill.class);
+		return deserializeddsd;	
 	}
 
 }
-// Klassen m�ssen angepasst werden

@@ -10,10 +10,17 @@ public class CourtTrade extends TileWithBuilding{
 	private final int GRAIN_CAPACITY = 150;
 
 	/**
-	 * This constructor will be used for reloading the game.
+	 * This constructor will be used for saving the game.
 	 */
 	public CourtTrade() {
-		
+		grainFillLevel = 0;
+	}
+	
+	/**
+	 * This constructor will be used for reloading the game.
+	 */
+	public CourtTrade(int grainFillLevel) {
+		this.grainFillLevel = grainFillLevel;
 	}
 	
 	/**

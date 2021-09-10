@@ -15,6 +15,7 @@ public class Harvester extends Machine {
 	 * the constructor of the harvester represents...
 	 */
 	public Harvester() {
+		super();
 		grainTankFillLevel = 0;
 	}
 
