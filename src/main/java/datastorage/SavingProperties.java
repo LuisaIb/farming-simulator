@@ -1,6 +1,3 @@
-/**
- * 
- */
 package datastorage;
 
 import datastorage.information.ConvertingToJsonb;

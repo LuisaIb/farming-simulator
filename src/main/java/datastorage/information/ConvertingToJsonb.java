@@ -1,6 +1,3 @@
-/**
- * 
- */
 package datastorage.information;
 
 import datastorage.jsonb.GetJsonbMovingObject;

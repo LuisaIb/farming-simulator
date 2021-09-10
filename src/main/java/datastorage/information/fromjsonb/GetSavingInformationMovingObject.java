@@ -1,6 +1,3 @@
-/**
- * 
- */
 package datastorage.information.fromjsonb;
 
 import datastorage.pojo.GetPojoMovingObject;
