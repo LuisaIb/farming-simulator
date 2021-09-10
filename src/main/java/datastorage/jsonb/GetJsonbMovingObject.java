@@ -1,6 +1,3 @@
-/**
- * 
- */
 package datastorage.jsonb;
 
 import javax.json.bind.Jsonb;

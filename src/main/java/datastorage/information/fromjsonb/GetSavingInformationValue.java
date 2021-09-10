@@ -1,6 +1,3 @@
-/**
- * 
- */
 package datastorage.information.fromjsonb;
 
 import datastorage.pojo.GetPojoValue;
@@ -30,7 +27,6 @@ public class GetSavingInformationValue {
 			int day = deserializedday.getDay();
 		
 			GameValue updatedGame = new GameValue(cash, day);
-			//System.out.println(cash + "+" + day);
 	}
 	
 	/**

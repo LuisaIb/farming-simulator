@@ -1,6 +1,3 @@
-/**
- * 
- */
 package datastorage.pojo;
 
 import javax.json.bind.Jsonb;
