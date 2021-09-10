@@ -42,7 +42,7 @@ public class MovingObjectOnMatchfield {
      * @param column - index of the column to which the image view is set, handed to the method setTileOfObject()
      * @param row - index of the column to which the image view is set, handed to the method setTileOfObject()
      */
-    protected void initializeMovingObject(int selectedObject, int column, int row){
+    public void initializeMovingObject(int selectedObject, int column, int row){
         setImageView(selectedObject);
         setTileOfObject(column, row);
     }
@@ -54,7 +54,7 @@ public class MovingObjectOnMatchfield {
      * @param selectedObject - integer of the selected moving object that is shown on the matchfield, handed to the
      *                       method getTheRightImageView()
      */
-    protected void setImageView(int selectedObject){
+    public void setImageView(int selectedObject){
         movingObjectImageView = getTheRightImageView(selectedObject);
     }
 
@@ -64,7 +64,7 @@ public class MovingObjectOnMatchfield {
      * @param column - sets the image view onto this column on the grid pane of the matchfield
      * @param row - sets the image view onto this row on the grid pane of the matchfield
      */
-    protected void setTileOfObject(int column, int row){
+    public void setTileOfObject(int column, int row){
         matchfieldGrid.setColumnIndex(movingObjectImageView, column);
         matchfieldGrid.setRowIndex(movingObjectImageView, row);
         matchfieldGrid.getChildren().add(movingObjectImageView);

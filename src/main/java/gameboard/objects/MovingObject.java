@@ -1,6 +1,7 @@
 package gameboard.objects;
 
 import exceptions.MovingExcpetion;
+import gui.view.Matchfield;
 
 /**
  * this class represents any object on the gameboard,
@@ -12,6 +13,7 @@ public class MovingObject {
 	private int x;
 	private int y;
 	private boolean selected = false;
+	private Matchfield matchfield = new Matchfield();
 
 	public MovingObject(){
 
@@ -31,6 +33,7 @@ public class MovingObject {
 	public void moveRight() throws MovingExcpetion {
 		if (x < 29) {
 			x++;
+			matchfield.setTileOfObject(x, y);
 		} else {
 			throw new MovingExcpetion("You can not walk further to the right.");
 		}
@@ -40,6 +43,7 @@ public class MovingObject {
 	public void moveLeft() throws MovingExcpetion {
 		if (x > 0) {
 			x--;
+			matchfield.setTileOfObject(x, y);
 		} else {
 			throw new MovingExcpetion("You can not walk further to the left.");
 		}
@@ -48,6 +52,7 @@ public class MovingObject {
 	public void moveUp() throws MovingExcpetion {
 		if (y > 0) {
 			y--;
+			matchfield.setTileOfObject(x, y);
 		} else {
 			throw new MovingExcpetion("You can not walk further to the top.");
 		}
@@ -56,6 +61,7 @@ public class MovingObject {
 	public void moveDown() throws MovingExcpetion {
 		if (y < 19) {
 			y++;
+			matchfield.setTileOfObject(x, y);
 		} else {
 			throw new MovingExcpetion("You can not walk further to the bottom.");
 		}

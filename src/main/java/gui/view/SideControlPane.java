@@ -1,5 +1,6 @@
 package gui.view;
 
+import gui.controller.MovingObjectController;
 import gui.model.ImageManager;
 import gui.model.LSButton;
 import javafx.scene.image.Image;
@@ -7,6 +8,8 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
+
+import java.awt.event.MouseEvent;
 
 import static gui.view.ViewManager.HEIGHT;
 import static gui.view.ViewManager.WIDTH;
@@ -31,6 +34,13 @@ public class SideControlPane {
     private LSButton buttonAction;
     private static final int HEIGHT_PANE = 860;
     private static final int WIDTH_PANE = 250;
+    private final String PATH_TO_FARMER = "src/main/java/gui/view/resources/farmer/farmerSide.png";
+    private final String PATH_TO_TRACTOR = "src/main/java/gui/view/resources/machines/tractorSide.png";
+    private final String PATH_TO_HARVESTER = "src/main/java/gui/view/resources/machines/harvesterSide.png";
+    private final String PATH_TO_CULTIVATOR = "src/main/java/gui/view/resources/machines/cultivatorSide.png";
+    private final String PATH_TO_DUMP_TRUCK = "src/main/java/gui/view/resources/machines/dumpTruckSide.png";
+    private final String PATH_TO_SEED_DRILL = "src/main/java/gui/view/resources/machines/seedDrillSide.png";
+    MovingObjectController movingObjectController = new MovingObjectController();
 
     /**
      * Construcs an object of the class SideControlPane. It immediately initializes the sidePane.
@@ -77,7 +87,7 @@ public class SideControlPane {
         machinePane.setVgap(0);
         machinePane.setPrefHeight(HEIGHT * 0.65);
         machinePane.setPrefWidth(WIDTH_PANE);
-        machinePane.setGridLinesVisible(false);
+        machinePane.setGridLinesVisible(true);
 
         ColumnConstraints colConst = new ColumnConstraints();
         for (int i = 0; i < 2; i++) {
@@ -90,6 +100,7 @@ public class SideControlPane {
             rowConst.setPercentHeight(100 / 3);
             machinePane.getRowConstraints().add(rowConst);
         }
+        sidePane.getChildren().add(machinePane);
     }
 
     /**
@@ -97,38 +108,38 @@ public class SideControlPane {
      * addToGridPane() to the machinePane.
      */
     private void fillMachinePaneWithButtons(){
-        Image imageFarmer = new ImageManager().getImage("../view/resources/farmer/farmerSide.png",
-                WIDTH_PANE / 2, WIDTH_PANE / 2, true, false);
+        Image imageFarmer = new ImageManager().getImage(PATH_TO_FARMER, WIDTH_PANE / 2, WIDTH_PANE / 2,
+                true, false);
         farmerButton = new LSButton(imageFarmer, "farmer",
                 HEIGHT_PANE / 3, WIDTH_PANE / 2, 0, 0);
         addToGridPane(farmerButton, 0, 0);
 
-        Image imageTractor = new ImageManager().getImage("../view/resources/machines/tractorSide.png",
-                WIDTH_PANE / 2, WIDTH_PANE / 2, true, false);
+        Image imageTractor = new ImageManager().getImage(PATH_TO_TRACTOR , WIDTH_PANE / 2, WIDTH_PANE / 2,
+                true, false);
         tractorButton = new LSButton(imageTractor, "tractor",
                 HEIGHT_PANE / 3, WIDTH_PANE / 2, 0, 0);
         addToGridPane(tractorButton, 1, 0);
 
-        Image imageHarvester = new ImageManager().getImage("../view/resources/machines/harvesterSide.png",
-                WIDTH_PANE / 2, WIDTH_PANE / 2, true, false);
+        Image imageHarvester = new ImageManager().getImage(PATH_TO_HARVESTER, WIDTH_PANE / 2,
+                WIDTH_PANE / 2, true, false);
         harvesterButton = new LSButton(imageHarvester, "harvester",
                 HEIGHT_PANE / 3, WIDTH_PANE / 2, 0, 0);
         addToGridPane(harvesterButton, 0, 1);
 
-        Image imageCultivator = new ImageManager().getImage("../view/resources/machines/cultivatorSide.png",
-                WIDTH_PANE / 2, WIDTH_PANE / 2, true, false);
+        Image imageCultivator = new ImageManager().getImage(PATH_TO_CULTIVATOR, WIDTH_PANE / 2,
+                WIDTH_PANE / 2, true, false);
         cultivatorButton = new LSButton(imageCultivator, "cultivator",
                 HEIGHT_PANE / 3, WIDTH_PANE / 2, 0, 0);
         addToGridPane(cultivatorButton, 1, 1);
 
-        Image imageDumpTruck = new ImageManager().getImage("../view/resources/machines/dumpTruckSide.png",
-                WIDTH_PANE / 2, WIDTH_PANE / 2, true, false);
+        Image imageDumpTruck = new ImageManager().getImage(PATH_TO_DUMP_TRUCK, WIDTH_PANE / 2,
+                WIDTH_PANE / 2, true, false);
         dumpTruckButton = new LSButton(imageDumpTruck, "drump truck",
                 HEIGHT_PANE / 3, WIDTH_PANE / 2, 0, 0);
         addToGridPane(dumpTruckButton, 0, 2);
 
-        Image imageSeedDrill = new ImageManager().getImage("../view/resources/machines/seedDrillSide.png",
-                WIDTH_PANE / 2, WIDTH_PANE / 2, true, false);
+        Image imageSeedDrill = new ImageManager().getImage(PATH_TO_SEED_DRILL, WIDTH_PANE / 2,
+                WIDTH_PANE / 2, true, false);
         seedDrillButton = new LSButton(imageSeedDrill, "Seed Drill",
                 HEIGHT_PANE / 3, WIDTH_PANE / 2, 0, 0);
         addToGridPane(seedDrillButton, 1, 2);
@@ -161,12 +172,12 @@ public class SideControlPane {
      */
     private void setButtonsDisabled(boolean farmer, boolean tractor, boolean harvester, boolean cultivator,
                                     boolean dumpTruck, boolean seedDrill){
-        farmerButton.setDisable(farmer);
-        tractorButton.setDisable(tractor);
-        harvesterButton.setDisable(harvester);
-        cultivatorButton.setDisable(cultivator);
-        dumpTruckButton.setDisable(dumpTruck);
-        seedDrillButton.setDisable(seedDrill);
+        farmerButton.setDisable(!farmer);
+        tractorButton.setDisable(!tractor);
+        harvesterButton.setDisable(!harvester);
+        cultivatorButton.setDisable(!cultivator);
+        dumpTruckButton.setDisable(!dumpTruck);
+        seedDrillButton.setDisable(!seedDrill);
     }
 
     /**
@@ -174,11 +185,43 @@ public class SideControlPane {
      * button that can be clicked, when some action is possible to do.
      */
     private void createControlButtons(){
-        buttonUp = new LSButton("↑", 50, 50,95,HEIGHT/100*70, 20);
-        buttonDown = new LSButton("↓", 50, 50, 95, HEIGHT/100*77, 20);
-        buttonLeft = new LSButton("←", 50, 50,40,HEIGHT/100*77, 20);
-        buttonRight = new LSButton("→", 50, 50,150,HEIGHT/100*77, 20);
-        buttonAction = new LSButton("", 50, 150,45,HEIGHT/100*87, 20);
+        buttonUp = new LSButton("↑", 50, 50,95,HEIGHT/100*70, 14);
+        buttonUp.setOnMousePressed(MouseEvent -> {
+            movingObjectController.setUpPressed(true);
+            System.out.println("up pressed");
+        });
+        buttonUp.setOnMouseReleased(MouseEvent -> {
+            movingObjectController.setUpPressed(false);
+            System.out.println("up released");
+        });
+        buttonDown = new LSButton("↓", 50, 50, 95, HEIGHT/100*77, 14);
+        buttonDown.setOnMousePressed(MouseEvent -> {
+            movingObjectController.setDownPressed(true);
+            System.out.println("down pressed");
+        });
+        buttonDown.setOnMouseReleased(MouseEvent -> {
+            movingObjectController.setDownPressed(false);
+            System.out.println("down released");
+        });
+        buttonLeft = new LSButton("←", 50, 50,40,HEIGHT/100*77, 14);
+        buttonLeft.setOnMousePressed(MouseEvent -> {
+            movingObjectController.setLeftPressed(true);
+            System.out.println("left pressed");
+        });
+        buttonLeft.setOnMouseReleased(MouseEvent -> {
+            movingObjectController.setLeftPressed(false);
+            System.out.println("left released");
+        });
+        buttonRight = new LSButton("→", 50, 50,150,HEIGHT/100*77, 14);
+        buttonRight.setOnMousePressed(MouseEvent -> {
+            movingObjectController.setRightPressed(true);
+            System.out.println("right pressed");
+        });
+        buttonRight.setOnMouseReleased(MouseEvent -> {
+            movingObjectController.setRightPressed(false);
+            System.out.println("right released");
+        });
+        buttonAction = new LSButton("", 50, 150,45,HEIGHT/100*87, 14);
         buttonAction.setDisable(true);
         sidePane.getChildren().addAll(buttonUp, buttonDown, buttonLeft, buttonRight, buttonAction);
     }

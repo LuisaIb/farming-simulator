@@ -1,24 +1,29 @@
 package gui.controller;
 
 import gui.view.DifficultyScene;
+import gui.view.GameScene;
 import gui.view.HelpScene;
 import gui.view.MenuScene;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import simulator.Game;
 
 /**
  * This class implements the methods, that are responsible for the change of the scene.
  */
 public class SceneController {
     private boolean timerInitiated = false;
+    Game game = new Game();
+    MovingObjectController movingObjectController = new MovingObjectController();
 
     public EventHandler<Event> setSceneToGameScene = event -> {
-        // Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        // GameScene initialisieren - mit Hilfe einer Methode aus Game?
-        // window.setScene(gameScene.getGameScene());
-        // window.show();
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        GameScene gameScene = game.createNewGame();
+        window.setScene(gameScene.getGameScene());
+        window.show();
     };
 
     public EventHandler<Event> setSceneToDifficultyScene = event -> {

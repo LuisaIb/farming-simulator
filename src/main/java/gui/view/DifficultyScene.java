@@ -1,12 +1,12 @@
 package gui.view;
 
-import gui.controller.ButtonController;
 import gui.controller.SceneController;
 import gui.model.ImageManager;
 import gui.model.LSButton;
 import gui.model.LSTextField;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import simulator.LevelOfDifficulty;
 
@@ -26,6 +26,7 @@ public class DifficultyScene {
     private Scene difficultyScene = new Scene(difficultyPane, WIDTH, HEIGHT);
     private static final String PATH_TO_BACKGROUND_IMAGE = "src/main/java/gui/view/resources/background/field.jpg";
     SceneController sceneController = new SceneController();
+    LevelOfDifficulty lod = new LevelOfDifficulty();
 
     /**
      * Constructs an object of the class DifficultyScene. It initializes the difficultyPane with the method
@@ -56,20 +57,31 @@ public class DifficultyScene {
      * This method implements the buttons of the scene. Therefore, it uses a VBox.
      */
     private void initializeButtons(){
-    	ButtonController bc = new ButtonController();
         VBox difficultyBox = new VBox(10);
         difficultyBox.setLayoutX(WIDTH/2 - 100);
         difficultyBox.setLayoutY(HEIGHT/2 - 150);
 
         buttonEasy = new LSButton("Leicht", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
-        buttonEasy.setOnMouseClicked(bc.setDifficultyLevel1);
+        buttonEasy.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+            lod.setLevel(1);
+            System.out.println(lod.getLevel());
+        });
+        buttonEasy.setOnMouseClicked(sceneController.setSceneToGameScene);
         buttonMedium = new LSButton("Mittel", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
-        buttonMedium.setOnMouseClicked(bc.setDifficultyLevel2);
+        buttonMedium.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+            lod.setLevel(2);
+            System.out.println(lod.getLevel());
+        });
+        buttonMedium.setOnMouseClicked(sceneController.setSceneToGameScene);
         buttonHard = new LSButton("Schwer",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
-        buttonHard.setOnMouseClicked(bc.setDifficultyLevel3);
+        buttonHard.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+            lod.setLevel(3);
+            System.out.println(lod.getLevel());
+        });
+        buttonHard.setOnMouseClicked(sceneController.setSceneToGameScene);
         buttonBackToScene = new LSButton("Zurueck",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonBackToScene.setOnMouseClicked(sceneController.setSceneToMenuScene);

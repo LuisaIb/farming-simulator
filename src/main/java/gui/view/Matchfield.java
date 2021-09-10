@@ -1,8 +1,10 @@
 package gui.view;
 
+import gui.controller.MovingObjectController;
 import gui.model.ImageManager;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -20,8 +22,8 @@ public class Matchfield {
     private static final int WIDTH_PANE = 1120;
     private static final int NUMBER_COLUMNS = 30;
     private static final int NUMBER_ROWS = 20;
-    protected static int TILE_HEIGHT = HEIGHT_PANE / NUMBER_ROWS;
-    protected static int TILE_WIDTH = WIDTH_PANE / NUMBER_COLUMNS;
+    protected static double TILE_HEIGHT = (HEIGHT_PANE / NUMBER_ROWS)+0.5;
+    protected static double TILE_WIDTH = (WIDTH_PANE / NUMBER_COLUMNS)+0.5;
     private static final String PATH_TO_GRASSLANDS = "src/main/java/gui/view/resources/ground/grasslands.png";
     private static final String PATH_TO_FOREST = "src/main/java/gui/view/resources/ground/forest.png";
     private static final String PATH_TO_GROWTH_STAGE_1 = "src/main/java/gui/view/resources/ground/growthStage1.png";
@@ -35,14 +37,24 @@ public class Matchfield {
     private static final String PATH_TO_GAS_STATION = "src/main/java/gui/view/resources/buildings/gasStation.png";
     private static final String PATH_TO_LAND_TRADE = "src/main/java/gui/view/resources/buildings/landTrade.png";
     private static final String PATH_TO_SILO = "src/main/java/gui/view/resources/buildings/silo.png";
+    private Image movingObjectImage;
+    private ImageView movingObjectImageView;
+    private static final String PATH_TO_FARMER = "src/main/java/gui/view/resources/movingObjects/farmer.png";
+    private static final String PATH_TO_TRACTOR = "src/main/java/gui/view/resources/movingObjects/tractor.png";
+    private static final String PATH_TO_HARVESTER = "src/main/java/gui/view/resources/movingObjects/harvester.png";
+    private static final String PATH_TO_CULTIVATOR = "src/main/java/gui/view/resources/movingObjects/cultivator.png";
+    private static final String PATH_TO_DUMP_TRUCK_EMPTY = "src/main/java/gui/view/resources/movingObjects/dumpTruckEmpty.png";
+    private static final String PATH_TO_DUMP_TRUCK_Full = "src/main/java/gui/view/resources/movingObjects/dumpTruckFull.png";
+    private static final String PATH_TO_SEED_DRILL = "src/main/java/gui/view/resources/movingObjects/seedDrill.png";
+    private int x;
+    private int y;
 
     /**
      * Constructor without parameters.
      */
-    protected Matchfield(){
+    public Matchfield(){
 
     }
-
 
     /**
      * Constructor with parameters.
@@ -72,7 +84,7 @@ public class Matchfield {
         matchfield.setLayoutY(HEIGHT-HEIGHT_PANE);
         matchfield.setHgap(0);
         matchfield.setVgap(0);
-        matchfield.setGridLinesVisible(true);
+        matchfield.setGridLinesVisible(false);
 
         ColumnConstraints columnConstraints = new ColumnConstraints();
         for (int i = 0; i < NUMBER_COLUMNS; i++){
@@ -90,7 +102,7 @@ public class Matchfield {
      * Adds the image views of grassland to the matchfield.
      */
     private void fillWithGrassland(){
-        Image imageGrasslands = getImage(PATH_TO_GRASSLANDS, false);
+        Image imageGrasslands = getImage(PATH_TO_GRASSLANDS);
         for (int i = 0; i < NUMBER_COLUMNS; i++){
             for (int j = 0; j < NUMBER_ROWS; j++) {
                 ImageView imageViewGrassland = new ImageView(imageGrasslands);
@@ -103,11 +115,11 @@ public class Matchfield {
      * Adds the image views of forest to the matchfield.
      */
     private void fillWithForest(){
-        Image imageForest = getImage(PATH_TO_FOREST, false);
-        for (int i = 0; i < 7; i+=2){
-            for (int j = 0; j < NUMBER_ROWS; j+=2) {
+        Image imageForest = getImage(PATH_TO_FOREST);
+        for (int i = 0; i < 8; i++){
+            for (int j = 0; j < NUMBER_ROWS; j++) {
                 ImageView imageViewForest = new ImageView(imageForest);
-                addToGridPane(imageViewForest, i, 2, j, 2);
+                addToGridPane(imageViewForest, i, j);
             }
         }
     }
@@ -116,16 +128,16 @@ public class Matchfield {
      * Adds the image views of the buildings to the matchfield.
      */
     private void fillWithBuildings(){
-        ImageView imageViewBarn = new ImageView(getImage(PATH_TO_BARN, true));
+        ImageView imageViewBarn = new ImageView(getImage(PATH_TO_BARN, TILE_WIDTH*4, TILE_HEIGHT*7));
         addToGridPane(imageViewBarn, 15, 4, 6, 7);
 
-        ImageView imageViewSilo = new ImageView(getImage(PATH_TO_SILO, true));
+        ImageView imageViewSilo = new ImageView(getImage(PATH_TO_SILO, TILE_WIDTH*5, TILE_HEIGHT*5));
         addToGridPane(imageViewSilo, 11, 5, 8, 5);
 
-        ImageView imageViewGasStation = new ImageView(getImage(PATH_TO_GAS_STATION, true));
+        ImageView imageViewGasStation = new ImageView(getImage(PATH_TO_GAS_STATION, TILE_WIDTH*4, TILE_HEIGHT*4));
         addToGridPane(imageViewGasStation, 13, 4, 0, 4);
 
-        ImageView imageViewLandTrade = new ImageView(getImage(PATH_TO_LAND_TRADE, true));
+        ImageView imageViewLandTrade = new ImageView(getImage(PATH_TO_LAND_TRADE, TILE_WIDTH*5, TILE_HEIGHT*5));
         addToGridPane(imageViewLandTrade, 25, 5, 0, 5);
     }
 
@@ -133,14 +145,14 @@ public class Matchfield {
      * Adds the image views of path to the matchfield.
      */
     private void fillWithPath(){
-        Image imagePath = getImage(PATH_TO_PATH, false);
+        Image imagePath = getImage(PATH_TO_PATH);
 
         for (int i = 0; i < NUMBER_ROWS; i++) {
             ImageView imageViewPath = new ImageView(imagePath);
             addToGridPane(imageViewPath, 8, i);
         }
 
-        for (int i = 9; i < NUMBER_ROWS; i++) {
+        for (int i = 9; i < NUMBER_COLUMNS; i++) {
             ImageView imageViewPath = new ImageView(imagePath);
             addToGridPane(imageViewPath, i, 13);
         }
@@ -150,7 +162,7 @@ public class Matchfield {
             addToGridPane(imageViewPath, 19, i);
         }
 
-        for (int i = 0; i < NUMBER_ROWS; i++) {
+        for (int i = 0; i < NUMBER_COLUMNS; i++) {
             ImageView imageViewPath = new ImageView(imagePath);
             addToGridPane(imageViewPath, i, 5);
         }
@@ -230,11 +242,22 @@ public class Matchfield {
     /**
      * Method that helps to get the image of the tile.
      * @param path - path to the image
-     * @param preserveRatio - boolean that is handed to the method getImage() of the class ImageManager
      * @return - the requested image
      */
-    private Image getImage(String path, boolean preserveRatio){
-        Image image = new ImageManager().getImage(path, TILE_WIDTH, TILE_HEIGHT, preserveRatio, false);
+    private Image getImage(String path){
+        Image image = new ImageManager().getImage(path, TILE_WIDTH, TILE_HEIGHT, false, false);
+        return image;
+    }
+
+    /**
+     * Method that helps to get the images of the buildings
+     * @param path - path to the image
+     * @param width - of the image
+     * @param height - of the image
+     * @return - the requested image
+     */
+    private Image getImage(String path, double width, double height){
+        Image image = new ImageManager().getImage(path, width, height, true, false);
         return image;
     }
 
@@ -248,25 +271,25 @@ public class Matchfield {
         ImageView imageViewField = null;
         switch(stageOfGrowth){
             case 0:
-                imageViewField = new ImageView(getImage(PATH_TO_GRASSLANDS, false));
+                imageViewField = new ImageView(getImage(PATH_TO_GRASSLANDS));
                 break;
             case 1:
-                imageViewField = new ImageView(getImage(PATH_TO_READY_FOR_SOWING, false));
+                imageViewField = new ImageView(getImage(PATH_TO_READY_FOR_SOWING));
                 break;
             case 2:
-                imageViewField = new ImageView(getImage(PATH_TO_GROWTH_STAGE_1, false));
+                imageViewField = new ImageView(getImage(PATH_TO_GROWTH_STAGE_1));
                 break;
             case 3:
-                imageViewField = new ImageView(getImage(PATH_TO_GROWTH_STAGE_2, false));
+                imageViewField = new ImageView(getImage(PATH_TO_GROWTH_STAGE_2));
                 break;
             case 4:
-                imageViewField = new ImageView(getImage(PATH_TO_GROWTH_STAGE_3, false));
+                imageViewField = new ImageView(getImage(PATH_TO_GROWTH_STAGE_3));
                 break;
             case 5:
-                imageViewField = new ImageView(getImage(PATH_TO_READY_TO_HARVEST, false));
+                imageViewField = new ImageView(getImage(PATH_TO_READY_TO_HARVEST));
                 break;
             case 6:
-                imageViewField = new ImageView(getImage(PATH_TO_HARVESTED, false));
+                imageViewField = new ImageView(getImage(PATH_TO_HARVESTED));
                 break;
         }
         return imageViewField;
@@ -277,8 +300,78 @@ public class Matchfield {
      *
      * @return - the requested matchfield
      */
-    protected GridPane getMatchfield(){
+    public GridPane getMatchfield(){
         return matchfield;
     }
 
+
+    /**
+     * This method initializes the moving object on the field. It uses the methods setImageView() and setTileOfObject().
+     *
+     * @param selectedObject - integer of the selected moving object that is shown on the matchfield, handed to the
+     *      *                       method getTheRightImageView()
+     * @param column - index of the column to which the image view is set, handed to the method setTileOfObject()
+     * @param row - index of the column to which the image view is set, handed to the method setTileOfObject()
+     */
+    public void initializeMovingObject(int selectedObject, int column, int row){
+        setImageView(selectedObject);
+        setTileOfObject(column, row);
+        matchfield.getChildren().add(movingObjectImageView);
+    }
+
+    /**
+     * This method sets the image view to the one of the selected object with the help of the method
+     * getTheRightImageView().
+     *
+     * @param selectedObject - integer of the selected moving object that is shown on the matchfield, handed to the
+     *                       method getTheRightImageView()
+     */
+    public void setImageView(int selectedObject){
+        movingObjectImageView = getTheRightImageView(selectedObject);
+    }
+
+    /**
+     * This method sets the image view to another tile on the matchfield.
+     *
+     * @param column - sets the image view onto this column on the grid pane of the matchfield
+     * @param row - sets the image view onto this row on the grid pane of the matchfield
+     */
+    public void setTileOfObject(int column, int row){
+        matchfield.setColumnIndex(movingObjectImageView, column);
+        matchfield.setRowIndex(movingObjectImageView, row);
+    }
+
+    /**
+     * This method helps to get the right image view for the moving object depending on the selected object.
+     *
+     * @param selectedObject - integer of the selected moving object that is shown on the matchfield
+     * @return the requestedd image view
+     */
+    private ImageView getTheRightImageView(int selectedObject){
+        movingObjectImageView = null;
+        switch(selectedObject){
+            case 1:
+                movingObjectImageView = new ImageView(getImage(PATH_TO_FARMER));
+                break;
+            case 2:
+                movingObjectImageView = new ImageView(getImage(PATH_TO_TRACTOR));
+                break;
+            case 3:
+                movingObjectImageView = new ImageView(getImage(PATH_TO_HARVESTER));
+                break;
+            case 4:
+                movingObjectImageView = new ImageView(getImage(PATH_TO_CULTIVATOR));
+                break;
+            case 5:
+                movingObjectImageView = new ImageView(getImage(PATH_TO_DUMP_TRUCK_EMPTY));
+                break;
+            case 6:
+                movingObjectImageView = new ImageView(getImage(PATH_TO_DUMP_TRUCK_Full));
+                break;
+            case 7:
+                movingObjectImageView = new ImageView(getImage(PATH_TO_SEED_DRILL));
+                break;
+        }
+        return movingObjectImageView;
+    }
 }

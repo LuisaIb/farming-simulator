@@ -2,8 +2,7 @@ package gui.view;
 
 import gui.model.LSButton;
 import gui.model.LSTextField;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 
 import static gui.view.ViewManager.WIDTH;
 
@@ -12,7 +11,7 @@ import static gui.view.ViewManager.WIDTH;
  * while playing such as amount of money, time, ... and a button to get back to the menu.
  */
 public class InformationBox {
-    private VBox informationBox = new VBox();
+    private HBox informationBox = new HBox();
     private LSTextField moneyField;
     private LSTextField siloField;
     private LSTextField tractorField;
@@ -44,23 +43,23 @@ public class InformationBox {
      * This method initializes the text fields an buttons and adds them to the informationBox.
      */
     private void fillInformationBox(){
-        moneyField = new LSTextField("Geldbetrag", 40, 175, 0, 0, 16);
-        siloField = new LSTextField("Silo Füllstand",40, 175, 0, 0, 16);
-        tractorField = new LSTextField("Traktor Tank Füllstand",40, 175, 0, 0, 16);
-        harvesterField = new LSTextField("Mähdrescher Tank Füllstand",40, 175, 0, 0, 16);
-        newsField = new LSTextField("News",40, 300, 0, 0, 16);
-        timeField = new LSTextField("Zeit",40, 150, 0, 0, 16);
-        menuButton = new LSButton("Menü", 40, 100,750, 0, 16);
+        timeField = new LSTextField("day",40, 150, 0, 0, 16);
+        moneyField = new LSTextField("money", 40, 175, 0, 0, 16);
+        siloField = new LSTextField("silo",40, 175, 0, 0, 16);
+        tractorField = new LSTextField("tractor",40, 175, 0, 0, 16);
+        harvesterField = new LSTextField("harvester",40, 175, 0, 0, 16);
+        newsField = new LSTextField("news",40, 450, 0, 0, 16);
+        menuButton = new LSButton("Menu", 40, 100,750, 0, 16);
 
-        informationBox.getChildren().addAll(moneyField, siloField, tractorField, harvesterField,
-                newsField, timeField, menuButton);
+        informationBox.getChildren().addAll(timeField, moneyField, siloField, tractorField, harvesterField,
+                newsField, menuButton);
     }
 
     /**
      * Getter for the informationBox.
      * @return the requested informationBox
      */
-    protected VBox getInformationBox(){
+    protected HBox getInformationBox(){
         return informationBox;
     }
 
