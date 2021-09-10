@@ -81,10 +81,6 @@ public class MovingObjectController {
                 if (now - lastUpdate >= 100_000_000) {
                     try {
                         moveObject(gameScene);
-                        System.out.println("Rechts gedrückt: " + rightPressed);
-                        System.out.println("Links gedrückt: " + leftPressed);
-                        System.out.println("Hoch gedrückt: " + upPressed);
-                        System.out.println("Runter gedrückt: " + downPressed);
                     } catch (MovingExcpetion e) {
                         e.printStackTrace();
                     }
