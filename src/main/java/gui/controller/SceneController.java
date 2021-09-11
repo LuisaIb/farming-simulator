@@ -16,11 +16,10 @@ import simulator.Game;
  */
 public class SceneController {
     private boolean timerInitiated = false;
-    Game game = new Game();
-    MovingObjectController movingObjectController = new MovingObjectController();
 
     public EventHandler<Event> setSceneToGameScene = event -> {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Game game = new Game();
         GameScene gameScene = game.createNewGame();
         window.setScene(gameScene.getGameScene());
         window.show();

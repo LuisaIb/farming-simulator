@@ -313,7 +313,7 @@ public class Matchfield {
      * @param column - index of the column to which the image view is set, handed to the method setTileOfObject()
      * @param row - index of the column to which the image view is set, handed to the method setTileOfObject()
      */
-    public void initializeMovingObject(int selectedObject, int column, int row){
+    protected void initializeMovingObject(int selectedObject, int column, int row){
         setImageView(selectedObject);
         setTileOfObject(column, row);
         matchfield.getChildren().add(movingObjectImageView);
@@ -340,6 +340,15 @@ public class Matchfield {
         matchfield.setColumnIndex(movingObjectImageView, column);
         matchfield.setRowIndex(movingObjectImageView, row);
     }
+
+    public int getColumnOfMovingObject(){
+        return matchfield.getColumnIndex(movingObjectImageView);
+    }
+
+    public  int getRowOfMovingObject(){
+        return matchfield.getRowIndex(movingObjectImageView);
+    }
+
 
     /**
      * This method helps to get the right image view for the moving object depending on the selected object.

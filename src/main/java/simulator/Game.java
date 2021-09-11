@@ -18,10 +18,8 @@ public class Game {
 		sp.createNewGame();
 	}
 
-    private GameScene gameScene = new GameScene();
-    MovingObjectController movingObjectController = new MovingObjectController();
+
     MovingObject movingObject = new MovingObject();
-    Matchfield matchfield;
     private Farmer farmer;
     private Tractor tractor;
     private Harvester harvester;
@@ -30,8 +28,11 @@ public class Game {
     private SeedDrill seedDrill;
     private FieldTile fieldTile;
     private int selectedObject;
+    Matchfield matchfield = new Matchfield();
 
     public GameScene createNewGame(){
+        GameScene gameScene = new GameScene();
+        MovingObjectController movingObjectController = new MovingObjectController();
         farmer = new Farmer();
         tractor = new Tractor();
         harvester = new Harvester();

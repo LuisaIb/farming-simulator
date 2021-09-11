@@ -1,9 +1,10 @@
 package gui.view;
 
+import exceptions.MovingExcpetion;
+import gameboard.objects.MovingObject;
 import gui.controller.MovingObjectController;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 import static gui.view.ViewManager.HEIGHT;
@@ -17,10 +18,11 @@ import static gui.view.ViewManager.WIDTH;
  * @author Judith Romer
  */
 public class GameScene {
-    private Pane gamePane = new Pane();
-    private Scene gameScene = new Scene(gamePane, WIDTH, HEIGHT);
-    Matchfield matchfield = new Matchfield();
-    MovingObjectController movingObjectController = new MovingObjectController();
+    private Pane gamePane;
+    private Scene gameScene;
+    Matchfield matchfield;
+    MovingObjectController movingObjectController;
+    MovingObject movingObject = new MovingObject();
 
     /**
      * This method implements all the Nodes for the game scene with the help of the other classes InformationBox,
@@ -43,12 +45,18 @@ public class GameScene {
                                        boolean dumpTruck, boolean seedDrill, int stageOfGrowthField1,
                                        int stageOfGrowthField2, int stageOfGrowthField3, int selectedObject,
                                        int column, int row){
+
+        gamePane = new Pane();
+        gameScene = new Scene(gamePane, WIDTH, HEIGHT);
+        matchfield = new Matchfield();
+        movingObjectController = new MovingObjectController();
         gamePane.setPrefWidth(WIDTH);
         gamePane.setPrefHeight(HEIGHT);
         initializeInformationBox();
         initializeSideControlPane(farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
         initializeMatchfield(stageOfGrowthField1, stageOfGrowthField2, stageOfGrowthField3, selectedObject, column, row);
-
+        movingObject.setX(column);
+        movingObject.setY(row);
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) ->{
             movingObjectController.setBooleansPressed(event);
         });
@@ -106,11 +114,56 @@ public class GameScene {
      * @param row - index of the column to which the image view is set
      */
     private void initializeMatchfield(int stageOfGrowthField1, int stageOfGrowthField2, int stageOfGrowthField3,
-                                      int selectedObject, int column, int row){
+                                           int selectedObject, int column, int row){
         matchfield = new Matchfield(stageOfGrowthField1, stageOfGrowthField2, stageOfGrowthField3);
         matchfield.initializeMovingObject(selectedObject, column, row);
         gamePane.getChildren().add(matchfield.getMatchfield());
     }
 
-
+    public void moveObject() {
+        if (movingObjectController.isRightPressed() && !movingObjectController.isLeftPressed() &&
+                !movingObjectController.isUpPressed() && !movingObjectController.isDownPressed()) {
+            System.out.println("Rechts ist jetzt als einzige Taste gedrückt?");
+            try {
+                movingObject.moveRight();
+                matchfield.setTileOfObject(matchfield.getColumnOfMovingObject()+1, matchfield.getRowOfMovingObject());
+            } catch (MovingExcpetion e) {
+                e.printStackTrace();
+            }
+            System.out.println("moving right");
+        }
+        if (movingObjectController.isLeftPressed() && !movingObjectController.isRightPressed() &&
+                !movingObjectController.isUpPressed() && !movingObjectController.isDownPressed()) {
+            System.out.println("Links ist jetzt als einzige Taste gedrückt?");
+            try {
+                movingObject.moveLeft();
+                matchfield.setTileOfObject(matchfield.getColumnOfMovingObject()-1, matchfield.getRowOfMovingObject());
+            } catch (MovingExcpetion e) {
+                e.printStackTrace();
+            }
+            System.out.println("moving left");
+        }
+        if (movingObjectController.isUpPressed() && !movingObjectController.isRightPressed() &&
+                !movingObjectController.isLeftPressed() && !movingObjectController.isDownPressed()) {
+            System.out.println("Hoch ist jetzt als einzige Taste gedrückt?");
+            try {
+                movingObject.moveUp();
+                matchfield.setTileOfObject(matchfield.getColumnOfMovingObject(), matchfield.getRowOfMovingObject()-1);
+            } catch (MovingExcpetion e) {
+                e.printStackTrace();
+            }
+            System.out.println("moving up");
+        }
+        if (movingObjectController.isDownPressed() && !movingObjectController.isRightPressed() &&
+                !movingObjectController.isLeftPressed() && !movingObjectController.isUpPressed()) {
+            System.out.println("Runter ist jetzt als einzige Taste gedrückt?");
+            try {
+                movingObject.moveDown();
+                matchfield.setTileOfObject(matchfield.getColumnOfMovingObject(), matchfield.getRowOfMovingObject()+1);
+            } catch (MovingExcpetion e) {
+                e.printStackTrace();
+            }
+            System.out.println("moving down");
+        }
+    }
 }
