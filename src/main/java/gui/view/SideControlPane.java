@@ -232,4 +232,7 @@ public class SideControlPane {
         return sidePane;
     }
 
+    public LSButton getButtonAction() {
+        return buttonAction;
+    }
 }

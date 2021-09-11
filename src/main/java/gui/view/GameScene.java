@@ -24,6 +24,7 @@ public class GameScene {
     MovingObjectController movingObjectController;
     MovingObject movingObject = new MovingObject();
     InformationBox informationBox;
+    SideControlPane sideControlPane;
 
     /**
      * This method implements all the Nodes for the game scene with the help of the other classes InformationBox,
@@ -98,10 +99,13 @@ public class GameScene {
      */
     private void initializeSideControlPane(boolean farmer, boolean tractor, boolean harvester, boolean cultivator,
                                            boolean dumpTruck, boolean seedDrill){
-        SideControlPane sideControlPane = new SideControlPane(farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
+        sideControlPane = new SideControlPane(farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
         gamePane.getChildren().add(sideControlPane.getSidePane());
     }
 
+    public SideControlPane getSideControlPane(){
+        return sideControlPane;
+    }
 
     /**
      * This method gets the matchfield from the class Matchfield that implements the grid pane of the matchfield and

@@ -4,6 +4,7 @@ import gui.view.GameScene;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import simulator.Game;
 
 public class MovingObjectController {
     private AnimationTimer gameTimer;
@@ -11,6 +12,9 @@ public class MovingObjectController {
     private boolean leftPressed;
     private boolean upPressed;
     private boolean downPressed;
+
+    Game game = new Game();
+
 
 
     public void setBooleansPressed(KeyEvent keyEvent){
@@ -52,6 +56,7 @@ public class MovingObjectController {
             public void handle(long now) {
                 if (now - lastUpdate >= 100_000_000) {
                     gameScene.moveObject();
+                    proofAction(gameScene);
                     lastUpdate = now;
                 }
             }
@@ -90,4 +95,19 @@ public class MovingObjectController {
     public boolean isDownPressed() {
         return downPressed;
     }
+
+
+    private void proofAction(GameScene gameScene){
+        int x = 0;
+        int y = 0;
+        if ((x == 16 || x == 17) && y == 13) {
+            gameScene.getSideControlPane().getButtonAction().setDisable(false);
+            gameScene.getSideControlPane().getButtonAction().setText("select vehicle");
+        } else {
+            gameScene.getSideControlPane().getButtonAction().setDisable(true);
+            gameScene.getSideControlPane().getButtonAction().setText("");
+        }
+    }
+
+
 }
