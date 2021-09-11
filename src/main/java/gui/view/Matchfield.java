@@ -1,16 +1,13 @@
 package gui.view;
 
-import gui.controller.MovingObjectController;
 import gui.model.ImageManager;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 
 import static gui.view.ViewManager.HEIGHT;
-import static gui.view.ViewManager.WIDTH;
 
 /**
  * This class implements the grid pane with the matchfield and offers methods to fill the pane with image views of the

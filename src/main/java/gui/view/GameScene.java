@@ -23,6 +23,7 @@ public class GameScene {
     Matchfield matchfield;
     MovingObjectController movingObjectController;
     MovingObject movingObject = new MovingObject();
+    InformationBox informationBox;
 
     /**
      * This method implements all the Nodes for the game scene with the help of the other classes InformationBox,
@@ -79,7 +80,7 @@ public class GameScene {
      * for the player. It adds the box to the gamePane.
      */
     private void initializeInformationBox(){
-        InformationBox informationBox = new InformationBox();
+        informationBox = new InformationBox();
         gamePane.getChildren().add(informationBox.getInformationBox());
     }
 

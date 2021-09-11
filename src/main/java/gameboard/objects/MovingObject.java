@@ -1,7 +1,6 @@
 package gameboard.objects;
 
 import exceptions.MovingExcpetion;
-import gui.view.Matchfield;
 
 /**
  * this class represents any object on the gameboard,
@@ -23,7 +22,6 @@ public class MovingObject {
 		this.y = y;
 		this.selected = selected;
 	}
-
 	
 	/**
 	 * this method is representing the functionality of each object 

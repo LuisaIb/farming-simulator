@@ -8,9 +8,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
-
-import java.awt.event.MouseEvent;
-
 import static gui.view.ViewManager.HEIGHT;
 import static gui.view.ViewManager.WIDTH;
 

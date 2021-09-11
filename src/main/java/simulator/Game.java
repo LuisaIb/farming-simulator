@@ -5,7 +5,6 @@ import gui.controller.MovingObjectController;
 import gameboard.objects.*;
 import gameboard.tiles.FieldTile;
 import gui.view.GameScene;
-import gui.view.Matchfield;
 
 /**
  * @author Isabel
@@ -28,7 +27,6 @@ public class Game {
     private SeedDrill seedDrill;
     private FieldTile fieldTile;
     private int selectedObject;
-    Matchfield matchfield = new Matchfield();
 
     public GameScene createNewGame(){
         GameScene gameScene = new GameScene();

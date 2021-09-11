@@ -7,7 +7,6 @@ import gui.view.MenuScene;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import simulator.Game;
 
