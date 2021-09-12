@@ -1,13 +1,9 @@
 package simulator;
 
-<<<<<<< HEAD
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
-=======
->>>>>>> branch 'main' of git@github.com:IsabelJnz/Landwirtschaftssimulator_SE2.git
-import datastorage.information.fromjsonb.GetSavingInformationMovingObject;
-import datastorage.information.fromjsonb.GetSavingInformationValue;
+
 import datastorage.pojo.GetPojoMovingObject;
 import datastorage.pojo.GetPojoValue;
 import gameboard.GameValue;
