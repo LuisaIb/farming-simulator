@@ -93,149 +93,161 @@ public class Game {
         return 0;
     }
 
-        // all numeric values
-    	/**
-    	 * This method gets the values of the cash, the filling and the gameday of the class GameValue.
-    	 * @return serialized as a JSONB object of the cash, filling values and the day.
-    	 */
-    	public String toSerializeGame() {
-    		gameValue.setCash(120);
-    		gameValue.getDay();
-    		Jsonb jsonb = JsonbBuilder.create();
-    		String serializedGameValue = jsonb.toJson(gameValue);
-    		return serializedGameValue;
-    	}
+    // all numeric values
+	/**
+	 * This method gets the values of the cash, the filling and the gameday of the class GameValue.
+	 * @return serialized as a JSONB object of the cash, filling values and the day.
+	 */
+	public String toSerializeGameValue() {
+		gameValue = new GameValue(120, 6);
+		gameValue.getCash();
+		gameValue.getDay();
+		Jsonb jsonb = JsonbBuilder.create();
+		String serializedGameValue = jsonb.toJson(gameValue);
+		return serializedGameValue;
+	}
     		
    
     	/**
-    	 * This method gets the value of the level of difficulty of the class LevelOfDifficulty.
-    	 * @return serialized as a JSONB object of the level of difficulty.
-    	 */
-    	public String toSerializeLevel() {
-       		levelOfDifficulty.getLevel();
-    		Jsonb jsonb = JsonbBuilder.create();
-    		String serializedlod = jsonb.toJson(levelOfDifficulty);
-    		return serializedlod;
-    	}
-    	
-    	/**
-    	 * This method gets the growth state of all three fields of the class FieldTile.
-    	 * @return serialized as a JSONB object of the fieldtile's conditions.
-    	 */
-    	public String toSerializeFieldtiles() { 
-    		fieldTile.getGrowthState(); // get Field id + status of the three fields.
-    		fieldTile.getGrowthState2();
-    		fieldTile.getGrowthState3();
-    		Jsonb jsonb = JsonbBuilder.create();
-    		String serializedft = jsonb.toJson(fieldTile);
-    		return serializedft;
-    	}
-    	
-    	/**
-    	 * This method gets the filling of the silo.
-    	 * @return serialized as a JSONB object of the Silo's conditions.
-    	 */
-    	public String toSerializeSilo() { 
-    		silo.getCapacity();
-    		Jsonb jsonb = JsonbBuilder.create();
-    		String serializeds = jsonb.toJson(silo);
-    		return serializeds;
-    	}
-    	
-    	/**
-    	 * This method gets the filling of the silo.
-    	 * @return serialized as a JSONB object of the Silo's conditions.
-    	 */
-    	public String toSerializeCourtTrade() { 
-    		courtTrade.getGrainFillLevel();
-    		Jsonb jsonb = JsonbBuilder.create();
-    		String serializedct = jsonb.toJson(courtTrade);
-    		return serializedct;
-    	}
+	 * This method gets the value of the level of difficulty of the class LevelOfDifficulty.
+	 * @return serialized as a JSONB object of the level of difficulty.
+	 */
+	public String toSerializeLevel() {
+		levelOfDifficulty = new LevelOfDifficulty(3);
+   		levelOfDifficulty.getLevel();
+		Jsonb jsonb = JsonbBuilder.create();
+		String serializedlod = jsonb.toJson(levelOfDifficulty);
+		return serializedlod;
+	}
+	
+	/**
+	 * This method gets the growth state of all three fields of the class FieldTile.
+	 * @return serialized as a JSONB object of the fieldtile's conditions.
+	 */
+	public String toSerializeFieldtiles() { 
+		fieldTile = new FieldTile(1, 2, 6);
+		fieldTile.getGrowthState(); // get Field id + status of the three fields.
+		fieldTile.getGrowthState2();
+		fieldTile.getGrowthState3();
+		Jsonb jsonb = JsonbBuilder.create();
+		String serializedft = jsonb.toJson(fieldTile);
+		return serializedft;
+	}
+	
+	/**
+	 * This method gets the filling of the silo.
+	 * @return serialized as a JSONB object of the Silo's conditions.
+	 */
+	public String toSerializeSilo() { 
+		silo = new Silo(36);
+		silo.getCapacity();
+		Jsonb jsonb = JsonbBuilder.create();
+		String serializeds = jsonb.toJson(silo);
+		return serializeds;
+	}
+	
+	/**
+	 * This method gets the filling of the silo.
+	 * @return serialized as a JSONB object of the Silo's conditions.
+	 */
+	public String toSerializeCourtTrade() { 
+		courtTrade = new CourtTrade(100);
+		courtTrade.getGrainFillLevel();
+		Jsonb jsonb = JsonbBuilder.create();
+		String serializedct = jsonb.toJson(courtTrade);
+		return serializedct;
+	}
 
-        // all position values
-        /**
-    	 * This method gets the position of the farmer of the class...
-    	 * @return serialized as a JSONB object of the farmer's position
-    	 */
-    	public String toSerializeFarmer() {
-    		farmer.getX();
-    		farmer.getY();
-    		farmer.isSelected();
-    		Jsonb jsonb = JsonbBuilder.create();
-    		String serializedsf = jsonb.toJson(farmer);
-    		return serializedsf;
-    	}
-    	
-    	/**
-    	 * This method gets the position of the tractor of the class...
-    	 * @return serialized as a JSONB object of the tractor's positions
-    	 */
-    	public String toSerializeTractor() { 
-    		tractor.getX();
-    		tractor.getY();
-    		tractor.isSelected();
-    		tractor.getPetrolTankFillLevel();
-    		tractor.isAttachement();
-    		Jsonb jsonb = JsonbBuilder.create();
-    		String serializedst = jsonb.toJson(tractor);
-    		return serializedst;
-    	}
-    	
-    	/**
-    	 * This method gets the position of the harvester of the class...
-    	 * @return serialized as a JSONB object of the tractor's positions
-    	 */
-    	public String toSerializeHarvester() { 
-    		harvester.getX();
-    		harvester.getY();
-    		harvester.isSelected();
-    		harvester.getPetrolTankFillLevel();
-    		harvester.getGrainTankFillLevel();
-    		Jsonb jsonb = JsonbBuilder.create();
-    		String serializedsh = jsonb.toJson(harvester);
-    		return serializedsh;
-    	}
-    	
-    	/**
-    	 * This method gets the information of the Cultivator.
-    	 * @return serialized as a JSONB object of the tractor's positions
-    	 */
-    	public String toSerializeCultivator() { 
-    		cultivator.getX();
-    		cultivator.getY();
-    		cultivator.isSelected();
-    		Jsonb jsonb = JsonbBuilder.create();
-    		String serializedsc = jsonb.toJson(cultivator);
-    		return serializedsc;
-    	}
-    	
-    	/**
-    	 * This method gets the information of the Cultivator.
-    	 * @return serialized as a JSONB object of the tractor's positions
-    	 */
-    	public String toSerializeDumpTruck() { 
-    		dumpTruck.getX();
-    		dumpTruck.getY();
-    		dumpTruck.isSelected();
-    		dumpTruck.getGrainFillLevel();
-    		Jsonb jsonb = JsonbBuilder.create();
-    		String serializedsdt = jsonb.toJson(dumpTruck);
-    		return serializedsdt;
-    	}
-    	
-    	/**
-    	 * This method gets the information of the Cultivator.
-    	 * @return serialized as a JSONB object of the tractor's positions
-    	 */
-    	public String toSerializeSeedDrill() { 
-    		seedDrill.getX();
-    		seedDrill.getY();
-    		seedDrill.isSelected();
-    		Jsonb jsonb = JsonbBuilder.create();
-    		String serializedssd = jsonb.toJson(seedDrill);
-    		return serializedssd;
-    	}
+    // all position values
+    /**
+	 * This method gets the position of the farmer of the class...
+	 * @return serialized as a JSONB object of the farmer's position
+	 */
+	public String toSerializeFarmer() {
+		farmer = new Farmer(2, 6, true);
+		farmer.getX();
+		farmer.getY();
+		farmer.isSelected();
+		Jsonb jsonb = JsonbBuilder.create();
+		String serializedsf = jsonb.toJson(farmer);
+		return serializedsf;
+	}
+	
+	/**
+	 * This method gets the position of the tractor of the class...
+	 * @return serialized as a JSONB object of the tractor's positions
+	 */
+	public String toSerializeTractor() {
+		tractor = new Tractor(18, 7, false, 100, false);
+		tractor.getX();
+		tractor.getY();
+		tractor.isSelected();
+		tractor.getPetrolTankFillLevel();
+		tractor.isAttachement();
+		Jsonb jsonb = JsonbBuilder.create();
+		String serializedst = jsonb.toJson(tractor);
+		return serializedst;
+	}
+	
+	/**
+	 * This method gets the position of the harvester of the class...
+	 * @return serialized as a JSONB object of the tractor's positions
+	 */
+	public String toSerializeHarvester() { 
+		harvester = new Harvester(18, 7, false, 5, 5);
+		harvester.getX();
+		harvester.getY();
+		harvester.isSelected();
+		harvester.getPetrolTankFillLevel();
+		harvester.getGrainTankFillLevel();
+		Jsonb jsonb = JsonbBuilder.create();
+		String serializedsh = jsonb.toJson(harvester);
+		System.out.println(serializedsh);
+		return serializedsh;
+	}
+	
+	/**
+	 * This method gets the information of the Cultivator.
+	 * @return serialized as a JSONB object of the tractor's positions
+	 */
+	public String toSerializeCultivator() { 
+		cultivator = new Cultivator(18,7,false);
+		cultivator.getX();
+		cultivator.getY();
+		cultivator.isSelected();
+		Jsonb jsonb = JsonbBuilder.create();
+		String serializedsc = jsonb.toJson(cultivator);
+		return serializedsc;
+	}
+	
+	/**
+	 * This method gets the information of the Cultivator.
+	 * @return serialized as a JSONB object of the tractor's positions
+	 */
+	public String toSerializeDumpTruck() { 
+		dumpTruck = new DumpTruck(18,7,false,5);
+		dumpTruck.getX();
+		dumpTruck.getY();
+		dumpTruck.isSelected();
+		dumpTruck.getGrainFillLevel();
+		Jsonb jsonb = JsonbBuilder.create();
+		String serializedsdt = jsonb.toJson(dumpTruck);
+		return serializedsdt;
+	}
+	
+	/**
+	 * This method gets the information of the Cultivator.
+	 * @return serialized as a JSONB object of the tractor's positions
+	 */
+	public String toSerializeSeedDrill() {
+		seedDrill = new SeedDrill(18,7,false);
+		seedDrill.getX();
+		seedDrill.getY();
+		seedDrill.isSelected();
+		Jsonb jsonb = JsonbBuilder.create();
+		String serializedssd = jsonb.toJson(seedDrill);
+		return serializedssd;
+	}
     
 
     public GameScene reloadGame(){
@@ -247,13 +259,13 @@ public class Game {
     	 * It implements a new GameValue object by using the class constructor.
     	 */
     	GetPojoValue gpv = new GetPojoValue();
-//			GameValue deserializedcash = gpv.toDeserializeGame(toSerializeGame());
-//			int cash = deserializedcash.getCash();
+			GameValue deserializedcash = gpv.toDeserializeGame(toSerializeGameValue());
+			int cash = deserializedcash.getCash();
 						
-//			GameValue deserializedday = gpv.toDeserializeGame(toSerializeGame());
-//			int day = deserializedday.getDay();
+			GameValue deserializedday = gpv.toDeserializeGame(toSerializeGameValue());
+			int day = deserializedday.getDay();
 		
-		gameValue = new GameValue(0, 3);
+		gameValue = new GameValue(cash, day);
     	
     	/**
     	 * This method deserialize the JSONB file. It is also possible to get the level of difficulty.
