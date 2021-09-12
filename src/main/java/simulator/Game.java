@@ -1,7 +1,5 @@
 package simulator;
 
-import datastorage.SavingProperties;
-import datastorage.information.ConvertingToJsonb;
 import datastorage.information.fromjsonb.GetSavingInformationMovingObject;
 import datastorage.information.fromjsonb.GetSavingInformationValue;
 import datastorage.jsonb.GetJsonbMovingObject;

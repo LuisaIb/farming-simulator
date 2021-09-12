@@ -72,31 +72,15 @@ public class FieldTile extends Tile{
 	 * this method sets the growthState of the first field
 	 * @param growthState
 	 */
-	public void setGrowthState(int growthState, Timer timer) {
+	public void setGrowthState(int growthState) {
 		this.growthState = growthState;
-		// trying a timer for the growing
-		if(growthState == 1) {
-			System.out.println("The first field is growing now!");
-		}
-		timer.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				if(growthState == 1 || growthState ==2 || growthState ==3) {
-//					growthState = growthState+1;
-					} else if(growthState == 4) {
-						System.out.println("The first field is ready to harvest now!");
-						timer.cancel();
-					}	
-			}
-		}, 2*1000, 2*1000);
-		
 		// if else statement without timer for growing
-		if(growthState == 4) {
+		if(growthState == 5) {
 			System.out.println("The first field is ready to harvest!");
 			//timer.stop
-		}else if(growthState == 5){
+		}else if(growthState == 6){
 			System.out.println("The first field is ready to get cultivated!");
-		}else if(growthState == 0){
+		}else if(growthState == 1){
 			System.out.println("The first field is ready for sowing!");
 		}else {
 			System.out.println("The first field is growing now!");
