@@ -1,7 +1,6 @@
 package gui.view;
 
 import gui.controller.GameController;
-import gui.controller.GameController;
 import gui.model.ImageManager;
 import gui.model.LSButton;
 import javafx.scene.image.Image;
@@ -9,6 +8,10 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
+import simulator.Game;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import static gui.view.ViewManager.HEIGHT;
 import static gui.view.ViewManager.WIDTH;
 
@@ -168,7 +171,7 @@ public class SideControlPane {
      * @param dumpTruck - sets the dumpTruckButton disabled if true
      * @param seedDrill - sets the seedDrillButton disabled if true
      */
-    private void setButtonsDisabled(boolean farmer, boolean tractor, boolean harvester, boolean cultivator,
+    public void setButtonsDisabled(boolean farmer, boolean tractor, boolean harvester, boolean cultivator,
                                     boolean dumpTruck, boolean seedDrill){
         farmerButton.setDisable(!farmer);
         tractorButton.setDisable(!tractor);
@@ -235,5 +238,106 @@ public class SideControlPane {
 
     public LSButton getButtonAction() {
         return buttonAction;
+    }
+
+    public LSButton getFarmerButton() {
+        return farmerButton;
+    }
+
+    public LSButton getTractorButton() {
+        return tractorButton;
+    }
+
+    public LSButton getHarvesterButton() {
+        return harvesterButton;
+    }
+
+    public LSButton getCultivatorButton() {
+        return cultivatorButton;
+    }
+
+    public LSButton getDumpTruckButton() {
+        return dumpTruckButton;
+    }
+
+    public LSButton getSeedDrillButton() {
+        return seedDrillButton;
+    }
+
+    public void selectVehicle(Matchfield matchfield){
+        buttonAction.setOnMousePressed(MouseEvent -> {
+            farmerButton.setDisable(false);
+            tractorButton.setDisable(false);
+            harvesterButton.setDisable(false);
+        });
+
+        farmerButton.setOnMouseClicked(mouseEvent -> {
+            matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(1));
+            farmerButton.setDisable(false);
+            tractorButton.setDisable(true);
+            harvesterButton.setDisable(true);
+            cultivatorButton.setDisable(true);
+            dumpTruckButton.setDisable(true);
+            seedDrillButton.setDisable(true);
+        });
+
+        harvesterButton.setOnMouseClicked(mouseEvent -> {
+            matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(3));
+            farmerButton.setDisable(true);
+            tractorButton.setDisable(true);
+            harvesterButton.setDisable(false);
+            cultivatorButton.setDisable(true);
+            dumpTruckButton.setDisable(true);
+            seedDrillButton.setDisable(true);
+        });
+    }
+
+    public int selectWorkingDevice(Matchfield matchfield, int selectedObject){
+        final int[] actualObjet = {selectedObject};
+        tractorButton.setOnMouseClicked(MouseEvent -> {
+            matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(2));
+            farmerButton.setDisable(true);
+            tractorButton.setDisable(false);
+            harvesterButton.setDisable(true);
+            cultivatorButton.setDisable(false);
+            dumpTruckButton.setDisable(false);
+            seedDrillButton.setDisable(false);
+            actualObjet[0] = 2;
+        });
+
+        cultivatorButton.setOnMouseClicked(mouseEvent -> {
+            matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(4));
+            farmerButton.setDisable(true);
+            tractorButton.setDisable(false);
+            harvesterButton.setDisable(true);
+            cultivatorButton.setDisable(false);
+            dumpTruckButton.setDisable(true);
+            seedDrillButton.setDisable(true);
+            actualObjet[0] = 4;
+        });
+
+        dumpTruckButton.setOnMouseClicked(mouseEvent -> {
+            matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(5));
+            farmerButton.setDisable(true);
+            tractorButton.setDisable(false);
+            harvesterButton.setDisable(true);
+            cultivatorButton.setDisable(true);
+            dumpTruckButton.setDisable(false);
+            seedDrillButton.setDisable(true);
+            actualObjet[0] = 5;
+        });
+
+        seedDrillButton.setOnMouseClicked(mouseEvent -> {
+           matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(7));
+            farmerButton.setDisable(true);
+            tractorButton.setDisable(false);
+            harvesterButton.setDisable(true);
+            cultivatorButton.setDisable(true);
+            dumpTruckButton.setDisable(true);
+            seedDrillButton.setDisable(false);
+            actualObjet[0] = 7;
+        });
+        System.out.println("Hier ist jetzt folgender Integer als aktuelles Objekt:" + actualObjet[0]);
+        return actualObjet[0];
     }
 }

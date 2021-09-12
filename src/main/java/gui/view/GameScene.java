@@ -11,7 +11,7 @@ import static gui.view.ViewManager.HEIGHT;
 import static gui.view.ViewManager.WIDTH;
 
 /**
- * This class implements the game scene. It consists of gridpane for the matchfield, a pane on the right side with
+ * This class implements the game scene. It consists of a gridpane for the matchfield, a pane on the right side with
  * buttons for moving around the field and choosing the machine / farmer and a vertical box with all the necessary
  * information the player should see during playing.
  *
@@ -109,6 +109,10 @@ public class GameScene {
 
     public SideControlPane getSideControlPane(){
         return sideControlPane;
+    }
+
+    public Matchfield getMatchfield(){
+        return matchfield;
     }
 
     /**

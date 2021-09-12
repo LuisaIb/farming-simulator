@@ -4,9 +4,11 @@ import gameboard.GameValue;
 import gameboard.objects.MovingObject;
 import gameboard.tiles.FieldTile;
 import gui.view.GameScene;
+import gui.view.SideControlPane;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import simulator.Game;
 
 public class GameController {
     private AnimationTimer gameTimer;
@@ -19,7 +21,7 @@ public class GameController {
     private int growthStageField2;
     private int growthSTageField3;
     private int dayCounter = 0;
-
+    private int actualObject;
 
 
     public void setBooleansPressed(KeyEvent keyEvent){
@@ -54,14 +56,15 @@ public class GameController {
         }
     }
 
-    public void initGameLoop(GameScene gameScene, FieldTile fieldTile, MovingObject movingObject, int selectedObject, GameValue gameValue){
+    public int initGameLoop(GameScene gameScene, FieldTile fieldTile, MovingObject movingObject, int selectedObject, GameValue gameValue, SideControlPane sideControlPane){
+        final int[] newSelectedObject = {selectedObject};
         gameTimer = new AnimationTimer() {
             private long lastUpdate = 0;
             @Override
             public void handle(long now) {
                 if (now - lastUpdate >= 100_000_000) {
                     gameScene.moveObject(movingObject);
-                    proofAction(gameScene, movingObject, selectedObject);
+                    newSelectedObject[0] = proofAction(gameScene, movingObject, selectedObject, sideControlPane);
                     lastUpdate = now;
                     DayCounter(gameValue);
                     proofFieldCounter(gameScene, fieldTile);
@@ -69,6 +72,7 @@ public class GameController {
             }
         };
         gameTimer.start();
+        return newSelectedObject[0];
     }
 
     private void DayCounter(GameValue gameValue) {
@@ -134,12 +138,17 @@ public class GameController {
     }
 
 
-    private void proofAction(GameScene gameScene, MovingObject movingObject, int selectedObject){
+    private int proofAction(GameScene gameScene, MovingObject movingObject, int selectedObject, SideControlPane sideControlPane){
+        actualObject = selectedObject;
         int x = movingObject.getX();
         int y = movingObject.getY();
         if ((x == 16 || x == 17) && y == 13) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("select vehicle");
+            sideControlPane.selectVehicle(gameScene.getMatchfield());
+            sideControlPane.selectWorkingDevice(gameScene.getMatchfield(), selectedObject);
+            System.out.println("Selected Object is now: " + selectedObject);
+            System.out.println("Actual Object is now: " + actualObject);
         } else if (x == 27 && y == 5) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("do something");
@@ -150,8 +159,13 @@ public class GameController {
         else {
             gameScene.getSideControlPane().getButtonAction().setDisable(true);
             gameScene.getSideControlPane().getButtonAction().setText("");
+            if (selectedObject == 2) {
+                sideControlPane.getCultivatorButton().setDisable(true);
+                sideControlPane.getDumpTruckButton().setDisable(true);
+                sideControlPane.getSeedDrillButton().setDisable(true);
+            }
         }
+        return actualObject;
     }
-
 
 }

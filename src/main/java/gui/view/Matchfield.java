@@ -399,4 +399,32 @@ public class Matchfield {
         }
         return movingObjectImageView;
     }
+
+    public Image getTheRightImage(int selectedObject){
+        Image movingObjectImage = null;
+        switch(selectedObject){
+            case 1:
+                movingObjectImage = getImage(PATH_TO_FARMER);
+                break;
+            case 2:
+                movingObjectImage = getImage(PATH_TO_TRACTOR);
+                break;
+            case 3:
+                movingObjectImage = getImage(PATH_TO_HARVESTER);
+                break;
+            case 4:
+                movingObjectImage = getImage(PATH_TO_CULTIVATOR);
+                break;
+            case 5:
+                movingObjectImage = getImage(PATH_TO_DUMP_TRUCK_EMPTY);
+                break;
+            case 6:
+                movingObjectImage = getImage(PATH_TO_DUMP_TRUCK_Full);
+                break;
+            case 7:
+                movingObjectImage = getImage(PATH_TO_SEED_DRILL);
+                break;
+        }
+        return movingObjectImage;
+    }
 }
