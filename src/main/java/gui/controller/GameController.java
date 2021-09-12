@@ -52,14 +52,14 @@ public class GameController {
         }
     }
 
-    public void initGameLoop(GameScene gameScene, FieldTile fieldTile, MovingObject movingObject){
+    public void initGameLoop(GameScene gameScene, FieldTile fieldTile, MovingObject movingObject, int selectedObject){
         gameTimer = new AnimationTimer() {
             private long lastUpdate = 0;
             @Override
             public void handle(long now) {
                 if (now - lastUpdate >= 100_000_000) {
                     gameScene.moveObject(movingObject);
-                    proofAction(gameScene);
+                    proofAction(gameScene, movingObject, selectedObject);
                     lastUpdate = now;
                     proofFieldCounter(gameScene, fieldTile);
                 }
@@ -122,16 +122,19 @@ public class GameController {
     }
 
 
-    private void proofAction(GameScene gameScene, MovingObject movingObject){
+    private void proofAction(GameScene gameScene, MovingObject movingObject, int selectedObject){
         int x = movingObject.getX();
         int y = movingObject.getY();
         if ((x == 16 || x == 17) && y == 13) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("select vehicle");
-        } else if (x == ) {
-
+        } else if (x == 27 && y == 5) {
+            gameScene.getSideControlPane().getButtonAction().setDisable(false);
+            gameScene.getSideControlPane().getButtonAction().setText("do something");
+        } else if(x == 27 && (y == 15 || y == 16 || y == 17) && (selectedObject == 1 || selectedObject == 2)) {
+            gameScene.getSideControlPane().getButtonAction().setDisable(false);
+            gameScene.getSideControlPane().getButtonAction().setText("fill tank");
         }
-
         else {
             gameScene.getSideControlPane().getButtonAction().setDisable(true);
             gameScene.getSideControlPane().getButtonAction().setText("");

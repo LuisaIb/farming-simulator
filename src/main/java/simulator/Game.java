@@ -9,7 +9,7 @@ import datastorage.pojo.GetPojoValue;
 import gameboard.GameValue;
 import gameboard.tiles.CourtTrade;
 import gameboard.tiles.Silo;
-import gui.controller.MovingObjectController;
+import gui.controller.GameController;
 import gameboard.objects.*;
 import gameboard.tiles.FieldTile;
 import gui.model.GameInformation;
@@ -55,14 +55,14 @@ public class Game {
 	        courtTrade = new CourtTrade();
         
         
-        MovingObjectController movingObjectController = new MovingObjectController();
+        GameController gameController = new GameController();
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
                 cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
                 fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
         System.out.println(getSelectedObject());
         System.out.println(getColumn());
         System.out.println(getRow());
-        movingObjectController.initGameLoop(gameScene, fieldTile, farmer);
+		gameController.initGameLoop(gameScene, fieldTile, farmer, getSelectedObject());
         GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue);
         gameValue.setCash(50);
         return gameScene;
@@ -73,15 +73,17 @@ public class Game {
             selectedObject=1;
             movingObject=farmer;
         }else if(tractor.isSelected()){
-            selectedObject=2;
+        	if (cultivator.isSelected()) {
+        		selectedObject = 4;
+			} else if (dumpTruck.isSelected()){
+        		selectedObject = 5;
+			} else if (seedDrill.isSelected()) {
+        		selectedObject = 6;
+			} else {
+				selectedObject=2;
+			}
         }else if(harvester.isSelected()){
             selectedObject=3;
-        } else if(cultivator.isSelected()) {
-            selectedObject = 4;
-        } else if (dumpTruck.isSelected()) {
-            selectedObject = 5;
-        } else if (seedDrill.isSelected()) {
-            selectedObject = 6;
         }
         return selectedObject;
     }
@@ -261,7 +263,7 @@ public class Game {
 
     public GameScene reloadGame(){
         GameScene gameScene = new GameScene();
-        MovingObjectController movingObjectController = new MovingObjectController();
+		GameController gameController = new GameController();
         //all numeric values
         /**
     	 * This method deserialize the JSONB file. It is also possible to get the values of the cash, the tank filling and the gameday.
@@ -437,7 +439,8 @@ public class Game {
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
                 cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
                 fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
-        movingObjectController.initGameLoop(gameScene, fieldTile, farmer);
+		gameController.initGameLoop(gameScene, fieldTile, farmer, getSelectedObject());
+		GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue);
         return gameScene;
     }
 
