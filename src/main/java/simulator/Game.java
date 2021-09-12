@@ -41,11 +41,11 @@ public class Game {
 
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
                 cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
-                fieldTile.getGrowthState2(),fieldTile.getGrowthState3(),getSelectedObject(),getColumn(),getRow());
+                fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
         System.out.println(getSelectedObject());
         System.out.println(getColumn());
         System.out.println(getRow());
-        movingObjectController.initGameLoop(gameScene);
+        movingObjectController.initGameLoop(gameScene, fieldTile);
         return gameScene;
     }
 

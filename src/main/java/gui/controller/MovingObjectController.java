@@ -1,5 +1,6 @@
 package gui.controller;
 
+import gameboard.tiles.FieldTile;
 import gui.view.GameScene;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
@@ -12,8 +13,11 @@ public class MovingObjectController {
     private boolean leftPressed;
     private boolean upPressed;
     private boolean downPressed;
-
+    private int fieldCounter = 0;
     Game game = new Game();
+    int growthStageField1;
+    int growthStageField2;
+    int growthSTageField3;
 
 
 
@@ -49,7 +53,7 @@ public class MovingObjectController {
         }
     }
 
-    public void initGameLoop(GameScene gameScene){
+    public void initGameLoop(GameScene gameScene, FieldTile fieldTile){
         gameTimer = new AnimationTimer() {
             private long lastUpdate = 0;
             @Override
@@ -58,11 +62,33 @@ public class MovingObjectController {
                     gameScene.moveObject();
                     proofAction(gameScene);
                     lastUpdate = now;
+                    proofFieldCounter(fieldTile);
                 }
             }
         };
         gameTimer.start();
     }
+
+    public void proofFieldCounter(FieldTile fieldTile){
+        fieldCounter++;
+        growthStageField1 = fieldTile.getGrowthState();
+        growthStageField2 = fieldTile.getGrowthState2();
+        growthSTageField3 = fieldTile.getGrowthState3();
+        System.out.println("Feld 3: " +growthSTageField3);
+        if (fieldCounter == 10) {
+            if (growthStageField1 > 1 && growthStageField1 < 6) {
+                //fieldTile.setGrowthState(growthStageField1+1);
+            }
+            if (growthStageField2 > 1 && growthStageField2 < 6) {
+                fieldTile.setGrowthState2(growthStageField2+1);
+            }
+            if (growthSTageField3 > 1 && growthSTageField3 < 6) {
+                fieldTile.setGrowthState3(growthSTageField3+1);
+            }
+            fieldCounter = 0;
+        }
+    }
+
 
     public void setRightPressed(boolean rightPressed) {
         this.rightPressed = rightPressed;
