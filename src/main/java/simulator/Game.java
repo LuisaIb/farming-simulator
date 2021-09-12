@@ -13,6 +13,7 @@ import gui.controller.MovingObjectController;
 import gameboard.objects.*;
 import gameboard.tiles.FieldTile;
 import gui.model.GameInformation;
+import gui.view.DifficultyScene;
 import gui.view.GameScene;
 
 /**
@@ -21,25 +22,39 @@ import gui.view.GameScene;
  */
 public class Game {
 
+	DifficultyScene ds = new DifficultyScene();
     MovingObject movingObject = new MovingObject();
-    private Farmer farmer = new Farmer();
-    private Tractor tractor = new Tractor();
-    private Harvester harvester = new Harvester();
-    private Cultivator cultivator = new Cultivator();
-    private DumpTruck dumpTruck = new DumpTruck();
-    private SeedDrill seedDrill = new SeedDrill();
-    private FieldTile fieldTile = new FieldTile();
+    private Farmer farmer;
+    private Tractor tractor;
+    private Harvester harvester;
+    private Cultivator cultivator;
+    private DumpTruck dumpTruck;
+    private SeedDrill seedDrill;
+    private FieldTile fieldTile;
     private int selectedObject;
-    private GameValue gameValue = new GameValue();
-    private LevelOfDifficulty levelOfDifficulty = new LevelOfDifficulty();
-    private Silo silo = new Silo();
-    private CourtTrade courtTrade = new CourtTrade();
+    private GameValue gameValue;
+    private LevelOfDifficulty levelOfDifficulty;
+    private Silo silo;
+    private CourtTrade courtTrade;
    
     
 
 
     public GameScene createNewGame(){
         GameScene gameScene = new GameScene();
+	        farmer = new Farmer();
+	        tractor = new Tractor();
+	        harvester = new Harvester();
+	        cultivator = new Cultivator();
+	        dumpTruck = new DumpTruck();
+	        seedDrill = new SeedDrill();
+	        fieldTile = new FieldTile();
+	        gameValue = new GameValue();
+	        levelOfDifficulty = new LevelOfDifficulty();
+	        silo = new Silo();
+	        courtTrade = new CourtTrade();
+        
+        
         MovingObjectController movingObjectController = new MovingObjectController();
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
                 cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
@@ -53,7 +68,7 @@ public class Game {
         return gameScene;
     }
 
-    public int getSelectedObject(){
+	public int getSelectedObject(){
         if(farmer.isSelected()){
             selectedObject=1;
             movingObject=farmer;
@@ -158,7 +173,7 @@ public class Game {
 	 * @return serialized as a JSONB object of the farmer's position
 	 */
 	public String toSerializeFarmer() {
-		farmer = new Farmer(2, 6, true);
+		farmer = new Farmer(5, 13, true);
 		farmer.getX();
 		farmer.getY();
 		farmer.isSelected();

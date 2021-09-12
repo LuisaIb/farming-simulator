@@ -26,7 +26,7 @@ public class DifficultyScene {
     private Scene difficultyScene = new Scene(difficultyPane, WIDTH, HEIGHT);
     private static final String PATH_TO_BACKGROUND_IMAGE = "src/main/java/gui/view/resources/background/field.jpg";
     SceneController sceneController = new SceneController();
-    //LevelOfDifficulty lod = new LevelOfDifficulty();
+    LevelOfDifficulty lod = new LevelOfDifficulty();
 
     /**
      * Constructs an object of the class DifficultyScene. It initializes the difficultyPane with the method
@@ -64,22 +64,22 @@ public class DifficultyScene {
         buttonEasy = new LSButton("Leicht", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonEasy.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-            //lod.setLevel(1);
-            //System.out.println(lod.getLevel());
+            lod.setLevel(1);
+            System.out.println(lod.getLevel());
         });
         buttonEasy.setOnMouseClicked(sceneController.setSceneToGameScene);
         buttonMedium = new LSButton("Mittel", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonMedium.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-            //lod.setLevel(2);
-            //System.out.println(lod.getLevel());
+            lod.setLevel(2);
+            System.out.println(lod.getLevel());
         });
         buttonMedium.setOnMouseClicked(sceneController.setSceneToGameScene);
         buttonHard = new LSButton("Schwer",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonHard.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-            //lod.setLevel(3);
-            //System.out.println(lod.getLevel());
+            lod.setLevel(3);
+            System.out.println(lod.getLevel());
         });
         buttonHard.setOnMouseClicked(sceneController.setSceneToGameScene);
         buttonBackToScene = new LSButton("Zurueck",50, 250, HEIGHT/2,
@@ -98,8 +98,8 @@ public class DifficultyScene {
         return difficultyScene;
     }
 
-    //public LevelOfDifficulty getLod(){
-    //    return lod;
-    //}
+    public LevelOfDifficulty getLod(){
+        return lod;
+    }
 
 }
