@@ -1,6 +1,7 @@
 package gui.view;
 
-import gui.controller.MovingObjectController;
+import gui.controller.GameController;
+import gui.controller.GameController;
 import gui.model.ImageManager;
 import gui.model.LSButton;
 import javafx.scene.image.Image;
@@ -37,7 +38,7 @@ public class SideControlPane {
     private final String PATH_TO_CULTIVATOR = "src/main/java/gui/view/resources/machines/cultivatorSide.png";
     private final String PATH_TO_DUMP_TRUCK = "src/main/java/gui/view/resources/machines/dumpTruckSide.png";
     private final String PATH_TO_SEED_DRILL = "src/main/java/gui/view/resources/machines/seedDrillSide.png";
-    MovingObjectController movingObjectController = new MovingObjectController();
+    GameController gameController = new GameController();
 
     /**
      * Construcs an object of the class SideControlPane. It immediately initializes the sidePane.
@@ -184,38 +185,38 @@ public class SideControlPane {
     private void createControlButtons(){
         buttonUp = new LSButton("W", 50, 50,95,HEIGHT/100*70, 14);
         buttonUp.setOnMousePressed(MouseEvent -> {
-            movingObjectController.setUpPressed(true);
+            gameController.setUpPressed(true);
             System.out.println("up pressed");
         });
         buttonUp.setOnMouseReleased(MouseEvent -> {
-            movingObjectController.setUpPressed(false);
+            gameController.setUpPressed(false);
             System.out.println("up released");
         });
         buttonDown = new LSButton("S", 50, 50, 95, HEIGHT/100*77, 14);
         buttonDown.setOnMousePressed(MouseEvent -> {
-            movingObjectController.setDownPressed(true);
+            gameController.setDownPressed(true);
             System.out.println("down pressed");
         });
         buttonDown.setOnMouseReleased(MouseEvent -> {
-            movingObjectController.setDownPressed(false);
+            gameController.setDownPressed(false);
             System.out.println("down released");
         });
         buttonLeft = new LSButton("A", 50, 50,40,HEIGHT/100*77, 14);
         buttonLeft.setOnMousePressed(MouseEvent -> {
-            movingObjectController.setLeftPressed(true);
+            gameController.setLeftPressed(true);
             System.out.println("left pressed");
         });
         buttonLeft.setOnMouseReleased(MouseEvent -> {
-            movingObjectController.setLeftPressed(false);
+            gameController.setLeftPressed(false);
             System.out.println("left released");
         });
         buttonRight = new LSButton("D", 50, 50,150,HEIGHT/100*77, 14);
         buttonRight.setOnMousePressed(MouseEvent -> {
-            movingObjectController.setRightPressed(true);
+            gameController.setRightPressed(true);
             System.out.println("right pressed");
         });
         buttonRight.setOnMouseReleased(MouseEvent -> {
-            movingObjectController.setRightPressed(false);
+            gameController.setRightPressed(false);
             System.out.println("right released");
         });
         buttonAction = new LSButton("", 50, 150,45,HEIGHT/100*87, 14);

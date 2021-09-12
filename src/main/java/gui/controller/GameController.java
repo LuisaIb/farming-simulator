@@ -1,23 +1,24 @@
 package gui.controller;
 
+import gameboard.GameValue;
 import gameboard.objects.MovingObject;
 import gameboard.tiles.FieldTile;
 import gui.view.GameScene;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import simulator.Game;
 
-public class MovingObjectController {
+public class GameController {
     private AnimationTimer gameTimer;
     private boolean rightPressed;
     private boolean leftPressed;
     private boolean upPressed;
     private boolean downPressed;
     private int fieldCounter = 0;
-    int growthStageField1;
-    int growthStageField2;
-    int growthSTageField3;
+    private int growthStageField1;
+    private int growthStageField2;
+    private int growthSTageField3;
+    private int dayCounter = 0;
 
 
 
@@ -53,15 +54,16 @@ public class MovingObjectController {
         }
     }
 
-    public void initGameLoop(GameScene gameScene, FieldTile fieldTile, MovingObject movingObject){
+    public void initGameLoop(GameScene gameScene, FieldTile fieldTile, MovingObject movingObject, int selectedObject, GameValue gameValue){
         gameTimer = new AnimationTimer() {
             private long lastUpdate = 0;
             @Override
             public void handle(long now) {
                 if (now - lastUpdate >= 100_000_000) {
                     gameScene.moveObject(movingObject);
-                    proofAction(gameScene);
+                    proofAction(gameScene, movingObject, selectedObject);
                     lastUpdate = now;
+                    DayCounter(gameValue);
                     proofFieldCounter(gameScene, fieldTile);
                 }
             }
@@ -69,12 +71,21 @@ public class MovingObjectController {
         gameTimer.start();
     }
 
-    public void proofFieldCounter(GameScene gameScene, FieldTile fieldTile){
+    private void DayCounter(GameValue gameValue) {
+        dayCounter++;
+        if (dayCounter == 50) {
+            gameValue.setDay(gameValue.getDay()+1);
+            System.out.println(gameValue.getDay());
+            dayCounter = 0;
+        }
+    }
+
+    private void proofFieldCounter(GameScene gameScene, FieldTile fieldTile){
         fieldCounter++;
         growthStageField1 = fieldTile.getGrowthState();
         growthStageField2 = fieldTile.getGrowthState2();
         growthSTageField3 = fieldTile.getGrowthState3();
-        if (fieldCounter == 100) {
+        if (fieldCounter == 1000) {
             if (growthStageField1 > 1 && growthStageField1 < 6) {
                 //fieldTile.setGrowthState(growthStageField1+1);
             }
@@ -123,13 +134,20 @@ public class MovingObjectController {
     }
 
 
-    private void proofAction(GameScene gameScene){
-        int x = 0;
-        int y = 0;
+    private void proofAction(GameScene gameScene, MovingObject movingObject, int selectedObject){
+        int x = movingObject.getX();
+        int y = movingObject.getY();
         if ((x == 16 || x == 17) && y == 13) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("select vehicle");
-        } else {
+        } else if (x == 27 && y == 5) {
+            gameScene.getSideControlPane().getButtonAction().setDisable(false);
+            gameScene.getSideControlPane().getButtonAction().setText("do something");
+        } else if(x == 27 && (y == 15 || y == 16 || y == 17) && (selectedObject == 1 || selectedObject == 2)) {
+            gameScene.getSideControlPane().getButtonAction().setDisable(false);
+            gameScene.getSideControlPane().getButtonAction().setText("fill tank");
+        }
+        else {
             gameScene.getSideControlPane().getButtonAction().setDisable(true);
             gameScene.getSideControlPane().getButtonAction().setText("");
         }

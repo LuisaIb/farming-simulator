@@ -12,9 +12,7 @@ import javafx.beans.property.SimpleIntegerProperty;
  */
 public class GameValue {
 	private IntegerProperty cashProperty = new SimpleIntegerProperty();
-	private int cash = 100;
-
-	private int day;
+	private IntegerProperty day = new SimpleIntegerProperty();
 	
 	/**
 	 * This constructor will be used for reloading the game.
@@ -23,7 +21,7 @@ public class GameValue {
 	 */
 	public GameValue(int cash, int day) {
 		this.cashProperty.set(cash);
-		this.day = day;
+		this.day.set(day);
 	}
 	
 	/**
@@ -33,7 +31,7 @@ public class GameValue {
 	 */
 	public GameValue() {
 		cashProperty.set(100);
-		day = 1;
+		day.set(1);
 	}
 	
 	/**
@@ -42,7 +40,7 @@ public class GameValue {
 	 * @param day
 	 */
 	public GameValue(int level) {//1-3
-		day = 1;
+		day.set(1);
 		if(level == 1) {
 			cashProperty.set(100); //Bezin, Getreidetank voll, Hofladen voll
 		}else if(level == 2) {
@@ -57,7 +55,7 @@ public class GameValue {
 	 * @return the day
 	 */
 	public int getDay() {
-		return day;
+		return day.get();
 	}
 
 	/**
@@ -65,7 +63,7 @@ public class GameValue {
 	 * @param day the day to set
 	 */
 	public void setDay(int day) {
-		this.day = day;
+		this.day.set(day);
 	}
 
 	/**
@@ -96,9 +94,13 @@ public class GameValue {
 		return cashProperty;
 	}
 
+	public IntegerProperty day(){ return day; }
 
-	public String toStringForInformationBox(){
-		return "" + cashProperty();
+	public String getCashAsString() {
+		return "" + cashProperty.get();
 	}
-	
+
+	public String getDayAsString(){
+		return "" + day.get();
+	}
 }

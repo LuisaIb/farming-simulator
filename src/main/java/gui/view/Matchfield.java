@@ -34,8 +34,10 @@ public class Matchfield {
     private static final String PATH_TO_GAS_STATION = "src/main/java/gui/view/resources/buildings/gasStation.png";
     private static final String PATH_TO_LAND_TRADE = "src/main/java/gui/view/resources/buildings/landTrade.png";
     private static final String PATH_TO_SILO = "src/main/java/gui/view/resources/buildings/silo.png";
-    private Image movingObjectImage;
     private ImageView movingObjectImageView;
+    private ImageView imageViewField1;
+    private ImageView imageViewField2;
+    private ImageView imageViewField3;
     private static final String PATH_TO_FARMER = "src/main/java/gui/view/resources/movingObjects/farmer.png";
     private static final String PATH_TO_TRACTOR = "src/main/java/gui/view/resources/movingObjects/tractor.png";
     private static final String PATH_TO_HARVESTER = "src/main/java/gui/view/resources/movingObjects/harvester.png";
@@ -131,8 +133,8 @@ public class Matchfield {
         ImageView imageViewSilo = new ImageView(getImage(PATH_TO_SILO, TILE_WIDTH*5, TILE_HEIGHT*5));
         addToGridPane(imageViewSilo, 11, 5, 8, 5);
 
-        ImageView imageViewGasStation = new ImageView(getImage(PATH_TO_GAS_STATION, TILE_WIDTH*4, TILE_HEIGHT*4));
-        addToGridPane(imageViewGasStation, 13, 4, 0, 4);
+        ImageView imageViewGasStation = new ImageView(getImage(PATH_TO_GAS_STATION, TILE_WIDTH*6, TILE_HEIGHT*6));
+        addToGridPane(imageViewGasStation, 13, 6, 0, 6);
 
         ImageView imageViewLandTrade = new ImageView(getImage(PATH_TO_LAND_TRADE, TILE_WIDTH*5, TILE_HEIGHT*5));
         addToGridPane(imageViewLandTrade, 25, 5, 0, 5);
@@ -176,11 +178,16 @@ public class Matchfield {
     protected void setField1(int stageOfGrowth){
         for (int i = 20; i < NUMBER_COLUMNS; i++){
             for (int j = 14; j < NUMBER_ROWS; j++) {
-                ImageView imageViewField = getImageViewField(stageOfGrowth);
-                addToGridPane(imageViewField, i, j);
+                imageViewField1 = getImageViewField(stageOfGrowth);
+                addToGridPane(imageViewField1, i, j);
             }
         }
     }
+
+    public void setImageViewOfField1(int stageOfGrowth) {
+        imageViewField1 = getImageViewField(stageOfGrowth);
+    }
+
 
     /**
      * Adds the image views of the second field to the matchfield.
@@ -188,10 +195,14 @@ public class Matchfield {
     protected void setField2(int stageOfGrowth){
         for (int i = 9; i < 19; i++){
             for (int j = 14; j < NUMBER_ROWS; j++) {
-                ImageView imageViewField = getImageViewField(stageOfGrowth);
-                addToGridPane(imageViewField, i, j);
+                imageViewField2 = getImageViewField(stageOfGrowth);
+                addToGridPane(imageViewField2, i, j);
             }
         }
+    }
+
+    public void setImageViewOfField2(int stageOfGrowth) {
+        imageViewField2 = getImageViewField(stageOfGrowth);
     }
 
     /**
@@ -200,10 +211,14 @@ public class Matchfield {
     protected void setField3(int stageOfGrowth){
         for (int i = 20; i < NUMBER_COLUMNS; i++){
             for (int j = 6; j < 13; j++) {
-                ImageView imageViewField = getImageViewField(stageOfGrowth);
-                addToGridPane(imageViewField, i, j);
+                imageViewField3 = getImageViewField(stageOfGrowth);
+                addToGridPane(imageViewField3, i, j);
             }
         }
+    }
+
+    public void setImageViewOfField3(int stageOfGrowth) {
+        imageViewField3 = getImageViewField(stageOfGrowth);
     }
 
     /***
