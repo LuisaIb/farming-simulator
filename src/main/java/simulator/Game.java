@@ -33,6 +33,8 @@ public class Game {
     private LevelOfDifficulty levelOfDifficulty;
     private Silo silo;
     private CourtTrade courtTrade;
+   
+    
 
 
     public GameScene createNewGame(){
