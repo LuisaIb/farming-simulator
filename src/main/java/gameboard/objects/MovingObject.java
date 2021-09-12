@@ -14,7 +14,9 @@ public class MovingObject {
 	private boolean selected = false;
 
 	public MovingObject(){
-
+		this.x = getX();
+		this.y = getY();
+		this.selected = isSelected();
 	}
 
 	public MovingObject(int x, int y, boolean selected){

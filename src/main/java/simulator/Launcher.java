@@ -28,6 +28,7 @@ public class Launcher extends Application {
 		System.out.println(tractor.getX());
 		
 		Game g = new Game();
-		g.toSerializeHarvester();
+		g.toSerializeFarmer();
+		
 	}
 }
