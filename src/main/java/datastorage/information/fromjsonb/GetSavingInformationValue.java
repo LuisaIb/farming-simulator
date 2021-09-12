@@ -18,7 +18,7 @@ public class GetSavingInformationValue {
 	 * This method deserialize the JSONB file. It is also possible to get the values of the cash, the tank filling and the gameday.
 	 * It implements a new GameValue object by using the class constructor.
 	 */
-	public void GetSavingInformationGame() {
+	public GameValue GetSavingInformationGame() {
 		GetPojoValue gpv = new GetPojoValue();
 			GameValue deserializedcash = gpv.toDeserializeGame();
 			int cash = deserializedcash.getCash();
@@ -26,19 +26,21 @@ public class GetSavingInformationValue {
 			GameValue deserializedday = gpv.toDeserializeGame();
 			int day = deserializedday.getDay();
 		
-			GameValue updatedGame = new GameValue(cash, day);
+			GameValue updatedGameValue = new GameValue(cash, day);
+			return updatedGameValue;
 	}
 	
 	/**
 	 * This method deserialize the JSONB file. It is also possible to get the level of difficulty.
 	 * It implements a new LevelOfDifficulty object by using the class constructor.
 	 */
-	public void GetSavingInformationLevel() {
+	public LevelOfDifficulty GetSavingInformationLevel() {
 		GetPojoValue gpv = new GetPojoValue();
 			LevelOfDifficulty deserializedlevel = gpv.toDeserializeLevel();
 			int newLevel = deserializedlevel.getLevel();
 			
 			LevelOfDifficulty updatedLevel = new LevelOfDifficulty(newLevel);
+			return updatedLevel;
 					
 	}
 	
@@ -46,7 +48,7 @@ public class GetSavingInformationValue {
 	 * This method deserialize the JSONB file. It is also possible to get the growth state of field one, the growth state of field two and the growth state of field three.
 	 * It implements a new FieldTile object by using the class constructor.
 	 */
-	public void GetSavingInformationFieldtiles() {
+	public FieldTile GetSavingInformationFieldtiles() {
 		GetPojoValue gpv = new GetPojoValue();
 			FieldTile deserializedft1 = gpv.toDeserializeFieldtiles();
 			int ft1 = deserializedft1.getGrowthState();
@@ -58,6 +60,7 @@ public class GetSavingInformationValue {
 			int ft3 = deserializedft3.getGrowthState3();
 			
 		FieldTile updatedFieldTile = new FieldTile(ft1, ft2, ft3);
+		return updatedFieldTile;
 					
 	}
 	
@@ -65,12 +68,13 @@ public class GetSavingInformationValue {
 	 * This method deserialize the JSONB file. It is also possible to get the capacity of the silo.
 	 * It implements a new Silo object by using the class constructor.
 	 */
-	public void GetSavingInformationSilo() {
+	public Silo GetSavingInformationSilo() {
 		GetPojoValue gpv = new GetPojoValue();
 			Silo deserializedcapacity = gpv.toDeserializeSilo();
 			int capacity = deserializedcapacity.getCapacity();
 			
 		Silo updatedSilo = new Silo (capacity);
+		return updatedSilo;
 		
 					
 	}
@@ -79,7 +83,7 @@ public class GetSavingInformationValue {
 	 * This method deserialize the JSONB file. It is also possible to get the capacity of the silo.
 	 * It implements a new Silo object by using the class constructor.
 	 */
-	public void GetSavingInformationCourtTrade() {
+	public CourtTrade GetSavingInformationCourtTrade() {
 		GetPojoValue gpv = new GetPojoValue();
 			CourtTrade deserializedGrainFillLevel = gpv.toDeserializeCourtTrade();
 			int grainFillLevel = deserializedGrainFillLevel.getGrainFillLevel();
@@ -87,6 +91,7 @@ public class GetSavingInformationValue {
 			//cash Variable, ggf GameValue löschen und cash zum hofladen
 			
 		CourtTrade updatedCourtTrade = new CourtTrade(grainFillLevel);
+		return updatedCourtTrade;
 					
 	}
 }
