@@ -9,10 +9,11 @@ import datastorage.pojo.GetPojoValue;
 import gameboard.GameValue;
 import gameboard.tiles.CourtTrade;
 import gameboard.tiles.Silo;
-import gui.controller.GameController;
+import gui.controller.MovingObjectController;
 import gameboard.objects.*;
 import gameboard.tiles.FieldTile;
 import gui.model.GameInformation;
+import gui.view.DifficultyScene;
 import gui.view.GameScene;
 
 /**
@@ -21,38 +22,53 @@ import gui.view.GameScene;
  */
 public class Game {
 
+	DifficultyScene ds = new DifficultyScene();
     MovingObject movingObject = new MovingObject();
-    private Farmer farmer = new Farmer();
-    private Tractor tractor = new Tractor();
-    private Harvester harvester = new Harvester();
-    private Cultivator cultivator = new Cultivator();
-    private DumpTruck dumpTruck = new DumpTruck();
-    private SeedDrill seedDrill = new SeedDrill();
-    private FieldTile fieldTile = new FieldTile();
+    private Farmer farmer;
+    private Tractor tractor;
+    private Harvester harvester;
+    private Cultivator cultivator;
+    private DumpTruck dumpTruck;
+    private SeedDrill seedDrill;
+    private FieldTile fieldTile;
     private int selectedObject;
-    private GameValue gameValue = new GameValue();
-    private LevelOfDifficulty levelOfDifficulty = new LevelOfDifficulty();
-    private Silo silo = new Silo();
-    private CourtTrade courtTrade = new CourtTrade();
+    private GameValue gameValue;
+    private LevelOfDifficulty levelOfDifficulty;
+    private Silo silo;
+    private CourtTrade courtTrade;
+   
     
 
 
     public GameScene createNewGame(){
         GameScene gameScene = new GameScene();
-        GameController gameController = new GameController();
+	        farmer = new Farmer();
+	        tractor = new Tractor();
+	        harvester = new Harvester();
+	        cultivator = new Cultivator();
+	        dumpTruck = new DumpTruck();
+	        seedDrill = new SeedDrill();
+	        fieldTile = new FieldTile();
+	        gameValue = new GameValue();
+	        levelOfDifficulty = new LevelOfDifficulty();
+	        silo = new Silo();
+	        courtTrade = new CourtTrade();
+        
+        
+        MovingObjectController movingObjectController = new MovingObjectController();
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
                 cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
                 fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
         System.out.println(getSelectedObject());
         System.out.println(getColumn());
         System.out.println(getRow());
-		gameController.initGameLoop(gameScene, fieldTile, farmer);
+        movingObjectController.initGameLoop(gameScene, fieldTile, farmer);
         GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue);
         gameValue.setCash(50);
         return gameScene;
     }
 
-    public int getSelectedObject(){
+	public int getSelectedObject(){
         if(farmer.isSelected()){
             selectedObject=1;
             movingObject=farmer;
@@ -157,7 +173,7 @@ public class Game {
 	 * @return serialized as a JSONB object of the farmer's position
 	 */
 	public String toSerializeFarmer() {
-		farmer = new Farmer(2, 6, true);
+		farmer = new Farmer(5, 13, true);
 		farmer.getX();
 		farmer.getY();
 		farmer.isSelected();
@@ -245,7 +261,7 @@ public class Game {
 
     public GameScene reloadGame(){
         GameScene gameScene = new GameScene();
-        GameController gameController = new GameController();
+        MovingObjectController movingObjectController = new MovingObjectController();
         //all numeric values
         /**
     	 * This method deserialize the JSONB file. It is also possible to get the values of the cash, the tank filling and the gameday.
@@ -421,7 +437,7 @@ public class Game {
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
                 cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
                 fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
-		gameController.initGameLoop(gameScene, fieldTile, farmer);
+        movingObjectController.initGameLoop(gameScene, fieldTile, farmer);
         return gameScene;
     }
 
