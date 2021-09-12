@@ -96,5 +96,9 @@ public class GameValue {
 		return cashProperty;
 	}
 
+
+	public String toStringForInformationBox(){
+		return "" + cashProperty();
+	}
 	
 }

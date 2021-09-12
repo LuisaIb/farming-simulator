@@ -85,6 +85,10 @@ public class GameScene {
         gamePane.getChildren().add(informationBox.getInformationBox());
     }
 
+    public InformationBox getInformationBox(){
+        return informationBox;
+    }
+
     /**
      *
      * This method gets the sideControlPane from the class SideControlPane that implements a Pane with all the buttons
