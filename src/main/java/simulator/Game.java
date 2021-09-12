@@ -37,13 +37,10 @@ public class Game {
     private Silo silo;
     private CourtTrade courtTrade;
    
-    
-
-
-    public GameScene createNewGame(){
+	public GameScene createNewGame(){
         GameScene gameScene = new GameScene();
-	        farmer = new Farmer();
-	        tractor = new Tractor();
+        	farmer = new Farmer(18, 7, true);
+        	tractor = new Tractor();
 	        harvester = new Harvester();
 	        cultivator = new Cultivator();
 	        dumpTruck = new DumpTruck();
@@ -170,13 +167,14 @@ public class Game {
     // all position values
     /**
 	 * This method gets the position of the farmer of the class...
+     * @param farmer 
 	 * @return serialized as a JSONB object of the farmer's position
 	 */
 	public String toSerializeFarmer() {
-		farmer = new Farmer(5, 13, true);
-		farmer.getX();
-		farmer.getY();
-		farmer.isSelected();
+		farmer = new Farmer();
+//		farmer.getX();
+//		farmer.getY();
+//		farmer.isSelected();
 		Jsonb jsonb = JsonbBuilder.create();
 		String serializedsf = jsonb.toJson(farmer);
 		return serializedsf;
