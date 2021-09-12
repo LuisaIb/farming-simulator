@@ -98,9 +98,15 @@ public class Game {
     	 * This method gets the values of the cash, the filling and the gameday of the class GameValue.
     	 * @return serialized as a JSONB object of the cash, filling values and the day.
     	 */
-//    	public String toSerializeGame() {
-//    		gameValue.setCash(120);
-//    
+    	public String toSerializeGame() {
+    		gameValue.setCash(120);
+    		gameValue.getDay();
+    		Jsonb jsonb = JsonbBuilder.create();
+    		String serializedGameValue = jsonb.toJson(gameValue);
+    		return serializedGameValue;
+    	}
+    		
+   
     	/**
     	 * This method gets the value of the level of difficulty of the class LevelOfDifficulty.
     	 * @return serialized as a JSONB object of the level of difficulty.
