@@ -1,9 +1,15 @@
 package simulator;
 
+<<<<<<< HEAD
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
+
+=======
+>>>>>>> branch 'main' of git@github.com:IsabelJnz/Landwirtschaftssimulator_SE2.git
 import datastorage.information.fromjsonb.GetSavingInformationMovingObject;
 import datastorage.information.fromjsonb.GetSavingInformationValue;
-import datastorage.jsonb.GetJsonbMovingObject;
-import datastorage.jsonb.GetJsonbValue;
+import datastorage.pojo.GetPojoMovingObject;
+import datastorage.pojo.GetPojoValue;
 import gameboard.GameValue;
 import gameboard.tiles.CourtTrade;
 import gameboard.tiles.Silo;
@@ -91,47 +97,320 @@ public class Game {
         return 0;
     }
 
-    public void saveGame(){
         // all numeric values
-        GetJsonbValue gjv = new GetJsonbValue();
-        gjv.toSerializeGame();
-        gjv.toSerializeLevel();
-        gjv.toSerializeFieldtiles();// Exception werfen um speicher vorgan zu pr�fen
-        gjv.toSerializeSilo();
-        gjv.toSerializeCourtTrade();
+    	/**
+    	 * This method gets the values of the cash, the filling and the gameday of the class GameValue.
+    	 * @return serialized as a JSONB object of the cash, filling values and the day.
+    	 */
+//    	public String toSerializeGame() {
+//    		gameValue.setCash(120);
+//    
+    	/**
+    	 * This method gets the value of the level of difficulty of the class LevelOfDifficulty.
+    	 * @return serialized as a JSONB object of the level of difficulty.
+    	 */
+    	public String toSerializeLevel() {
+       		levelOfDifficulty.getLevel();
+    		Jsonb jsonb = JsonbBuilder.create();
+    		String serializedlod = jsonb.toJson(levelOfDifficulty);
+    		return serializedlod;
+    	}
+    	
+    	/**
+    	 * This method gets the growth state of all three fields of the class FieldTile.
+    	 * @return serialized as a JSONB object of the fieldtile's conditions.
+    	 */
+    	public String toSerializeFieldtiles() { 
+    		fieldTile.getGrowthState(); // get Field id + status of the three fields.
+    		fieldTile.getGrowthState2();
+    		fieldTile.getGrowthState3();
+    		Jsonb jsonb = JsonbBuilder.create();
+    		String serializedft = jsonb.toJson(fieldTile);
+    		return serializedft;
+    	}
+    	
+    	/**
+    	 * This method gets the filling of the silo.
+    	 * @return serialized as a JSONB object of the Silo's conditions.
+    	 */
+    	public String toSerializeSilo() { 
+    		silo.getCapacity();
+    		Jsonb jsonb = JsonbBuilder.create();
+    		String serializeds = jsonb.toJson(silo);
+    		return serializeds;
+    	}
+    	
+    	/**
+    	 * This method gets the filling of the silo.
+    	 * @return serialized as a JSONB object of the Silo's conditions.
+    	 */
+    	public String toSerializeCourtTrade() { 
+    		courtTrade.getGrainFillLevel();
+    		Jsonb jsonb = JsonbBuilder.create();
+    		String serializedct = jsonb.toJson(courtTrade);
+    		return serializedct;
+    	}
 
         // all position values
-        GetJsonbMovingObject gjp = new GetJsonbMovingObject();
-        gjp.toSerializeFarmer(farmer);
-        gjp.toSerializeTractor();
-        gjp.toSerializeHarvester();// Exception
-        gjp.toSerializeCultivator();
-        gjp.toSerializeDumpTruck();
-        gjp.toSerializeSeedDrill();
-
-
-    }
+        /**
+    	 * This method gets the position of the farmer of the class...
+    	 * @return serialized as a JSONB object of the farmer's position
+    	 */
+    	public String toSerializeFarmer() {
+    		farmer.getX();
+    		farmer.getY();
+    		farmer.isSelected();
+    		Jsonb jsonb = JsonbBuilder.create();
+    		String serializedsf = jsonb.toJson(farmer);
+    		return serializedsf;
+    	}
+    	
+    	/**
+    	 * This method gets the position of the tractor of the class...
+    	 * @return serialized as a JSONB object of the tractor's positions
+    	 */
+    	public String toSerializeTractor() { 
+    		tractor.getX();
+    		tractor.getY();
+    		tractor.isSelected();
+    		tractor.getPetrolTankFillLevel();
+    		tractor.isAttachement();
+    		Jsonb jsonb = JsonbBuilder.create();
+    		String serializedst = jsonb.toJson(tractor);
+    		return serializedst;
+    	}
+    	
+    	/**
+    	 * This method gets the position of the harvester of the class...
+    	 * @return serialized as a JSONB object of the tractor's positions
+    	 */
+    	public String toSerializeHarvester() { 
+    		harvester.getX();
+    		harvester.getY();
+    		harvester.isSelected();
+    		harvester.getPetrolTankFillLevel();
+    		harvester.getGrainTankFillLevel();
+    		Jsonb jsonb = JsonbBuilder.create();
+    		String serializedsh = jsonb.toJson(harvester);
+    		return serializedsh;
+    	}
+    	
+    	/**
+    	 * This method gets the information of the Cultivator.
+    	 * @return serialized as a JSONB object of the tractor's positions
+    	 */
+    	public String toSerializeCultivator() { 
+    		cultivator.getX();
+    		cultivator.getY();
+    		cultivator.isSelected();
+    		Jsonb jsonb = JsonbBuilder.create();
+    		String serializedsc = jsonb.toJson(cultivator);
+    		return serializedsc;
+    	}
+    	
+    	/**
+    	 * This method gets the information of the Cultivator.
+    	 * @return serialized as a JSONB object of the tractor's positions
+    	 */
+    	public String toSerializeDumpTruck() { 
+    		dumpTruck.getX();
+    		dumpTruck.getY();
+    		dumpTruck.isSelected();
+    		dumpTruck.getGrainFillLevel();
+    		Jsonb jsonb = JsonbBuilder.create();
+    		String serializedsdt = jsonb.toJson(dumpTruck);
+    		return serializedsdt;
+    	}
+    	
+    	/**
+    	 * This method gets the information of the Cultivator.
+    	 * @return serialized as a JSONB object of the tractor's positions
+    	 */
+    	public String toSerializeSeedDrill() { 
+    		seedDrill.getX();
+    		seedDrill.getY();
+    		seedDrill.isSelected();
+    		Jsonb jsonb = JsonbBuilder.create();
+    		String serializedssd = jsonb.toJson(seedDrill);
+    		return serializedssd;
+    	}
+    
 
     public GameScene reloadGame(){
         GameScene gameScene = new GameScene();
         MovingObjectController movingObjectController = new MovingObjectController();
         //all numeric values
-        GetSavingInformationValue siv = new GetSavingInformationValue();
-        gameValue = siv.GetSavingInformationGame();
-        //levelOfDifficulty = siv.GetSavingInformationLevel();
-        fieldTile = siv.GetSavingInformationFieldtiles();// Exception
-        silo = siv.GetSavingInformationSilo();
-        courtTrade = siv.GetSavingInformationCourtTrade();
-
+        /**
+    	 * This method deserialize the JSONB file. It is also possible to get the values of the cash, the tank filling and the gameday.
+    	 * It implements a new GameValue object by using the class constructor.
+    	 */
+    	GetPojoValue gpv = new GetPojoValue();
+//			GameValue deserializedcash = gpv.toDeserializeGame(toSerializeGame());
+//			int cash = deserializedcash.getCash();
+						
+//			GameValue deserializedday = gpv.toDeserializeGame(toSerializeGame());
+//			int day = deserializedday.getDay();
+		
+		gameValue = new GameValue(0, 3);
+    	
+    	/**
+    	 * This method deserialize the JSONB file. It is also possible to get the level of difficulty.
+    	 * It implements a new LevelOfDifficulty object by using the class constructor.
+    	 */
+ 			LevelOfDifficulty deserializedlevel = gpv.toDeserializeLevel(toSerializeLevel());
+    		int newLevel = deserializedlevel.getLevel();
+    			
+    	levelOfDifficulty = new LevelOfDifficulty(newLevel);
+    	
+    	/**
+    	 * This method deserialize the JSONB file. It is also possible to get the growth state of field one, the growth state of field two and the growth state of field three.
+    	 * It implements a new FieldTile object by using the class constructor.
+    	 */
+			FieldTile deserializedft1 = gpv.toDeserializeFieldtiles(toSerializeFieldtiles());
+			int ft1 = deserializedft1.getGrowthState();
+			
+			FieldTile deserializedft2 = gpv.toDeserializeFieldtiles(toSerializeFieldtiles());
+			int ft2 = deserializedft2.getGrowthState2();
+			
+			FieldTile deserializedft3 = gpv.toDeserializeFieldtiles(toSerializeFieldtiles());
+			int ft3 = deserializedft3.getGrowthState3();
+			
+		fieldTile = new FieldTile(ft1, ft2, ft3);
+		    	
+    	/**
+    	 * This method deserialize the JSONB file. It is also possible to get the capacity of the silo.
+    	 * It implements a new Silo object by using the class constructor.
+    	 */
+    	
+			Silo deserializedcapacity = gpv.toDeserializeSilo(toSerializeSilo());
+			int capacity = deserializedcapacity.getCapacity();
+			
+		silo = new Silo (capacity);
+    		
+       	/**
+    	 * This method deserialize the JSONB file. It is also possible to get the capacity of the silo.
+    	 * It implements a new Silo object by using the class constructor.
+    	 */
+    	
+			CourtTrade deserializedGrainFillLevel = gpv.toDeserializeCourtTrade(toSerializeCourtTrade());
+			int grainFillLevel = deserializedGrainFillLevel.getGrainFillLevel();
+			
+			//cash Variable, ggf GameValue l�schen und cash zum hofladen
+			
+		courtTrade = new CourtTrade(grainFillLevel);
+    					
         // all positions
-        GetSavingInformationMovingObject sip = new GetSavingInformationMovingObject();
-        farmer = sip.GetSavingInformationFarmer();
-        tractor = sip.GetSavingInformationTractor();
-        harvester = sip.GetSavingInformationHarvster();// Exception
-        cultivator = sip.GetSavingInformationCultivator();
-        dumpTruck = sip.GetSavingInformationDumpTruck();
-        seedDrill = sip.GetSavingInformationSeedDrill();
-
+    	/**
+    	 * This method deserialize the JSONB file. It is also possible to get the position of the farmer.
+    	 * It implements a new position (x and y value) of the farmer.
+    	 */
+		GetPojoMovingObject gpp = new GetPojoMovingObject();
+			Farmer deserializedfX = gpp.toDeserializeFarmer(toSerializeFarmer());
+			int xf = deserializedfX.getX();
+			
+			Farmer deserializedfY = gpp.toDeserializeFarmer(toSerializeFarmer());
+			int yf = deserializedfY.getY();
+			
+			Farmer deserializedSelectedf = gpp.toDeserializeFarmer(toSerializeFarmer());
+			boolean selectedf = deserializedSelectedf.isSelected();
+		
+		farmer = new Farmer(xf, yf, selectedf);
+		
+    	/**
+    	 * This method deserialize the JSONB file. It is also possible to get the position of the tractor.
+    	 * It implements a new position (x and y value) of the tractor.
+    	 */
+    	
+    		Tractor deserializedtX = gpp.toDeserializeTractor(toSerializeTractor());
+    		int xt = deserializedtX.getX();
+    		
+    		Tractor deserializedtY = gpp.toDeserializeTractor(toSerializeTractor());
+    		int yt = deserializedtY.getY();
+    		
+    		Tractor deserializedSelectedt = gpp.toDeserializeTractor(toSerializeTractor());
+    		boolean selectedt = deserializedSelectedt.isSelected();
+    		
+    		Tractor deserializedPetrolTankFillLevelt = gpp.toDeserializeTractor(toSerializeTractor());
+    		int petrolTankFillLevelt = deserializedPetrolTankFillLevelt.getPetrolTankFillLevel();
+    		
+    		Tractor deserializedAttachementt = gpp.toDeserializeTractor(toSerializeTractor());
+    		boolean attachementt = deserializedAttachementt.isAttachement();
+    		
+		tractor = new Tractor(xt, yt, selectedt, petrolTankFillLevelt, attachementt);
+    		
+    	/**
+    	 * This method deserialize the JSONB file. It is also possible to get the position of the harvester.
+    	 * It implements a new position (x and y value) of the harvester.
+    	 */
+    	
+    		Harvester deserializedhX = gpp.toDeserializeHarvester(toSerializeHarvester());
+    		int xh = deserializedhX.getX();
+    		
+    		Harvester deserializedhY = gpp.toDeserializeHarvester(toSerializeHarvester());
+    		int yh = deserializedhY.getY();
+    		
+    		Harvester deserializedSelectedh = gpp.toDeserializeHarvester(toSerializeHarvester());
+    		boolean selectedh = deserializedSelectedh.isSelected();
+    		
+    		Harvester deserializedPetrolTankFillLevelh = gpp.toDeserializeHarvester(toSerializeHarvester());
+    		int petrolTankFillLevelh = deserializedPetrolTankFillLevelh.getPetrolTankFillLevel();
+    		
+    		Harvester deserializedGrainTankFillLevelh = gpp.toDeserializeHarvester(toSerializeHarvester());
+    		int grainTankFillLevelh = deserializedGrainTankFillLevelh.getGrainTankFillLevel();
+    		
+		harvester = new Harvester(xh, yh, selectedh, petrolTankFillLevelh, grainTankFillLevelh);
+    	
+    	/**
+    	 * This method deserialize the JSONB file. It is also possible to get the position of the harvester.
+    	 * It implements a new position (x and y value) of the harvester.
+    	 */
+    		
+    		Cultivator deserializedcX = gpp.toDeserializeCultivator(toSerializeCultivator());
+    		int xc = deserializedcX.getX();
+    		
+    		Cultivator deserializedcY = gpp.toDeserializeCultivator(toSerializeCultivator());
+    		int yc = deserializedcY.getY();
+    		
+    		Cultivator deserializedSelectedc = gpp.toDeserializeCultivator(toSerializeCultivator());
+    		boolean selectedc = deserializedSelectedc.isSelected();
+    		
+		cultivator = new Cultivator(xc, yc, selectedc);
+    		
+    	/**
+    	 * This method deserialize the JSONB file. It is also possible to get the position of the harvester.
+    	 * It implements a new position (x and y value) of the harvester.
+    	 */
+    	
+    		DumpTruck deserializeddtX = gpp.toDeserializeDumpTruck(toSerializeDumpTruck());
+    		int xdt = deserializeddtX.getX();
+    		
+    		DumpTruck deserializeddtY = gpp.toDeserializeDumpTruck(toSerializeDumpTruck());
+    		int ydt = deserializeddtY.getY();
+    		
+    		DumpTruck deserializedSelecteddt = gpp.toDeserializeDumpTruck(toSerializeDumpTruck());
+    		boolean selecteddt = deserializedSelecteddt.isSelected();
+    		
+    		DumpTruck deserializedGrainFillLeveldt = gpp.toDeserializeDumpTruck(toSerializeDumpTruck());
+    		int grainFillLeveldt = deserializedGrainFillLeveldt.getGrainFillLevel();
+    		
+		dumpTruck = new DumpTruck(xdt, ydt, selecteddt, grainFillLeveldt);
+    		
+    	/**
+    	 * This method deserialize the JSONB file. It is also possible to get the position of the harvester.
+    	 * It implements a new position (x and y value) of the harvester.
+    	 */
+    		
+    		SeedDrill deserializedsdX = gpp.toDeserializeSeedDrill(toSerializeSeedDrill());
+    		int xsd = deserializedsdX.getX();
+    		
+    		SeedDrill deserializedsdY = gpp.toDeserializeSeedDrill(toSerializeSeedDrill());
+    		int ysd = deserializedsdY.getY();
+    		
+    		SeedDrill deserializedSelectedsd = gpp.toDeserializeSeedDrill(toSerializeSeedDrill());
+    		boolean selectedsd = deserializedSelectedsd.isSelected();
+    		
+		seedDrill = new SeedDrill(xsd, ysd, selectedsd);
+    		
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
                 cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
                 fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());

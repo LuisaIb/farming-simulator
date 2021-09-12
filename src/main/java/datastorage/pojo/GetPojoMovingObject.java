@@ -3,13 +3,13 @@ package datastorage.pojo;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
-import datastorage.jsonb.GetJsonbMovingObject;
 import gameboard.objects.Cultivator;
 import gameboard.objects.DumpTruck;
 import gameboard.objects.Farmer;
 import gameboard.objects.Harvester;
 import gameboard.objects.SeedDrill;
 import gameboard.objects.Tractor;
+import simulator.Game;
 
 /**
  * @author Isabel
@@ -21,10 +21,9 @@ public class GetPojoMovingObject {
 	 * This method creates an new object of the class Farmer.
 	 * @return deserialized as a new Tractor object of the farmer's information.
 	 */
-	public Farmer toDeserializeFarmer() {  
-		GetJsonbMovingObject jbp = new GetJsonbMovingObject();
-		Jsonb jb = JsonbBuilder.create();
-		Farmer deserializeddf = jb.fromJson(jbp.toSerializeFarmer(), Farmer.class);
+	public Farmer toDeserializeFarmer(String jb) {  
+		Jsonb jb1 = JsonbBuilder.create();
+		Farmer deserializeddf = jb1.fromJson(jb, Farmer.class);
 		return deserializeddf;	
 	}
 	
@@ -32,10 +31,9 @@ public class GetPojoMovingObject {
 	 * This method creates an new object of the class Tractor.
 	 * @return deserialized as a new Tractor object of the tractor's information.
 	 */
-	public Tractor toDeserializeTractor() {  	
-		GetJsonbMovingObject jbp = new GetJsonbMovingObject();
-		Jsonb jb = JsonbBuilder.create();
-		Tractor deserializeddt = jb.fromJson(jbp.toSerializeTractor(), Tractor.class);
+	public Tractor toDeserializeTractor(String jb) {  	
+		Jsonb jb1 = JsonbBuilder.create();
+		Tractor deserializeddt = jb1.fromJson(jb, Tractor.class);
 		return deserializeddt;	
 	}
 	
@@ -43,10 +41,9 @@ public class GetPojoMovingObject {
 	 * This method creates an new object of the class Harvester.
 	 * @return deserialized as a new Tractor object of the harvester's information.
 	 */
-	public Harvester toDeserializeHarvester() {  
-		GetJsonbMovingObject jbp = new GetJsonbMovingObject();
-		Jsonb jb = JsonbBuilder.create();
-		Harvester deserializeddh = jb.fromJson(jbp.toSerializeHarvester(), Harvester.class);
+	public Harvester toDeserializeHarvester(String jb) {  
+		Jsonb jb1 = JsonbBuilder.create();
+		Harvester deserializeddh = jb1.fromJson(jb, Harvester.class);
 		return deserializeddh;	
 	}
 	
@@ -54,10 +51,9 @@ public class GetPojoMovingObject {
 	 * This method creates an new object of the class Cultivator.
 	 * @return deserialized as a new Tractor object of the cultivator's information.
 	 */
-	public Cultivator toDeserializeCultivator() {  
-		GetJsonbMovingObject jbp = new GetJsonbMovingObject();
-		Jsonb jb = JsonbBuilder.create();
-		Cultivator deserializedch = jb.fromJson(jbp.toSerializeCultivator(), Cultivator.class);
+	public Cultivator toDeserializeCultivator(String jb) {  
+		Jsonb jb1 = JsonbBuilder.create();
+		Cultivator deserializedch = jb1.fromJson(jb, Cultivator.class);
 		return deserializedch;	
 	}
 	
@@ -65,10 +61,9 @@ public class GetPojoMovingObject {
 	 * This method creates an new object of the class DumpTruck.
 	 * @return deserialized as a new Tractor object of the DumpTruck's information.
 	 */
-	public DumpTruck toDeserializeDumpTruck() {  
-		GetJsonbMovingObject jbp = new GetJsonbMovingObject();
-		Jsonb jb = JsonbBuilder.create();
-		DumpTruck deserializedddt = jb.fromJson(jbp.toSerializeDumpTruck(), DumpTruck.class);
+	public DumpTruck toDeserializeDumpTruck(String jb) {  
+		Jsonb jb1 = JsonbBuilder.create();
+		DumpTruck deserializedddt = jb1.fromJson(jb, DumpTruck.class);
 		return deserializedddt;	
 	}
 	
@@ -76,10 +71,9 @@ public class GetPojoMovingObject {
 	 * This method creates an new object of the class SeedDrill.
 	 * @return deserialized as a new Tractor object of the SeedDrill's information.
 	 */
-	public SeedDrill toDeserializeSeedDrill() {  
-		GetJsonbMovingObject jbp = new GetJsonbMovingObject();
-		Jsonb jb = JsonbBuilder.create();
-		SeedDrill deserializeddsd = jb.fromJson(jbp.toSerializeSeedDrill(), SeedDrill.class);
+	public SeedDrill toDeserializeSeedDrill(String jb) {  
+		Jsonb jb1 = JsonbBuilder.create();
+		SeedDrill deserializeddsd = jb1.fromJson(jb, SeedDrill.class);
 		return deserializeddsd;	
 	}
 
