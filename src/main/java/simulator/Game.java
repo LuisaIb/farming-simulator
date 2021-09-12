@@ -62,8 +62,8 @@ public class Game {
         System.out.println(getSelectedObject());
         System.out.println(getColumn());
         System.out.println(getRow());
-		gameController.initGameLoop(gameScene, fieldTile, getMovingObject(), getSelectedObject());
-        GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester);
+		gameController.initGameLoop(gameScene, fieldTile, getMovingObject(), getSelectedObject(), gameValue);
+        GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
         gameValue.setCash(50);
         return gameScene;
     }
@@ -446,8 +446,8 @@ public class Game {
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
                 cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
                 fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
-		gameController.initGameLoop(gameScene, fieldTile, farmer, getSelectedObject());
-		GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester);
+		gameController.initGameLoop(gameScene, fieldTile, farmer, getSelectedObject(), gameValue);
+		GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
         return gameScene;
     }
 

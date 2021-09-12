@@ -1,5 +1,6 @@
 package gui.controller;
 
+import gameboard.GameValue;
 import gameboard.objects.MovingObject;
 import gameboard.tiles.FieldTile;
 import gui.view.GameScene;
@@ -14,9 +15,10 @@ public class GameController {
     private boolean upPressed;
     private boolean downPressed;
     private int fieldCounter = 0;
-    int growthStageField1;
-    int growthStageField2;
-    int growthSTageField3;
+    private int growthStageField1;
+    private int growthStageField2;
+    private int growthSTageField3;
+    private int dayCounter = 0;
 
 
 
@@ -52,7 +54,7 @@ public class GameController {
         }
     }
 
-    public void initGameLoop(GameScene gameScene, FieldTile fieldTile, MovingObject movingObject, int selectedObject){
+    public void initGameLoop(GameScene gameScene, FieldTile fieldTile, MovingObject movingObject, int selectedObject, GameValue gameValue){
         gameTimer = new AnimationTimer() {
             private long lastUpdate = 0;
             @Override
@@ -61,6 +63,7 @@ public class GameController {
                     gameScene.moveObject(movingObject);
                     proofAction(gameScene, movingObject, selectedObject);
                     lastUpdate = now;
+                    DayCounter(gameValue);
                     proofFieldCounter(gameScene, fieldTile);
                 }
             }
@@ -68,12 +71,21 @@ public class GameController {
         gameTimer.start();
     }
 
-    public void proofFieldCounter(GameScene gameScene, FieldTile fieldTile){
+    private void DayCounter(GameValue gameValue) {
+        dayCounter++;
+        if (dayCounter == 50) {
+            gameValue.setDay(gameValue.getDay()+1);
+            System.out.println(gameValue.getDay());
+            dayCounter = 0;
+        }
+    }
+
+    private void proofFieldCounter(GameScene gameScene, FieldTile fieldTile){
         fieldCounter++;
         growthStageField1 = fieldTile.getGrowthState();
         growthStageField2 = fieldTile.getGrowthState2();
         growthSTageField3 = fieldTile.getGrowthState3();
-        if (fieldCounter == 100) {
+        if (fieldCounter == 1000) {
             if (growthStageField1 > 1 && growthStageField1 < 6) {
                 //fieldTile.setGrowthState(growthStageField1+1);
             }
