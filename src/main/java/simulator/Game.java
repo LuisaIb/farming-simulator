@@ -9,7 +9,7 @@ import datastorage.pojo.GetPojoValue;
 import gameboard.GameValue;
 import gameboard.tiles.CourtTrade;
 import gameboard.tiles.Silo;
-import gui.controller.MovingObjectController;
+import gui.controller.GameController;
 import gameboard.objects.*;
 import gameboard.tiles.FieldTile;
 import gui.model.GameInformation;
@@ -34,20 +34,19 @@ public class Game {
     private LevelOfDifficulty levelOfDifficulty = new LevelOfDifficulty();
     private Silo silo = new Silo();
     private CourtTrade courtTrade = new CourtTrade();
-   
     
 
 
     public GameScene createNewGame(){
         GameScene gameScene = new GameScene();
-        MovingObjectController movingObjectController = new MovingObjectController();
+        GameController gameController = new GameController();
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
                 cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
                 fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
         System.out.println(getSelectedObject());
         System.out.println(getColumn());
         System.out.println(getRow());
-        movingObjectController.initGameLoop(gameScene, fieldTile, farmer);
+		gameController.initGameLoop(gameScene, fieldTile, farmer);
         GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue);
         gameValue.setCash(50);
         return gameScene;
@@ -246,7 +245,7 @@ public class Game {
 
     public GameScene reloadGame(){
         GameScene gameScene = new GameScene();
-        MovingObjectController movingObjectController = new MovingObjectController();
+        GameController gameController = new GameController();
         //all numeric values
         /**
     	 * This method deserialize the JSONB file. It is also possible to get the values of the cash, the tank filling and the gameday.
@@ -422,7 +421,7 @@ public class Game {
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
                 cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
                 fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
-        movingObjectController.initGameLoop(gameScene, fieldTile, farmer);
+		gameController.initGameLoop(gameScene, fieldTile, farmer);
         return gameScene;
     }
 

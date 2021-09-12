@@ -17,7 +17,14 @@ public class GameInformation {
         gameValue.cashProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                informationBox.getNewsField().setText(gameValue.cashProperty().toString());
+                informationBox.getMoneyField().setText(gameValue.getCashAsString());
+            }
+        });
+
+        gameValue.day().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                informationBox.getTimeField().setText(gameValue.getDayAsString());
             }
         });
     }

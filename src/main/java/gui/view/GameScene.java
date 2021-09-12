@@ -2,7 +2,7 @@ package gui.view;
 
 import exceptions.MovingExcpetion;
 import gameboard.objects.MovingObject;
-import gui.controller.MovingObjectController;
+import gui.controller.GameController;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -21,7 +21,7 @@ public class GameScene {
     private Pane gamePane;
     private Scene gameScene;
     Matchfield matchfield;
-    MovingObjectController movingObjectController;
+    GameController gameController;
     MovingObject movingObject = new MovingObject();
     InformationBox informationBox;
     SideControlPane sideControlPane;
@@ -51,7 +51,7 @@ public class GameScene {
         gamePane = new Pane();
         gameScene = new Scene(gamePane, WIDTH, HEIGHT);
         matchfield = new Matchfield();
-        movingObjectController = new MovingObjectController();
+        gameController = new GameController();
         gamePane.setPrefWidth(WIDTH);
         gamePane.setPrefHeight(HEIGHT);
         initializeInformationBox();
@@ -60,11 +60,11 @@ public class GameScene {
         movingObject.setX(column);
         movingObject.setY(row);
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) ->{
-            movingObjectController.setBooleansPressed(event);
+            gameController.setBooleansPressed(event);
         });
 
         gameScene.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
-            movingObjectController.setBooleansReleased(event);
+            gameController.setBooleansReleased(event);
         });
     }
 
@@ -142,8 +142,8 @@ public class GameScene {
     }
 
     public void moveObject(MovingObject movingObject) {
-        if (movingObjectController.isRightPressed() && !movingObjectController.isLeftPressed() &&
-                !movingObjectController.isUpPressed() && !movingObjectController.isDownPressed()) {
+        if (gameController.isRightPressed() && !gameController.isLeftPressed() &&
+                !gameController.isUpPressed() && !gameController.isDownPressed()) {
             System.out.println("Rechts ist jetzt als einzige Taste gedrückt?");
             try {
                 if (matchfield.getMovingObjectImageView().getRotate() != 270) {
@@ -156,8 +156,8 @@ public class GameScene {
             }
             System.out.println("moving right");
         }
-        if (movingObjectController.isLeftPressed() && !movingObjectController.isRightPressed() &&
-                !movingObjectController.isUpPressed() && !movingObjectController.isDownPressed()) {
+        if (gameController.isLeftPressed() && !gameController.isRightPressed() &&
+                !gameController.isUpPressed() && !gameController.isDownPressed()) {
             System.out.println("Links ist jetzt als einzige Taste gedrückt?");
             try {
                 if (matchfield.getMovingObjectImageView().getRotate() != 90) {
@@ -170,8 +170,8 @@ public class GameScene {
             }
             System.out.println("moving left");
         }
-        if (movingObjectController.isUpPressed() && !movingObjectController.isRightPressed() &&
-                !movingObjectController.isLeftPressed() && !movingObjectController.isDownPressed()) {
+        if (gameController.isUpPressed() && !gameController.isRightPressed() &&
+                !gameController.isLeftPressed() && !gameController.isDownPressed()) {
             System.out.println("Hoch ist jetzt als einzige Taste gedrückt?");
             try {
                 if (matchfield.getMovingObjectImageView().getRotate() != 180) {
@@ -184,8 +184,8 @@ public class GameScene {
             }
             System.out.println("moving up");
         }
-        if (movingObjectController.isDownPressed() && !movingObjectController.isRightPressed() &&
-                !movingObjectController.isLeftPressed() && !movingObjectController.isUpPressed()) {
+        if (gameController.isDownPressed() && !gameController.isRightPressed() &&
+                !gameController.isLeftPressed() && !gameController.isUpPressed()) {
             System.out.println("Runter ist jetzt als einzige Taste gedrückt?");
             try {
                 if (matchfield.getMovingObjectImageView().getRotate() != 0) {

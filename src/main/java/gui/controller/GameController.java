@@ -6,9 +6,8 @@ import gui.view.GameScene;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import simulator.Game;
 
-public class MovingObjectController {
+public class GameController {
     private AnimationTimer gameTimer;
     private boolean rightPressed;
     private boolean leftPressed;
@@ -123,13 +122,17 @@ public class MovingObjectController {
     }
 
 
-    private void proofAction(GameScene gameScene){
-        int x = 0;
-        int y = 0;
+    private void proofAction(GameScene gameScene, MovingObject movingObject){
+        int x = movingObject.getX();
+        int y = movingObject.getY();
         if ((x == 16 || x == 17) && y == 13) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("select vehicle");
-        } else {
+        } else if (x == ) {
+
+        }
+
+        else {
             gameScene.getSideControlPane().getButtonAction().setDisable(true);
             gameScene.getSideControlPane().getButtonAction().setText("");
         }

@@ -70,4 +70,24 @@ public class InformationBox {
     public LSTextField getNewsField() {
         return newsField;
     }
+
+    public LSTextField getHarvesterField() {
+        return harvesterField;
+    }
+
+    public LSTextField getSiloField() {
+        return siloField;
+    }
+
+    public LSTextField getMoneyField() {
+        return moneyField;
+    }
+
+    public LSTextField getTimeField() {
+        return timeField;
+    }
+
+    public LSTextField getTractorField() {
+        return tractorField;
+    }
 }
