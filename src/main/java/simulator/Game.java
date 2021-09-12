@@ -54,7 +54,7 @@ public class Game {
 	        silo = new Silo();
 	        courtTrade = new CourtTrade();
         
-        
+        movingObject = farmer;
         GameController gameController = new GameController();
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
                 cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
@@ -62,16 +62,23 @@ public class Game {
         System.out.println(getSelectedObject());
         System.out.println(getColumn());
         System.out.println(getRow());
-		gameController.initGameLoop(gameScene, fieldTile, farmer, getSelectedObject());
-        GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue);
+		gameController.initGameLoop(gameScene, fieldTile, getMovingObject(), getSelectedObject());
+        GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester);
         gameValue.setCash(50);
         return gameScene;
     }
 
+    public void setMovingObject(MovingObject movingObject){
+    	this.movingObject = movingObject;
+	}
+
+	public MovingObject getMovingObject(){
+    	return movingObject;
+	}
+
 	public int getSelectedObject(){
         if(farmer.isSelected()){
             selectedObject=1;
-            movingObject=farmer;
         }else if(tractor.isSelected()){
         	if (cultivator.isSelected()) {
         		selectedObject = 4;
@@ -440,7 +447,7 @@ public class Game {
                 cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
                 fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
 		gameController.initGameLoop(gameScene, fieldTile, farmer, getSelectedObject());
-		GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue);
+		GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester);
         return gameScene;
     }
 

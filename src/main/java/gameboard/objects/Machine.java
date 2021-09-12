@@ -1,6 +1,8 @@
 package gameboard.objects;
 
 import exceptions.EmptyTankException;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 /**
  * This class implements the methods, that are basic functions for every Machine.
@@ -10,7 +12,8 @@ import exceptions.EmptyTankException;
 public class Machine extends MovingObject{
 
 	private final int PETROL_TANK_CAPACITY = 150;
-	private int petrolTankFillLevel; //stands for the petrol tank of the machines
+	//stands for the petrol tank of the machines
+	private IntegerProperty petrolTankFillLevel = new SimpleIntegerProperty();
 
 	
 	/**
@@ -18,16 +21,16 @@ public class Machine extends MovingObject{
 	 */
 	public Machine() {
 		super(18, 7, false);
-		petrolTankFillLevel = 100;
+		petrolTankFillLevel.set(100);
 	}
 	
 	/**
 	 * the constructor sets the position in the coordinate system
-	 * @param id
+	 * @param
 	 */
 	public Machine(int x, int y, boolean selected, int petrolTankFillLevel) {
 		super(x, y, selected);
-		this.petrolTankFillLevel = petrolTankFillLevel;
+		this.petrolTankFillLevel.set(petrolTankFillLevel);
 	}
 	
 
@@ -63,7 +66,13 @@ public class Machine extends MovingObject{
 	 * @return the petrolTankFillLevel
 	 */
 	public int getPetrolTankFillLevel() {
-		return petrolTankFillLevel;
+		return petrolTankFillLevel.get();
+	}
+
+	public IntegerProperty petrolTankFillLevel(){ return petrolTankFillLevel; }
+
+	public String getPetrolTankFillLevelAsString(){
+		return "" + petrolTankFillLevel.get();
 	}
 	
 }
