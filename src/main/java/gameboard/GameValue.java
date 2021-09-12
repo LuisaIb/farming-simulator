@@ -11,7 +11,8 @@ import javafx.beans.property.SimpleIntegerProperty;
  *
  */
 public class GameValue {
-	private IntegerProperty cashProperty;
+	private IntegerProperty cashProperty = new SimpleIntegerProperty();
+	private int cash = 100;
 
 	private int day;
 	
@@ -31,7 +32,6 @@ public class GameValue {
 	 * @param day
 	 */
 	public GameValue() {
-		cashProperty = new SimpleIntegerProperty();
 		cashProperty.set(100);
 		day = 1;
 	}

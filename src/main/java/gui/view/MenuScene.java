@@ -6,7 +6,9 @@ import gui.model.LSButton;
 
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import simulator.Game;
 
 import static gui.view.ViewManager.HEIGHT;
 import static gui.view.ViewManager.WIDTH;
@@ -23,12 +25,12 @@ public class MenuScene {
     private Scene menuScene = new Scene(menuPane, WIDTH, HEIGHT);
     private static final String PATH_TO_BACKGROUND_IMAGE = "src/main/java/gui/view/resources/background/field.jpg";
     private LSButton buttonNewGame;
-    private LSButton buttonContinueGame;
     private LSButton buttonLoadGame;
     private LSButton buttonSaveGame;
     private LSButton buttonHelp;
     private LSButton buttonEnd;
     SceneController sceneController = new SceneController();
+    Game game = new Game();
 
     /**
      * Constructs an object of the class MenuScene. It initializes the menuPane with the method initializeMenuPane().
@@ -62,12 +64,15 @@ public class MenuScene {
         buttonNewGame = new LSButton("Neues Spiel", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonNewGame.setOnMouseClicked(sceneController.setSceneToDifficultyScene);
-        buttonContinueGame = new LSButton("Spiel fortsetzen", 50, 250, HEIGHT/2,
-                WIDTH/2, 20);
         buttonLoadGame = new LSButton("Spiel laden",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
+        buttonLoadGame.setOnMouseClicked(sceneController.setSceneToReloadGameScene);
         buttonSaveGame = new LSButton("Spiel speichern",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
+        buttonSaveGame.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+            game.saveGame();
+        });
+
         buttonHelp = new LSButton("Hilfe",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonHelp.setOnMouseClicked(sceneController.setSceneToHelpScene);
@@ -75,7 +80,7 @@ public class MenuScene {
                 WIDTH/2, 20);
         buttonEnd.setOnMouseClicked(sceneController.endGame);
 
-        menuBox.getChildren().addAll(buttonNewGame, buttonContinueGame, buttonLoadGame, buttonSaveGame,
+        menuBox.getChildren().addAll(buttonNewGame, buttonLoadGame, buttonSaveGame,
                 buttonHelp, buttonEnd);
         menuPane.getChildren().add(menuBox);
     }

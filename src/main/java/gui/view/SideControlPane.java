@@ -182,7 +182,7 @@ public class SideControlPane {
      * button that can be clicked, when some action is possible to do.
      */
     private void createControlButtons(){
-        buttonUp = new LSButton("↑", 50, 50,95,HEIGHT/100*70, 14);
+        buttonUp = new LSButton("W", 50, 50,95,HEIGHT/100*70, 14);
         buttonUp.setOnMousePressed(MouseEvent -> {
             movingObjectController.setUpPressed(true);
             System.out.println("up pressed");
@@ -191,7 +191,7 @@ public class SideControlPane {
             movingObjectController.setUpPressed(false);
             System.out.println("up released");
         });
-        buttonDown = new LSButton("↓", 50, 50, 95, HEIGHT/100*77, 14);
+        buttonDown = new LSButton("S", 50, 50, 95, HEIGHT/100*77, 14);
         buttonDown.setOnMousePressed(MouseEvent -> {
             movingObjectController.setDownPressed(true);
             System.out.println("down pressed");
@@ -200,7 +200,7 @@ public class SideControlPane {
             movingObjectController.setDownPressed(false);
             System.out.println("down released");
         });
-        buttonLeft = new LSButton("←", 50, 50,40,HEIGHT/100*77, 14);
+        buttonLeft = new LSButton("A", 50, 50,40,HEIGHT/100*77, 14);
         buttonLeft.setOnMousePressed(MouseEvent -> {
             movingObjectController.setLeftPressed(true);
             System.out.println("left pressed");
@@ -209,7 +209,7 @@ public class SideControlPane {
             movingObjectController.setLeftPressed(false);
             System.out.println("left released");
         });
-        buttonRight = new LSButton("→", 50, 50,150,HEIGHT/100*77, 14);
+        buttonRight = new LSButton("D", 50, 50,150,HEIGHT/100*77, 14);
         buttonRight.setOnMousePressed(MouseEvent -> {
             movingObjectController.setRightPressed(true);
             System.out.println("right pressed");

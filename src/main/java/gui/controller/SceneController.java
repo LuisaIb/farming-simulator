@@ -24,6 +24,14 @@ public class SceneController {
         window.show();
     };
 
+    public EventHandler<Event> setSceneToReloadGameScene = event -> {
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Game game = new Game();
+        GameScene gameScene = game.reloadGame();
+        window.setScene(gameScene.getGameScene());
+        window.show();
+    };
+
     public EventHandler<Event> setSceneToDifficultyScene = event -> {
         DifficultyScene difficultyScene = new DifficultyScene();
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();

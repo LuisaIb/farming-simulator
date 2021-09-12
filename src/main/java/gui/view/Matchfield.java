@@ -173,7 +173,7 @@ public class Matchfield {
     /**
      * Adds the image views of the fist field to the matchfield.
      */
-    private void setField1(int stageOfGrowth){
+    protected void setField1(int stageOfGrowth){
         for (int i = 20; i < NUMBER_COLUMNS; i++){
             for (int j = 14; j < NUMBER_ROWS; j++) {
                 ImageView imageViewField = getImageViewField(stageOfGrowth);
@@ -185,7 +185,7 @@ public class Matchfield {
     /**
      * Adds the image views of the second field to the matchfield.
      */
-    private void setField2(int stageOfGrowth){
+    protected void setField2(int stageOfGrowth){
         for (int i = 9; i < 19; i++){
             for (int j = 14; j < NUMBER_ROWS; j++) {
                 ImageView imageViewField = getImageViewField(stageOfGrowth);
@@ -197,7 +197,7 @@ public class Matchfield {
     /**
      * Adds the image views of the third field to the matchfield.
      */
-    private void setField3(int stageOfGrowth){
+    protected void setField3(int stageOfGrowth){
         for (int i = 20; i < NUMBER_COLUMNS; i++){
             for (int j = 6; j < 13; j++) {
                 ImageView imageViewField = getImageViewField(stageOfGrowth);
@@ -325,6 +325,10 @@ public class Matchfield {
      */
     public void setImageView(int selectedObject){
         movingObjectImageView = getTheRightImageView(selectedObject);
+    }
+
+    public ImageView getMovingObjectImageView(){
+        return movingObjectImageView;
     }
 
     /**

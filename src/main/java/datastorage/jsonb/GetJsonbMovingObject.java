@@ -20,8 +20,8 @@ public class GetJsonbMovingObject {
 	 * This method gets the position of the farmer of the class...
 	 * @return serialized as a JSONB object of the farmer's position
 	 */
-	public String toSerializeFarmer() { 
-		Farmer sf = new Farmer();
+	public String toSerializeFarmer(Farmer farmer) {
+		Farmer sf = farmer;
 		sf.getX();
 		sf.getY();
 		sf.isSelected();

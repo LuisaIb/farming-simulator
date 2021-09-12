@@ -1,5 +1,6 @@
 package gui.controller;
 
+import gameboard.objects.MovingObject;
 import gameboard.tiles.FieldTile;
 import gui.view.GameScene;
 import javafx.animation.AnimationTimer;
@@ -14,7 +15,6 @@ public class MovingObjectController {
     private boolean upPressed;
     private boolean downPressed;
     private int fieldCounter = 0;
-    Game game = new Game();
     int growthStageField1;
     int growthStageField2;
     int growthSTageField3;
@@ -53,29 +53,28 @@ public class MovingObjectController {
         }
     }
 
-    public void initGameLoop(GameScene gameScene, FieldTile fieldTile){
+    public void initGameLoop(GameScene gameScene, FieldTile fieldTile, MovingObject movingObject){
         gameTimer = new AnimationTimer() {
             private long lastUpdate = 0;
             @Override
             public void handle(long now) {
                 if (now - lastUpdate >= 100_000_000) {
-                    gameScene.moveObject();
+                    gameScene.moveObject(movingObject);
                     proofAction(gameScene);
                     lastUpdate = now;
-                    proofFieldCounter(fieldTile);
+                    proofFieldCounter(gameScene, fieldTile);
                 }
             }
         };
         gameTimer.start();
     }
 
-    public void proofFieldCounter(FieldTile fieldTile){
+    public void proofFieldCounter(GameScene gameScene, FieldTile fieldTile){
         fieldCounter++;
         growthStageField1 = fieldTile.getGrowthState();
         growthStageField2 = fieldTile.getGrowthState2();
         growthSTageField3 = fieldTile.getGrowthState3();
-        System.out.println("Feld 3: " +growthSTageField3);
-        if (fieldCounter == 10) {
+        if (fieldCounter == 100) {
             if (growthStageField1 > 1 && growthStageField1 < 6) {
                 //fieldTile.setGrowthState(growthStageField1+1);
             }
@@ -84,6 +83,7 @@ public class MovingObjectController {
             }
             if (growthSTageField3 > 1 && growthSTageField3 < 6) {
                 fieldTile.setGrowthState3(growthSTageField3+1);
+                gameScene.setField3(growthSTageField3+1);
             }
             fieldCounter = 0;
         }

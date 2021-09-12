@@ -1,5 +1,6 @@
 package gui.view;
 
+import gui.controller.SceneController;
 import gui.model.LSButton;
 import gui.model.LSTextField;
 import javafx.scene.layout.HBox;
@@ -19,6 +20,7 @@ public class InformationBox {
     private LSTextField newsField;
     private LSTextField timeField;
     private LSButton menuButton;
+    SceneController sceneController = new SceneController();
 
     /**
      * Constructs an object of the class InformationBox and initializes the box immediately.
@@ -50,6 +52,8 @@ public class InformationBox {
         harvesterField = new LSTextField("harvester",40, 175, 0, 0, 16);
         newsField = new LSTextField("news",40, 450, 0, 0, 16);
         menuButton = new LSButton("Menu", 40, 100,750, 0, 16);
+
+        menuButton.setOnMouseClicked(sceneController.setSceneToMenuScene);
 
         informationBox.getChildren().addAll(timeField, moneyField, siloField, tractorField, harvesterField,
                 newsField, menuButton);
