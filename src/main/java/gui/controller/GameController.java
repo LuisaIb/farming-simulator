@@ -22,6 +22,8 @@ public class GameController {
     private int growthSTageField3;
     private int dayCounter = 0;
     private int actualObject;
+    private int tractorCounter = 0;
+    private int harvesterCounter = 0;
 
 
     public void setBooleansPressed(KeyEvent keyEvent){
@@ -63,7 +65,7 @@ public class GameController {
             @Override
             public void handle(long now) {
                 if (now - lastUpdate >= 100_000_000) {
-                    gameScene.moveObject(movingObject);
+                    gameScene.moveObject(movingObject, tractor, harvester);
                     proofAction(gameScene, movingObject, selectedObject, sideControlPane, farmer, tractor, harvester,
                             cultivator, dumpTruck, seedDrill);
                     lastUpdate = now;
@@ -146,12 +148,16 @@ public class GameController {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("select vehicle");
             sideControlPane.selectVehicle(gameScene.getMatchfield(), farmer, tractor, harvester,
-                    cultivator, dumpTruck, seedDrill);
+                    cultivator, dumpTruck, seedDrill, x, y);
             sideControlPane.selectWorkingDevice(gameScene.getMatchfield(), farmer, tractor, harvester,
                     cultivator, dumpTruck, seedDrill);
-        } else if (x == 27 && y == 5) {
+        } else if (x == 27 && y == 5 && farmer.isSelected()) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
-            gameScene.getSideControlPane().getButtonAction().setText("do something");
+            gameScene.getSideControlPane().getButtonAction().setText("buy field");
+        } else if (x == 27 && y == 5 && dumpTruck.isSelected()) {
+            gameScene.getSideControlPane().getButtonAction().setDisable(false);
+            gameScene.getSideControlPane().getButtonAction().setText("sell grain");
+            sideControlPane.sellGrain(dumpTruck, y, x);
         } else if((x == 14 || x == 15) && y == 5 && (tractor.isSelected() || harvester.isSelected())) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("fill tank");

@@ -265,13 +265,16 @@ public class SideControlPane {
         return seedDrillButton;
     }
 
-    public void selectVehicle(Matchfield matchfield, Farmer farmer,
-                              Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
-        buttonAction.setOnMousePressed(MouseEvent -> {
-            farmerButton.setDisable(false);
-            tractorButton.setDisable(false);
-            harvesterButton.setDisable(false);
-        });
+    public void selectVehicle(Matchfield matchfield, Farmer farmer, Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, int column, int row){
+
+            buttonAction.setOnMousePressed(MouseEvent -> {
+                if ((column == 16 || column == 17) && row == 13) {
+                    farmerButton.setDisable(false);
+                    tractorButton.setDisable(false);
+                    harvesterButton.setDisable(false);
+                }
+            });
+
 
         farmerButton.setOnMouseClicked(mouseEvent -> {
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(1));
@@ -320,8 +323,9 @@ public class SideControlPane {
         });
     }
 
-    public void selectWorkingDevice(Matchfield matchfield, Farmer farmer,
-                                   Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
+    public void selectWorkingDevice(Matchfield matchfield, Farmer farmer, Tractor tractor, Harvester harvester,
+                                    Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
+
         tractorButton.setOnMouseClicked(MouseEvent -> {
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(2));
             farmerButton.setDisable(true);
@@ -414,4 +418,13 @@ public class SideControlPane {
             tractor.setAttachement(true);
         });
     }
+
+    public void sellGrain(DumpTruck dumpTruck, int row, int column) {
+        buttonAction.setOnMouseClicked(mouseEvent -> {
+            if (column == 27 && row == 5) {
+                dumpTruck.unload();
+            }
+        });
+    }
+
 }

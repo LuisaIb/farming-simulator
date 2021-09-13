@@ -76,6 +76,16 @@ public class Game {
     	this.movingObject = movingObject;
 	}
 
+	public void setMovingObjectDependingOnSelected(){
+		if(farmer.isSelected()){
+			movingObject = farmer;
+		}else if(tractor.isSelected()){
+			movingObject = tractor;
+		}else if(harvester.isSelected()){
+			movingObject = harvester;
+		}
+	}
+
 	public MovingObject getMovingObject(){
     	return movingObject;
 	}
@@ -100,19 +110,11 @@ public class Game {
     }
 
     public int getRow(){
-        selectedObject=getSelectedObject();
-        if(selectedObject==1){
-            return farmer.getY();
-        }
-        return 0;
+        return movingObject.getY();
     }
 
     public int getColumn(){
-        selectedObject=getSelectedObject();
-        if(selectedObject==1){
-            return farmer.getX();
-        }
-        return 0;
+		return movingObject.getX();
     }
 
     // all numeric values

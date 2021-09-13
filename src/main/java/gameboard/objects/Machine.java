@@ -69,6 +69,8 @@ public class Machine extends MovingObject{
 		return petrolTankFillLevel.get();
 	}
 
+	public void setPetrolTankFillLevel(int petrolTankFillLevel){ this.petrolTankFillLevel.set(petrolTankFillLevel);}
+
 	public IntegerProperty petrolTankFillLevel(){ return petrolTankFillLevel; }
 
 	public String getPetrolTankFillLevelAsString(){
