@@ -1,5 +1,6 @@
 package gui.view;
 
+import gameboard.objects.*;
 import gui.controller.GameController;
 import gui.model.ImageManager;
 import gui.model.LSButton;
@@ -264,7 +265,8 @@ public class SideControlPane {
         return seedDrillButton;
     }
 
-    public void selectVehicle(Matchfield matchfield){
+    public void selectVehicle(Matchfield matchfield, Farmer farmer,
+                              Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
         buttonAction.setOnMousePressed(MouseEvent -> {
             farmerButton.setDisable(false);
             tractorButton.setDisable(false);
@@ -279,6 +281,19 @@ public class SideControlPane {
             cultivatorButton.setDisable(true);
             dumpTruckButton.setDisable(true);
             seedDrillButton.setDisable(true);
+            farmer.setSelected(true);
+            tractor.setSelected(false);
+            harvester.setSelected(false);
+            cultivator.setSelected(false);
+            dumpTruck.setSelected(false);
+            seedDrill.setSelected(false);
+            System.out.println("Farmer selected: " + farmer.isSelected());
+            System.out.println("Tractor selected: " + tractor.isSelected());
+            System.out.println("Harvester selected: " + harvester.isSelected());
+            System.out.println("Cultivator selected: " + cultivator.isSelected());
+            System.out.println("Dump Truck selected: " + dumpTruck.isSelected());
+            System.out.println("Seed Drill selected: " + seedDrill.isSelected());
+            tractor.setAttachement(false);
         });
 
         harvesterButton.setOnMouseClicked(mouseEvent -> {
@@ -289,11 +304,24 @@ public class SideControlPane {
             cultivatorButton.setDisable(true);
             dumpTruckButton.setDisable(true);
             seedDrillButton.setDisable(true);
+            farmer.setSelected(false);
+            tractor.setSelected(false);
+            harvester.setSelected(true);
+            cultivator.setSelected(false);
+            dumpTruck.setSelected(false);
+            seedDrill.setSelected(false);
+            System.out.println("Farmer selected: " + farmer.isSelected());
+            System.out.println("Tractor selected: " + tractor.isSelected());
+            System.out.println("Harvester selected: " + harvester.isSelected());
+            System.out.println("Cultivator selected: " + cultivator.isSelected());
+            System.out.println("Dump Truck selected: " + dumpTruck.isSelected());
+            System.out.println("Seed Drill selected: " + seedDrill.isSelected());
+            tractor.setAttachement(false);
         });
     }
 
-    public int selectWorkingDevice(Matchfield matchfield, int selectedObject){
-        final int[] actualObjet = {selectedObject};
+    public void selectWorkingDevice(Matchfield matchfield, Farmer farmer,
+                                   Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
         tractorButton.setOnMouseClicked(MouseEvent -> {
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(2));
             farmerButton.setDisable(true);
@@ -302,7 +330,19 @@ public class SideControlPane {
             cultivatorButton.setDisable(false);
             dumpTruckButton.setDisable(false);
             seedDrillButton.setDisable(false);
-            actualObjet[0] = 2;
+            farmer.setSelected(false);
+            tractor.setSelected(true);
+            harvester.setSelected(false);
+            cultivator.setSelected(false);
+            dumpTruck.setSelected(false);
+            seedDrill.setSelected(false);
+            System.out.println("Farmer selected: " + farmer.isSelected());
+            System.out.println("Tractor selected: " + tractor.isSelected());
+            System.out.println("Harvester selected: " + harvester.isSelected());
+            System.out.println("Cultivator selected: " + cultivator.isSelected());
+            System.out.println("Dump Truck selected: " + dumpTruck.isSelected());
+            System.out.println("Seed Drill selected: " + seedDrill.isSelected());
+            tractor.setAttachement(false);
         });
 
         cultivatorButton.setOnMouseClicked(mouseEvent -> {
@@ -313,7 +353,19 @@ public class SideControlPane {
             cultivatorButton.setDisable(false);
             dumpTruckButton.setDisable(true);
             seedDrillButton.setDisable(true);
-            actualObjet[0] = 4;
+            farmer.setSelected(false);
+            tractor.setSelected(true);
+            harvester.setSelected(false);
+            cultivator.setSelected(true);
+            dumpTruck.setSelected(false);
+            seedDrill.setSelected(false);
+            System.out.println("Farmer selected: " + farmer.isSelected());
+            System.out.println("Tractor selected: " + tractor.isSelected());
+            System.out.println("Harvester selected: " + harvester.isSelected());
+            System.out.println("Cultivator selected: " + cultivator.isSelected());
+            System.out.println("Dump Truck selected: " + dumpTruck.isSelected());
+            System.out.println("Seed Drill selected: " + seedDrill.isSelected());
+            tractor.setAttachement(true);
         });
 
         dumpTruckButton.setOnMouseClicked(mouseEvent -> {
@@ -324,7 +376,19 @@ public class SideControlPane {
             cultivatorButton.setDisable(true);
             dumpTruckButton.setDisable(false);
             seedDrillButton.setDisable(true);
-            actualObjet[0] = 5;
+            farmer.setSelected(false);
+            tractor.setSelected(true);
+            harvester.setSelected(false);
+            cultivator.setSelected(false);
+            dumpTruck.setSelected(true);
+            seedDrill.setSelected(false);
+            System.out.println("Farmer selected: " + farmer.isSelected());
+            System.out.println("Tractor selected: " + tractor.isSelected());
+            System.out.println("Harvester selected: " + harvester.isSelected());
+            System.out.println("Cultivator selected: " + cultivator.isSelected());
+            System.out.println("Dump Truck selected: " + dumpTruck.isSelected());
+            System.out.println("Seed Drill selected: " + seedDrill.isSelected());
+            tractor.setAttachement(true);
         });
 
         seedDrillButton.setOnMouseClicked(mouseEvent -> {
@@ -335,9 +399,19 @@ public class SideControlPane {
             cultivatorButton.setDisable(true);
             dumpTruckButton.setDisable(true);
             seedDrillButton.setDisable(false);
-            actualObjet[0] = 7;
+            farmer.setSelected(false);
+            tractor.setSelected(true);
+            harvester.setSelected(false);
+            cultivator.setSelected(false);
+            dumpTruck.setSelected(false);
+            seedDrill.setSelected(true);
+            System.out.println("Farmer selected: " + farmer.isSelected());
+            System.out.println("Tractor selected: " + tractor.isSelected());
+            System.out.println("Harvester selected: " + harvester.isSelected());
+            System.out.println("Cultivator selected: " + cultivator.isSelected());
+            System.out.println("Dump Truck selected: " + dumpTruck.isSelected());
+            System.out.println("Seed Drill selected: " + seedDrill.isSelected());
+            tractor.setAttachement(true);
         });
-        System.out.println("Hier ist jetzt folgender Integer als aktuelles Objekt:" + actualObjet[0]);
-        return actualObjet[0];
     }
 }

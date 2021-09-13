@@ -1,7 +1,7 @@
 package gui.controller;
 
 import gameboard.GameValue;
-import gameboard.objects.MovingObject;
+import gameboard.objects.*;
 import gameboard.tiles.FieldTile;
 import gui.view.GameScene;
 import gui.view.SideControlPane;
@@ -56,15 +56,16 @@ public class GameController {
         }
     }
 
-    public int initGameLoop(GameScene gameScene, FieldTile fieldTile, MovingObject movingObject, int selectedObject, GameValue gameValue, SideControlPane sideControlPane){
-        final int[] newSelectedObject = {selectedObject};
+    public void initGameLoop(GameScene gameScene, FieldTile fieldTile, MovingObject movingObject, int selectedObject, GameValue gameValue, SideControlPane sideControlPane, Farmer farmer,
+                            Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
         gameTimer = new AnimationTimer() {
             private long lastUpdate = 0;
             @Override
             public void handle(long now) {
                 if (now - lastUpdate >= 100_000_000) {
                     gameScene.moveObject(movingObject);
-                    newSelectedObject[0] = proofAction(gameScene, movingObject, selectedObject, sideControlPane);
+                    proofAction(gameScene, movingObject, selectedObject, sideControlPane, farmer, tractor, harvester,
+                            cultivator, dumpTruck, seedDrill);
                     lastUpdate = now;
                     DayCounter(gameValue);
                     proofFieldCounter(gameScene, fieldTile);
@@ -72,7 +73,6 @@ public class GameController {
             }
         };
         gameTimer.start();
-        return newSelectedObject[0];
     }
 
     private void DayCounter(GameValue gameValue) {
@@ -138,34 +138,33 @@ public class GameController {
     }
 
 
-    private int proofAction(GameScene gameScene, MovingObject movingObject, int selectedObject, SideControlPane sideControlPane){
-        actualObject = selectedObject;
+    private void proofAction(GameScene gameScene, MovingObject movingObject, int selectedObject, SideControlPane sideControlPane, Farmer farmer,
+                            Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
         int x = movingObject.getX();
         int y = movingObject.getY();
         if ((x == 16 || x == 17) && y == 13) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("select vehicle");
-            sideControlPane.selectVehicle(gameScene.getMatchfield());
-            sideControlPane.selectWorkingDevice(gameScene.getMatchfield(), selectedObject);
-            System.out.println("Selected Object is now: " + selectedObject);
-            System.out.println("Actual Object is now: " + actualObject);
+            sideControlPane.selectVehicle(gameScene.getMatchfield(), farmer, tractor, harvester,
+                    cultivator, dumpTruck, seedDrill);
+            sideControlPane.selectWorkingDevice(gameScene.getMatchfield(), farmer, tractor, harvester,
+                    cultivator, dumpTruck, seedDrill);
         } else if (x == 27 && y == 5) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("do something");
-        } else if(x == 27 && (y == 15 || y == 16 || y == 17) && (selectedObject == 1 || selectedObject == 2)) {
+        } else if((x == 14 || x == 15) && y == 5 && (tractor.isSelected() || harvester.isSelected())) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("fill tank");
         }
         else {
             gameScene.getSideControlPane().getButtonAction().setDisable(true);
             gameScene.getSideControlPane().getButtonAction().setText("");
-            if (selectedObject == 2) {
+            if (tractor.isSelected() || !tractor.isAttachement()) {
                 sideControlPane.getCultivatorButton().setDisable(true);
                 sideControlPane.getDumpTruckButton().setDisable(true);
                 sideControlPane.getSeedDrillButton().setDisable(true);
             }
         }
-        return actualObject;
     }
 
 }

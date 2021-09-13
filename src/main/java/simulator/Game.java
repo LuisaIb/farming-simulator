@@ -65,7 +65,8 @@ public class Game {
         System.out.println(getColumn());
         System.out.println(getRow());
         selectedObject = getSelectedObject();
-		selectedObject = gameController.initGameLoop(gameScene, fieldTile, getMovingObject(), selectedObject, gameValue, gameScene.getSideControlPane());
+		gameController.initGameLoop(gameScene, fieldTile, getMovingObject(), getSelectedObject(), gameValue, gameScene.getSideControlPane(), farmer, tractor,
+				harvester, cultivator, dumpTruck, seedDrill);
         GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
         gameValue.setCash(50);
         return gameScene;
@@ -97,62 +98,6 @@ public class Game {
         }
         return selectedObject;
     }
-
-    public void setSelectedObject(int objectToSelect){
-    	selectedObject = objectToSelect;
-    	if (objectToSelect == 1) {
-    		farmer.setSelected(true);
-    		tractor.setSelected(false);
-    		harvester.setSelected(false);
-    		cultivator.setSelected(false);
-    		dumpTruck.setSelected(false);
-    		seedDrill.setSelected(false);
-    		movingObject = farmer;
-		} else if (objectToSelect == 2) {
-			farmer.setSelected(false);
-			tractor.setSelected(true);
-			harvester.setSelected(false);
-			cultivator.setSelected(false);
-			dumpTruck.setSelected(false);
-			seedDrill.setSelected(false);
-			movingObject = tractor;
-		} else if (objectToSelect == 3) {
-			farmer.setSelected(false);
-			tractor.setSelected(false);
-			harvester.setSelected(true);
-			cultivator.setSelected(false);
-			dumpTruck.setSelected(false);
-			seedDrill.setSelected(false);
-			movingObject = harvester;
-		} else if (objectToSelect == 4) {
-			farmer.setSelected(false);
-			tractor.setSelected(true);
-			harvester.setSelected(false);
-			cultivator.setSelected(true);
-			dumpTruck.setSelected(false);
-			seedDrill.setSelected(false);
-			movingObject = tractor;
-			tractor.setAttachement(true);
-		} else if (objectToSelect == 5) {
-			farmer.setSelected(false);
-			tractor.setSelected(true);
-			harvester.setSelected(false);
-			cultivator.setSelected(false);
-			dumpTruck.setSelected(true);
-			seedDrill.setSelected(false);
-			movingObject = tractor;
-			tractor.setAttachement(true);
-		} else if (objectToSelect == 6) {
-			farmer.setSelected(false);
-			tractor.setSelected(true);
-			harvester.setSelected(false);
-			cultivator.setSelected(false);
-			dumpTruck.setSelected(false);
-			seedDrill.setSelected(true);
-			movingObject = tractor;
-			tractor.setAttachement(true);
-		}
-	}
 
     public int getRow(){
         selectedObject=getSelectedObject();
@@ -238,7 +183,7 @@ public class Game {
     // all position values
     /**
 	 * This method gets the position of the farmer of the class...
-     * @param farmer 
+     * @param
 	 * @return serialized as a JSONB object of the farmer's position
 	 */
 	public String toSerializeFarmer() {
@@ -511,7 +456,8 @@ public class Game {
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
                 cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
                 fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
-		gameController.initGameLoop(gameScene, fieldTile, getMovingObject(), getSelectedObject(), gameValue, gameScene.getSideControlPane());
+		gameController.initGameLoop(gameScene, fieldTile, getMovingObject(), getSelectedObject(), gameValue, gameScene.getSideControlPane(), farmer, tractor,
+				harvester, cultivator, dumpTruck, seedDrill);
 		GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
         return gameScene;
     }
