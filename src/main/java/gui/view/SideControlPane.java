@@ -1,9 +1,11 @@
 package gui.view;
 
 import gameboard.objects.*;
+import gameboard.tiles.FieldTile;
 import gui.controller.GameController;
 import gui.model.ImageManager;
 import gui.model.LSButton;
+import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -43,6 +45,7 @@ public class SideControlPane {
     private final String PATH_TO_DUMP_TRUCK = "src/main/java/gui/view/resources/machines/dumpTruckSide.png";
     private final String PATH_TO_SEED_DRILL = "src/main/java/gui/view/resources/machines/seedDrillSide.png";
     GameController gameController = new GameController();
+    Animations animations = new Animations();
 
     /**
      * Construcs an object of the class SideControlPane. It immediately initializes the sidePane.
@@ -265,14 +268,35 @@ public class SideControlPane {
         return seedDrillButton;
     }
 
-    public void selectVehicle(Matchfield matchfield, Farmer farmer, Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, int column, int row){
+    public void createActionButtonFunctionality(Matchfield matchfield, Farmer farmer, Tractor tractor, Harvester harvester,
+                                                Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill,
+                                                int column, int row, FieldTile fieldTile, MovingObject movingObject,
+                                                AnimationTimer gameTimer){
+        if (column == 27 && row == 5) {
+            sellGrain(dumpTruck);
+        }
+        if (column == 27 && row == 5) {
+            buyField(fieldTile);
+        }
+        if ((column == 14 || column == 15) && row == 5) {
+            fillTank(tractor, harvester);
+        }
+        if (column > 19 && row > 13 && cultivator.isSelected() && fieldTile.getGrowthState() == 6) {
+            cultivateField1(movingObject, matchfield, column, row, gameTimer);
+        }
 
-            buttonAction.setOnMousePressed(MouseEvent -> {
-                if ((column == 16 || column == 17) && row == 13) {
-                    farmerButton.setDisable(false);
-                    tractorButton.setDisable(false);
-                    harvesterButton.setDisable(false);
-                }
+        if ((column == 16 || column == 17) && row == 13) {
+            selectVehicle(matchfield, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
+            selectWorkingDevice(matchfield, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
+        }
+    }
+
+    private void selectVehicle(Matchfield matchfield, Farmer farmer, Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
+
+            buttonAction.setOnMouseClicked(MouseEvent -> {
+                farmerButton.setDisable(false);
+                tractorButton.setDisable(false);
+                harvesterButton.setDisable(false);
             });
 
 
@@ -323,7 +347,7 @@ public class SideControlPane {
         });
     }
 
-    public void selectWorkingDevice(Matchfield matchfield, Farmer farmer, Tractor tractor, Harvester harvester,
+    private void selectWorkingDevice(Matchfield matchfield, Farmer farmer, Tractor tractor, Harvester harvester,
                                     Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
 
         tractorButton.setOnMouseClicked(MouseEvent -> {
@@ -419,12 +443,37 @@ public class SideControlPane {
         });
     }
 
-    public void sellGrain(DumpTruck dumpTruck, int row, int column) {
+    private void sellGrain(DumpTruck dumpTruck) {
         buttonAction.setOnMouseClicked(mouseEvent -> {
-            if (column == 27 && row == 5) {
-                dumpTruck.unload();
+            dumpTruck.unload();
+        });
+    }
+
+    private void buyField(FieldTile fieldTile){
+        //Methode, um nächstes Feld zu kaufen
+    }
+
+    private void fillTank(Tractor tractor, Harvester harvester) {
+        buttonAction.setOnMouseClicked(mouseEvent -> {
+            if (tractor.isSelected()) {
+                tractor.setPetrolTankFillLevel(150);
+            }
+            if (harvester.isSelected()) {
+                harvester.setPetrolTankFillLevel(150);
             }
         });
     }
+
+    private void cultivateField1(MovingObject movingObject, Matchfield matchfield, int column, int row, AnimationTimer gameTimer){
+        buttonAction.setOnMouseClicked(mouseEvent -> {
+            gameTimer.stop();
+            animations.cultivate(movingObject, matchfield, column, row, 1);
+            gameTimer.start(); // hier muss noch irgendwie ein 'wait' eingebaut werden?
+        });
+
+    }
+
+
+
 
 }

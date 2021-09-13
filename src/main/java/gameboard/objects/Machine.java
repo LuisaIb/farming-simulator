@@ -21,7 +21,7 @@ public class Machine extends MovingObject{
 	 */
 	public Machine() {
 		super(18, 7, false);
-		petrolTankFillLevel.set(100);
+		petrolTankFillLevel.set(150);
 	}
 	
 	/**

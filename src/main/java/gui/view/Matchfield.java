@@ -38,6 +38,9 @@ public class Matchfield {
     private ImageView imageViewField1;
     private ImageView imageViewField2;
     private ImageView imageViewField3;
+    private Image imageField1;
+    private Image imageField2;
+    private Image imageField3;
     private static final String PATH_TO_FARMER = "src/main/java/gui/view/resources/movingObjects/farmer.png";
     private static final String PATH_TO_TRACTOR = "src/main/java/gui/view/resources/movingObjects/tractor.png";
     private static final String PATH_TO_HARVESTER = "src/main/java/gui/view/resources/movingObjects/harvester.png";
@@ -185,7 +188,7 @@ public class Matchfield {
     }
 
     public void setImageViewOfField1(int stageOfGrowth) {
-        imageViewField1 = getImageViewField(stageOfGrowth);
+        imageField1 = getCorrectImageField(stageOfGrowth);
     }
 
 
@@ -201,8 +204,8 @@ public class Matchfield {
         }
     }
 
-    public void setImageViewOfField2(int stageOfGrowth) {
-        imageViewField2 = getImageViewField(stageOfGrowth);
+    public void setImageOfField2(int stageOfGrowth) {
+        imageField2 = getCorrectImageField(stageOfGrowth);
     }
 
     /**
@@ -217,8 +220,8 @@ public class Matchfield {
         }
     }
 
-    public void setImageViewOfField3(int stageOfGrowth) {
-        imageViewField3 = getImageViewField(stageOfGrowth);
+    public void setImageOfField3(int stageOfGrowth) {
+        imageField3 = getCorrectImageField(stageOfGrowth);
     }
 
     /***
@@ -273,38 +276,44 @@ public class Matchfield {
         return image;
     }
 
+    private ImageView getImageViewField(int stageOfGrowth){
+        ImageView imageViewField = new ImageView(getCorrectImageField(stageOfGrowth));
+        return imageViewField;
+    }
+
+
     /**
      * This method helps to get the right image view for the field depending on the stage of growth.
      *
      * @param stageOfGrowth - integer that is used for the switch case to get the right image view
      * @return - the requested image view
      */
-    private ImageView getImageViewField(int stageOfGrowth){
-        ImageView imageViewField = null;
+    private Image getCorrectImageField(int stageOfGrowth){
+        Image imageField = null;
         switch(stageOfGrowth){
             case 0:
-                imageViewField = new ImageView(getImage(PATH_TO_GRASSLANDS));
+                imageField = getImage(PATH_TO_GRASSLANDS);
                 break;
             case 1:
-                imageViewField = new ImageView(getImage(PATH_TO_READY_FOR_SOWING));
+                imageField = getImage(PATH_TO_READY_FOR_SOWING);
                 break;
             case 2:
-                imageViewField = new ImageView(getImage(PATH_TO_GROWTH_STAGE_1));
+                imageField = getImage(PATH_TO_GROWTH_STAGE_1);
                 break;
             case 3:
-                imageViewField = new ImageView(getImage(PATH_TO_GROWTH_STAGE_2));
+                imageField = getImage(PATH_TO_GROWTH_STAGE_2);
                 break;
             case 4:
-                imageViewField = new ImageView(getImage(PATH_TO_GROWTH_STAGE_3));
+                imageField = getImage(PATH_TO_GROWTH_STAGE_3);
                 break;
             case 5:
-                imageViewField = new ImageView(getImage(PATH_TO_READY_TO_HARVEST));
+                imageField = getImage(PATH_TO_READY_TO_HARVEST);
                 break;
             case 6:
-                imageViewField = new ImageView(getImage(PATH_TO_HARVESTED));
+                imageField = getImage(PATH_TO_HARVESTED);
                 break;
         }
-        return imageViewField;
+        return imageField;
     }
 
     /**

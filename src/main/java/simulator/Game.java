@@ -45,7 +45,7 @@ public class Game {
 	        cultivator = new Cultivator();
 	        dumpTruck = new DumpTruck();
 	        seedDrill = new SeedDrill();
-	        fieldTile = new FieldTile();
+	        fieldTile = new FieldTile(6, 0 ,0);
 	        gameValue = new GameValue();
 	        levelOfDifficulty = new LevelOfDifficulty();
 	        silo = new Silo();
