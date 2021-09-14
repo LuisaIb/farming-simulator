@@ -232,6 +232,22 @@ public class FieldTile extends Tile{
 		}
 	}
 
+	public void harvestField1(Matchfield matchfield, int column, int row){
+		int indexMovingObject = (row * 30) + column;
+		boolean completelyHarvested = false;
+		for(Integer indexCombo : indexes.keySet()) {
+			if (indexCombo == indexMovingObject) {
+				matchfield.getImageViewField1(indexes.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
+			}
+		}
+		completelyHarvested = proofCompleteField1(column, row);
+		if (completelyHarvested) {
+			this.setGrowthState(2);
+			System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState());
+			setTilesField1False();
+		}
+	}
+
 
 
 

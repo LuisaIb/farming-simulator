@@ -170,6 +170,22 @@ public class GameController {
             if (seedDrill.isSelected() && fieldTile.getGrowthState() == 1) {
                 fieldTile.sowField1(gameScene.getMatchfield(), x, y);
             }
+            if (harvester.isSelected() && fieldTile.getGrowthState() == 5) {
+                fieldTile.harvestField1(gameScene.getMatchfield(), x, y);
+            }
+        } else if (tractor.isSelected() || harvester.isSelected()) {
+            gameScene.getSideControlPane().getButtonAction().setDisable(false);
+            gameScene.getSideControlPane().getButtonAction().setText("exit vehicle");
+            if (tractor.isSelected() || !tractor.isAttachement()) {
+                sideControlPane.getCultivatorButton().setDisable(true);
+                sideControlPane.getDumpTruckButton().setDisable(true);
+                sideControlPane.getSeedDrillButton().setDisable(true);
+            }
+        } else if (farmer.isSelected() && gameScene.getSideControlPane().isTractorExited() &&
+                farmer.getX() == gameScene.getSideControlPane().getColumnExitedVehicle() &&
+                farmer.getY() == gameScene.getSideControlPane().getRowExitedVehicle()) {
+                gameScene.getSideControlPane().getButtonAction().setDisable(false);
+                gameScene.getSideControlPane().getButtonAction().setText("enter vehicle");
         } else {
             gameScene.getSideControlPane().getButtonAction().setDisable(true);
             gameScene.getSideControlPane().getButtonAction().setText("");
@@ -186,7 +202,7 @@ public class GameController {
                                                  DumpTruck dumpTruck, SeedDrill seedDrill, int column, int row,
                                                  FieldTile fieldTile, MovingObject movingObject, AnimationTimer gameTimer){
         sideControlPane.createActionButtonFunctionality(matchfield, farmer, tractor, harvester, cultivator, dumpTruck,
-                seedDrill, column, row, fieldTile, movingObject, gameTimer);
+                seedDrill, column, row, fieldTile, movingObject);
     }
 
 }
