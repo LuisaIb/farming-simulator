@@ -187,10 +187,14 @@ public class Matchfield {
         }
     }
 
-    public void setImageViewOfField1(int stageOfGrowth) {
+    public void setImageOfField1(int stageOfGrowth) {
         imageField1 = getCorrectImageField(stageOfGrowth);
     }
 
+    public ImageView getImageViewField1(int index){
+        ImageView imageViewField1 = (ImageView) matchfield.getChildren().get(index);
+        return imageViewField1;
+    }
 
     /**
      * Adds the image views of the second field to the matchfield.
@@ -288,7 +292,7 @@ public class Matchfield {
      * @param stageOfGrowth - integer that is used for the switch case to get the right image view
      * @return - the requested image view
      */
-    private Image getCorrectImageField(int stageOfGrowth){
+    public Image getCorrectImageField(int stageOfGrowth){
         Image imageField = null;
         switch(stageOfGrowth){
             case 0:

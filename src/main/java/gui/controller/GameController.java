@@ -9,7 +9,6 @@ import gui.view.SideControlPane;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import simulator.Game;
 
 public class GameController {
     private AnimationTimer gameTimer;
@@ -94,7 +93,11 @@ public class GameController {
         growthSTageField3 = fieldTile.getGrowthState3();
         if (fieldCounter == 1000) {
             if (growthStageField1 > 1 && growthStageField1 < 5) {
-                fieldTile.setGrowthState(growthStageField1+1);
+                growthStageField1++;
+                fieldTile.setGrowthState(growthStageField1);
+                for (int i = 855; i < 915; i++) {
+                    gameScene.getMatchfield().getImageViewField1(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthStageField1));
+                }
             }
             if (growthStageField2 > 1 && growthStageField2 < 5) {
                 fieldTile.setGrowthState2(growthStageField2+1);
@@ -178,7 +181,8 @@ public class GameController {
                                                  Tractor tractor, Harvester harvester, Cultivator cultivator,
                                                  DumpTruck dumpTruck, SeedDrill seedDrill, int column, int row,
                                                  FieldTile fieldTile, MovingObject movingObject, AnimationTimer gameTimer){
-        sideControlPane.createActionButtonFunctionality(matchfield, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, column, row, fieldTile, movingObject, gameTimer);
+        sideControlPane.createActionButtonFunctionality(matchfield, farmer, tractor, harvester, cultivator, dumpTruck,
+                seedDrill, column, row, fieldTile, movingObject, gameTimer);
     }
 
 }
