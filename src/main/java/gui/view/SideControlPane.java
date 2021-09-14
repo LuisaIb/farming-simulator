@@ -45,7 +45,9 @@ public class SideControlPane {
     private final String PATH_TO_DUMP_TRUCK = "src/main/java/gui/view/resources/machines/dumpTruckSide.png";
     private final String PATH_TO_SEED_DRILL = "src/main/java/gui/view/resources/machines/seedDrillSide.png";
     GameController gameController = new GameController();
-    Animations animations = new Animations();
+    private int columnExitedVehicle;
+    private int rowExitedVehicle;
+    private boolean tractorExited = false;
 
     /**
      * Construcs an object of the class SideControlPane. It immediately initializes the sidePane.
@@ -270,38 +272,37 @@ public class SideControlPane {
 
     public void createActionButtonFunctionality(Matchfield matchfield, Farmer farmer, Tractor tractor, Harvester harvester,
                                                 Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill,
-                                                int column, int row, FieldTile fieldTile, MovingObject movingObject,
-                                                AnimationTimer gameTimer){
+                                                int column, int row, FieldTile fieldTile, MovingObject movingObject) {
         if (column == 27 && row == 5) {
             sellGrain(dumpTruck);
-        }
-        if (column == 27 && row == 5) {
+        } else if (column == 27 && row == 5) {
             buyField(fieldTile);
-        }
-        if ((column == 14 || column == 15) && row == 5) {
+        } else if ((column == 14 || column == 15) && row == 5) {
             fillTank(tractor, harvester);
-        }
-        if (column > 19 && row > 13 && cultivator.isSelected() && fieldTile.getGrowthState() == 6) {
-            cultivateField1(movingObject, matchfield, column, row, gameTimer);
-        }
-
-        if ((column == 16 || column == 17) && row == 13) {
-            selectVehicle(matchfield, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
-            selectWorkingDevice(matchfield, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
+        } else if ((column == 16 || column == 17) && row == 13) {
+            selectVehicle(movingObject, matchfield, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
+            selectWorkingDevice(movingObject, matchfield, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
+        } else if (tractor.isSelected()){
+            exitVehicle(movingObject, matchfield, farmer, tractor);
+        } else if(farmer.isSelected() && tractorExited && farmer.getX() == columnExitedVehicle &&
+                    farmer.getY() == rowExitedVehicle){
+            enterVehicle(movingObject, matchfield, farmer, tractor);
         }
     }
 
-    private void selectVehicle(Matchfield matchfield, Farmer farmer, Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
+    private void selectVehicle(MovingObject movingObject, Matchfield matchfield, Farmer farmer, Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
 
             buttonAction.setOnMouseClicked(MouseEvent -> {
                 farmerButton.setDisable(false);
-                tractorButton.setDisable(false);
-                harvesterButton.setDisable(false);
+                if (!tractorExited) {
+                    tractorButton.setDisable(false);
+                }
             });
 
 
         farmerButton.setOnMouseClicked(mouseEvent -> {
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(1));
+            setMovingObjectToFarmer(movingObject, farmer);
             farmerButton.setDisable(false);
             tractorButton.setDisable(true);
             harvesterButton.setDisable(true);
@@ -325,6 +326,7 @@ public class SideControlPane {
 
         harvesterButton.setOnMouseClicked(mouseEvent -> {
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(3));
+            setMovingObjectToHarvester(movingObject, harvester);
             farmerButton.setDisable(true);
             tractorButton.setDisable(true);
             harvesterButton.setDisable(false);
@@ -347,11 +349,12 @@ public class SideControlPane {
         });
     }
 
-    private void selectWorkingDevice(Matchfield matchfield, Farmer farmer, Tractor tractor, Harvester harvester,
+    private void selectWorkingDevice(MovingObject movingObject, Matchfield matchfield, Farmer farmer, Tractor tractor, Harvester harvester,
                                     Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
 
         tractorButton.setOnMouseClicked(MouseEvent -> {
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(2));
+            setMovingObjectToTractor(movingObject, tractor);
             farmerButton.setDisable(true);
             tractorButton.setDisable(false);
             harvesterButton.setDisable(true);
@@ -464,16 +467,74 @@ public class SideControlPane {
         });
     }
 
-    private void cultivateField1(MovingObject movingObject, Matchfield matchfield, int column, int row, AnimationTimer gameTimer){
+    private void exitVehicle(MovingObject movingObject, Matchfield matchfield, Farmer farmer, Tractor tractor){
         buttonAction.setOnMouseClicked(mouseEvent -> {
-            gameTimer.stop();
-            animations.cultivate(movingObject, matchfield, column, row, 1);
-            gameTimer.start(); // hier muss noch irgendwie ein 'wait' eingebaut werden?
+            matchfield.initializeSecondMovingObject(2, movingObject.getX(), movingObject.getY());
+            tractor.setSelected(false);
+            tractorButton.setDisable(true);
+            tractorExited = true;
+            matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(1));
+            setExitedInteger(movingObject.getX(), movingObject.getY());
+            farmer.setSelected(true);
+            farmerButton.setDisable(false);
+            setMovingObjectToFarmer(movingObject, farmer);
+            farmer.setX(columnExitedVehicle);
+            farmer.setY(rowExitedVehicle);
         });
+    }
 
+    private void enterVehicle(MovingObject movingObject, Matchfield matchfield, Farmer farmer, Tractor tractor){
+        buttonAction.setOnMouseClicked(mouseEvent -> {
+            matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(2));
+            matchfield.deleteSecondImageView();
+            tractor.setSelected(true);
+            tractorButton.setDisable(false);
+            tractorExited = false;
+            setMovingObjectToTractor(movingObject, tractor);
+            farmer.setSelected(false);
+            farmerButton.setDisable(true);
+        });
+    }
+
+    private void setMovingObjectToFarmer(MovingObject movingObject, Farmer farmer){
+        int column = movingObject.getX();
+        int row = movingObject.getY();
+       movingObject = farmer;
+       farmer.setX(column);
+       farmer.setX(row);
+    }
+
+    private void setMovingObjectToTractor(MovingObject movingObject, Tractor tractor) {
+        int column = movingObject.getX();
+        int row = movingObject.getY();
+        movingObject = tractor;
+        tractor.setX(column);
+        tractor.setY(row);
+    }
+
+    private void setMovingObjectToHarvester(MovingObject movingObject, Harvester harvester){
+        int column = movingObject.getX();
+        int row = movingObject.getY();
+        movingObject = harvester;
+        harvester.setX(column);
+        harvester.setY(row);
+    }
+
+    private void setExitedInteger(int column, int row) {
+        columnExitedVehicle = column;
+        rowExitedVehicle = row;
     }
 
 
+    public boolean isTractorExited() {
+        return tractorExited;
+    }
 
+    public int getColumnExitedVehicle() {
+        return columnExitedVehicle;
+    }
 
+    public int getRowExitedVehicle() {
+        return rowExitedVehicle;
+    }
 }

@@ -35,6 +35,7 @@ public class Matchfield {
     private static final String PATH_TO_LAND_TRADE = "src/main/java/gui/view/resources/buildings/landTrade.png";
     private static final String PATH_TO_SILO = "src/main/java/gui/view/resources/buildings/silo.png";
     private ImageView movingObjectImageView;
+    private ImageView secondMovingObjectImageView;
     private ImageView imageViewField1;
     private ImageView imageViewField2;
     private ImageView imageViewField3;
@@ -179,18 +180,19 @@ public class Matchfield {
      * Adds the image views of the fist field to the matchfield.
      */
     protected void setField1(int stageOfGrowth){
-        for (int i = 20; i < NUMBER_COLUMNS; i++){
-            for (int j = 14; j < NUMBER_ROWS; j++) {
-                imageViewField1 = getImageViewField(stageOfGrowth);
-                addToGridPane(imageViewField1, i, j);
+        for (int j = 14; j < NUMBER_ROWS; j++) {
+            for (int i = 20; i < NUMBER_COLUMNS; i++){
+            imageViewField1 = getImageViewField(stageOfGrowth);
+            addToGridPane(imageViewField1, i, j);
             }
         }
     }
 
-    public void setImageViewOfField1(int stageOfGrowth) {
-        imageField1 = getCorrectImageField(stageOfGrowth);
-    }
 
+    public ImageView getImageViewField1(int index){
+        ImageView imageViewField1 = (ImageView) matchfield.getChildren().get(index);
+        return imageViewField1;
+    }
 
     /**
      * Adds the image views of the second field to the matchfield.
@@ -204,9 +206,6 @@ public class Matchfield {
         }
     }
 
-    public void setImageOfField2(int stageOfGrowth) {
-        imageField2 = getCorrectImageField(stageOfGrowth);
-    }
 
     /**
      * Adds the image views of the third field to the matchfield.
@@ -218,10 +217,6 @@ public class Matchfield {
                 addToGridPane(imageViewField3, i, j);
             }
         }
-    }
-
-    public void setImageOfField3(int stageOfGrowth) {
-        imageField3 = getCorrectImageField(stageOfGrowth);
     }
 
     /***
@@ -288,7 +283,7 @@ public class Matchfield {
      * @param stageOfGrowth - integer that is used for the switch case to get the right image view
      * @return - the requested image view
      */
-    private Image getCorrectImageField(int stageOfGrowth){
+    public Image getCorrectImageField(int stageOfGrowth){
         Image imageField = null;
         switch(stageOfGrowth){
             case 0:
@@ -340,6 +335,16 @@ public class Matchfield {
         matchfield.getChildren().add(movingObjectImageView);
     }
 
+    protected void initializeSecondMovingObject(int selectedObject, int column, int row){
+        setSecondImageView(selectedObject);
+        setTileOfSecondObject(column, row);
+        matchfield.getChildren().add(secondMovingObjectImageView);
+    }
+
+    protected void deleteSecondImageView(){
+        matchfield.getChildren().remove(matchfield.getChildren().size()-1);
+    }
+
     /**
      * This method sets the image view to the one of the selected object with the help of the method
      * getTheRightImageView().
@@ -349,6 +354,10 @@ public class Matchfield {
      */
     public void setImageView(int selectedObject){
         movingObjectImageView = getTheRightImageView(selectedObject);
+    }
+
+    public void setSecondImageView(int selectedObject){
+        secondMovingObjectImageView = getTheRightImageView(selectedObject);
     }
 
     public ImageView getMovingObjectImageView(){
@@ -364,6 +373,11 @@ public class Matchfield {
     public void setTileOfObject(int column, int row){
         matchfield.setColumnIndex(movingObjectImageView, column);
         matchfield.setRowIndex(movingObjectImageView, row);
+    }
+
+    public void setTileOfSecondObject(int column, int row){
+        matchfield.setColumnIndex(secondMovingObjectImageView, column);
+        matchfield.setRowIndex(secondMovingObjectImageView, row);
     }
 
     public int getColumnOfMovingObject(){
@@ -382,7 +396,7 @@ public class Matchfield {
      * @return the requestedd image view
      */
     private ImageView getTheRightImageView(int selectedObject){
-        movingObjectImageView = null;
+        ImageView movingObjectImageView = null;
         switch(selectedObject){
             case 1:
                 movingObjectImageView = new ImageView(getImage(PATH_TO_FARMER));

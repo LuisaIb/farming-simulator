@@ -9,7 +9,6 @@ import gui.view.SideControlPane;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import simulator.Game;
 
 public class GameController {
     private AnimationTimer gameTimer;
@@ -92,9 +91,13 @@ public class GameController {
         growthStageField1 = fieldTile.getGrowthState();
         growthStageField2 = fieldTile.getGrowthState2();
         growthSTageField3 = fieldTile.getGrowthState3();
-        if (fieldCounter == 1000) {
+        if (fieldCounter == 50) {
             if (growthStageField1 > 1 && growthStageField1 < 5) {
-                fieldTile.setGrowthState(growthStageField1+1);
+                growthStageField1++;
+                fieldTile.setGrowthState(growthStageField1);
+                for (int i = 855; i < 915; i++) {
+                    gameScene.getMatchfield().getImageViewField1(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthStageField1));
+                }
             }
             if (growthStageField2 > 1 && growthStageField2 < 5) {
                 fieldTile.setGrowthState2(growthStageField2+1);
@@ -160,9 +163,29 @@ public class GameController {
         } else if((x == 14 || x == 15) && y == 5 && (tractor.isSelected() || harvester.isSelected())) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("fill tank");
-        } else if (x > 19 && y > 13 && cultivator.isSelected() && fieldTile.getGrowthState() == 6) {
+        } else if (x > 19 && y > 13) {
+            if (cultivator.isSelected() && fieldTile.getGrowthState() == 6) {
+                fieldTile.cultivateField1(gameScene.getMatchfield(), x, y);
+            }
+            if (seedDrill.isSelected() && fieldTile.getGrowthState() == 1) {
+                fieldTile.sowField1(gameScene.getMatchfield(), x, y);
+            }
+            if (harvester.isSelected() && fieldTile.getGrowthState() == 5) {
+                fieldTile.harvestField1(gameScene.getMatchfield(), x, y);
+            }
+        } else if (tractor.isSelected() || harvester.isSelected()) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
-            gameScene.getSideControlPane().getButtonAction().setText("cultivate field");
+            gameScene.getSideControlPane().getButtonAction().setText("exit vehicle");
+            if (tractor.isSelected() || !tractor.isAttachement()) {
+                sideControlPane.getCultivatorButton().setDisable(true);
+                sideControlPane.getDumpTruckButton().setDisable(true);
+                sideControlPane.getSeedDrillButton().setDisable(true);
+            }
+        } else if (farmer.isSelected() && gameScene.getSideControlPane().isTractorExited() &&
+                farmer.getX() == gameScene.getSideControlPane().getColumnExitedVehicle() &&
+                farmer.getY() == gameScene.getSideControlPane().getRowExitedVehicle()) {
+                gameScene.getSideControlPane().getButtonAction().setDisable(false);
+                gameScene.getSideControlPane().getButtonAction().setText("enter vehicle");
         } else {
             gameScene.getSideControlPane().getButtonAction().setDisable(true);
             gameScene.getSideControlPane().getButtonAction().setText("");
@@ -178,7 +201,8 @@ public class GameController {
                                                  Tractor tractor, Harvester harvester, Cultivator cultivator,
                                                  DumpTruck dumpTruck, SeedDrill seedDrill, int column, int row,
                                                  FieldTile fieldTile, MovingObject movingObject, AnimationTimer gameTimer){
-        sideControlPane.createActionButtonFunctionality(matchfield, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, column, row, fieldTile, movingObject, gameTimer);
+        sideControlPane.createActionButtonFunctionality(matchfield, farmer, tractor, harvester, cultivator, dumpTruck,
+                seedDrill, column, row, fieldTile, movingObject);
     }
 
 }

@@ -2,6 +2,7 @@ package gui.view;
 
 import exceptions.MovingExcpetion;
 import gameboard.objects.MovingObject;
+import gui.controller.GameController;
 import javafx.animation.AnimationTimer;
 
 import java.util.concurrent.TimeUnit;
@@ -25,24 +26,13 @@ public class Animations {
 
     private void moveToFieldBeginning(MovingObject movingObject, Matchfield matchfield, int field) {
         while (column > 20) {
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             moveToFieldBeginningColumn(movingObject, matchfield, field);
 
         }
         while (row > 14) {
-            try {
-                TimeUnit.SECONDS.sleep(1);
-                moveToFieldBeginningRow(movingObject, matchfield, field);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
+            moveToFieldBeginningRow(movingObject, matchfield, field);
         }
-
+        cultivateField(movingObject, matchfield, field);
     }
 
 
@@ -51,6 +41,7 @@ public class Animations {
         this.row = row;
         moveToFieldBeginning(movingObject, matchfield, field);
     }
+
 
     private void moveToFieldBeginningColumn(MovingObject movingObject, Matchfield matchfield, int field) {
         if (field == 1) {
@@ -85,7 +76,7 @@ public class Animations {
 
     private void cultivateField(MovingObject movingObject, Matchfield matchfield, int field){
         if (field == 1) {
-            if (column < 29) {
+            while (column < 29) {
                 try {
                     if (matchfield.getMovingObjectImageView().getRotate() != 270) {
                         matchfield.getMovingObjectImageView().setRotate(270);
@@ -96,9 +87,16 @@ public class Animations {
                 }
                 column++;
                 matchfield.setTileOfObject(column, row);
-                matchfield.setImageOfField2(1);
+
             }
+            for (int i = 855; i < 915; i++) {
+                matchfield.getImageViewField1(i).setImage(matchfield.getCorrectImageField(1));
+            }
+
+
         }
+
+
     }
 
 
@@ -135,6 +133,13 @@ public class Animations {
 
     private void moveOverField3(int actualColumn, int actualRow){
 
+    }
+
+
+
+    public void cultivate1(MovingObject movingObject, Matchfield matchfield, int field) {
+        column = movingObject.getX();
+        row = movingObject.getY();
     }
 
 }
