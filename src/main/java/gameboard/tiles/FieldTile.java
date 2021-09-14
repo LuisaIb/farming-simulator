@@ -18,7 +18,7 @@ public class FieldTile extends Tile{
 
 
 	private HashMap<Integer, Integer> indexes;
-	HashMap<Integer, Boolean> cultivatedTilesField1 = new HashMap<Integer, Boolean>();
+	HashMap<Integer, Boolean> tilesField1Completed = new HashMap<Integer, Boolean>();
 	
 	private int growthState; //representing the state of growth of the first field
 	private int growthState2; //representing the state of growth of the second field
@@ -47,7 +47,7 @@ public class FieldTile extends Tile{
 		this.growthState2 = growthState2;
 		this.growthState3 = growthState3;
 		createHashMapField1();
-		setCultivatedTilesField1False();
+		setTilesField1False();
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public class FieldTile extends Tile{
 		growthState2 = 0;
 		growthState3 = 0;
 		createHashMapField1();
-		setCultivatedTilesField1False();
+		setTilesField1False();
 	}
 		
 	/**
@@ -208,52 +208,72 @@ public class FieldTile extends Tile{
 				matchfield.getImageViewField1(indexes.get(indexCombo)).setImage(matchfield.getCorrectImageField(1));
 			}
 		}
-		completelyCultivated = proofCultivateCompleteField1(column, row);
+		completelyCultivated = proofCompleteField1(column, row);
 		if (completelyCultivated) {
 			this.setGrowthState(1);
 			System.out.println("Stage growth of field 1 is now 1: " + this.getGrowthState());
-			setCultivatedTilesField1False();
+			setTilesField1False();
 		}
 	}
 
-	private boolean proofCultivateCompleteField1(int column, int row){
-		boolean completelycultivated = true;
+	public void sowField1(Matchfield matchfield, int column, int row){
+		int indexMovingObject = (row * 30) + column;
+		boolean completelySowed = false;
+		for(Integer indexCombo : indexes.keySet()) {
+			if (indexCombo == indexMovingObject) {
+				matchfield.getImageViewField1(indexes.get(indexCombo)).setImage(matchfield.getCorrectImageField(2));
+			}
+		}
+		completelySowed = proofCompleteField1(column, row);
+		if (completelySowed) {
+			this.setGrowthState(2);
+			System.out.println("Stage growth of field 1 is now 2: " + this.getGrowthState());
+			setTilesField1False();
+		}
+	}
+
+
+
+
+
+	private boolean proofCompleteField1(int column, int row){
+		boolean field1Completed = true;
 		int indexMovingObject = (row * 30) + column;
 
-		cultivatedTilesField1.put(indexMovingObject, true);
+		tilesField1Completed.put(indexMovingObject, true);
 
-		for(Integer indexOfTile : cultivatedTilesField1.keySet()) {
-			if (cultivatedTilesField1.get(indexOfTile) == false) {
-				completelycultivated = false;
+		for(Integer indexOfTile : tilesField1Completed.keySet()) {
+			if (tilesField1Completed.get(indexOfTile) == false) {
+				field1Completed = false;
 			}
 		}
 
-		return completelycultivated;
+		return field1Completed;
 	}
 
-	private void setCultivatedTilesField1False(){
+	private void setTilesField1False(){
 		for (int i = 440; i <= 449; i++) {
-			cultivatedTilesField1.put(i, false);
+			tilesField1Completed.put(i, false);
 		}
 
 		for (int i = 470; i <= 479; i++) {
-			cultivatedTilesField1.put(i, false);
+			tilesField1Completed.put(i, false);
 		}
 
 		for (int i = 500; i <= 509; i++) {
-			cultivatedTilesField1.put(i, false);
+			tilesField1Completed.put(i, false);
 		}
 
 		for (int i = 530; i <= 539; i++) {
-			cultivatedTilesField1.put(i, false);
+			tilesField1Completed.put(i, false);
 		}
 
 		for (int i = 560; i <= 569; i++) {
-			cultivatedTilesField1.put(i, false);
+			tilesField1Completed.put(i, false);
 		}
 
 		for (int i = 590; i <= 599; i++) {
-			cultivatedTilesField1.put(i, false);
+			tilesField1Completed.put(i, false);
 		}
 	}
 

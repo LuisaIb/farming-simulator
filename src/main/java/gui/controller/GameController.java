@@ -91,7 +91,7 @@ public class GameController {
         growthStageField1 = fieldTile.getGrowthState();
         growthStageField2 = fieldTile.getGrowthState2();
         growthSTageField3 = fieldTile.getGrowthState3();
-        if (fieldCounter == 1000) {
+        if (fieldCounter == 50) {
             if (growthStageField1 > 1 && growthStageField1 < 5) {
                 growthStageField1++;
                 fieldTile.setGrowthState(growthStageField1);
@@ -163,8 +163,13 @@ public class GameController {
         } else if((x == 14 || x == 15) && y == 5 && (tractor.isSelected() || harvester.isSelected())) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("fill tank");
-        } else if (x > 19 && y > 13 && cultivator.isSelected() && fieldTile.getGrowthState() == 6) {
-            fieldTile.cultivateField1(gameScene.getMatchfield(), x, y);
+        } else if (x > 19 && y > 13) {
+            if (cultivator.isSelected() && fieldTile.getGrowthState() == 6) {
+                fieldTile.cultivateField1(gameScene.getMatchfield(), x, y);
+            }
+            if (seedDrill.isSelected() && fieldTile.getGrowthState() == 1) {
+                fieldTile.sowField1(gameScene.getMatchfield(), x, y);
+            }
         } else {
             gameScene.getSideControlPane().getButtonAction().setDisable(true);
             gameScene.getSideControlPane().getButtonAction().setText("");
