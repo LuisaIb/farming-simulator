@@ -164,8 +164,7 @@ public class GameController {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("fill tank");
         } else if (x > 19 && y > 13 && cultivator.isSelected() && fieldTile.getGrowthState() == 6) {
-            gameScene.getSideControlPane().getButtonAction().setDisable(false);
-            gameScene.getSideControlPane().getButtonAction().setText("cultivate field");
+            fieldTile.cultivateField1(gameScene.getMatchfield(), x, y);
         } else {
             gameScene.getSideControlPane().getButtonAction().setDisable(true);
             gameScene.getSideControlPane().getButtonAction().setText("");

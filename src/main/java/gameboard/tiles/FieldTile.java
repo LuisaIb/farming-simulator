@@ -1,7 +1,11 @@
 package gameboard.tiles;
 
+import gameboard.objects.MovingObject;
+import gui.view.Matchfield;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * This class represents a tile, which is a field with its several properties
@@ -11,6 +15,10 @@ import java.util.TimerTask;
 public class FieldTile extends Tile{
 	
 	private Timer timer = new Timer(); //needed for the field growing on its own
+
+
+	private HashMap<Integer, Integer> indexes;
+	HashMap<Integer, Boolean> cultivatedTilesField1 = new HashMap<Integer, Boolean>();
 	
 	private int growthState; //representing the state of growth of the first field
 	private int growthState2; //representing the state of growth of the second field
@@ -38,7 +46,8 @@ public class FieldTile extends Tile{
 		this.growthState = growthState;
 		this.growthState2 = growthState2;
 		this.growthState3 = growthState3;
-		
+		createHashMapField1();
+		setCultivatedTilesField1False();
 	}
 	
 	/**
@@ -48,7 +57,8 @@ public class FieldTile extends Tile{
 		growthState = 1;
 		growthState2 = 0;
 		growthState3 = 0;
-		
+		createHashMapField1();
+		setCultivatedTilesField1False();
 	}
 		
 	/**
@@ -155,5 +165,97 @@ public class FieldTile extends Tile{
 		return "FieldTile [growthState=" + growthState + ", growthState2=" + growthState2 + ", growthState3="
 				+ growthState3 + "]";
 	}
+
+	private void createHashMapField1(){
+		indexes = new HashMap<Integer, Integer>();
+		int fieldIndex = 855;
+		for (int i = 440; i <= 449; i++) {
+			indexes.put(i, fieldIndex);
+			fieldIndex++;
+		}
+
+		for (int i = 470; i <= 479; i++) {
+			indexes.put(i, fieldIndex);
+			fieldIndex++;
+		}
+
+		for (int i = 500; i <= 509; i++) {
+			indexes.put(i, fieldIndex);
+			fieldIndex++;
+		}
+
+		for (int i = 530; i <= 539; i++) {
+			indexes.put(i, fieldIndex);
+			fieldIndex++;
+		}
+
+		for (int i = 560; i <= 569; i++) {
+			indexes.put(i, fieldIndex);
+			fieldIndex++;
+		}
+
+		for (int i = 590; i <= 599; i++) {
+			indexes.put(i, fieldIndex);
+			fieldIndex++;
+		}
+	}
+
+	public void cultivateField1(Matchfield matchfield, int column, int row){
+		int indexMovingObject = (row * 30) + column;
+		boolean completelyCultivated = false;
+		for(Integer indexCombo : indexes.keySet()) {
+			if (indexCombo == indexMovingObject) {
+				matchfield.getImageViewField1(indexes.get(indexCombo)).setImage(matchfield.getCorrectImageField(1));
+			}
+		}
+		completelyCultivated = proofCultivateCompleteField1(column, row);
+		if (completelyCultivated) {
+			this.setGrowthState(1);
+			System.out.println("Stage growth of field 1 is now 1: " + this.getGrowthState());
+			setCultivatedTilesField1False();
+		}
+	}
+
+	private boolean proofCultivateCompleteField1(int column, int row){
+		boolean completelycultivated = true;
+		int indexMovingObject = (row * 30) + column;
+
+		cultivatedTilesField1.put(indexMovingObject, true);
+
+		for(Integer indexOfTile : cultivatedTilesField1.keySet()) {
+			if (cultivatedTilesField1.get(indexOfTile) == false) {
+				completelycultivated = false;
+			}
+		}
+
+		return completelycultivated;
+	}
+
+	private void setCultivatedTilesField1False(){
+		for (int i = 440; i <= 449; i++) {
+			cultivatedTilesField1.put(i, false);
+		}
+
+		for (int i = 470; i <= 479; i++) {
+			cultivatedTilesField1.put(i, false);
+		}
+
+		for (int i = 500; i <= 509; i++) {
+			cultivatedTilesField1.put(i, false);
+		}
+
+		for (int i = 530; i <= 539; i++) {
+			cultivatedTilesField1.put(i, false);
+		}
+
+		for (int i = 560; i <= 569; i++) {
+			cultivatedTilesField1.put(i, false);
+		}
+
+		for (int i = 590; i <= 599; i++) {
+			cultivatedTilesField1.put(i, false);
+		}
+	}
+
 
 }

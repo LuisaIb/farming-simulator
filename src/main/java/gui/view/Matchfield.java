@@ -179,10 +179,10 @@ public class Matchfield {
      * Adds the image views of the fist field to the matchfield.
      */
     protected void setField1(int stageOfGrowth){
-        for (int i = 20; i < NUMBER_COLUMNS; i++){
-            for (int j = 14; j < NUMBER_ROWS; j++) {
-                imageViewField1 = getImageViewField(stageOfGrowth);
-                addToGridPane(imageViewField1, i, j);
+        for (int j = 14; j < NUMBER_ROWS; j++) {
+            for (int i = 20; i < NUMBER_COLUMNS; i++){
+            imageViewField1 = getImageViewField(stageOfGrowth);
+            addToGridPane(imageViewField1, i, j);
             }
         }
     }
