@@ -25,6 +25,10 @@ public class GetPojoMovingObject {
 		Jsonb jb1 = JsonbBuilder.create();
 		Farmer deserializeddf = jb1.fromJson(jb, Farmer.class);
 		return deserializeddf;	
+		
+//		Jsonb jb2 = JsonbBuilder.create();
+//		Game deserializeddf = jb2.fromJson(jb, Game.class);
+//		return deserializeddf;
 	}
 	
 	/**

@@ -399,6 +399,15 @@ public class Game {
 			
 			Farmer deserializedSelectedf = gpp.toDeserializeFarmer(toSerializeFarmer());
 			boolean selectedf = deserializedSelectedf.isSelected();
+			
+//			Game deserializedfX = gpp.toDeserializeFarmer(toSerializeFarmer());
+//			int xf = deserializedfX.getFarmerX();
+//			
+//			Game deserializedfY = gpp.toDeserializeFarmer(toSerializeFarmer());
+//			int yf = deserializedfY.getFarmerY();
+//			
+//			Game deserializedSelectedf = gpp.toDeserializeFarmer(toSerializeFarmer());
+//			boolean selectedf = deserializedSelectedf.isFarmerIsSelected();
 		
 		farmer = new Farmer(xf, yf, selectedf);
 		
