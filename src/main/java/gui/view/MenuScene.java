@@ -13,6 +13,8 @@ import simulator.Game;
 import static gui.view.ViewManager.HEIGHT;
 import static gui.view.ViewManager.WIDTH;
 
+import gameboard.objects.Farmer;
+
 /**
  * This class implements the menuScene. This scene is the first scene that is shown, when starting the game. It provides
  * buttons for a new game, load game, save game, help and end game.
@@ -69,21 +71,21 @@ public class MenuScene {
         buttonLoadGame.setOnMouseClicked(sceneController.setSceneToReloadGameScene);
         buttonSaveGame = new LSButton("Spiel speichern",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
-        buttonSaveGame.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-            game.toSerializeFarmer();
-//            game.toSerializeGame();
-            game.toSerializeLevel();
-            game.toSerializeFieldtiles();
-            game.toSerializeSilo();
-            game.toSerializeCourtTrade();
-            game.toSerializeTractor();
-            game.toSerializeHarvester();
-            game.toSerializeCultivator();
-            game.toSerializeDumpTruck();
-            game.toSerializeSeedDrill();
-            
-            
-        });
+//        buttonSaveGame.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+//            game.toSerializeFarmer();
+////            game.toSerializeGame();
+//            game.toSerializeLevel();
+//            game.toSerializeFieldtiles();
+//            game.toSerializeSilo();
+//            game.toSerializeCourtTrade();
+//            game.toSerializeTractor();
+//            game.toSerializeHarvester();
+//            game.toSerializeCultivator();
+//            game.toSerializeDumpTruck();
+//            game.toSerializeSeedDrill();
+//            
+//            
+//        });
 
         buttonHelp = new LSButton("Hilfe",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
@@ -108,4 +110,6 @@ public class MenuScene {
     public LSButton getButtonNewGame() {
         return buttonNewGame;
     }
+    
+   
 }

@@ -12,8 +12,8 @@ import gui.controller.GameController;
 import gameboard.objects.*;
 import gameboard.tiles.FieldTile;
 import gui.model.GameInformation;
-import gui.view.DifficultyScene;
 import gui.view.GameScene;
+
 
 /**
  * @author Isabel
@@ -21,7 +21,6 @@ import gui.view.GameScene;
  */
 public class Game {
 
-	DifficultyScene ds = new DifficultyScene();
     MovingObject movingObject = new MovingObject();
     private Farmer farmer;
     private int farmerX;
@@ -83,55 +82,57 @@ public class Game {
 	public GameScene createNewGame(){
         GameScene gameScene = new GameScene();
         	farmer = new Farmer();
-        	this.setFarmerX(farmer.getX());
-        	this.setFarmerY(farmer.getY());
-        	this.setFarmerIsSelected(farmer.isSelected());
+        	System.out.println(farmer.getX());
+        	setFarmerX(farmer.getX());
+        	System.out.println(getFarmerX());
+        	setFarmerY(farmer.getY());
+        	setFarmerIsSelected(farmer.isSelected());
         	
         	tractor = new Tractor();
-        	this.setTractorX(tractor.getX());
-        	this.setTractorY(tractor.getY());
-        	this.setTractorIsSelected(tractor.isSelected());
-        	this.setTractorPetrolTankFillLevel(tractor.getPetrolTankFillLevel());
-        	this.setTractorIsAttachment(tractor.isAttachement());
+        	setTractorX(tractor.getX());
+        	setTractorY(tractor.getY());
+        	setTractorIsSelected(tractor.isSelected());
+        	setTractorPetrolTankFillLevel(tractor.getPetrolTankFillLevel());
+        	setTractorIsAttachment(tractor.isAttachement());
         	
 	        harvester = new Harvester();
-	        this.setHarvesterX(harvester.getX());
-	        this.setHarvesterY(harvester.getY());
-	        this.setHarvesterIsSelected(harvester.isSelected());
-	        this.setHarvesterPetrolTankFillLevel(harvester.getPetrolTankFillLevel());
-	        this.setHarvesterGrainTankFillLevel(harvester.getGrainTankFillLevel());
+	        setHarvesterX(harvester.getX());
+	        setHarvesterY(harvester.getY());
+	        setHarvesterIsSelected(harvester.isSelected());
+	        setHarvesterPetrolTankFillLevel(harvester.getPetrolTankFillLevel());
+	        setHarvesterGrainTankFillLevel(harvester.getGrainTankFillLevel());
 	       
 	        
 	        cultivator = new Cultivator();
-	        this.setCultivatorX(cultivator.getX());
-	        this.setCultivatorY(cultivator.getY());
-	        this.setCultivatorIsSelected(cultivator.isSelected());
+	        setCultivatorX(cultivator.getX());
+	        setCultivatorY(cultivator.getY());
+	        setCultivatorIsSelected(cultivator.isSelected());
 	        
 	        dumpTruck = new DumpTruck();
-	        this.setDumpTruckX(dumpTruck.getX());
-	        this.setDumpTruckY(dumpTruck.getY());
-	        this.setDumpTruckIsSelected(dumpTruck.isSelected());
-	        this.setDumpTruckGrainFillLevel(dumpTruck.getGrainFillLevel());
+	        setDumpTruckX(dumpTruck.getX());
+	        setDumpTruckY(dumpTruck.getY());
+	        setDumpTruckIsSelected(dumpTruck.isSelected());
+	        setDumpTruckGrainFillLevel(dumpTruck.getGrainFillLevel());
 	        
 	        seedDrill = new SeedDrill();
-	        this.setSeedDrillX(seedDrill.getX());
-	        this.setSeedDrillY(seedDrill.getY());
-	        this.setSeedDrillIsSelected(seedDrill.isSelected());
+	        setSeedDrillX(seedDrill.getX());
+	        setSeedDrillY(seedDrill.getY());
+	        setSeedDrillIsSelected(seedDrill.isSelected());
 	        
 	        fieldTile = new FieldTile();
-	        this.setGrowthState(fieldTile.getGrowthState());
-	        this.setGrowthState2(fieldTile.getGrowthState2());
-	        this.setGrowthState3(fieldTile.getGrowthState3());
+	        setGrowthState(fieldTile.getGrowthState());
+	        setGrowthState2(fieldTile.getGrowthState2());
+	        setGrowthState3(fieldTile.getGrowthState3());
 
 	        gameValue = new GameValue();
-	        this.setCash(gameValue.getCash());
-	        this.setDay(gameValue.getDay());
+	        setCash(gameValue.getCash());
+	        setDay(gameValue.getDay());
 	        
 	        levelOfDifficulty = new LevelOfDifficulty(2);
-	        this.setLevel(levelOfDifficulty.getLevel());
+	        setLevel(levelOfDifficulty.getLevel());
 	        
 	        silo = new Silo();
-	        this.setSiloCapacity(silo.getCapacity());
+	        setSiloCapacity(silo.getCapacity());
 	        
 	        courtTrade = new CourtTrade();
 
@@ -152,14 +153,19 @@ public class Game {
 		gameController.initGameLoop(gameScene, fieldTile, getMovingObject(), getSelectedObject(), gameValue, gameScene.getSideControlPane(), farmer, tractor,
 				harvester, cultivator, dumpTruck, seedDrill);
         GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
-        gameValue.setCash(50);
         return gameScene;
     }
 
+    /**
+     * @param movingObject
+     */
     public void setMovingObject(MovingObject movingObject){
     	this.movingObject = movingObject;
 	}
 
+	/**
+	 * 
+	 */
 	public void setMovingObjectDependingOnSelected(){
 		if(isFarmerIsSelected()){
 			movingObject = farmer;
@@ -170,10 +176,16 @@ public class Game {
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	public MovingObject getMovingObject(){
     	return movingObject;
 	}
 
+	/**
+	 * @return
+	 */
 	public int getSelectedObject(){
         if(isFarmerIsSelected()){
             selectedObject=1;
@@ -193,10 +205,16 @@ public class Game {
         return selectedObject;
     }
 
+    /**
+     * @return
+     */
     public int getRow(){
         return movingObject.getY();
     }
 
+    /**
+     * @return
+     */
     public int getColumn(){
 		return movingObject.getX();
     }
@@ -284,19 +302,19 @@ public class Game {
      * @param
 	 * @return serialized as a JSONB object of the farmer's position
 	 */
-	public String toSerializeFarmer() {
-//		farmer = new Farmer(15,2,true);
-//		farmer.getX();
-//		farmer.getY();
-//		farmer.isSelected();
+	public String toSerializeFarmer(int x, int y, boolean b) {
+	
+		farmer = new Farmer(x, y, b);
+		
+		Jsonb jsonb = JsonbBuilder.create();
+		String serializedsf = jsonb.toJson(farmer);
+		
+		
+//		setFarmerX(5);
+//		getFarmerY();
+//		isFarmerIsSelected();
 //		Jsonb jsonb = JsonbBuilder.create();
 //		String serializedsf = jsonb.toJson(farmer);
-		Game gf = new Game();
-		gf.farmerX = getFarmerX();
-		gf.farmerY = getFarmerY();
-		gf.farmerIsSelected = isFarmerIsSelected();
-		Jsonb jsonb = JsonbBuilder.create();
-		String serializedsf = jsonb.toJson(gf);
 		
 		return serializedsf;
 	}
@@ -476,23 +494,24 @@ public class Game {
     	 * It implements a new position (x and y value) of the farmer.
     	 */
 		GetPojoMovingObject gpp = new GetPojoMovingObject();
-//			Farmer deserializedfX = gpp.toDeserializeFarmer(toSerializeFarmer());
-//			int xf = deserializedfX.getX();
+			Farmer deserializedfX = gpp.toDeserializeFarmer(toSerializeFarmer(getFarmerX(), getFarmerY(), isFarmerIsSelected()));
+			int xf = deserializedfX.getX();
+			System.out.println(xf);
+			
+			Farmer deserializedfY = gpp.toDeserializeFarmer(toSerializeFarmer(getFarmerX(), getFarmerY(), isFarmerIsSelected()));
+			int yf = deserializedfY.getY();
+			
+			Farmer deserializedSelectedf = gpp.toDeserializeFarmer(toSerializeFarmer(getFarmerX(), getFarmerY(), isFarmerIsSelected()));
+			boolean selectedf = deserializedSelectedf.isSelected();
+			
+//			Game deserializedfX = gpp.toDeserializeFarmer(toSerializeFarmer());
+//			int xf = deserializedfX.getFarmerX();
 //			
-//			Farmer deserializedfY = gpp.toDeserializeFarmer(toSerializeFarmer());
-//			int yf = deserializedfY.getY();
+//			Game deserializedfY = gpp.toDeserializeFarmer(toSerializeFarmer());
+//			int yf = deserializedfY.getFarmerY();
 //			
-//			Farmer deserializedSelectedf = gpp.toDeserializeFarmer(toSerializeFarmer());
-//			boolean selectedf = deserializedSelectedf.isSelected();
-			
-			Game deserializedfX = gpp.toDeserializeFarmer(toSerializeFarmer());
-			int xf = deserializedfX.getFarmerX();
-			
-			Game deserializedfY = gpp.toDeserializeFarmer(toSerializeFarmer());
-			int yf = deserializedfY.getFarmerY();
-			
-			Game deserializedSelectedf = gpp.toDeserializeFarmer(toSerializeFarmer());
-			boolean selectedf = deserializedSelectedf.isFarmerIsSelected();
+//			Game deserializedSelectedf = gpp.toDeserializeFarmer(toSerializeFarmer());
+//			boolean selectedf = deserializedSelectedf.isFarmerIsSelected();
 		
 		farmer = new Farmer(xf, yf, selectedf);
 		
@@ -590,19 +609,24 @@ public class Game {
     		boolean selectedsd = deserializedSelectedsd.isSeedDrillIsSelected();
     		
 		seedDrill = new SeedDrill(xsd, ysd, selectedsd);
-
-//		gameScene.getInformationBox().getSiloField().setText("Corn in silo: " + silo.getCapacityAsString());
-//		gameScene.getInformationBox().getHarvesterField().setText(harvester.getPetrolTankFillLevelAsString());
-//		gameScene.getInformationBox().getTractorField().setText(tractor.getPetrolTankFillLevelAsString());
-//		gameScene.getInformationBox().getTimeField().setText(gameValue.getDayAsString());
-//		gameScene.getInformationBox().getMoneyField().setText(gameValue.getCashAsString());
-        gameScene.initializeGameScene(isFarmerIsSelected(),isTractorIsSelected(),isHarvesterIsSelected(),
-        		isCultivatorIsSelected(),isDumpTruckIsSelected(),isSeedDrillIsSelected(),fieldTile.getGrowthState(),
-                fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
-		gameController.initGameLoop(gameScene, fieldTile, getMovingObject(), getSelectedObject(), gameValue, gameScene.getSideControlPane(), farmer, tractor,
-				harvester, cultivator, dumpTruck, seedDrill);
-		GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
-        return gameScene;
+		
+		 GameController gameController2 = new GameController();
+	        gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
+	                cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
+	                fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
+			gameScene.getInformationBox().getSiloField().setText("Corn in silo: " + silo.getCapacityAsString());
+			gameScene.getInformationBox().getHarvesterField().setText(harvester.getPetrolTankFillLevelAsString());
+			gameScene.getInformationBox().getTractorField().setText(tractor.getPetrolTankFillLevelAsString());
+			gameScene.getInformationBox().getTimeField().setText(gameValue.getDayAsString());
+			gameScene.getInformationBox().getMoneyField().setText(gameValue.getCashAsString());
+	        System.out.println(getSelectedObject());
+	        System.out.println(getColumn());
+	        System.out.println(getRow());
+	        selectedObject = getSelectedObject();
+			gameController2.initGameLoop(gameScene, fieldTile, getMovingObject(), getSelectedObject(), gameValue, gameScene.getSideControlPane(), farmer, tractor,
+					harvester, cultivator, dumpTruck, seedDrill);
+	        GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
+	        return gameScene;
     }
 
 	/**
