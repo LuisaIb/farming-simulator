@@ -242,7 +242,7 @@ public class FieldTile extends Tile{
 		}
 		completelyHarvested = proofCompleteField1(column, row);
 		if (completelyHarvested) {
-			this.setGrowthState(2);
+			this.setGrowthState(6);
 			System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState());
 			setTilesField1False();
 		}

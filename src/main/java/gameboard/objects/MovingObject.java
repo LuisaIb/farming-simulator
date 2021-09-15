@@ -1,6 +1,11 @@
 package gameboard.objects;
 
 import exceptions.MovingExcpetion;
+import gui.view.GameScene;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * this class represents any object on the gameboard,
@@ -12,6 +17,8 @@ public class MovingObject {
 	private int x;
 	private int y;
 	private boolean selected = false;
+	List<Integer> places = Arrays.asList(7, 37, 67, 90, 120, 121, 122, 123, 124, 125, 126, 127, 180, 181, 182, 183,
+			184, 185, 186, 187, 217, 247, 277, 307, 337, 367, 397, 427, 457, 487, 517, 547, 577);
 
 	public MovingObject(){
 		this.x = getX();
@@ -24,41 +31,52 @@ public class MovingObject {
 		this.y = y;
 		this.selected = selected;
 	}
-	
+
+	private boolean proofPassabilty(int x, int y){
+		boolean passable = true;
+		int tileIndex = (y*30) + x;
+		for (Integer i: places) {
+			if (i == tileIndex) {
+				passable = false;
+			}
+		}
+		return passable;
+	}
+
 	/**
 	 * this method is representing the functionality of each object 
 	 * to move over the gameboard
 	 */
-	public void moveRight() throws MovingExcpetion {
-		if (x < 29) {
+	public void moveRight(GameScene gameScene) throws MovingExcpetion {
+		if (x < 29 && proofPassabilty(x+1, y)) {
 			x++;
 		} else {
-			throw new MovingExcpetion("You can not walk further to the right.");
+			throw new MovingExcpetion("You can not walk further to the right.", gameScene.getInformationBox());
 		}
 	}
 
 
-	public void moveLeft() throws MovingExcpetion {
-		if (x > 0) {
+	public void moveLeft(GameScene gameScene) throws MovingExcpetion {
+		if (x > 0 && proofPassabilty(x-1, y)) {
 			x--;
 		} else {
-			throw new MovingExcpetion("You can not walk further to the left.");
+			throw new MovingExcpetion("You can not walk further to the left.", gameScene.getInformationBox());
 		}
 	}
 
-	public void moveUp() throws MovingExcpetion {
-		if (y > 0) {
+	public void moveUp(GameScene gameScene) throws MovingExcpetion {
+		if (y > 0 && proofPassabilty(x, y-1)) {
 			y--;
 		} else {
-			throw new MovingExcpetion("You can not walk further to the top.");
+			throw new MovingExcpetion("You can not walk further to the top.", gameScene.getInformationBox());
 		}
 	}
 
-	public void moveDown() throws MovingExcpetion {
-		if (y < 19) {
+	public void moveDown(GameScene gameScene) throws MovingExcpetion {
+		if (y < 19 && proofPassabilty(x, y+1)) {
 			y++;
 		} else {
-			throw new MovingExcpetion("You can not walk further to the bottom.");
+			throw new MovingExcpetion("You can not walk further to the bottom.", gameScene.getInformationBox());
 		}
 	}
 

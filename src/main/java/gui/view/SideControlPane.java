@@ -117,38 +117,37 @@ public class SideControlPane {
     private void fillMachinePaneWithButtons(){
         Image imageFarmer = new ImageManager().getImage(PATH_TO_FARMER, WIDTH_PANE / 2, WIDTH_PANE / 2,
                 true, false);
-        farmerButton = new LSButton(imageFarmer, "farmer",
+        farmerButton = new LSButton(imageFarmer,
                 HEIGHT_PANE / 3, WIDTH_PANE / 2, 0, 0);
         addToGridPane(farmerButton, 0, 0);
 
         Image imageTractor = new ImageManager().getImage(PATH_TO_TRACTOR , WIDTH_PANE / 2, WIDTH_PANE / 2,
                 true, false);
-        tractorButton = new LSButton(imageTractor, "tractor",
+        tractorButton = new LSButton(imageTractor,
                 HEIGHT_PANE / 3, WIDTH_PANE / 2, 0, 0);
         addToGridPane(tractorButton, 1, 0);
 
         Image imageHarvester = new ImageManager().getImage(PATH_TO_HARVESTER, WIDTH_PANE / 2,
                 WIDTH_PANE / 2, true, false);
-        harvesterButton = new LSButton(imageHarvester, "harvester",
+        harvesterButton = new LSButton(imageHarvester,
                 HEIGHT_PANE / 3, WIDTH_PANE / 2, 0, 0);
         addToGridPane(harvesterButton, 0, 1);
 
         Image imageCultivator = new ImageManager().getImage(PATH_TO_CULTIVATOR, WIDTH_PANE / 2,
                 WIDTH_PANE / 2, true, false);
-        cultivatorButton = new LSButton(imageCultivator, "cultivator",
+        cultivatorButton = new LSButton(imageCultivator,
                 HEIGHT_PANE / 3, WIDTH_PANE / 2, 0, 0);
         addToGridPane(cultivatorButton, 1, 1);
 
         Image imageDumpTruck = new ImageManager().getImage(PATH_TO_DUMP_TRUCK, WIDTH_PANE / 2,
                 WIDTH_PANE / 2, true, false);
-        dumpTruckButton = new LSButton(imageDumpTruck, "drump truck",
+        dumpTruckButton = new LSButton(imageDumpTruck,
                 HEIGHT_PANE / 3, WIDTH_PANE / 2, 0, 0);
         addToGridPane(dumpTruckButton, 0, 2);
 
         Image imageSeedDrill = new ImageManager().getImage(PATH_TO_SEED_DRILL, WIDTH_PANE / 2,
                 WIDTH_PANE / 2, true, false);
-        seedDrillButton = new LSButton(imageSeedDrill, "Seed Drill",
-                HEIGHT_PANE / 3, WIDTH_PANE / 2, 0, 0);
+        seedDrillButton = new LSButton(imageSeedDrill, HEIGHT_PANE / 3, WIDTH_PANE / 2, 0, 0);
         addToGridPane(seedDrillButton, 1, 2);
     }
 
@@ -297,12 +296,12 @@ public class SideControlPane {
                 if (!tractorExited) {
                     tractorButton.setDisable(false);
                 }
+                harvesterButton.setDisable(false);
             });
 
 
         farmerButton.setOnMouseClicked(mouseEvent -> {
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(1));
-            setMovingObjectToFarmer(movingObject, farmer);
             farmerButton.setDisable(false);
             tractorButton.setDisable(true);
             harvesterButton.setDisable(true);
@@ -497,9 +496,9 @@ public class SideControlPane {
     }
 
     private void setMovingObjectToFarmer(MovingObject movingObject, Farmer farmer){
-        int column = movingObject.getX();
-        int row = movingObject.getY();
-       movingObject = farmer;
+       int column = movingObject.getX();
+       int row = movingObject.getY();
+       //movingObject = farmer;
        farmer.setX(column);
        farmer.setX(row);
     }
@@ -507,7 +506,7 @@ public class SideControlPane {
     private void setMovingObjectToTractor(MovingObject movingObject, Tractor tractor) {
         int column = movingObject.getX();
         int row = movingObject.getY();
-        movingObject = tractor;
+        //movingObject = tractor;
         tractor.setX(column);
         tractor.setY(row);
     }
@@ -515,7 +514,7 @@ public class SideControlPane {
     private void setMovingObjectToHarvester(MovingObject movingObject, Harvester harvester){
         int column = movingObject.getX();
         int row = movingObject.getY();
-        movingObject = harvester;
+        //movingObject = harvester;
         harvester.setX(column);
         harvester.setY(row);
     }

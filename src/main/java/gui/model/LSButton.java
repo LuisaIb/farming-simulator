@@ -1,30 +1,28 @@
 package gui.model;
 
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 
 /** This class provides buttons with a special design matching the theme of the game.
  *
- * @author Judith Romer
+ * @author Judith
  */
 public class LSButton  extends Button {
     /* A variable, that saves the path to the background image of the button in a String. */
     private final String IMAGE_PATH = "src/main/java/gui/model/resources/background.png";
 
-    /** Constructs an object of the class LandwirtschaftssimulatorButton with text on it and a nice background image
-     * by using the methode setButtonBackground().
+    /** Constructs an object of the class LSButton with text on it and a nice background image by using the methode
+     * setButtonBackground().
      *
-     * @param text - text, that is shown on the button
-     * @param height - height of the button, handed to the methods setButtonLayout() and setButtonBackground()
-     * @param width - width of the button, handed to the methods setButtonLayout() and setButtonBackground()
-     * @param layoutX - distance on the x-axis from the top left corner, handed to the method setButtonLayout()
-     * @param layoutY - distance on the y-axis from the top left corner, handed to the method setButtonLayout()
-     * @param fontSize - size of the font, handed to the method setButtonFont()
+     * @param text text, that is shown on the button
+     * @param height height of the button, handed to the methods setButtonLayout() and setButtonBackground()
+     * @param width width of the button, handed to the methods setButtonLayout() and setButtonBackground()
+     * @param layoutX distance on the x-axis from the top left corner, handed to the method setButtonLayout()
+     * @param layoutY distance on the y-axis from the top left corner, handed to the method setButtonLayout()
+     * @param fontSize size of the font, handed to the method setButtonFont()
      */
     public LSButton(String text, int height, int width, int layoutX, int layoutY, int fontSize) {
         this.setText(text);
@@ -33,23 +31,23 @@ public class LSButton  extends Button {
         this.setButtonLayout(height, width, layoutX, layoutY);
     }
 
-    /** Constructs an object of the class LandwirtschaftssimulatorButton without text and background image, but with
-     * an individualized image, that is given to the method as a parameter.
+    /** Constructs an object of the class LSButton without text and background image, but with an individualized image,
+     *  that is given to the method as a parameter.
      *
-     * @param image - image, that is shown on the button, handed to the method setButtonBackground()
-     * @param height - height of the button, handed to the methods setButtonLayout() and setButtonBackground
-     * @param width - width of the button, handed to the methods setButtonLayout() and setButtonBackground
-     * @param layoutX - distance on the x-axis from the top left corner, handed to the method setButtonLayout()
-     * @param layoutY - distance on the y-axis from the top left corner, handed to the method setButtonLayout()
+     * @param image image, that is shown on the button, handed to the method setButtonBackground()
+     * @param height height of the button, handed to the method setButtonLayout()
+     * @param width width of the button, handed to the method setButtonLayout()
+     * @param layoutX distance on the x-axis from the top left corner, handed to the method setButtonLayout()
+     * @param layoutY distance on the y-axis from the top left corner, handed to the method setButtonLayout()
      */
-    public LSButton(Image image, String text, int height, int width, int layoutX, int layoutY) {
+    public LSButton(Image image, int height, int width, int layoutX, int layoutY) {
         this.setButtonLayout(height, width, layoutX, layoutY);
-        this.setButtonBackground(image, height, width);
+        this.setButtonBackground(image);
     }
 
-    /** Sets the font of the button to Verdana and the size of the font to the fontSize.
+    /** Sets the font of the button to Verdana and the size of the font to the parameter fontSize.
      *
-     * @param fontSize - size of the font on the button
+     * @param fontSize size of the font on the button
      */
     private void setButtonFont(int fontSize){
         this.setFont(Font.font("Verdana", fontSize));
@@ -57,10 +55,10 @@ public class LSButton  extends Button {
 
     /** Defines the size and alignment of the button. The alignment of the text is set to the center.
      *
-     * @param height - height of the button
-     * @param width - width of the button
-     * @param layoutX - distance on the x-axis from the top left corner
-     * @param layoutY - distance on the y-axis from the top left corner
+     * @param height height of the button
+     * @param width width of the button
+     * @param layoutX distance on the x-axis from the top left corner
+     * @param layoutY distance on the y-axis from the top left corner
      */
     private void setButtonLayout(int height, int width, int layoutX, int layoutY){
         this.setPrefHeight(height);
@@ -70,10 +68,11 @@ public class LSButton  extends Button {
         this.setAlignment(Pos.CENTER);
     }
 
-    /** Sets the background image, using the method getImage() of the class ImageManager, the final variable and
-     * the parameters. As the method will never be used outside this class, it is private.
-     * @param height - height of the image, the same as the button
-     * @param width - width of the image, the same as the button
+    /** Sets the background image by using the method getImage() of the class ImageManager, the final variable and
+     * the parameters.
+     *
+     * @param height height of the image (the same height as the button)
+     * @param width width of the image (the same width as the button)
      */
     private void setButtonBackground(int height, int width){
         Image image = new ImageManager().getImage(IMAGE_PATH, width, height, false, false);
@@ -83,17 +82,15 @@ public class LSButton  extends Button {
         this.setBackground(background);
     }
 
-    /** Sets the background image, using the image of the parameter. As the method will never be used outside this
+    /** Sets the background image by using the image of the parameters. As the method will never be used outside this
      * class, it is private.
-     * @param image - image, that is set as background
-     * @param height - height of the image, the same as the button
-     * @param width - width of the image, the same as the button
+     *
+     * @param image image, that is set as background
      */
-    private void setButtonBackground(Image image, int height, int width){
+    private void setButtonBackground(Image image){
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         Background background = new Background(backgroundImage);
         this.setBackground(background);
     }
-
 }

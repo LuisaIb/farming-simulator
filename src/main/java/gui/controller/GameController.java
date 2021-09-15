@@ -21,9 +21,6 @@ public class GameController {
     private int growthStageField2;
     private int growthSTageField3;
     private int dayCounter = 0;
-    private int actualObject;
-    private int tractorCounter = 0;
-    private int harvesterCounter = 0;
 
 
     public void setBooleansPressed(KeyEvent keyEvent){
@@ -65,9 +62,9 @@ public class GameController {
             @Override
             public void handle(long now) {
                 if (now - lastUpdate >= 100_000_000) {
-                    gameScene.moveObject(movingObject, tractor, harvester);
+                    gameScene.moveObject(movingObject, tractor, harvester, gameScene);
                     proofAction(gameScene, movingObject, selectedObject, sideControlPane, farmer, tractor, harvester,
-                            cultivator, dumpTruck, seedDrill, fieldTile, gameTimer);
+                            cultivator, dumpTruck, seedDrill, fieldTile);
                     lastUpdate = now;
                     DayCounter(gameValue);
                     proofFieldCounter(gameScene, fieldTile);
@@ -145,12 +142,11 @@ public class GameController {
 
 
     private void proofAction(GameScene gameScene, MovingObject movingObject, int selectedObject, SideControlPane sideControlPane, Farmer farmer,
-                            Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile,
-                             AnimationTimer gameTimer){
+                            Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile){
         int x = movingObject.getX();
         int y = movingObject.getY();
         createButtonActionFunctionality(sideControlPane, gameScene.getMatchfield(), farmer, tractor, harvester,
-                cultivator, dumpTruck, seedDrill, x, y, fieldTile, movingObject, gameTimer);
+                cultivator, dumpTruck, seedDrill, x, y, fieldTile, movingObject);
         if ((x == 16 || x == 17) && y == 13) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("select vehicle");
@@ -200,7 +196,7 @@ public class GameController {
     private void createButtonActionFunctionality(SideControlPane sideControlPane, Matchfield matchfield, Farmer farmer,
                                                  Tractor tractor, Harvester harvester, Cultivator cultivator,
                                                  DumpTruck dumpTruck, SeedDrill seedDrill, int column, int row,
-                                                 FieldTile fieldTile, MovingObject movingObject, AnimationTimer gameTimer){
+                                                 FieldTile fieldTile, MovingObject movingObject){
         sideControlPane.createActionButtonFunctionality(matchfield, farmer, tractor, harvester, cultivator, dumpTruck,
                 seedDrill, column, row, fieldTile, movingObject);
     }
