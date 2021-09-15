@@ -174,7 +174,7 @@ public class GameController {
             }
             if (growthSTageField3 > 1 && growthSTageField3 < 5) {
                 fieldTile.setGrowthState3(growthSTageField3+1);
-                gameScene.setField3(growthSTageField3+1);
+                //gameScene.setField3(growthSTageField3+1);
             }
             fieldCounter = 0;
         }

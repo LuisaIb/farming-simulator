@@ -33,6 +33,7 @@ public class MenuScene {
     private LSButton buttonEnd;
     SceneController sceneController = new SceneController();
     Game game = new Game();
+    ViewManager viewManager = new ViewManager();
 
     /**
      * Constructs an object of the class MenuScene. It initializes the menuPane with the method initializeMenuPane().

@@ -5,10 +5,16 @@ import gameboard.objects.Harvester;
 import gameboard.objects.MovingObject;
 import gameboard.objects.Tractor;
 import gui.controller.GameController;
+import gui.controller.SceneController;
+import gui.model.ImageManager;
+import gui.model.LSButton;
+import gui.model.LSTextField;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
-import simulator.Game;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import simulator.LevelOfDifficulty;
 
 import static gui.view.ViewManager.HEIGHT;
 import static gui.view.ViewManager.WIDTH;
@@ -33,8 +39,8 @@ public class GameScene {
      * This method implements all the Nodes for the game scene with the help of the other classes InformationBox,
      * Matchfield, MovingObjectOnMatchfield and SideControlPane.
      *
-     * @param farmer - hands the boolean to the method initializeSideControlPane()
-     * @param tractor - hands the boolean to the method initializeSideControlPane()
+     * @param farmer hands the boolean to the method initializeSideControlPane()
+     * @param tractor hands the boolean to the method initializeSideControlPane()
      * @param harvester - hands the boolean to the method initializeSideControlPane()
      * @param cultivator - hands the boolean to the method initializeSideControlPane()
      * @param dumpTruck - hands the boolean to the method initializeSideControlPane()
@@ -45,15 +51,14 @@ public class GameScene {
      * @param selectedObject - integer of the selected moving object that is shown on the matchfield
      * @param column - index of the column to which the image view is set
      * @param row - index of the column to which the image view is set
+     *
      */
     public void initializeGameScene(boolean farmer, boolean tractor, boolean harvester, boolean cultivator,
-                                       boolean dumpTruck, boolean seedDrill, int stageOfGrowthField1,
-                                       int stageOfGrowthField2, int stageOfGrowthField3, int selectedObject,
-                                       int column, int row){
-
+                                    boolean dumpTruck, boolean seedDrill, int stageOfGrowthField1,
+                                    int stageOfGrowthField2, int stageOfGrowthField3, int selectedObject,
+                                    int column, int row){
         gamePane = new Pane();
         gameScene = new Scene(gamePane, WIDTH, HEIGHT);
-        matchfield = new Matchfield();
         gameController = new GameController();
         gamePane.setPrefWidth(WIDTH);
         gamePane.setPrefHeight(HEIGHT);
@@ -136,17 +141,6 @@ public class GameScene {
         gamePane.getChildren().add(matchfield.getMatchfield());
     }
 
-    public void setField1(int stageOfGrowth){
-        matchfield.setField1(stageOfGrowth);
-    }
-
-    public void setField2(int stageOfGrowth){
-        matchfield.setField2(stageOfGrowth);
-    }
-
-    public void setField3(int stageOfGrowth){
-        matchfield.setField3(stageOfGrowth);
-    }
 
     public void moveObject(MovingObject movingObject, Tractor tractor, Harvester harvester, GameScene gameScene) {
         if (gameController.isRightPressed() && !gameController.isLeftPressed() &&
