@@ -156,7 +156,7 @@ public class GameScene {
                 if (matchfield.getMovingObjectImageView().getRotate() != 270) {
                     matchfield.getMovingObjectImageView().setRotate(270);
                 }
-                movingObject.moveRight();
+                movingObject.moveRight(gameScene);
                 matchfield.setTileOfObject(matchfield.getColumnOfMovingObject()+1, matchfield.getRowOfMovingObject());
                 if (tractor.isSelected()) {
                     tractor.setPetrolTankFillLevel(tractor.getPetrolTankFillLevel()-1);
@@ -165,9 +165,7 @@ public class GameScene {
                     harvester.setPetrolTankFillLevel(tractor.getPetrolTankFillLevel()-1);
                 }
             } catch (MovingExcpetion e) {
-                System.out.println(e.getCause());
-                gameScene.getInformationBox().getNewsField().setText(e.getMessage());
-                //e.printStackTrace();
+
             }
             System.out.println("moving right");
         }
@@ -178,7 +176,7 @@ public class GameScene {
                 if (matchfield.getMovingObjectImageView().getRotate() != 90) {
                     matchfield.getMovingObjectImageView().setRotate(90);
                 }
-                movingObject.moveLeft();
+                movingObject.moveLeft(gameScene);
                 if (tractor.isSelected()) {
                     tractor.setPetrolTankFillLevel(tractor.getPetrolTankFillLevel()-1);
                 }
@@ -187,7 +185,7 @@ public class GameScene {
                 }
                 matchfield.setTileOfObject(matchfield.getColumnOfMovingObject()-1, matchfield.getRowOfMovingObject());
             } catch (MovingExcpetion e) {
-                e.printStackTrace();
+
             }
             System.out.println("moving left");
         }
@@ -198,7 +196,7 @@ public class GameScene {
                 if (matchfield.getMovingObjectImageView().getRotate() != 180) {
                     matchfield.getMovingObjectImageView().setRotate(180);
                 }
-                movingObject.moveUp();
+                movingObject.moveUp(gameScene);
                 if (tractor.isSelected()) {
                     tractor.setPetrolTankFillLevel(tractor.getPetrolTankFillLevel()-1);
                 }
@@ -207,7 +205,7 @@ public class GameScene {
                 }
                 matchfield.setTileOfObject(matchfield.getColumnOfMovingObject(), matchfield.getRowOfMovingObject()-1);
             } catch (MovingExcpetion e) {
-                e.printStackTrace();
+
             }
             System.out.println("moving up");
         }
@@ -218,7 +216,7 @@ public class GameScene {
                 if (matchfield.getMovingObjectImageView().getRotate() != 0) {
                     matchfield.getMovingObjectImageView().setRotate(0);
                 }
-                movingObject.moveDown();
+                movingObject.moveDown(gameScene);
                 if (tractor.isSelected()) {
                     tractor.setPetrolTankFillLevel(tractor.getPetrolTankFillLevel()-1);
                 }
@@ -227,7 +225,7 @@ public class GameScene {
                 }
                 matchfield.setTileOfObject(matchfield.getColumnOfMovingObject(), matchfield.getRowOfMovingObject()+1);
             } catch (MovingExcpetion e) {
-                e.printStackTrace();
+
             }
             System.out.println("moving down");
         }
