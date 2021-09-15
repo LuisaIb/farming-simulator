@@ -7,18 +7,13 @@ package gameboard.objects;
  */
 public class Farmer extends MovingObject{
 
-//	public Farmer(){
-//		super(27, 5, true);
-//	}
+	public Farmer(){
+		super(27, 5, true);
+	}
 
 	public Farmer(int x, int y, boolean selected){
 		super(x, y, selected);
 	}
-
-	public Farmer() {
-		
-	}
-	
 	
 	
 }

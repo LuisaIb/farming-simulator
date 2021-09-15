@@ -1,5 +1,9 @@
 package simulator;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
@@ -25,6 +29,9 @@ public class Game {
 	DifficultyScene ds = new DifficultyScene();
     MovingObject movingObject = new MovingObject();
     private Farmer farmer;
+    private int farmerX;
+    private int farmerY;
+    private boolean farmerIsSelected;
     private Tractor tractor;
     private Harvester harvester;
     private Cultivator cultivator;
@@ -37,9 +44,37 @@ public class Game {
     private Silo silo;
     private CourtTrade courtTrade;
    
+	public int getFarmerX() {
+		return farmerX;
+	}
+
+	public void setFarmerX(int farmerX) {
+		this.farmerX = farmerX;
+	}
+	
+	public int getFarmerY() {
+		return farmerY;
+	}
+
+	public void setFarmerY(int farmerY) {
+		this.farmerY = farmerY;
+	}
+	
+	public boolean isFarmerIsSelected() {
+		return farmerIsSelected;
+	}
+
+	public void setFarmerIsSelected(boolean farmerIsSelected) {
+		this.farmerIsSelected = farmerIsSelected;
+	}
+
 	public GameScene createNewGame(){
         GameScene gameScene = new GameScene();
-        	farmer = new Farmer(18, 7, true);
+        	farmer = new Farmer();
+        	this.setFarmerX(farmer.getX());
+        	this.setFarmerY(farmer.getY());
+        	this.setFarmerIsSelected(farmer.isSelected());
+        	
         	tractor = new Tractor();
 	        harvester = new Harvester();
 	        cultivator = new Cultivator();
@@ -149,7 +184,7 @@ public class Game {
 	 * @return serialized as a JSONB object of the fieldtile's conditions.
 	 */
 	public String toSerializeFieldtiles() { 
-		fieldTile = new FieldTile(1, 2, 6);
+		fieldTile = new FieldTile(1, 2, 4);
 		fieldTile.getGrowthState(); // get Field id + status of the three fields.
 		fieldTile.getGrowthState2();
 		fieldTile.getGrowthState3();
@@ -189,12 +224,21 @@ public class Game {
 	 * @return serialized as a JSONB object of the farmer's position
 	 */
 	public String toSerializeFarmer() {
-		farmer = new Farmer();
-//		farmer.getX();
-//		farmer.getY();
-//		farmer.isSelected();
+		farmer = new Farmer(15,2,true);
+		farmer.getX();
+		farmer.getY();
+		farmer.isSelected();
 		Jsonb jsonb = JsonbBuilder.create();
 		String serializedsf = jsonb.toJson(farmer);
+//		Game gf = new Game();
+//		gf.getFarmerX();
+//		gf.getFarmerY();
+//		gf.isFarmerIsSelected();
+//		Jsonb jsonb = JsonbBuilder.create();
+//		String serializedsf = jsonb.toJson(gf);
+//		Writer writer = new FileWriter("d:\\Daten\\Isabel\\Documents\\eclipse-workspace.txt");// input feld über input reader über console, Speicherort festlegen
+//		writer.write(serializedsf);
+//		writer.close();
 		return serializedsf;
 	}
 	
@@ -275,7 +319,10 @@ public class Game {
 	}
     
 
-    public GameScene reloadGame(){
+    /**
+     * @return
+     */
+    public GameScene reloadGame() {
         GameScene gameScene = new GameScene();
 		GameController gameController = new GameController();
         //all numeric values
@@ -450,11 +497,11 @@ public class Game {
     		
 		seedDrill = new SeedDrill(xsd, ysd, selectedsd);
 
-		gameScene.getInformationBox().getSiloField().setText("Corn in silo: " + silo.getCapacityAsString());
-		gameScene.getInformationBox().getHarvesterField().setText(harvester.getPetrolTankFillLevelAsString());
-		gameScene.getInformationBox().getTractorField().setText(tractor.getPetrolTankFillLevelAsString());
-		gameScene.getInformationBox().getTimeField().setText(gameValue.getDayAsString());
-		gameScene.getInformationBox().getMoneyField().setText(gameValue.getCashAsString());
+//		gameScene.getInformationBox().getSiloField().setText("Corn in silo: " + silo.getCapacityAsString());
+//		gameScene.getInformationBox().getHarvesterField().setText(harvester.getPetrolTankFillLevelAsString());
+//		gameScene.getInformationBox().getTractorField().setText(tractor.getPetrolTankFillLevelAsString());
+//		gameScene.getInformationBox().getTimeField().setText(gameValue.getDayAsString());
+//		gameScene.getInformationBox().getMoneyField().setText(gameValue.getCashAsString());
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
                 cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
                 fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
