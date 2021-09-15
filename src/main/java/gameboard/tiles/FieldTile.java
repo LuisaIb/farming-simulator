@@ -17,8 +17,12 @@ public class FieldTile extends Tile{
 	private Timer timer = new Timer(); //needed for the field growing on its own
 
 
-	private HashMap<Integer, Integer> indexes;
+	private HashMap<Integer, Integer> indexesField1;
 	HashMap<Integer, Boolean> tilesField1Completed = new HashMap<Integer, Boolean>();
+	private HashMap<Integer, Integer> indexesField2;
+	HashMap<Integer, Boolean> tilesField2Completed = new HashMap<Integer, Boolean>();
+	private HashMap<Integer, Integer> indexesField3;
+	HashMap<Integer, Boolean> tilesField3Completed = new HashMap<Integer, Boolean>();
 	
 	private int growthState; //representing the state of growth of the first field
 	private int growthState2; //representing the state of growth of the second field
@@ -46,8 +50,7 @@ public class FieldTile extends Tile{
 		this.growthState = growthState;
 		this.growthState2 = growthState2;
 		this.growthState3 = growthState3;
-		createHashMapField1();
-		setTilesField1False();
+		initializeHashMaps();
 	}
 	
 	/**
@@ -57,8 +60,19 @@ public class FieldTile extends Tile{
 		growthState = 1;
 		growthState2 = 0;
 		growthState3 = 0;
+		initializeHashMaps();
+	}
+
+	/**
+	 * This method implements the HashMaps, that are needed for cultivating, sowing and harvesting the fields.
+	 */
+	private void initializeHashMaps(){
 		createHashMapField1();
+		createHashMapField2();
+		createHashMapField3();
 		setTilesField1False();
+		setTilesField2False();
+		setTilesField3False();
 	}
 		
 	/**
@@ -166,107 +180,325 @@ public class FieldTile extends Tile{
 				+ growthState3 + "]";
 	}
 
+	/**
+	 * This method creates the HashMap of field 1. As key it has the index of the coordinates (y*30 + x) and as
+	 * value the matching index of the image view on the grid pane.
+	 */
 	private void createHashMapField1(){
-		indexes = new HashMap<Integer, Integer>();
+		indexesField1 = new HashMap<Integer, Integer>();
 		int fieldIndex = 855;
 		for (int i = 440; i <= 449; i++) {
-			indexes.put(i, fieldIndex);
+			indexesField1.put(i, fieldIndex);
 			fieldIndex++;
 		}
 
 		for (int i = 470; i <= 479; i++) {
-			indexes.put(i, fieldIndex);
+			indexesField1.put(i, fieldIndex);
 			fieldIndex++;
 		}
 
 		for (int i = 500; i <= 509; i++) {
-			indexes.put(i, fieldIndex);
+			indexesField1.put(i, fieldIndex);
 			fieldIndex++;
 		}
 
 		for (int i = 530; i <= 539; i++) {
-			indexes.put(i, fieldIndex);
+			indexesField1.put(i, fieldIndex);
 			fieldIndex++;
 		}
 
 		for (int i = 560; i <= 569; i++) {
-			indexes.put(i, fieldIndex);
+			indexesField1.put(i, fieldIndex);
 			fieldIndex++;
 		}
 
 		for (int i = 590; i <= 599; i++) {
-			indexes.put(i, fieldIndex);
+			indexesField1.put(i, fieldIndex);
 			fieldIndex++;
 		}
 	}
 
-	public void cultivateField1(Matchfield matchfield, int column, int row){
+	/**
+	 * This method creates the HashMap of field 2. As key it has the index of the coordinates (y*30 + x) and as
+	 * value the matching index of the image view on the grid pane.
+	 */
+	private void createHashMapField2(){
+		indexesField2 = new HashMap<Integer, Integer>();
+		int fieldIndex = 915;
+		for (int i = 429; i <= 438; i++) {
+			indexesField2.put(i, fieldIndex);
+			fieldIndex++;
+		}
+
+		for (int i = 459; i <= 468; i++) {
+			indexesField2.put(i, fieldIndex);
+			fieldIndex++;
+		}
+
+		for (int i = 489; i <= 498; i++) {
+			indexesField2.put(i, fieldIndex);
+			fieldIndex++;
+		}
+
+		for (int i = 519; i <= 528; i++) {
+			indexesField2.put(i, fieldIndex);
+			fieldIndex++;
+		}
+
+		for (int i = 549; i <= 558; i++) {
+			indexesField2.put(i, fieldIndex);
+			fieldIndex++;
+		}
+
+		for (int i = 579; i <= 588; i++) {
+			indexesField2.put(i, fieldIndex);
+			fieldIndex++;
+		}
+	}
+
+	/**
+	 * This method creates the HashMap of field 2. As key it has the index of the coordinates (y*30 + x) and as
+	 * value the matching index of the image view on the grid pane.
+	 */
+	private void createHashMapField3(){
+		indexesField3 = new HashMap<Integer, Integer>();
+		int fieldIndex = 975;
+		for (int i = 200; i <= 209; i++) {
+			indexesField3.put(i, fieldIndex);
+			fieldIndex++;
+		}
+
+		for (int i = 230; i <= 239; i++) {
+			indexesField3.put(i, fieldIndex);
+			fieldIndex++;
+		}
+
+		for (int i = 260; i <= 269; i++) {
+			indexesField3.put(i, fieldIndex);
+			fieldIndex++;
+		}
+
+		for (int i = 290; i <= 299; i++) {
+			indexesField3.put(i, fieldIndex);
+			fieldIndex++;
+		}
+
+		for (int i = 320; i <= 329; i++) {
+			indexesField3.put(i, fieldIndex);
+			fieldIndex++;
+		}
+
+		for (int i = 350; i <= 359; i++) {
+			indexesField3.put(i, fieldIndex);
+			fieldIndex++;
+		}
+
+		for (int i = 380; i <= 389; i++) {
+			indexesField3.put(i, fieldIndex);
+			fieldIndex++;
+		}
+	}
+
+	/**
+	 * This method cultivates the field. If it's cultivated completely it sets the growth stage of the field to 1.
+	 *
+	 * @param matchfield initialized matchfield from the class game
+	 * @param column x-value of the moving object to calculate the index
+	 * @param row y-value of the moving object to calculate the index.
+	 * @param field number of the field
+	 */
+	public void cultivateField(Matchfield matchfield, int column, int row, int field){
 		int indexMovingObject = (row * 30) + column;
 		boolean completelyCultivated = false;
-		for(Integer indexCombo : indexes.keySet()) {
-			if (indexCombo == indexMovingObject) {
-				matchfield.getImageViewField1(indexes.get(indexCombo)).setImage(matchfield.getCorrectImageField(1));
+		if (field == 1) {
+			for(Integer indexCombo : indexesField1.keySet()) {
+				if (indexCombo == indexMovingObject) {
+					matchfield.getImageViewField1(indexesField1.get(indexCombo)).setImage(matchfield.getCorrectImageField(1));
+				}
+			}
+			completelyCultivated = proofCompleteField(column, row, field);
+			if (completelyCultivated) {
+				this.setGrowthState(1);
+				System.out.println("Stage growth of field 1 is now 1: " + this.getGrowthState());
+				setTilesField1False();
 			}
 		}
-		completelyCultivated = proofCompleteField1(column, row);
-		if (completelyCultivated) {
-			this.setGrowthState(1);
-			System.out.println("Stage growth of field 1 is now 1: " + this.getGrowthState());
-			setTilesField1False();
+		if (field == 2) {
+			for(Integer indexCombo : indexesField2.keySet()) {
+				if (indexCombo == indexMovingObject) {
+					matchfield.getImageViewField2(indexesField2.get(indexCombo)).setImage(matchfield.getCorrectImageField(1));
+				}
+			}
+			completelyCultivated = proofCompleteField(column, row, field);
+			if (completelyCultivated) {
+				this.setGrowthState2(1);
+				System.out.println("Stage growth of field 2 is now 1: " + this.getGrowthState2());
+				setTilesField2False();
+			}
+		}
+		if (field == 3) {
+			for(Integer indexCombo : indexesField3.keySet()) {
+				if (indexCombo == indexMovingObject) {
+					matchfield.getImageViewField3(indexesField3.get(indexCombo)).setImage(matchfield.getCorrectImageField(1));
+				}
+			}
+			completelyCultivated = proofCompleteField(column, row, field);
+			if (completelyCultivated) {
+				this.setGrowthState3(1);
+				System.out.println("Stage growth of field 3 is now 1: " + this.getGrowthState3());
+				setTilesField3False();
+			}
 		}
 	}
 
-	public void sowField1(Matchfield matchfield, int column, int row){
+	/**
+	 * This method sowes the field. If it's sowed completely it sets the growth stage of the field to 2.
+	 *
+	 * @param matchfield initialized matchfield from the class game
+	 * @param column x-value of the moving object to calculate the index
+	 * @param row y-value of the moving object to calculate the index.
+	 * @param field number of the field
+	 */
+	public void sowField(Matchfield matchfield, int column, int row, int field){
 		int indexMovingObject = (row * 30) + column;
 		boolean completelySowed = false;
-		for(Integer indexCombo : indexes.keySet()) {
-			if (indexCombo == indexMovingObject) {
-				matchfield.getImageViewField1(indexes.get(indexCombo)).setImage(matchfield.getCorrectImageField(2));
+		if (field == 1) {
+			for(Integer indexCombo : indexesField1.keySet()) {
+				if (indexCombo == indexMovingObject) {
+					matchfield.getImageViewField1(indexesField1.get(indexCombo)).setImage(matchfield.getCorrectImageField(2));
+				}
+			}
+			completelySowed = proofCompleteField(column, row, field);
+			if (completelySowed) {
+				this.setGrowthState(2);
+				System.out.println("Stage growth of field 1 is now 2: " + this.getGrowthState());
+				setTilesField1False();
 			}
 		}
-		completelySowed = proofCompleteField1(column, row);
-		if (completelySowed) {
-			this.setGrowthState(2);
-			System.out.println("Stage growth of field 1 is now 2: " + this.getGrowthState());
-			setTilesField1False();
+		if (field == 2) {
+			for(Integer indexCombo : indexesField2.keySet()) {
+				if (indexCombo == indexMovingObject) {
+					matchfield.getImageViewField2(indexesField2.get(indexCombo)).setImage(matchfield.getCorrectImageField(2));
+				}
+			}
+			completelySowed = proofCompleteField(column, row, field);
+			if (completelySowed) {
+				this.setGrowthState2(2);
+				System.out.println("Stage growth of field 1 is now 2: " + this.getGrowthState2());
+				setTilesField2False();
+			}
 		}
+		if (field == 3) {
+			for(Integer indexCombo : indexesField3.keySet()) {
+				if (indexCombo == indexMovingObject) {
+					matchfield.getImageViewField3(indexesField3.get(indexCombo)).setImage(matchfield.getCorrectImageField(2));
+				}
+			}
+			completelySowed = proofCompleteField(column, row, field);
+			if (completelySowed) {
+				this.setGrowthState3(2);
+				System.out.println("Stage growth of field 1 is now 2: " + this.getGrowthState3());
+				setTilesField3False();
+			}
+		}
+
 	}
 
-	public void harvestField1(Matchfield matchfield, int column, int row){
+	/**
+	 * This method harvests the field. If it's harvested completely it sets the growth stage of the field to 6.
+	 *
+	 * @param matchfield initialized matchfield from the class game
+	 * @param column x-value of the moving object to calculate the index
+	 * @param row y-value of the moving object to calculate the index.
+	 * @param field number of the field
+	 */
+	public void harvestField(Matchfield matchfield, int column, int row, int field){
 		int indexMovingObject = (row * 30) + column;
 		boolean completelyHarvested = false;
-		for(Integer indexCombo : indexes.keySet()) {
-			if (indexCombo == indexMovingObject) {
-				matchfield.getImageViewField1(indexes.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
+		if (field == 1) {
+			for(Integer indexCombo : indexesField1.keySet()) {
+				if (indexCombo == indexMovingObject) {
+					matchfield.getImageViewField1(indexesField1.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
+				}
+			}
+			completelyHarvested = proofCompleteField(column, row, field);
+			if (completelyHarvested) {
+				this.setGrowthState(6);
+				System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState());
+				setTilesField1False();
 			}
 		}
-		completelyHarvested = proofCompleteField1(column, row);
-		if (completelyHarvested) {
-			this.setGrowthState(6);
-			System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState());
-			setTilesField1False();
+		if (field == 2) {
+			for(Integer indexCombo : indexesField2.keySet()) {
+				if (indexCombo == indexMovingObject) {
+					matchfield.getImageViewField2(indexesField2.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
+				}
+			}
+			completelyHarvested = proofCompleteField(column, row, field);
+			if (completelyHarvested) {
+				this.setGrowthState2(6);
+				System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState2());
+				setTilesField2False();
+			}
 		}
+		if (field == 3) {
+			for(Integer indexCombo : indexesField3.keySet()) {
+				if (indexCombo == indexMovingObject) {
+					matchfield.getImageViewField3(indexesField3.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
+				}
+			}
+			completelyHarvested = proofCompleteField(column, row, field);
+			if (completelyHarvested) {
+				this.setGrowthState3(6);
+				System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState3());
+				setTilesField3False();
+			}
+		}
+
 	}
 
 
-
-
-
-	private boolean proofCompleteField1(int column, int row){
-		boolean field1Completed = true;
+	/**
+	 * This method proofs, if a field is completely cultivated, sowed or harvested.
+	 *
+	 * @param column x-value of the moving object - is used to calculate the index of the moving object
+	 * @param row y-value of the moving object - is used to calculate the index of the moving object
+	 * @param field number of the field
+	 * @return if the field is completely cultivated, sowed or harvested
+	 */
+	private boolean proofCompleteField(int column, int row, int field){
+		boolean fieldCompleted = true;
 		int indexMovingObject = (row * 30) + column;
-
-		tilesField1Completed.put(indexMovingObject, true);
-
-		for(Integer indexOfTile : tilesField1Completed.keySet()) {
-			if (tilesField1Completed.get(indexOfTile) == false) {
-				field1Completed = false;
+		if (field == 1) {
+			tilesField1Completed.put(indexMovingObject, true);
+			for (Integer indexOfTile : tilesField1Completed.keySet()) {
+				if (tilesField1Completed.get(indexOfTile) == false) {
+					fieldCompleted = false;
+				}
 			}
 		}
-
-		return field1Completed;
+		if (field == 2) {
+			tilesField2Completed.put(indexMovingObject, true);
+			for (Integer indexOfTile : tilesField2Completed.keySet()) {
+				if (tilesField2Completed.get(indexOfTile) == false) {
+					fieldCompleted = false;
+				}
+			}
+		}
+		if (field == 3) {
+			tilesField3Completed.put(indexMovingObject, true);
+			for (Integer indexOfTile : tilesField3Completed.keySet()) {
+				if (tilesField3Completed.get(indexOfTile) == false) {
+					fieldCompleted = false;
+				}
+			}
+		}
+		return fieldCompleted;
 	}
 
+	/**
+	 * This method puts all values of the HashMap to false.
+	 */
 	private void setTilesField1False(){
 		for (int i = 440; i <= 449; i++) {
 			tilesField1Completed.put(i, false);
@@ -290,6 +522,68 @@ public class FieldTile extends Tile{
 
 		for (int i = 590; i <= 599; i++) {
 			tilesField1Completed.put(i, false);
+		}
+	}
+
+	/**
+	 * This method puts all values of the HashMap to false.
+	 */
+	private void setTilesField2False(){
+		for (int i = 429; i <= 438; i++) {
+			tilesField2Completed.put(i, false);
+		}
+
+		for (int i = 459; i <= 468; i++) {
+			tilesField2Completed.put(i, false);
+		}
+
+		for (int i = 489; i <= 498; i++) {
+			tilesField2Completed.put(i, false);
+		}
+
+		for (int i = 519; i <= 528; i++) {
+			tilesField2Completed.put(i, false);
+		}
+
+		for (int i = 549; i <= 558; i++) {
+			tilesField2Completed.put(i, false);
+		}
+
+		for (int i = 579; i <= 588; i++) {
+			tilesField2Completed.put(i, false);
+		}
+	}
+
+	/**
+	 * This method puts all values of the HashMap to false.
+	 */
+	private void setTilesField3False(){
+		for (int i = 200; i <= 209; i++) {
+			tilesField3Completed.put(i, false);
+		}
+
+		for (int i = 230; i <= 239; i++) {
+			tilesField3Completed.put(i, false);
+		}
+
+		for (int i = 260; i <= 269; i++) {
+			tilesField3Completed.put(i, false);
+		}
+
+		for (int i = 290; i <= 299; i++) {
+			tilesField3Completed.put(i, false);
+		}
+
+		for (int i = 320; i <= 329; i++) {
+			tilesField3Completed.put(i, false);
+		}
+
+		for (int i = 350; i <= 359; i++) {
+			tilesField3Completed.put(i, false);
+		}
+
+		for (int i = 380; i <= 389; i++) {
+			tilesField3Completed.put(i, false);
 		}
 	}
 

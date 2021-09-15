@@ -1,19 +1,16 @@
 package gui.view;
 
+import gameboard.GameValue;
 import gameboard.objects.*;
 import gameboard.tiles.FieldTile;
 import gui.controller.GameController;
 import gui.model.ImageManager;
 import gui.model.LSButton;
-import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
-import simulator.Game;
-
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import static gui.view.ViewManager.HEIGHT;
 import static gui.view.ViewManager.WIDTH;
@@ -271,9 +268,10 @@ public class SideControlPane {
 
     public void createActionButtonFunctionality(Matchfield matchfield, Farmer farmer, Tractor tractor, Harvester harvester,
                                                 Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill,
-                                                int column, int row, FieldTile fieldTile, MovingObject movingObject) {
+                                                int column, int row, FieldTile fieldTile, MovingObject movingObject,
+                                                GameValue gameValue) {
         if (column == 27 && row == 5) {
-            sellGrain(dumpTruck);
+            sellGrain(dumpTruck, gameValue);
         } else if (column == 27 && row == 5) {
             buyField(fieldTile);
         } else if ((column == 14 || column == 15) && row == 5) {
@@ -445,9 +443,9 @@ public class SideControlPane {
         });
     }
 
-    private void sellGrain(DumpTruck dumpTruck) {
+    private void sellGrain(DumpTruck dumpTruck, GameValue gameValue) {
         buttonAction.setOnMouseClicked(mouseEvent -> {
-            //dumpTruck.unloadToCourtTrade(gv, grainFillLevel);
+            dumpTruck.unloadToCourtTrade(gameValue, dumpTruck.getGrainFillLevel());
         });
     }
 
