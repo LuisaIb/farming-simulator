@@ -72,21 +72,21 @@ public class MenuScene {
         buttonLoadGame.setOnMouseClicked(sceneController.setSceneToReloadGameScene);
         buttonSaveGame = new LSButton("Spiel speichern",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
-//        buttonSaveGame.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-//            game.toSerializeFarmer();
-////            game.toSerializeGame();
-//            game.toSerializeLevel();
-//            game.toSerializeFieldtiles();
-//            game.toSerializeSilo();
-//            game.toSerializeCourtTrade();
-//            game.toSerializeTractor();
-//            game.toSerializeHarvester();
-//            game.toSerializeCultivator();
-//            game.toSerializeDumpTruck();
-//            game.toSerializeSeedDrill();
-//            
-//            
-//        });
+        buttonSaveGame.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+            game.toSerializeFarmer();
+//            game.toSerializeGame();
+            game.toSerializeLevel();
+            game.toSerializeFieldtiles();
+            game.toSerializeSilo();
+            game.toSerializeCourtTrade();
+            game.toSerializeTractor();
+            game.toSerializeHarvester();
+            game.toSerializeCultivator();
+            game.toSerializeDumpTruck();
+            game.toSerializeSeedDrill();
+            
+            
+        });
 
         buttonHelp = new LSButton("Hilfe",50, 250, HEIGHT/2,
                 WIDTH/2, 20);

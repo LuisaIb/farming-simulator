@@ -35,14 +35,14 @@ public class GetPojoMovingObject {
 	 * This method creates an new object of the class Tractor.
 	 * @return deserialized as a new Tractor object of the tractor's information.
 	 */
-	public Game toDeserializeTractor(String jb) {  	
-//		Jsonb jb1 = JsonbBuilder.create();
-//		Tractor deserializeddt = jb1.fromJson(jb, Tractor.class);
-//		return deserializeddt;
-		
-		Jsonb jb2 = JsonbBuilder.create();
-		Game deserializeddt = jb2.fromJson(jb, Game.class);
+	public Tractor toDeserializeTractor(String jb) {  	
+		Jsonb jb1 = JsonbBuilder.create();
+		Tractor deserializeddt = jb1.fromJson(jb, Tractor.class);
 		return deserializeddt;
+		
+//		Jsonb jb2 = JsonbBuilder.create();
+//		Game deserializeddt = jb2.fromJson(jb, Game.class);
+//		return deserializeddt;
 	}
 	
 	/**
