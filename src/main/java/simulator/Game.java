@@ -125,7 +125,11 @@ public class Game {
 	        setCash(gameValue.getCash());
 	        setDay(gameValue.getDay());
 	        
+<<<<<<< HEAD
+	        levelOfDifficulty = new LevelOfDifficulty();
+=======
 	        levelOfDifficulty = new LevelOfDifficulty(lod);
+>>>>>>> branch 'main' of git@github.com:IsabelJnz/Landwirtschaftssimulator_SE2.git
 	        setLevel(levelOfDifficulty.getLevel());
 	        
 	        silo = new Silo();
@@ -168,7 +172,7 @@ public class Game {
 	 * 
 	 */
 	public void setMovingObjectDependingOnSelected(){
-		if(isFarmerIsSelected()){
+		if(farmer.isSelected()){
 			movingObject = farmer;
 		}else if(isTractorIsSelected()){
 			movingObject = tractor;
@@ -291,12 +295,13 @@ public class Game {
      * @param
 	 * @return serialized as a JSONB object of the farmer's position
 	 */
-	public String toSerializeFarmer(int x, int y, boolean b) {
+	public String toSerializeFarmer() {
 	
-		farmer = new Farmer(x, y, b);
+		Farmer f = new Farmer();
+		
 		
 		Jsonb jsonb = JsonbBuilder.create();
-		String serializedsf = jsonb.toJson(farmer);
+		String serializedsf = jsonb.toJson(f);
 		
 		
 //		setFarmerX(5);
@@ -313,21 +318,21 @@ public class Game {
 	 * @return serialized as a JSONB object of the tractor's positions
 	 */
 	public String toSerializeTractor() {
-//		tractor = new Tractor(18, 7, false, 100, false);
-//		tractor.getX();
-//		tractor.getY();
-//		tractor.isSelected();
-//		tractor.getPetrolTankFillLevel();
-//		tractor.isAttachement();
-//		Jsonb jsonb = JsonbBuilder.create();
-		Game gt = new Game();
-		gt.tractorX = getTractorX();
-		gt.tractorY = getTractorY();
-		gt.tractorIsSelected = isTractorIsSelected();
-		gt.tractorPetrolTankFillLevel = getTractorPetrolTankFillLevel();
-		gt.tractorIsAttachment = isTractorIsAttachment();
+		tractor = new Tractor(18, 7, false, 100, false);
+		tractor.getX();
+		tractor.getY();
+		tractor.isSelected();
+		tractor.getPetrolTankFillLevel();
+		tractor.isAttachement();
 		Jsonb jsonb = JsonbBuilder.create();
-		String serializedst = jsonb.toJson(gt);
+//		Game gt = new Game();
+//		gt.tractorX = getTractorX();
+//		gt.tractorY = getTractorY();
+//		gt.tractorIsSelected = isTractorIsSelected();
+//		gt.tractorPetrolTankFillLevel = getTractorPetrolTankFillLevel();
+//		gt.tractorIsAttachment = isTractorIsAttachment();
+//		Jsonb jsonb = JsonbBuilder.create();
+		String serializedst = jsonb.toJson(tractor);
 		return serializedst;
 	}
 	
@@ -471,14 +476,14 @@ public class Game {
     	 * It implements a new position (x and y value) of the farmer.
     	 */
 		GetPojoMovingObject gpp = new GetPojoMovingObject();
-			Farmer deserializedfX = gpp.toDeserializeFarmer(toSerializeFarmer(getFarmerX(), getFarmerY(), isFarmerIsSelected()));
+			Farmer deserializedfX = gpp.toDeserializeFarmer(toSerializeFarmer());
 			int xf = deserializedfX.getX();
 			System.out.println(xf);
 			
-			Farmer deserializedfY = gpp.toDeserializeFarmer(toSerializeFarmer(getFarmerX(), getFarmerY(), isFarmerIsSelected()));
+			Farmer deserializedfY = gpp.toDeserializeFarmer(toSerializeFarmer());
 			int yf = deserializedfY.getY();
 			
-			Farmer deserializedSelectedf = gpp.toDeserializeFarmer(toSerializeFarmer(getFarmerX(), getFarmerY(), isFarmerIsSelected()));
+			Farmer deserializedSelectedf = gpp.toDeserializeFarmer(toSerializeFarmer());
 			boolean selectedf = deserializedSelectedf.isSelected();
 			
 //			Game deserializedfX = gpp.toDeserializeFarmer(toSerializeFarmer());
@@ -497,20 +502,20 @@ public class Game {
     	 * It implements a new position (x and y value) of the tractor.
     	 */
     	
-			Game deserializedtX = gpp.toDeserializeTractor(toSerializeTractor());
-    		int xt = deserializedtX.getTractorX();
+			Tractor deserializedtX = gpp.toDeserializeTractor(toSerializeTractor());
+    		int xt = deserializedtX.getX();
     		
-    		Game deserializedtY = gpp.toDeserializeTractor(toSerializeTractor());
-    		int yt = deserializedtY.getTractorY();
+    		Tractor deserializedtY = gpp.toDeserializeTractor(toSerializeTractor());
+    		int yt = deserializedtY.getY();
     		
-    		Game deserializedSelectedt = gpp.toDeserializeTractor(toSerializeTractor());
-    		boolean selectedt = deserializedSelectedt.isTractorIsSelected();
+    		Tractor deserializedSelectedt = gpp.toDeserializeTractor(toSerializeTractor());
+    		boolean selectedt = deserializedSelectedt.isSelected();
     		
-    		Game deserializedPetrolTankFillLevelt = gpp.toDeserializeTractor(toSerializeTractor());
-    		int petrolTankFillLevelt = deserializedPetrolTankFillLevelt.getTractorPetrolTankFillLevel();
+    		Tractor deserializedPetrolTankFillLevelt = gpp.toDeserializeTractor(toSerializeTractor());
+    		int petrolTankFillLevelt = deserializedPetrolTankFillLevelt.getPetrolTankFillLevel();
     		
-    		Game deserializedAttachementt = gpp.toDeserializeTractor(toSerializeTractor());
-    		boolean attachementt = deserializedAttachementt.isTractorIsAttachment();
+    		Tractor deserializedAttachementt = gpp.toDeserializeTractor(toSerializeTractor());
+    		boolean attachementt = deserializedAttachementt.isAttachement();
     		
 		tractor = new Tractor(xt, yt, selectedt, petrolTankFillLevelt, attachementt);
     		
