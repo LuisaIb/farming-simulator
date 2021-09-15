@@ -606,7 +606,7 @@ public class Game {
     }
 
 	/**
-	 * @return
+	 * @return x variable of farmer
 	 */
 	public int getFarmerX() {
 		return farmerX;
