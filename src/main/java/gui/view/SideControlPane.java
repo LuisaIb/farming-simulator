@@ -447,7 +447,7 @@ public class SideControlPane {
 
     private void sellGrain(DumpTruck dumpTruck) {
         buttonAction.setOnMouseClicked(mouseEvent -> {
-            dumpTruck.unload();
+            dumpTruck.unloadToCourtTrade(gv, grainFillLevel);
         });
     }
 
