@@ -42,18 +42,18 @@ public class GameInformation {
      */
     private void synchronizeInformation(GameValue gameValue, Tractor tractor, Harvester harvester, Silo silo){
         gameValue.cashProperty().addListener((observableValue, number, t1) ->
-                informationBox.getMoneyField().setText(gameValue.getCashAsString()));
+                informationBox.getMoneyField().setText("money: " + gameValue.getCashAsString()));
 
         gameValue.day().addListener((observableValue, number, t1) ->
-                informationBox.getTimeField().setText(gameValue.getDayAsString()));
+                informationBox.getTimeField().setText("day: " + gameValue.getDayAsString()));
 
         tractor.petrolTankFillLevel().addListener((observableValue, number, t1) ->
-                informationBox.getTractorField().setText(tractor.getPetrolTankFillLevelAsString()));
+                informationBox.getTractorField().setText("petrol tractor: " + tractor.getPetrolTankFillLevelAsString()));
 
         harvester.petrolTankFillLevel().addListener((observableValue, number, t1) ->
-                informationBox.getHarvesterField().setText(harvester.getPetrolTankFillLevelAsString()));
+                informationBox.getHarvesterField().setText("petrol harvester: " + harvester.getPetrolTankFillLevelAsString()));
 
         silo.capacity().addListener((observableValue, number, t1) ->
-                informationBox.getSiloField().setText(silo.getCapacityAsString()));
+                informationBox.getSiloField().setText("corn in silo: " + silo.getCapacityAsString()));
     }
 }
