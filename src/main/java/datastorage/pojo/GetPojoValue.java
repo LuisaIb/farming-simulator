@@ -1,10 +1,10 @@
 package datastorage.pojo;
 
 import javax.json.bind.Jsonb;
+
 import javax.json.bind.JsonbBuilder;
 
 import gameboard.GameValue;
-import gameboard.tiles.CourtTrade;
 import gameboard.tiles.FieldTile;
 import gameboard.tiles.Silo;
 import simulator.Game;

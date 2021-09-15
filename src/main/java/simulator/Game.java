@@ -6,7 +6,6 @@ import javax.json.bind.JsonbBuilder;
 import datastorage.pojo.GetPojoMovingObject;
 import datastorage.pojo.GetPojoValue;
 import gameboard.GameValue;
-import gameboard.tiles.CourtTrade;
 import gameboard.tiles.Silo;
 import gui.controller.GameController;
 import gameboard.objects.*;
@@ -73,9 +72,6 @@ public class Game {
     
     private Silo silo;
     private int siloCapacity;
-
-    
-    private CourtTrade courtTrade;
    
 
 
@@ -133,8 +129,6 @@ public class Game {
 	        
 	        silo = new Silo();
 	        setSiloCapacity(silo.getCapacity());
-	        
-	        courtTrade = new CourtTrade();
 
         movingObject = farmer;
         GameController gameController = new GameController();
@@ -281,18 +275,6 @@ public class Game {
 		Jsonb jsonb = JsonbBuilder.create();
 		String serializeds = jsonb.toJson(gs);
 		return serializeds;
-	}
-	
-	/**
-	 * This method gets the filling of the silo.
-	 * @return serialized as a JSONB object of the Silo's conditions.
-	 */
-	public String toSerializeCourtTrade() { 
-		courtTrade = new CourtTrade(100);
-		courtTrade.getGrainFillLevel();
-		Jsonb jsonb = JsonbBuilder.create();
-		String serializedct = jsonb.toJson(courtTrade);
-		return serializedct;
 	}
 
 	
@@ -475,18 +457,6 @@ public class Game {
 			int capacity = deserializedcapacity.getSiloCapacity();
 			
 		silo = new Silo (capacity);
-    		
-       	/**
-    	 * This method deserialize the JSONB file. It is also possible to get the capacity of the silo.
-    	 * It implements a new Silo object by using the class constructor.
-    	 */
-    	
-			Game deserializedGrainFillLevel = gpv.toDeserializeCourtTrade(toSerializeCourtTrade());
-			int grainFillLevel = deserializedGrainFillLevel.getDumpTruckGrainFillLevel();
-			
-			//cash Variable, ggf GameValue l�schen und cash zum hofladen
-			
-		courtTrade = new CourtTrade(grainFillLevel);
     					
         // all positions
     	/**

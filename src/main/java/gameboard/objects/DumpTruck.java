@@ -1,15 +1,19 @@
 package gameboard.objects;
 
+import gameboard.GameValue;
+import gameboard.tiles.Silo;
+
 /**
- * This class implements the methods, that are needed for a DumpTruck.
- * 
- * @author Hanna
+ * This class implements the properties and functionalities of a DumpTruck.
+ * @author Luisaibele
+ *
  */
 public class DumpTruck extends WorkingDevice {
 	
 	private final int GRAIN_TANK_CAPACITY = 120;
 	private int grainFillLevel;
-	// private int id = 2 -> for attachement on tractor
+	private Silo silo = new Silo();
+	private GameValue gv = new GameValue();
 	
 	/**
 	 * the constructor sets the harvest fill level of the Dump Truck
@@ -41,12 +45,28 @@ public class DumpTruck extends WorkingDevice {
 	}
 	
 	/**
-	 * this method unloads the harvest in the Dump Truck into the Silo or the Land Trade
+	 * this method unloads the grain from the Dump Truck into the Silo
 	 */
-	public void unload() {
+	public void unloadToSilo(Silo silo, int grainFillLevel) {
+		int capacity = silo.getCapacity() + grainFillLevel; 
+		silo.setCapacity(capacity);
+		grainFillLevel = 0;
+	}
+	
+	/**
+	 * this method unloads the grain from the Dump Truck to the Court Trade
+	 * in order to receive money
+	 */
+	public void unloadToCourtTrade(GameValue gv, int grainFillLevel) {
+		int cash = gv.getCash() + 50;
+		gv.setCash(cash);		
 		grainFillLevel = 0;
 	}
 
+	/**
+	 * this method is the Setter for the grain fill level of the dump truck
+	 * @return grainFillLevel
+	 */
 	public int getGrainFillLevel() {
 		return grainFillLevel;
 	}
