@@ -15,9 +15,9 @@ import static gui.view.ViewManager.WIDTH;
 
 /**
  * This class implements the menuScene. This scene is the first scene that is shown, when starting the game. It provides
- * buttons for a new game, continue game, load game, sage game, help and end game.
+ * buttons for a new game, load game, save game, help and end game.
  *
- * @author Judith Romer
+ * @author Judith
  */
 
 public class MenuScene {
