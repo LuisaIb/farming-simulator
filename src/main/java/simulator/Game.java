@@ -124,12 +124,8 @@ public class Game {
 	        gameValue = new GameValue();
 	        setCash(gameValue.getCash());
 	        setDay(gameValue.getDay());
-	        
-<<<<<<< HEAD
-	        levelOfDifficulty = new LevelOfDifficulty();
-=======
+
 	        levelOfDifficulty = new LevelOfDifficulty(lod);
->>>>>>> branch 'main' of git@github.com:IsabelJnz/Landwirtschaftssimulator_SE2.git
 	        setLevel(levelOfDifficulty.getLevel());
 	        
 	        silo = new Silo();
