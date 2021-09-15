@@ -5,9 +5,9 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
- * This class initializes the stage and the menuScene as this scene is the first one shown, when the game is starts.
+ * This class initializes the stage and the menuScene as this scene is the first one shown, when the game starts.
  *
- * @author Judith Romer
+ * @author Judith
  */
 public class ViewManager {
     private Stage mainStage = new Stage();

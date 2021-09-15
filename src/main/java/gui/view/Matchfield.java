@@ -12,6 +12,8 @@ import static gui.view.ViewManager.HEIGHT;
 /**
  * This class implements the grid pane with the matchfield and offers methods to fill the pane with image views of the
  * ground and the buildings.
+ *
+ * @author Judith
  */
 public class Matchfield {
     private GridPane matchfield = new GridPane();
@@ -34,14 +36,6 @@ public class Matchfield {
     private static final String PATH_TO_GAS_STATION = "src/main/java/gui/view/resources/buildings/gasStation.png";
     private static final String PATH_TO_LAND_TRADE = "src/main/java/gui/view/resources/buildings/landTrade.png";
     private static final String PATH_TO_SILO = "src/main/java/gui/view/resources/buildings/silo.png";
-    private ImageView movingObjectImageView;
-    private ImageView secondMovingObjectImageView;
-    private ImageView imageViewField1;
-    private ImageView imageViewField2;
-    private ImageView imageViewField3;
-    private Image imageField1;
-    private Image imageField2;
-    private Image imageField3;
     private static final String PATH_TO_FARMER = "src/main/java/gui/view/resources/movingObjects/farmer.png";
     private static final String PATH_TO_TRACTOR = "src/main/java/gui/view/resources/movingObjects/tractor.png";
     private static final String PATH_TO_HARVESTER = "src/main/java/gui/view/resources/movingObjects/harvester.png";
@@ -49,8 +43,11 @@ public class Matchfield {
     private static final String PATH_TO_DUMP_TRUCK_EMPTY = "src/main/java/gui/view/resources/movingObjects/dumpTruckEmpty.png";
     private static final String PATH_TO_DUMP_TRUCK_Full = "src/main/java/gui/view/resources/movingObjects/dumpTruckFull.png";
     private static final String PATH_TO_SEED_DRILL = "src/main/java/gui/view/resources/movingObjects/seedDrill.png";
-    private int x;
-    private int y;
+    private ImageView movingObjectImageView;
+    private ImageView secondMovingObjectImageView;
+    private ImageView imageViewField1;
+    private ImageView imageViewField2;
+    private ImageView imageViewField3;
 
     /**
      * Constructor without parameters.
@@ -60,11 +57,11 @@ public class Matchfield {
     }
 
     /**
-     * Constructor with parameters.
+     * Constructor with parameters that initializes the pane and all image views.
      *
-     * @param stageOfGrowthField1 - hands the integer to the method setField1()
-     * @param stageOfGrowthField2 - hands the integer to the method setField2()
-     * @param stageOfGrowthField3 - hands the integer to the method setField3()
+     * @param stageOfGrowthField1 hands the integer to the method setField1()
+     * @param stageOfGrowthField2 hands the integer to the method setField2()
+     * @param stageOfGrowthField3 hands the integer to the method setField3()
      */
     protected Matchfield(int stageOfGrowthField1, int stageOfGrowthField2, int stageOfGrowthField3){
         initializeMatchfield();
@@ -177,7 +174,7 @@ public class Matchfield {
     }
 
     /**
-     * Adds the image views of the fist field to the matchfield.
+     * Adds the image views of the first field to the matchfield.
      */
     protected void setField1(int stageOfGrowth){
         for (int j = 14; j < NUMBER_ROWS; j++) {
@@ -188,9 +185,14 @@ public class Matchfield {
         }
     }
 
-
+    /**
+     * Getter for the imageViewField1.
+     *
+     * @param index index of the image view in the list of children
+     * @return the requested imageViewField1
+     */
     public ImageView getImageViewField1(int index){
-        ImageView imageViewField1 = (ImageView) matchfield.getChildren().get(index);
+        imageViewField1 = (ImageView) matchfield.getChildren().get(index);
         return imageViewField1;
     }
 
@@ -198,33 +200,54 @@ public class Matchfield {
      * Adds the image views of the second field to the matchfield.
      */
     protected void setField2(int stageOfGrowth){
-        for (int i = 9; i < 19; i++){
-            for (int j = 14; j < NUMBER_ROWS; j++) {
-                imageViewField2 = getImageViewField(stageOfGrowth);
-                addToGridPane(imageViewField2, i, j);
+        for (int j = 14; j < NUMBER_ROWS; j++) {
+            for (int i = 9; i < 19; i++){
+            imageViewField2 = getImageViewField(stageOfGrowth);
+            addToGridPane(imageViewField2, i, j);
             }
         }
     }
 
+    /**
+     * Getter for the imageViewField2.
+     *
+     * @param index index of the image view in the list of children
+     * @return the requested imageViewField2
+     */
+     public ImageView getImageViewField2(int index){
+         imageViewField2 = (ImageView) matchfield.getChildren().get(index);
+         return imageViewField2;
+     }
 
     /**
      * Adds the image views of the third field to the matchfield.
      */
     protected void setField3(int stageOfGrowth){
-        for (int i = 20; i < NUMBER_COLUMNS; i++){
-            for (int j = 6; j < 13; j++) {
-                imageViewField3 = getImageViewField(stageOfGrowth);
-                addToGridPane(imageViewField3, i, j);
+        for (int j = 6; j < 13; j++) {
+            for (int i = 20; i < NUMBER_COLUMNS; i++){
+            imageViewField3 = getImageViewField(stageOfGrowth);
+            addToGridPane(imageViewField3, i, j);
             }
         }
+    }
+
+    /**
+     * Getter for the imageViewField3.
+     *
+     * @param index index of the image view in the list of children
+     * @return the requested imageViewField3
+     */
+    public ImageView getImageViewField3(int index){
+        imageViewField3 = (ImageView) matchfield.getChildren().get(index);
+        return imageViewField3;
     }
 
     /***
      * This method helps to add an image view to the grid pane that only needs the space of one tile.
      *
-     * @param imageView - node that is added to the grid pane
-     * @param column - index of the column to which the image view is added
-     * @param row - index of the row to which the image view is added
+     * @param imageView node that is added to the grid pane
+     * @param column index of the column to which the image view is added
+     * @param row index of the row to which the image view is added
      */
     private void addToGridPane(ImageView imageView, int column, int row){
         matchfield.setColumnIndex(imageView, column);
@@ -235,11 +258,11 @@ public class Matchfield {
     /**
      * This method helps to add an image view to the grid pane that needs more than one tile.
      *
-     * @param imageView - node that is added to the grid pane
-     * @param column - index of the column to which the image view is added
-     * @param column_span - number of columns the image view spans
-     * @param row - index of the row to which the image view is added
-     * @param row_span - number of rows the image view spans
+     * @param imageView node that is added to the grid pane
+     * @param column index of the column to which the image view is added
+     * @param column_span number of columns the image view spans
+     * @param row index of the row to which the image view is added
+     * @param row_span number of rows the image view spans
      */
     private void addToGridPane(ImageView imageView, int column, int column_span, int row, int row_span){
         matchfield.setColumnIndex(imageView, column);
@@ -250,9 +273,10 @@ public class Matchfield {
     }
 
     /**
-     * Method that helps to get the image of the tile.
-     * @param path - path to the image
-     * @return - the requested image
+     * Method that helps to get the image for the tile.
+     *
+     * @param path path to the image
+     * @return the requested image
      */
     private Image getImage(String path){
         Image image = new ImageManager().getImage(path, TILE_WIDTH, TILE_HEIGHT, false, false);
@@ -260,28 +284,34 @@ public class Matchfield {
     }
 
     /**
-     * Method that helps to get the images of the buildings
-     * @param path - path to the image
-     * @param width - of the image
-     * @param height - of the image
-     * @return - the requested image
+     * Method that helps to get the images for the buildings.
+     *
+     * @param path path to the image
+     * @param width of the image
+     * @param height of the image
+     * @return the requested image
      */
     private Image getImage(String path, double width, double height){
         Image image = new ImageManager().getImage(path, width, height, true, false);
         return image;
     }
 
+    /**
+     * Method that helps to get the image view of the fields depending on the stage of growth.
+     *
+     * @param stageOfGrowth stage of growth of the field
+     * @return the requested image view
+     */
     private ImageView getImageViewField(int stageOfGrowth){
         ImageView imageViewField = new ImageView(getCorrectImageField(stageOfGrowth));
         return imageViewField;
     }
 
-
     /**
-     * This method helps to get the right image view for the field depending on the stage of growth.
+     * This method helps to get the right image for the field depending on the stage of growth.
      *
-     * @param stageOfGrowth - integer that is used for the switch case to get the right image view
-     * @return - the requested image view
+     * @param stageOfGrowth integer that is used for the switch case to get the right image
+     * @return the requested image
      */
     public Image getCorrectImageField(int stageOfGrowth){
         Image imageField = null;
@@ -314,7 +344,7 @@ public class Matchfield {
     /**
      * Getter for the matchfield.
      *
-     * @return - the requested matchfield
+     * @return the requested matchfield
      */
     public GridPane getMatchfield(){
         return matchfield;
@@ -324,10 +354,10 @@ public class Matchfield {
     /**
      * This method initializes the moving object on the field. It uses the methods setImageView() and setTileOfObject().
      *
-     * @param selectedObject - integer of the selected moving object that is shown on the matchfield, handed to the
-     *      *                       method getTheRightImageView()
-     * @param column - index of the column to which the image view is set, handed to the method setTileOfObject()
-     * @param row - index of the column to which the image view is set, handed to the method setTileOfObject()
+     * @param selectedObject integer of the selected moving object that is shown on the matchfield, handed to the
+     *                             method getTheRightImageView()
+     * @param column index of the column to which the image view is set, handed to the method setTileOfObject()
+     * @param row index of the column to which the image view is set, handed to the method setTileOfObject()
      */
     protected void initializeMovingObject(int selectedObject, int column, int row){
         setImageView(selectedObject);
@@ -335,65 +365,105 @@ public class Matchfield {
         matchfield.getChildren().add(movingObjectImageView);
     }
 
+    /**
+     * This method initializes a second object on the field. It uses the methods setImageView() and setTileOfObject().
+     * Actually this image view isn't meant to move around.
+     *
+     * @param selectedObject integer of the selected moving object that is shown on the matchfield, handed to the
+     *                             method getTheRightImageView()
+     * @param column index of the column to which the image view is set, handed to the method setTileOfObject()
+     * @param row index of the column to which the image view is set, handed to the method setTileOfObject()
+     */
     protected void initializeSecondMovingObject(int selectedObject, int column, int row){
         setSecondImageView(selectedObject);
         setTileOfSecondObject(column, row);
         matchfield.getChildren().add(secondMovingObjectImageView);
     }
 
+    /**
+     * This method deletes the image view of the secondMovingObject.
+     */
     protected void deleteSecondImageView(){
         matchfield.getChildren().remove(matchfield.getChildren().size()-1);
     }
 
     /**
-     * This method sets the image view to the one of the selected object with the help of the method
-     * getTheRightImageView().
+     * This method sets the image view of the moving object to the one of the selected object with the help of the
+     * method getTheRightImageView().
      *
-     * @param selectedObject - integer of the selected moving object that is shown on the matchfield, handed to the
+     * @param selectedObject integer of the selected moving object that is shown on the matchfield, handed to the
      *                       method getTheRightImageView()
      */
     public void setImageView(int selectedObject){
         movingObjectImageView = getTheRightImageView(selectedObject);
     }
 
+    /**
+     * This method sets the image view of the second moving object to the one of the selected object with the help of
+     * the method getTheRightImageView().
+     *
+     * @param selectedObject integer of the selected moving object that is shown on the matchfield, handed to the
+     *                       method getTheRightImageView()
+     */
     public void setSecondImageView(int selectedObject){
         secondMovingObjectImageView = getTheRightImageView(selectedObject);
     }
 
+    /**
+     * Getter for the movingObjectImageView.
+     *
+     * @return the requested movingObjectImageView
+     */
     public ImageView getMovingObjectImageView(){
         return movingObjectImageView;
     }
 
     /**
-     * This method sets the image view to another tile on the matchfield.
+     * This method sets the image view of the moving object to a specific tile on the matchfield.
      *
-     * @param column - sets the image view onto this column on the grid pane of the matchfield
-     * @param row - sets the image view onto this row on the grid pane of the matchfield
+     * @param column index of the column onto which the image view is put on the grid pane of the matchfield
+     * @param row index of the row onto which the image view is put on the grid pane of the matchfield
      */
     public void setTileOfObject(int column, int row){
         matchfield.setColumnIndex(movingObjectImageView, column);
         matchfield.setRowIndex(movingObjectImageView, row);
     }
 
+    /**
+     * This method sets the image view of the second moving object to specific tile on the matchfield.
+     *
+     * @param column index of the column onto which the image view is put on the grid pane of the matchfield
+     * @param row index of the row onto which the image view is put on the grid pane of the matchfield
+     */
     public void setTileOfSecondObject(int column, int row){
         matchfield.setColumnIndex(secondMovingObjectImageView, column);
         matchfield.setRowIndex(secondMovingObjectImageView, row);
     }
 
+    /**
+     * Method that returns the index of the column on which the image view of the moving object is at the moment.
+     *
+     * @return the requested index of the column
+     */
     public int getColumnOfMovingObject(){
         return matchfield.getColumnIndex(movingObjectImageView);
     }
 
+    /**
+     * Method that returns the index of the row on which the image view of the moving object is at the moment.
+     *
+     * @return the requested index of the row
+     */
     public  int getRowOfMovingObject(){
         return matchfield.getRowIndex(movingObjectImageView);
     }
 
 
     /**
-     * This method helps to get the right image view for the moving object depending on the selected object.
+     * This method helps to get the right image view for the moving objects depending on the selected object.
      *
-     * @param selectedObject - integer of the selected moving object that is shown on the matchfield
-     * @return the requestedd image view
+     * @param selectedObject integer of the selected moving object that is shown on the matchfield
+     * @return the requested image view
      */
     private ImageView getTheRightImageView(int selectedObject){
         ImageView movingObjectImageView = null;
@@ -423,6 +493,12 @@ public class Matchfield {
         return movingObjectImageView;
     }
 
+    /**
+     * This method helps to get the right image for the moving objects depending on the selected object.
+     *
+     * @param selectedObject integer of the selected moving object that is shown on the matchfield
+     * @return the requested image
+     */
     public Image getTheRightImage(int selectedObject){
         Image movingObjectImage = null;
         switch(selectedObject){

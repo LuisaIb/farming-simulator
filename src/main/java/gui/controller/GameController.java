@@ -55,8 +55,81 @@ public class GameController {
         }
     }
 
-    public void initGameLoop(GameScene gameScene, FieldTile fieldTile, MovingObject movingObject, int selectedObject, GameValue gameValue, SideControlPane sideControlPane, Farmer farmer,
-                            Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
+    /**
+     * Setter for the boolean rightPressed.
+     *
+     * @param rightPressed a boolean value
+     */
+    public void setRightPressed(boolean rightPressed) {
+        this.rightPressed = rightPressed;
+    }
+
+    /**
+     * Setter for the boolean leftPressed.
+     *
+     * @param leftPressed a boolean value
+     */
+    public void setLeftPressed(boolean leftPressed) {
+        this.leftPressed = leftPressed;
+    }
+
+    /**
+     * Setter for the boolean upPressed.
+     *
+     * @param upPressed a boolean value
+     */
+    public void setUpPressed(boolean upPressed) {
+        this.upPressed = upPressed;
+    }
+
+    /**
+     * Setter for the boolean downPressed.
+     *
+     * @param downPressed a boolean value
+     */
+    public void setDownPressed(boolean downPressed) {
+        this.downPressed = downPressed;
+    }
+
+    /**
+     * Getter for the boolean rightPressed.
+     *
+     * @return the requested value of rightPressed
+     */
+    public boolean isRightPressed() {
+        return rightPressed;
+    }
+
+    /**
+     * Getter for the boolean leftPressed.
+     *
+     * @return the requested value of leftPressed
+     */
+    public boolean isLeftPressed() {
+        return leftPressed;
+    }
+
+    /**
+     * Getter for the boolean upPressed.
+     *
+     * @return the requested value of upPressed
+     */
+    public boolean isUpPressed() {
+        return upPressed;
+    }
+
+    /**
+     * Getter for the boolean downPressed.
+     *
+     * @return the requested value of downPressed
+     */
+    public boolean isDownPressed() {
+        return downPressed;
+    }
+
+    public void initGameLoop(GameScene gameScene, FieldTile fieldTile, MovingObject movingObject, int selectedObject,
+                             GameValue gameValue, SideControlPane sideControlPane, Farmer farmer, Tractor tractor,
+                             Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
         gameTimer = new AnimationTimer() {
             private long lastUpdate = 0;
             @Override
@@ -106,40 +179,6 @@ public class GameController {
             fieldCounter = 0;
         }
     }
-
-
-    public void setRightPressed(boolean rightPressed) {
-        this.rightPressed = rightPressed;
-    }
-
-    public void setLeftPressed(boolean leftPressed) {
-        this.leftPressed = leftPressed;
-    }
-
-    public void setUpPressed(boolean upPressed) {
-        this.upPressed = upPressed;
-    }
-
-    public void setDownPressed(boolean downPressed) {
-        this.downPressed = downPressed;
-    }
-
-    public boolean isRightPressed() {
-        return rightPressed;
-    }
-
-    public boolean isLeftPressed() {
-        return leftPressed;
-    }
-
-    public boolean isUpPressed() {
-        return upPressed;
-    }
-
-    public boolean isDownPressed() {
-        return downPressed;
-    }
-
 
     private void proofAction(GameScene gameScene, MovingObject movingObject, int selectedObject, SideControlPane sideControlPane, Farmer farmer,
                             Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile){
