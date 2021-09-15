@@ -9,6 +9,8 @@ import gui.view.InformationBox;
 /**
  * This class adds listeners to all the Properties that are shown in the gameScene. With the help of this class nobody
  * has to care that the actual values are shown.
+ *
+ * @author Judith
  */
 public class GameInformation {
     private InformationBox informationBox;
@@ -18,11 +20,11 @@ public class GameInformation {
      * objects handed over, and it starts to synchronize the information by calling the method
      * synchronizeInformation().
      *
-     * @param informationBox - the informationBox of the actual gameScene to get access to the newsField
-     * @param gameValue - the actual object of the class GameValue to get access to the properties
-     * @param tractor - the actual object of the class Tractor to get access to the property
-     * @param harvester - the actual object of the class Harvester to get access to the property
-     * @param silo - the actual object of the class Silo to get access to the property
+     * @param informationBox the informationBox of the actual gameScene to get access to the newsField
+     * @param gameValue the actual object of the class GameValue to get access to the properties
+     * @param tractor the actual object of the class Tractor to get access to the property
+     * @param harvester the actual object of the class Harvester to get access to the property
+     * @param silo the actual object of the class Silo to get access to the property
      */
     public GameInformation(InformationBox informationBox, GameValue gameValue, Tractor tractor, Harvester harvester,
                            Silo silo) {
@@ -33,10 +35,10 @@ public class GameInformation {
     /**
      * This method implements listeners to synchronize the information shown in the gameScene with the properties.
      *
-     * @param gameValue - the actual object of the class GameValue to get access to the properties
-     * @param tractor - the actual object of the class Tractor to get access to the property
-     * @param harvester - the actual object of the class Harvester to get access to the property
-     * @param silo - the actual object of the class Silo to get access to the property
+     * @param gameValue the actual object of the class GameValue to get access to the properties
+     * @param tractor the actual object of the class Tractor to get access to the property
+     * @param harvester the actual object of the class Harvester to get access to the property
+     * @param silo the actual object of the class Silo to get access to the property
      */
     private void synchronizeInformation(GameValue gameValue, Tractor tractor, Harvester harvester, Silo silo){
         gameValue.cashProperty().addListener((observableValue, number, t1) ->
