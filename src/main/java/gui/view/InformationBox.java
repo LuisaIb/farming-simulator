@@ -48,8 +48,8 @@ public class InformationBox {
         timeField = new LSTextField("day",40, 150, 0, 0, 16);
         moneyField = new LSTextField("money", 40, 175, 0, 0, 16);
         siloField = new LSTextField("silo",40, 175, 0, 0, 16);
-        tractorField = new LSTextField("tractor",40, 175, 0, 0, 16);
-        harvesterField = new LSTextField("harvester",40, 175, 0, 0, 16);
+        tractorField = new LSTextField("tractor",40, 175, 0, 0, 14);
+        harvesterField = new LSTextField("harvester",40, 175, 0, 0, 14);
         newsField = new LSTextField("news",40, 450, 0, 0, 16);
         menuButton = new LSButton("Menu", 40, 100,750, 0, 16);
 

@@ -140,11 +140,11 @@ public class Game {
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
                 cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
                 fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
-		gameScene.getInformationBox().getSiloField().setText("Corn in silo: " + silo.getCapacityAsString());
-		gameScene.getInformationBox().getHarvesterField().setText(harvester.getPetrolTankFillLevelAsString());
-		gameScene.getInformationBox().getTractorField().setText(tractor.getPetrolTankFillLevelAsString());
-		gameScene.getInformationBox().getTimeField().setText(gameValue.getDayAsString());
-		gameScene.getInformationBox().getMoneyField().setText(gameValue.getCashAsString());
+		gameScene.getInformationBox().getSiloField().setText("corn in silo: " + silo.getCapacityAsString());
+		gameScene.getInformationBox().getHarvesterField().setText("petrol harvester: " + harvester.getPetrolTankFillLevelAsString());
+		gameScene.getInformationBox().getTractorField().setText("petrol tractor: " + tractor.getPetrolTankFillLevelAsString());
+		gameScene.getInformationBox().getTimeField().setText("day: " + gameValue.getDayAsString());
+		gameScene.getInformationBox().getMoneyField().setText("money: " + gameValue.getCashAsString());
         System.out.println(getSelectedObject());
         System.out.println(getColumn());
         System.out.println(getRow());
