@@ -16,7 +16,8 @@ import java.util.List;
 public class MovingObject {
 	private int x;
 	private int y;
-	private boolean selected = false;
+	private boolean selected = false; //check whether object is selected atm
+	// list for not pasable points on the game board:
 	private ArrayList<Integer> places = new ArrayList<>(Arrays.asList(7, 25, 37, 42, 43, 44, 45, 46, 47, 48, 55, 67, 72, 78, 85, 90, 102, 108, 115,
 			120, 121, 122, 123, 124, 125, 126, 127, 133, 134, 135, 136, 137, 138, 145, 146, 147, 148, 149, 180, 181,
 			182, 183, 184, 185, 186, 187, 194, 195, 196, 197, 198, 217, 224, 228, 247, 251, 252, 253, 254, 258, 277,
