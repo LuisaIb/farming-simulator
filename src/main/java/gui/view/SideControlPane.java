@@ -280,7 +280,7 @@ public class SideControlPane {
             selectVehicle(movingObject, matchfield, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
             selectWorkingDevice(movingObject, matchfield, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
         } else if (tractor.isSelected()){
-            exitVehicle(movingObject, matchfield, farmer, tractor);
+            exitVehicle(movingObject, matchfield, farmer, tractor, cultivator, dumpTruck, seedDrill);
         } else if(farmer.isSelected() && tractorExited && farmer.getX() == columnExitedVehicle &&
                     farmer.getY() == rowExitedVehicle){
             enterVehicle(movingObject, matchfield, farmer, tractor);
@@ -464,24 +464,73 @@ public class SideControlPane {
         });
     }
 
-    private void exitVehicle(MovingObject movingObject, Matchfield matchfield, Farmer farmer, Tractor tractor){
+    private void exitVehicle(MovingObject movingObject, Matchfield matchfield, Farmer farmer, Tractor tractor,
+                             Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
         buttonAction.setOnMouseClicked(mouseEvent -> {
-            matchfield.initializeSecondMovingObject(2, movingObject.getX(), movingObject.getY());
+            buttonAction.setDisable(true);
+            buttonAction.setText("");
+            int selectedObject;
+            if (cultivator.isSelected()) {
+                selectedObject = 4;
+                cultivatorButton.setDisable(true);
+                cultivator.setSelected(false);
+            } else if (dumpTruck.isSelected()) {
+                if (dumpTruck.getGrainFillLevel() == 0) {
+                    selectedObject = 5;
+                } else {
+                    selectedObject = 6;
+                }
+                dumpTruckButton.setDisable(true);
+                dumpTruck.setSelected(false);
+            } else if (seedDrill.isSelected()) {
+                selectedObject = 7;
+                seedDrillButton.setDisable(true);
+                seedDrill.setSelected(false);
+            } else {
+                selectedObject = 2;
+            }
+
+            double rotation = matchfield.getMovingObjectImageView().getRotate();
+
+            if (rotation == 0) {
+                setExitedInteger(movingObject.getX()+1, movingObject.getY());
+            } else if (rotation == 90) {
+                setExitedInteger(movingObject.getX(), movingObject.getY()+1);
+            } else if (rotation == 180) {
+                setExitedInteger(movingObject.getX()-1, movingObject.getY());
+            } else if (rotation == 270) {
+                setExitedInteger(movingObject.getX(), movingObject.getY()-1);
+            }
+            int exitedVehicleX = movingObject.getX();
+            int exitedVehicleY = movingObject.getY();
+            matchfield.initializeSecondMovingObject(selectedObject, exitedVehicleX, exitedVehicleY);
+            matchfield.getSecondMovingObjectImageView().setRotate(rotation);
             tractor.setSelected(false);
             tractorButton.setDisable(true);
             tractorExited = true;
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(1));
-            setExitedInteger(movingObject.getX(), movingObject.getY());
+            matchfield.getMovingObjectImageView().setRotate(rotation);
+            matchfield.setTileOfObject(columnExitedVehicle, rowExitedVehicle);
             farmer.setSelected(true);
             farmerButton.setDisable(false);
             setMovingObjectToFarmer(movingObject, farmer);
             farmer.setX(columnExitedVehicle);
             farmer.setY(rowExitedVehicle);
+            System.out.println("tractor selected: " + tractor.isSelected());
+            System.out.println("farmer selected: " + farmer.isSelected());
+            System.out.println("farmer x: " + farmer.getX());
+            System.out.println("farmer y: " + farmer.getY());
+            System.out.println("exited x: " + getColumnExitedVehicle() );
+            System.out.println("exited y: " + getRowExitedVehicle());
+            System.out.println("tractor exited: " + tractorExited);
+            System.out.println("");
+            movingObject.getPlaces().add(0, exitedVehicleY*30+exitedVehicleX);
         });
     }
 
     private void enterVehicle(MovingObject movingObject, Matchfield matchfield, Farmer farmer, Tractor tractor){
         buttonAction.setOnMouseClicked(mouseEvent -> {
+            movingObject.getPlaces().remove(0);
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(2));
             matchfield.deleteSecondImageView();
             tractor.setSelected(true);

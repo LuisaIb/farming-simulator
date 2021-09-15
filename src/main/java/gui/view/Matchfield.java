@@ -419,6 +419,15 @@ public class Matchfield {
     }
 
     /**
+     * Getter for the secondMovingObjectImageView.
+     *
+     * @return the requested secondMovingObjectImageView
+     */
+    public ImageView getSecondMovingObjectImageView(){
+        return secondMovingObjectImageView;
+    }
+
+    /**
      * This method sets the image view of the moving object to a specific tile on the matchfield.
      *
      * @param column index of the column onto which the image view is put on the grid pane of the matchfield
