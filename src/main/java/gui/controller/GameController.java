@@ -65,7 +65,7 @@ public class GameController {
             @Override
             public void handle(long now) {
                 if (now - lastUpdate >= 100_000_000) {
-                    gameScene.moveObject(movingObject, tractor, harvester);
+                    gameScene.moveObject(movingObject, tractor, harvester, gameScene);
                     proofAction(gameScene, movingObject, selectedObject, sideControlPane, farmer, tractor, harvester,
                             cultivator, dumpTruck, seedDrill, fieldTile, gameTimer);
                     lastUpdate = now;

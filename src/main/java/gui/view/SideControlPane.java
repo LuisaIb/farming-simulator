@@ -297,12 +297,12 @@ public class SideControlPane {
                 if (!tractorExited) {
                     tractorButton.setDisable(false);
                 }
+                harvesterButton.setDisable(false);
             });
 
 
         farmerButton.setOnMouseClicked(mouseEvent -> {
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(1));
-            setMovingObjectToFarmer(movingObject, farmer);
             farmerButton.setDisable(false);
             tractorButton.setDisable(true);
             harvesterButton.setDisable(true);
@@ -497,9 +497,9 @@ public class SideControlPane {
     }
 
     private void setMovingObjectToFarmer(MovingObject movingObject, Farmer farmer){
-        int column = movingObject.getX();
-        int row = movingObject.getY();
-       movingObject = farmer;
+       int column = movingObject.getX();
+       int row = movingObject.getY();
+       //movingObject = farmer;
        farmer.setX(column);
        farmer.setX(row);
     }
@@ -507,7 +507,7 @@ public class SideControlPane {
     private void setMovingObjectToTractor(MovingObject movingObject, Tractor tractor) {
         int column = movingObject.getX();
         int row = movingObject.getY();
-        movingObject = tractor;
+        //movingObject = tractor;
         tractor.setX(column);
         tractor.setY(row);
     }
@@ -515,7 +515,7 @@ public class SideControlPane {
     private void setMovingObjectToHarvester(MovingObject movingObject, Harvester harvester){
         int column = movingObject.getX();
         int row = movingObject.getY();
-        movingObject = harvester;
+        //movingObject = harvester;
         harvester.setX(column);
         harvester.setY(row);
     }

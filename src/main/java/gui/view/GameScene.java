@@ -8,6 +8,7 @@ import gui.controller.GameController;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import simulator.Game;
 
 import static gui.view.ViewManager.HEIGHT;
 import static gui.view.ViewManager.WIDTH;
@@ -147,7 +148,7 @@ public class GameScene {
         matchfield.setField3(stageOfGrowth);
     }
 
-    public void moveObject(MovingObject movingObject, Tractor tractor, Harvester harvester) {
+    public void moveObject(MovingObject movingObject, Tractor tractor, Harvester harvester, GameScene gameScene) {
         if (gameController.isRightPressed() && !gameController.isLeftPressed() &&
                 !gameController.isUpPressed() && !gameController.isDownPressed()) {
             System.out.println("Rechts ist jetzt als einzige Taste gedrückt?");
@@ -164,7 +165,9 @@ public class GameScene {
                     harvester.setPetrolTankFillLevel(tractor.getPetrolTankFillLevel()-1);
                 }
             } catch (MovingExcpetion e) {
-                e.printStackTrace();
+                System.out.println(e.getCause());
+                gameScene.getInformationBox().getNewsField().setText(e.getMessage());
+                //e.printStackTrace();
             }
             System.out.println("moving right");
         }
