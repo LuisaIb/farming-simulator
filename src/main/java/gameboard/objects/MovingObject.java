@@ -23,12 +23,21 @@ public class MovingObject {
 			280, 288, 307, 310, 318, 337, 341, 348, 367, 371, 372, 373, 374, 375, 376, 377, 378, 397, 427, 457, 487,
 			517, 547, 577));
 
+	/**
+	 * the empty constructor is there for starting the game
+	 */
 	public MovingObject(){
 		this.x = getX();
 		this.y = getY();
 		this.selected = isSelected();
 	}
 
+	/**
+	 * constructor to set each param and to reload the game
+	 * @param x
+	 * @param y
+	 * @param selected
+	 */
 	public MovingObject(int x, int y, boolean selected){
 		this.x = x;
 		this.y = y;
@@ -63,8 +72,10 @@ public class MovingObject {
 	}
 
 	/**
-	 * this method is representing the functionality of each object 
-	 * to move over the gameboard
+	 * this method represents the functionality of each object 
+	 * to move right
+	 * @param gameScene
+	 * @throws MovingExcpetion
 	 */
 	public void moveRight(GameScene gameScene) throws MovingExcpetion {
 		if (x < 29 && proofPassabilty(x+1, y)) {
@@ -75,6 +86,12 @@ public class MovingObject {
 	}
 
 
+	/**
+	 * this method represents the functionality of each object 
+	 * to move left
+	 * @param gameScene
+	 * @throws MovingExcpetion
+	 */
 	public void moveLeft(GameScene gameScene) throws MovingExcpetion {
 		if (x > 0 && proofPassabilty(x-1, y)) {
 			x--;
@@ -83,6 +100,12 @@ public class MovingObject {
 		}
 	}
 
+	/**
+	 * this method represents the functionality of each object 
+	 * to move up
+	 * @param gameScene
+	 * @throws MovingExcpetion
+	 */
 	public void moveUp(GameScene gameScene) throws MovingExcpetion {
 		if (y > 0 && proofPassabilty(x, y-1)) {
 			y--;
@@ -91,6 +114,12 @@ public class MovingObject {
 		}
 	}
 
+	/**
+	 * this method represents the functionality of each object 
+	 * to move down
+	 * @param gameScene
+	 * @throws MovingExcpetion
+	 */
 	public void moveDown(GameScene gameScene) throws MovingExcpetion {
 		if (y < 19 && proofPassabilty(x, y+1)) {
 			y++;
