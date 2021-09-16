@@ -59,7 +59,7 @@ public class MovingObjectFunctionalityController {
         farmerButton = gameScene.getSideControlPane().getFarmerButton();
         tractorButton = gameScene.getSideControlPane().getTractorButton();
         harvesterButton = gameScene.getSideControlPane().getHarvesterButton();
-        cultivatorButton = gameScene.getSideControlPane().getHarvesterButton();
+        cultivatorButton = gameScene.getSideControlPane().getCultivatorButton();
         dumpTruckButton = gameScene.getSideControlPane().getDumpTruckButton();
         seedDrillButton = gameScene.getSideControlPane().getSeedDrillButton();
     }
@@ -117,7 +117,7 @@ public class MovingObjectFunctionalityController {
         harvester.setSelected(harvesterSelected);
         cultivator.setSelected(cultivatorSelected);
         dumpTruck.setSelected(dumpTruckSelected);
-        seedDrill.setSelected(dumpTruckSelected);
+        seedDrill.setSelected(seedDrillSelected);
     }
 
     protected void selectWorkingDevice(){

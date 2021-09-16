@@ -134,6 +134,7 @@ public class Game {
 	        setSiloCapacity(silo.getCapacity());
 
         movingObject = farmer;
+
         GameController gameController = new GameController();
 
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
