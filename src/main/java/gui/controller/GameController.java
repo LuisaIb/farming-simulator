@@ -131,13 +131,16 @@ public class GameController {
 
     public void initGameLoop(GameScene gameScene, FieldTile fieldTile, MovingObject movingObject, int selectedObject,
                              GameValue gameValue, SideControlPane sideControlPane, Farmer farmer, Tractor tractor,
-                             Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
+                             Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill,
+                             GameController gameController, MovingObjectController movingObjectController){
         gameTimer = new AnimationTimer() {
             private long lastUpdate = 0;
             @Override
             public void handle(long now) {
                 if (now - lastUpdate >= 100_000_000) {
-                    gameScene.moveObject(movingObject, tractor, harvester, gameScene);
+                    //gameScene.moveObject(movingObject, tractor, harvester, gameScene, gameController);
+                    movingObjectController.moveObject(movingObject, tractor, harvester, gameScene,
+                            gameScene.getGameController(), gameScene.getMatchfield());
                     proofAction(gameScene, movingObject, sideControlPane, farmer, tractor, harvester,
                             cultivator, dumpTruck, seedDrill, fieldTile, gameValue);
                     lastUpdate = now;
@@ -203,17 +206,9 @@ public class GameController {
         if ((x == 16 || x == 17) && y == 13) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("select vehicle");
-            System.out.println("x muss 16 ode 17 sein: " + x);
-            System.out.println("y muss 13 sein: " + y);
-            System.out.println("moving object get x: " + movingObject.getX());
-            System.out.println("moving object get y: " + movingObject.getY());
         } else if (x == 27 && y == 5 && farmer.isSelected()) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("buy field");
-            System.out.println("x muss 27 sein: " + x);
-            System.out.println("y muss 5 sein: " + y);
-            System.out.println("moving object get x: " + movingObject.getX());
-            System.out.println("moving object get y: " + movingObject.getY());
         } else if (x == 27 && y == 5 && dumpTruck.isSelected()) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("sell grain");
@@ -227,10 +222,6 @@ public class GameController {
                         gameScene.getMatchfield().getMovingObjectImageView().getRotate() == 270 && movingObject.proofPassabilty(x, y-1))) {
             gameScene.getSideControlPane().getButtonAction().setDisable(false);
             gameScene.getSideControlPane().getButtonAction().setText("exit vehicle");
-            System.out.println("x muss exited sein: " + x);
-            System.out.println("y muss exited sein: " + y);
-            System.out.println("moving object get x: " + movingObject.getX());
-            System.out.println("moving object get y: " + movingObject.getY());
             if (tractor.isSelected() || !tractor.isAttachement()) {
                 sideControlPane.getCultivatorButton().setDisable(true);
                 sideControlPane.getDumpTruckButton().setDisable(true);

@@ -10,6 +10,7 @@ import gameboard.tiles.Silo;
 import gui.controller.GameController;
 import gameboard.objects.*;
 import gameboard.tiles.FieldTile;
+import gui.controller.MovingObjectController;
 import gui.model.GameInformation;
 import gui.view.GameScene;
 
@@ -133,13 +134,15 @@ public class Game {
 
         movingObject = farmer;
         GameController gameController = new GameController();
+		MovingObjectController movingObjectController = new MovingObjectController();
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
 				cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
-				fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
+				fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow(),
+				gameController);
         selectedObject = getSelectedObject();
         fillInformationFields(gameScene, silo, harvester, tractor, gameValue);
 		gameController.initGameLoop(gameScene, fieldTile, getMovingObject(), getSelectedObject(), gameValue, gameScene.getSideControlPane(), farmer, tractor,
-				harvester, cultivator, dumpTruck, seedDrill);
+				harvester, cultivator, dumpTruck, seedDrill, gameController, movingObjectController);
         GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
         return gameScene;
     }
@@ -589,9 +592,10 @@ public class Game {
 		seedDrill = new SeedDrill(xsd, ysd, selectedsd);
 		
 		 GameController gameController2 = new GameController();
-	        //gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
-	          //      cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
-	            //    fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
+	        gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
+	                cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
+	                fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow(),
+					gameController2);
 			gameScene.getInformationBox().getSiloField().setText("Corn in silo: " + silo.getCapacityAsString());
 			gameScene.getInformationBox().getHarvesterField().setText(harvester.getPetrolTankFillLevelAsString());
 			gameScene.getInformationBox().getTractorField().setText(tractor.getPetrolTankFillLevelAsString());
@@ -601,8 +605,9 @@ public class Game {
 	        System.out.println(getColumn());
 	        System.out.println(getRow());
 	        selectedObject = getSelectedObject();
+	        MovingObjectController movingObjectController2 = new MovingObjectController();
 			gameController2.initGameLoop(gameScene, fieldTile, getMovingObject(), getSelectedObject(), gameValue, gameScene.getSideControlPane(), farmer, tractor,
-					harvester, cultivator, dumpTruck, seedDrill);
+					harvester, cultivator, dumpTruck, seedDrill, gameController2, movingObjectController2);
 	        GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
 	        return gameScene;
     }
