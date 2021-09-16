@@ -3,6 +3,7 @@ package gui.view;
 import gui.controller.SceneController;
 import gui.model.LSButton;
 import gui.model.LSTextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 import static gui.view.ViewManager.WIDTH;
@@ -53,8 +54,11 @@ public class InformationBox {
         newsField = new LSTextField("news",40, 450, 0, 0, 16);
         menuButton = new LSButton("Menu", 40, 100,750, 0, 16);
 
-        menuButton.setOnMouseClicked(sceneController.setSceneToMenuScene);
-
+//        menuButton.setOnMouseClicked(sceneController.setSceneToMenuScene);
+        menuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+        	game.toSerializeFarmer();
+        });
+        
         informationBox.getChildren().addAll(timeField, moneyField, siloField, tractorField, harvesterField,
                 newsField, menuButton);
     }

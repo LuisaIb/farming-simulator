@@ -297,14 +297,9 @@ public class Game {
 	 * @return serialized as a JSONB object of the farmer's position
 	 */
 	public String toSerializeFarmer() {
-		
-		farmer = new Farmer();
-		farmer.setX(getFarmerX());
-		
 		Jsonb jsonb = JsonbBuilder.create();
 		String serializedsf = jsonb.toJson(farmer);
-				
-				System.out.println(serializedsf);
+		System.out.println("Test" + serializedsf);
 		return serializedsf;
 	}
 	

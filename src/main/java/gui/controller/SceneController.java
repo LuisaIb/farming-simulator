@@ -15,10 +15,11 @@ import simulator.Game;
  */
 public class SceneController {
     private boolean timerInitiated = false;
+    Game game;
 
     public EventHandler<Event> setSceneToEasyGameScene = event -> {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Game game = new Game();
+        game = new Game();
         GameScene gameScene = game.createNewGame(1);
         window.setScene(gameScene.getGameScene());
         window.show();
@@ -26,7 +27,7 @@ public class SceneController {
 
     public EventHandler<Event> setSceneToMediumGameScene = event -> {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Game game = new Game();
+        game = new Game();
         GameScene gameScene = game.createNewGame(2);
         window.setScene(gameScene.getGameScene());
         window.show();
@@ -34,7 +35,7 @@ public class SceneController {
 
     public EventHandler<Event> setSceneToHardGameScene = event -> {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Game game = new Game();
+        game = new Game();
         GameScene gameScene = game.createNewGame(3);
         window.setScene(gameScene.getGameScene());
         window.show();
