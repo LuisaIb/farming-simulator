@@ -90,16 +90,28 @@ public class GameValue {
 		return "Game [cash=" + cashProperty + " +  day=" + day + "]";
 	}
 
+	/**
+	 * @return
+	 */
 	public IntegerProperty cashProperty(){
 		return cashProperty;
 	}
 
+	/**
+	 * @return
+	 */
 	public IntegerProperty day(){ return day; }
 
+	/**
+	 * @return
+	 */
 	public String getCashAsString() {
 		return "" + cashProperty.get();
 	}
 
+	/**
+	 * @return
+	 */
 	public String getDayAsString(){
 		return "" + day.get();
 	}
