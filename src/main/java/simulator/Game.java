@@ -74,10 +74,12 @@ public class Game {
     private Silo silo;
     private int siloCapacity;
    
+    private GameScene gameScene = new GameScene();
 
+ 
 
 	public GameScene createNewGame(int lod){
-        	GameScene gameScene = new GameScene();
+        	
 
         	farmer = new Farmer();
         	System.out.println(farmer.getX());
@@ -292,24 +294,16 @@ public class Game {
     // all position values
     /**
 	 * This method gets the position of the farmer of the class...
-     * @param
 	 * @return serialized as a JSONB object of the farmer's position
 	 */
 	public String toSerializeFarmer() {
-	
-		Farmer f = new Farmer();
 		
+		farmer = new Farmer();
+		farmer.setX(getFarmerX());
 		
 		Jsonb jsonb = JsonbBuilder.create();
-		String serializedsf = jsonb.toJson(f);
-		
-		
-//		setFarmerX(5);
-//		getFarmerY();
-//		isFarmerIsSelected();
-//		Jsonb jsonb = JsonbBuilder.create();
-//		String serializedsf = jsonb.toJson(farmer);
-		
+		String serializedsf = jsonb.toJson(farmer);
+				System.out.println(serializedsf);
 		return serializedsf;
 	}
 	
@@ -333,6 +327,7 @@ public class Game {
 //		gt.tractorIsAttachment = isTractorIsAttachment();
 //		Jsonb jsonb = JsonbBuilder.create();
 		String serializedst = jsonb.toJson(tractor);
+		System.out.println(serializedst);
 		return serializedst;
 	}
 	
@@ -593,6 +588,11 @@ public class Game {
 		seedDrill = new SeedDrill(xsd, ysd, selectedsd);
 		
 		 GameController gameController2 = new GameController();
+
+//	        gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
+//	                cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
+//	                fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
+
 	        gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
 	                cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
 	                fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow(),

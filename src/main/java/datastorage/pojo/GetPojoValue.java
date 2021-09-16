@@ -68,17 +68,4 @@ public class GetPojoValue {
 		return deserializeddf;
 	}
 	
-	/**
-	 * This method creates an new object of the class CourtTrade.
-	 * @return deserialized as a new CourtTrade object of the CourtTrade's contitions
-	 */
-	public Game toDeserializeCourtTrade(String jb) {  
-//		Jsonb jb1 = JsonbBuilder.create();
-//		CourtTrade deserializedct = jb1.fromJson(jb, CourtTrade.class);
-//		return deserializedct;	// kann nun als neues Objekt der Klasse CourtTrade() verwendet werden um den Konstruktor zu bef�llen
-		Jsonb jb2 = JsonbBuilder.create();
-		Game deserializeddf = jb2.fromJson(jb, Game.class);
-		return deserializeddf;
-	}
-	
 }
