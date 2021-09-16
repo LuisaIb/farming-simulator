@@ -25,32 +25,24 @@ public class GameController {
     public void setBooleansPressed(KeyEvent keyEvent){
         if (keyEvent.getCode().equals(KeyCode.D)) {
             rightPressed = true;
-            System.out.println("right pressed");
         } else if (keyEvent.getCode().equals(KeyCode.A)){
             leftPressed = true;
-            System.out.println("left pressed");
         } else if (keyEvent.getCode().equals(KeyCode.W)){
             upPressed = true;
-            System.out.println("up pressed");
         } else if (keyEvent.getCode().equals(KeyCode.S)){
             downPressed = true;
-            System.out.println("down pressed");
         }
     }
 
     public void setBooleansReleased(KeyEvent keyEvent){
         if (keyEvent.getCode().equals(KeyCode.D)) {
             rightPressed = false;
-            System.out.println("right released");
         } else if (keyEvent.getCode().equals(KeyCode.A)){
             leftPressed = false;
-            System.out.println("left released");
         } else if (keyEvent.getCode().equals(KeyCode.W)){
             upPressed = false;
-            System.out.println("up released");
         } else if (keyEvent.getCode().equals(KeyCode.S)){
             downPressed = false;
-            System.out.println("down released");
         }
     }
 

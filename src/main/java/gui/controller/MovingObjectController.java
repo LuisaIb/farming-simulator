@@ -22,7 +22,7 @@ public class MovingObjectController {
     private FieldTile fieldTile;
     private Matchfield matchfield;
     private SideControlPane sideControlPane;
-    private MovingObjectFunctionalityController movingObjectFunctionalityController;
+    private MovingObjectFunctionalityController mofc;
 
 
     public MovingObjectController(GameScene gameScene, MovingObject movingObject, GameController gameController,
@@ -45,8 +45,8 @@ public class MovingObjectController {
     }
 
     private void initializeFunctionality(){
-        movingObjectFunctionalityController = new MovingObjectFunctionalityController(gameScene, movingObject,
-                gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile);
+        mofc = new MovingObjectFunctionalityController(gameScene, movingObject, gameValue, farmer, tractor, harvester,
+                cultivator, dumpTruck, seedDrill, fieldTile);
     }
 
 
@@ -54,18 +54,26 @@ public class MovingObjectController {
         if (gameController.isRightPressed() && !gameController.isLeftPressed() &&
                 !gameController.isUpPressed() && !gameController.isDownPressed()) {
             move('r');
+            System.out.println("moving object x: " + movingObject.getX());
+            System.out.println("moving object y: " + movingObject.getY());
         }
         if (gameController.isLeftPressed() && !gameController.isRightPressed() &&
                 !gameController.isUpPressed() && !gameController.isDownPressed()) {
             move('l');
+            System.out.println("moving object x: " + movingObject.getX());
+            System.out.println("moving object y: " + movingObject.getY());
         }
         if (gameController.isUpPressed() && !gameController.isRightPressed() &&
                 !gameController.isLeftPressed() && !gameController.isDownPressed()) {
            move('u');
+            System.out.println("moving object x: " + movingObject.getX());
+            System.out.println("moving object y: " + movingObject.getY());
         }
         if (gameController.isDownPressed() && !gameController.isRightPressed() &&
                 !gameController.isLeftPressed() && !gameController.isUpPressed()) {
             move('d');
+            System.out.println("moving object x: " + movingObject.getX());
+            System.out.println("moving object y: " + movingObject.getY());
         }
     }
 
@@ -150,7 +158,8 @@ public class MovingObjectController {
     public void proofAction(){
         int x = movingObject.getX();
         int y = movingObject.getY();
-        movingObjectFunctionalityController.proofActionButtonFunctionality(x, y);
+        mofc.proofActionButtonFunctionality(x, y, movingObject);
+        double rotation = gameScene.getMatchfield().getMovingObjectImageView().getRotate();
         if ((x == 16 || x == 17) && y == 13) {
             setButtonAction(false, "select vehicle");
         } else if (x == 27 && y == 5 && farmer.isSelected()) {
@@ -160,21 +169,26 @@ public class MovingObjectController {
         } else if((x == 14 || x == 15) && y == 5 && (tractor.isSelected() && tractor.getPetrolTankFillLevel() < 150
                 || harvester.isSelected() && harvester.getPetrolTankFillLevel() < 50)) {
             setButtonAction(false, "fill tank");
-        } else if (tractor.isSelected() &&
-                ((gameScene.getMatchfield().getMovingObjectImageView().getRotate() == 0 && movingObject.proofPassabilty(x+1, y)) ||
-                        gameScene.getMatchfield().getMovingObjectImageView().getRotate() == 90 && movingObject.proofPassabilty(x, y+1) ||
-                        gameScene.getMatchfield().getMovingObjectImageView().getRotate() == 180 && movingObject.proofPassabilty(x-1, y) ||
-                        gameScene.getMatchfield().getMovingObjectImageView().getRotate() == 270 && movingObject.proofPassabilty(x, y-1))) {
+        } else if (tractor.isSelected() && ((rotation == 0 && movingObject.proofPassabilty(x+1, y)) ||
+                rotation == 90 && movingObject.proofPassabilty(x, y+1) ||
+                rotation == 180 && movingObject.proofPassabilty(x-1, y) ||
+                rotation == 270 && movingObject.proofPassabilty(x, y-1))) {
             setButtonAction(false, "exit vehicle");
             if (tractor.isSelected() || !tractor.isAttachement()) {
                 sideControlPane.getCultivatorButton().setDisable(true);
                 sideControlPane.getDumpTruckButton().setDisable(true);
                 sideControlPane.getSeedDrillButton().setDisable(true);
             }
-        } else if (farmer.isSelected() && movingObjectFunctionalityController.isTractorExited() &&
-                farmer.getX() == movingObjectFunctionalityController.getColumnExited() &&
-                farmer.getY() == movingObjectFunctionalityController.getRowExited()) {
+        } else if (farmer.isSelected() && mofc.isTractorExited() &&
+                x == mofc.getColumnExited() &&
+                y == mofc.getRowExited()) {
             setButtonAction(false, "enter vehicle");
+        } else if(harvester.isSelected() &&
+                (mofc.getObjectExited() == 5 || mofc.getObjectExited() == 6) &&
+                mofc.getRotation() == matchfield.getMovingObjectImageView().getRotate() &&
+                x == mofc.getColumnToFillFromHarvester() &&
+                y == mofc.getRowToFillFromHarvester()) {
+            setButtonAction(false, "unload");
         } else {
             setButtonAction(true, "");
             if (tractor.isSelected() || !tractor.isAttachement()) {

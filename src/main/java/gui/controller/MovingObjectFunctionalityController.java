@@ -10,7 +10,7 @@ import gui.view.SideControlPane;
 
 public class MovingObjectFunctionalityController {
     private GameScene gameScene;
-    private MovingObject movingObject;
+    //private MovingObject movingObject;
     private GameValue gameValue;
     private Farmer farmer;
     private Tractor tractor;
@@ -28,9 +28,6 @@ public class MovingObjectFunctionalityController {
     private LSButton cultivatorButton;
     private LSButton dumpTruckButton;
     private LSButton seedDrillButton;
-
-
-
     private int columnExited;
     private int rowExited;
     private boolean tractorExited = false;
@@ -38,13 +35,15 @@ public class MovingObjectFunctionalityController {
     private int exitedVehicleY;
     private double rotation;
     private int exitedObject;
+    private int columnToFillFromHarvester;
+    private int rowToFillFromHarvester;
 
     public MovingObjectFunctionalityController(GameScene gameScene, MovingObject movingObject, GameValue gameValue,
                                                Farmer farmer, Tractor tractor, Harvester harvester,
                                                Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill,
                                                FieldTile fieldTile){
         this.gameScene = gameScene;
-        this.movingObject = movingObject;
+        //this.movingObject = movingObject;
         this.gameValue = gameValue;
         this.farmer = farmer;
         this.tractor = tractor;
@@ -64,7 +63,7 @@ public class MovingObjectFunctionalityController {
         seedDrillButton = gameScene.getSideControlPane().getSeedDrillButton();
     }
 
-    public void proofActionButtonFunctionality(int column, int row) {
+    public void proofActionButtonFunctionality(int column, int row, MovingObject movingObject) {
         if (column == 27 && row == 5) {
             sellGrain();
         } else if (column == 27 && row == 5) {
@@ -72,18 +71,20 @@ public class MovingObjectFunctionalityController {
         } else if ((column == 14 || column == 15) && row == 5) {
             fillTank();
         } else if ((column == 16 || column == 17) && row == 13) {
-            selectVehicle();
-            selectWorkingDevice();
+            selectVehicle(movingObject);
+            selectWorkingDevice(movingObject);
         } else if (tractor.isSelected()){
-            exitVehicle();
+            exitVehicle(movingObject);
         } else if(farmer.isSelected() && tractorExited && farmer.getX() == columnExited &&
                 farmer.getY() == rowExited){
-            enterVehicle();
+            enterVehicle(movingObject);
+        } else if (harvester.isSelected() && column == columnToFillFromHarvester && row == rowToFillFromHarvester) {
+            unloadToDumpTruck();
         }
     }
 
 
-    protected void selectVehicle(){
+    protected void selectVehicle(MovingObject movingObject){
         buttonAction.setOnMouseClicked(MouseEvent -> {
             farmerButton.setDisable(false);
             if (!tractorExited) {
@@ -95,7 +96,7 @@ public class MovingObjectFunctionalityController {
 
         farmerButton.setOnMouseClicked(mouseEvent -> {
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(1));
-            setMovingObjectToFarmer();
+            setMovingObjectToFarmer(movingObject);
             sideControlPane.setButtonsDisabled(true, false, false, false, false, false);
             setMovingObjectsSelected(true, false, false, false, false, false);
             tractor.setAttachement(false);
@@ -103,7 +104,7 @@ public class MovingObjectFunctionalityController {
 
         harvesterButton.setOnMouseClicked(mouseEvent -> {
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(3));
-            setMovingObjectToHarvester();
+            setMovingObjectToHarvester(movingObject);
             sideControlPane.setButtonsDisabled(false, false, true, false, false, false);
             setMovingObjectsSelected(false, false, true, false, false, false);
             tractor.setAttachement(false);
@@ -120,10 +121,10 @@ public class MovingObjectFunctionalityController {
         seedDrill.setSelected(seedDrillSelected);
     }
 
-    protected void selectWorkingDevice(){
+    protected void selectWorkingDevice(MovingObject movingObject){
         tractorButton.setOnMouseClicked(MouseEvent -> {
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(2));
-            setMovingObjectToTractor();
+            setMovingObjectToTractor(movingObject);
             sideControlPane.setButtonsDisabled(false, true, false, true, true, true);
             setMovingObjectsSelected(false, true, false, false, false, false);
             tractor.setAttachement(false);
@@ -176,7 +177,16 @@ public class MovingObjectFunctionalityController {
         });
     }
 
-    private int getObjectExited(){
+    private void unloadToDumpTruck(){
+        buttonAction.setOnMouseClicked(mouseEvent -> {
+            //entsprechende Methode aufrufen
+            System.out.println("unloaded to dump truck");
+            exitedObject = 6;
+            matchfield.getSecondMovingObjectImageView().setImage(matchfield.getTheRightImage(6));
+        });
+    }
+
+    protected int getObjectExited(){
         int selectedObject;
         if (cultivator.isSelected()) {
             selectedObject = 4;
@@ -205,35 +215,62 @@ public class MovingObjectFunctionalityController {
         return selectedObject;
     }
 
-    private void setExitedIntegers(double rotation){
+    private void setExitedIntegers(double rotation, MovingObject movingObject){
         if (rotation == 0) {
+            System.out.println("moving object x in setExitedIntegers" + movingObject.getX());
+            System.out.println("moving object y in setExitedIntegers" + movingObject.getY());
             columnExited = movingObject.getX()+1;
             rowExited = movingObject.getY();
         } else if (rotation == 90) {
+            System.out.println("moving object x in setExitedIntegers" + movingObject.getX());
+            System.out.println("moving object y in setExitedIntegers" + movingObject.getY());
             columnExited = movingObject.getX();
             rowExited = movingObject.getY()+1;
         } else if (rotation == 180) {
+            System.out.println("moving object x in setExitedIntegers" + movingObject.getX());
+            System.out.println("moving object y in setExitedIntegers" + movingObject.getY());
             columnExited = movingObject.getX()-1;
             rowExited = movingObject.getY();
         } else if (rotation == 270) {
+            System.out.println("moving object x in setExitedIntegers" + movingObject.getX());
+            System.out.println("moving object y in setExitedIntegers" + movingObject.getY());
             columnExited = movingObject.getX();
             rowExited = movingObject.getY()-1;
         }
         exitedVehicleX = movingObject.getX();
+        System.out.println(exitedVehicleX);
         exitedVehicleY = movingObject.getY();
+        System.out.println(exitedVehicleY);
     }
 
-    protected void exitVehicle(){
+    protected void exitVehicle(MovingObject movingObject){
         buttonAction.setOnMouseClicked(mouseEvent -> {
             int exitedObject = getObjectExited();
             rotation = matchfield.getMovingObjectImageView().getRotate();
-            setExitedIntegers(rotation);
-            initializeSecondMovingObject();
-            changeToFarmerAfterExited();
+            setExitedIntegers(rotation, movingObject);
+            setIntegersToFillFromHarvester(rotation, movingObject);
+            initializeSecondMovingObject(movingObject);
+            changeToFarmerAfterExited(movingObject);
         });
     }
 
-    private void initializeSecondMovingObject(){
+    private void setIntegersToFillFromHarvester(double rotation, MovingObject movingObject){
+        if (rotation == 0) {
+            columnToFillFromHarvester = movingObject.getX()-1;
+            rowToFillFromHarvester = movingObject.getY();
+        } else if (rotation == 90) {
+            columnToFillFromHarvester = movingObject.getX();
+            rowToFillFromHarvester = movingObject.getY()-1;
+        } else if (rotation == 180) {
+            columnToFillFromHarvester = movingObject.getX()+1;
+            rowToFillFromHarvester = movingObject.getY();
+        } else if (rotation == 270) {
+            columnToFillFromHarvester = movingObject.getX();
+            rowToFillFromHarvester = movingObject.getY()+1;
+        }
+    }
+
+    private void initializeSecondMovingObject(MovingObject movingObject){
         matchfield.initializeSecondMovingObject(exitedObject, exitedVehicleX, exitedVehicleY);
         matchfield.getSecondMovingObjectImageView().setRotate(rotation);
         tractor.setSelected(false);
@@ -242,7 +279,7 @@ public class MovingObjectFunctionalityController {
         movingObject.getPlaces().add(0, exitedVehicleY*30+exitedVehicleX);
     }
 
-    private void changeToFarmerAfterExited(){
+    private void changeToFarmerAfterExited(MovingObject movingObject){
         matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(1));
         matchfield.getMovingObjectImageView().setRotate(rotation);
         matchfield.setTileOfObject(columnExited, rowExited);
@@ -250,24 +287,24 @@ public class MovingObjectFunctionalityController {
         farmerButton.setDisable(false);
         movingObject.setX(columnExited);
         movingObject.setY(rowExited);
-        setMovingObjectToFarmer();
+        setMovingObjectToFarmer(movingObject);
     }
 
-    protected void enterVehicle(){
+    protected void enterVehicle(MovingObject movingObject){
         buttonAction.setOnMouseClicked(mouseEvent -> {
-            removeSecondMovingObject();
-            changeBackToExitedVehicle();
+            removeSecondMovingObject(movingObject);
+            changeBackToExitedVehicle(movingObject);
         });
     }
 
-    private void removeSecondMovingObject(){
+    private void removeSecondMovingObject(MovingObject movingObject){
         movingObject.getPlaces().remove(0);
         matchfield.deleteSecondImageView();
         farmer.setSelected(false);
         farmerButton.setDisable(true);
     }
 
-    private void changeBackToExitedVehicle(){
+    private void changeBackToExitedVehicle(MovingObject movingObject){
         matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(exitedObject));
         matchfield.setTileOfObject(exitedVehicleX, exitedVehicleY);
         matchfield.getMovingObjectImageView().setRotate(rotation);
@@ -276,31 +313,19 @@ public class MovingObjectFunctionalityController {
         tractorExited = false;
         movingObject.setX(exitedVehicleX);
         movingObject.setY(exitedVehicleY);
-        setMovingObjectToTractor();
+        setMovingObjectToTractor(movingObject);
     }
 
-    private void setMovingObjectToFarmer(){
-        int column = movingObject.getX();
-        int row = movingObject.getY();
+    private void setMovingObjectToFarmer(MovingObject movingObject){
         movingObject = farmer;
-        //farmer.setX(column);
-        //farmer.setX(row);
     }
 
-    private void setMovingObjectToTractor() {
-        int column = movingObject.getX();
-        int row = movingObject.getY();
+    private void setMovingObjectToTractor(MovingObject movingObject) {
         movingObject = tractor;
-        tractor.setX(column);
-        tractor.setY(row);
     }
 
-    private void setMovingObjectToHarvester(){
-        int column = movingObject.getX();
-        int row = movingObject.getY();
+    private void setMovingObjectToHarvester(MovingObject movingObject){
         movingObject = harvester;
-        harvester.setX(column);
-        harvester.setY(row);
     }
 
     protected boolean isTractorExited(){
@@ -313,5 +338,17 @@ public class MovingObjectFunctionalityController {
 
     protected int getRowExited() {
         return rowExited;
+    }
+
+    protected double getRotation(){
+        return rotation;
+    }
+
+    protected int getColumnToFillFromHarvester(){
+        return columnToFillFromHarvester;
+    }
+
+    protected int getRowToFillFromHarvester(){
+        return rowToFillFromHarvester;
     }
 }
