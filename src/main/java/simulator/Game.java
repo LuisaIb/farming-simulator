@@ -1,11 +1,7 @@
 package simulator;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
 
 import datastorage.ObjectToPojo;
-import datastorage.pojo.GetPojoMovingObject;
-import datastorage.pojo.GetPojoValue;
 import gameboard.GameValue;
 import gameboard.tiles.Silo;
 import gui.controller.GameController;
@@ -15,7 +11,6 @@ import gui.controller.MovingObjectController;
 import gui.controller.SavingController;
 import gui.model.GameInformation;
 import gui.view.GameScene;
-import gui.view.MenuScene;
 
 
 /**
@@ -52,6 +47,8 @@ public class Game {
 	        levelOfDifficulty = new LevelOfDifficulty(lod);
 	        silo = new Silo();
 
+	        movingObject.setX(farmer.getX());
+	        movingObject.setY(farmer.getY());
         movingObject = farmer;
 
         GameController gameController = new GameController();
