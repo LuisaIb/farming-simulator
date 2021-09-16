@@ -8,10 +8,19 @@ package gameboard.objects;
  */
 public class WorkingDevice extends MovingObject{
 
+    /**
+     * empty constructor of WorkingDevice for starting a new game
+     */
     public WorkingDevice(){
         super(18, 7, false);
     }
 
+    /**
+     * Constructor of WorkingDevice for reloading / continuing the game
+     * @param x
+     * @param y
+     * @param select
+     */
     public WorkingDevice(int x, int y, boolean select){
         super(x, y, select);
     }

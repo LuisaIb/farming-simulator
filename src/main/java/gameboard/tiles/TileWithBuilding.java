@@ -8,7 +8,7 @@ package gameboard.tiles;
 public class TileWithBuilding extends Tile{
 
 	/**
-	 * the constructor sets the id of each tile with a building
+	 * Constructor of TileWithBuilding
 	 */
 	public TileWithBuilding() {
 		super();

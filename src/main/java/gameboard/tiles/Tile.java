@@ -9,7 +9,7 @@ package gameboard.tiles;
 public class Tile {
 	
 	/**
-	 * the constructor is there to set the id
+	 * Empty Constructor of Tile
 	 * 
 	 */
 	public Tile() {

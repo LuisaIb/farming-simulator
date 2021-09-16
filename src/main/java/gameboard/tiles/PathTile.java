@@ -9,7 +9,7 @@ package gameboard.tiles;
 public class PathTile extends Tile{
 
 	/**
-	 * the constructor sets the id of each path tile
+	 * Constructor of the PathTile
 	 */
 	public PathTile() {
 		super();

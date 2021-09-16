@@ -4,7 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /**
- * this class represents the Silo for storage of the grain
+ * this class represents the Silo for the grain storage
  * @author Luisaibele
  *
  */
@@ -14,17 +14,22 @@ public class Silo extends TileWithBuilding{
 	
 	
 	/**
-	 * This empty constructor will be used for reloading the game.
+	 * This empty constructor will be used for starting a new game.
 	 */
 	public Silo() {
 		capacity.set(0);
 	}
 	
+	/**
+	 * Constructor of the Silo for reloading / continuing the game 
+	 * @param capacity
+	 */
 	public Silo(int capacity) {
 		this.capacity.set(capacity);
 	}
 
 	/**
+	 * Getter of capacity 
 	 * @return the capacity
 	 */
 	public int getCapacity() {
@@ -32,12 +37,17 @@ public class Silo extends TileWithBuilding{
 	}
 
 	/**
+	 * Setter of Capacity
 	 * @param capacity the capacity to set
 	 */
 	public void setCapacity(int capacity) {
 		this.capacity.set(capacity);
 	}
 
+	/**
+	 * method to give information about silo capacity as a string back to the user
+	 * @return
+	 */
 	public String getCapacityAsString(){
 		return "" + capacity.get();
 	}

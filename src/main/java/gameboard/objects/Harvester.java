@@ -3,8 +3,8 @@ package gameboard.objects;
 import exceptions.WrongMachineException;
 
 /**
- * this class represents the harvester with its properties to harvest a field
- * @author Hanna, Luisaibele
+ *  this class represents the harvester with its properties to harvest a field
+ * @author Luisaibele
  *
  */
 public class Harvester extends Machine {
@@ -12,13 +12,21 @@ public class Harvester extends Machine {
 	private int grainTankFillLevel;
 	
 	/**
-	 * the constructor of the harvester represents...
+	 * Empty Constructor of Harvester for starting the game
 	 */
 	public Harvester() {
 		super();
 		grainTankFillLevel = 0;
 	}
 
+	/**
+	 * Constructor of Harvester for reloading / continuing the game
+	 * @param x
+	 * @param y
+	 * @param selected
+	 * @param petrolTankFillLevel
+	 * @param grainTankFillLevel
+	 */
 	public Harvester(int x, int y, boolean selected, int petrolTankFillLevel, int grainTankFillLevel){
 		super(x, y, selected, petrolTankFillLevel);
 		this.grainTankFillLevel = grainTankFillLevel;
@@ -36,10 +44,18 @@ public class Harvester extends Machine {
 		}
 	}
 
+	/**
+	 * this method represents the functionality of the Harvester to unload its tank
+	 * to the dump truck or the silo
+	 */
 	public void unload(){
 		grainTankFillLevel = 0;
 	}
 
+	/**
+	 * Getter for the GrainTankFillLevel of the Harvester
+	 * @return grainTankFillLevel
+	 */
 	public int getGrainTankFillLevel() {
 		return grainTankFillLevel;
 	}
@@ -60,8 +76,3 @@ public class Harvester extends Machine {
 	}
 	
 }
-
-//Entl�dt der M�hdrescher w�hrend der Animation?
-//wenn ja brauchen wir dann fillTankWithGrain Methode? 
-//ist der M�hdrescher nach einer Animation entladen und Kipper voll?
-//oder M�hdrescher f�hrt bei Animation ohne Kipper und ist nach einem Feld voll?

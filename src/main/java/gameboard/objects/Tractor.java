@@ -1,6 +1,5 @@
 package gameboard.objects;
 
-import java.util.HashMap;
 
 /**
  * this class represents one of the two main machines in our game, the tractor.
@@ -11,7 +10,7 @@ public class Tractor extends Machine {
 	private boolean attachement; //stands for the value if a device is attached or not
 
 	/**
-	 * the constructor sets all the values needed for using the tractor
+	 * empty constructor of the Tractor for starting the game 
 	 */
 	public Tractor() {
 		super();
@@ -19,7 +18,7 @@ public class Tractor extends Machine {
 	}
 
 	/**
-	 *
+	 * Constructor of Tractor for reloading / continuing the game
 	 * @param x
 	 * @param y
 	 * @param petrolTankFillLevel

@@ -8,7 +8,7 @@ package gameboard.tiles;
 public class GrassTile extends Tile{
 
 	/**
-	 * the constructor sets the id for each grass tile
+	 * Constructor of GrassTile
 	 */
 	public GrassTile() {
 		super();

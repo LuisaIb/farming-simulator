@@ -63,16 +63,30 @@ public class Machine extends MovingObject{
     }
 
 	/**
+	 * Getter for the petrolTankFillLevel
 	 * @return the petrolTankFillLevel
 	 */
 	public int getPetrolTankFillLevel() {
 		return petrolTankFillLevel.get();
 	}
 
+	/**
+	 * Setter for the variable PetrolTankFillLevel
+	 * @param petrolTankFillLevel
+	 */
 	public void setPetrolTankFillLevel(int petrolTankFillLevel){ this.petrolTankFillLevel.set(petrolTankFillLevel);}
 
+	/**
+	 * Getter for the IntegerProperty pertrolTankFillLevel
+	 * @return
+	 */
 	public IntegerProperty petrolTankFillLevel(){ return petrolTankFillLevel; }
 
+	/**
+	 * method for serializing the petrolTankFillLevel to give it back as
+	 * an information to the user 
+	 * @return
+	 */
 	public String getPetrolTankFillLevelAsString(){
 		return "" + petrolTankFillLevel.get();
 	}

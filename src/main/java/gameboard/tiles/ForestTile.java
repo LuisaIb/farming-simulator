@@ -8,7 +8,7 @@ package gameboard.tiles;
 public class ForestTile extends Tile{
 
 	/**
-	 * the constructor sets the id for each forest tile
+	 * Constructor of ForestTile
 	 */
 	public ForestTile() {
 		super();
@@ -16,7 +16,7 @@ public class ForestTile extends Tile{
 	}
 	
 	/**
-	 * the method return that the farmer can't run over a forest tile 
+	 * this method returns that the farmer can't run over a forest tile 
 	 */
 	@Override
 	public boolean isSolid() {
