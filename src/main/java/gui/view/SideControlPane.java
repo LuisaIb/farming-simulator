@@ -18,6 +18,8 @@ import static gui.view.ViewManager.WIDTH;
 /**
  * This class implements the side pane with the buttons to move around the matchfield and to choose the
  * machine / farmer.
+ *
+ * @author Judith
  */
 public class SideControlPane {
     private Pane sidePane = new Pane();
@@ -53,12 +55,13 @@ public class SideControlPane {
     /**
      * Construcs an object of the class SideControlPane. It immediately initializes the sidePane.
      *
-     * @param farmer - hands the boolean to the method initializeSidePane()
-     * @param tractor - hands the boolean to the method initializeSidePane()
-     * @param harvester - hands the boolean to the method initializeSidePane()
-     * @param cultivator - hands the boolean to the method initializeSidePane()
-     * @param dumpTruck - hands the boolean to the method initializeSidePane()
-     * @param seedDrill - hands the boolean to the method initializeSidePane()
+     * @param farmer hands the boolean to the method initializeSidePane()
+     * @param tractor hands the boolean to the method initializeSidePane()
+     * @param harvester hands the boolean to the method initializeSidePane()
+     * @param cultivator hands the boolean to the method initializeSidePane()
+     * @param dumpTruck hands the boolean to the method initializeSidePane()
+     * @param seedDrill hands the boolean to the method initializeSidePane()
+     * @param gameController from the class game to make the buttons for moving around work
      */
     protected SideControlPane(boolean farmer, boolean tractor, boolean harvester, boolean cultivator,
                               boolean dumpTruck, boolean seedDrill, GameController gameController){
@@ -200,34 +203,27 @@ public class SideControlPane {
         });
         buttonUp.setOnMouseReleased(MouseEvent -> {
             gameController.setUpPressed(false);
-            System.out.println("up released");
         });
         buttonDown = new LSButton("S", 50, 50, 95, HEIGHT/100*77, 14);
         buttonDown.setOnMousePressed(MouseEvent -> {
             gameController.setDownPressed(true);
-            System.out.println("down pressed");
         });
         buttonDown.setOnMouseReleased(MouseEvent -> {
             gameController.setDownPressed(false);
-            System.out.println("down released");
         });
         buttonLeft = new LSButton("A", 50, 50,40,HEIGHT/100*77, 14);
         buttonLeft.setOnMousePressed(MouseEvent -> {
             gameController.setLeftPressed(true);
-            System.out.println("left pressed");
         });
         buttonLeft.setOnMouseReleased(MouseEvent -> {
             gameController.setLeftPressed(false);
-            System.out.println("left released");
         });
         buttonRight = new LSButton("D", 50, 50,150,HEIGHT/100*77, 14);
         buttonRight.setOnMousePressed(MouseEvent -> {
             gameController.setRightPressed(true);
-            System.out.println("right pressed");
         });
         buttonRight.setOnMouseReleased(MouseEvent -> {
             gameController.setRightPressed(false);
-            System.out.println("right released");
         });
         buttonAction = new LSButton("", 50, 150,45,HEIGHT/100*87, 14);
         buttonAction.setDisable(true);
@@ -317,12 +313,6 @@ public class SideControlPane {
             cultivator.setSelected(false);
             dumpTruck.setSelected(false);
             seedDrill.setSelected(false);
-            System.out.println("Farmer selected: " + farmer.isSelected());
-            System.out.println("Tractor selected: " + tractor.isSelected());
-            System.out.println("Harvester selected: " + harvester.isSelected());
-            System.out.println("Cultivator selected: " + cultivator.isSelected());
-            System.out.println("Dump Truck selected: " + dumpTruck.isSelected());
-            System.out.println("Seed Drill selected: " + seedDrill.isSelected());
             tractor.setAttachement(false);
         });
 
@@ -341,12 +331,6 @@ public class SideControlPane {
             cultivator.setSelected(false);
             dumpTruck.setSelected(false);
             seedDrill.setSelected(false);
-            System.out.println("Farmer selected: " + farmer.isSelected());
-            System.out.println("Tractor selected: " + tractor.isSelected());
-            System.out.println("Harvester selected: " + harvester.isSelected());
-            System.out.println("Cultivator selected: " + cultivator.isSelected());
-            System.out.println("Dump Truck selected: " + dumpTruck.isSelected());
-            System.out.println("Seed Drill selected: " + seedDrill.isSelected());
             tractor.setAttachement(false);
         });
     }
@@ -369,12 +353,6 @@ public class SideControlPane {
             cultivator.setSelected(false);
             dumpTruck.setSelected(false);
             seedDrill.setSelected(false);
-            System.out.println("Farmer selected: " + farmer.isSelected());
-            System.out.println("Tractor selected: " + tractor.isSelected());
-            System.out.println("Harvester selected: " + harvester.isSelected());
-            System.out.println("Cultivator selected: " + cultivator.isSelected());
-            System.out.println("Dump Truck selected: " + dumpTruck.isSelected());
-            System.out.println("Seed Drill selected: " + seedDrill.isSelected());
             tractor.setAttachement(false);
         });
 
@@ -392,12 +370,6 @@ public class SideControlPane {
             cultivator.setSelected(true);
             dumpTruck.setSelected(false);
             seedDrill.setSelected(false);
-            System.out.println("Farmer selected: " + farmer.isSelected());
-            System.out.println("Tractor selected: " + tractor.isSelected());
-            System.out.println("Harvester selected: " + harvester.isSelected());
-            System.out.println("Cultivator selected: " + cultivator.isSelected());
-            System.out.println("Dump Truck selected: " + dumpTruck.isSelected());
-            System.out.println("Seed Drill selected: " + seedDrill.isSelected());
             tractor.setAttachement(true);
         });
 
@@ -415,12 +387,6 @@ public class SideControlPane {
             cultivator.setSelected(false);
             dumpTruck.setSelected(true);
             seedDrill.setSelected(false);
-            System.out.println("Farmer selected: " + farmer.isSelected());
-            System.out.println("Tractor selected: " + tractor.isSelected());
-            System.out.println("Harvester selected: " + harvester.isSelected());
-            System.out.println("Cultivator selected: " + cultivator.isSelected());
-            System.out.println("Dump Truck selected: " + dumpTruck.isSelected());
-            System.out.println("Seed Drill selected: " + seedDrill.isSelected());
             tractor.setAttachement(true);
         });
 
@@ -438,12 +404,6 @@ public class SideControlPane {
             cultivator.setSelected(false);
             dumpTruck.setSelected(false);
             seedDrill.setSelected(true);
-            System.out.println("Farmer selected: " + farmer.isSelected());
-            System.out.println("Tractor selected: " + tractor.isSelected());
-            System.out.println("Harvester selected: " + harvester.isSelected());
-            System.out.println("Cultivator selected: " + cultivator.isSelected());
-            System.out.println("Dump Truck selected: " + dumpTruck.isSelected());
-            System.out.println("Seed Drill selected: " + seedDrill.isSelected());
             tractor.setAttachement(true);
         });
     }
@@ -526,14 +486,6 @@ public class SideControlPane {
             setMovingObjectToFarmer(movingObject, farmer);
             farmer.setX(columnExitedVehicle);
             farmer.setY(rowExitedVehicle);
-            System.out.println("tractor selected: " + tractor.isSelected());
-            System.out.println("farmer selected: " + farmer.isSelected());
-            System.out.println("farmer x: " + farmer.getX());
-            System.out.println("farmer y: " + farmer.getY());
-            System.out.println("exited x: " + getColumnExitedVehicle() );
-            System.out.println("exited y: " + getRowExitedVehicle());
-            System.out.println("tractor exited: " + tractorExited);
-            System.out.println("");
             movingObject.getPlaces().add(0, exitedVehicleY*30+exitedVehicleX);
         });
     }

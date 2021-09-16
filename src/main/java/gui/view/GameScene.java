@@ -42,6 +42,8 @@ public class GameScene {
      * @param selectedObject integer of the selected moving object that is shown on the matchfield
      * @param column index of the column to which the image view is set
      * @param row index of the column to which the image view is set
+     * @param gameController object of the class gameController that is implemented in the gameClass and handed to this
+     *                       method
      *
      */
     public void initializeGameScene(boolean farmer, boolean tractor, boolean harvester, boolean cultivator,
@@ -103,6 +105,7 @@ public class GameScene {
      * @param cultivator hands the boolean to the constructor of the class SideControlPane
      * @param dumpTruck hands the boolean to the constructor of the class SideControlPane
      * @param seedDrill hands the boolean to the constructor of the class SideControlPane
+     * @param gameController from the class game to make the buttons for moving around work
      */
     private void initializeSideControlPane(boolean farmer, boolean tractor, boolean harvester, boolean cultivator,
                                            boolean dumpTruck, boolean seedDrill, GameController gameController){

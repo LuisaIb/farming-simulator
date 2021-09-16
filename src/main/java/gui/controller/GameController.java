@@ -135,6 +135,7 @@ public class GameController {
                 if (now - lastUpdate >= 100_000_000) {
                     movingObjectController.moveObject();
                     movingObjectController.proofAction();
+                    movingObjectController.proofFieldAction();
                     lastUpdate = now;
                     DayCounter(gameValue);
                     proofFieldCounter(gameScene, fieldTile);
