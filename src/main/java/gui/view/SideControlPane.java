@@ -45,6 +45,10 @@ public class SideControlPane {
     private int columnExitedVehicle;
     private int rowExitedVehicle;
     private boolean tractorExited = false;
+    private int exitedVehicleX;
+    private int exitedVehicleY;
+    private double rotation;
+    private int exitedObject;
 
     /**
      * Construcs an object of the class SideControlPane. It immediately initializes the sidePane.
@@ -474,23 +478,28 @@ public class SideControlPane {
                 selectedObject = 4;
                 cultivatorButton.setDisable(true);
                 cultivator.setSelected(false);
+                exitedObject = 4;
             } else if (dumpTruck.isSelected()) {
                 if (dumpTruck.getGrainFillLevel() == 0) {
                     selectedObject = 5;
+                    exitedObject = 5;
                 } else {
                     selectedObject = 6;
+                    exitedObject = 6;
                 }
                 dumpTruckButton.setDisable(true);
                 dumpTruck.setSelected(false);
             } else if (seedDrill.isSelected()) {
                 selectedObject = 7;
+                exitedObject = 7;
                 seedDrillButton.setDisable(true);
                 seedDrill.setSelected(false);
             } else {
                 selectedObject = 2;
+                exitedObject = 2;
             }
 
-            double rotation = matchfield.getMovingObjectImageView().getRotate();
+            rotation = matchfield.getMovingObjectImageView().getRotate();
 
             if (rotation == 0) {
                 setExitedInteger(movingObject.getX()+1, movingObject.getY());
@@ -501,8 +510,8 @@ public class SideControlPane {
             } else if (rotation == 270) {
                 setExitedInteger(movingObject.getX(), movingObject.getY()-1);
             }
-            int exitedVehicleX = movingObject.getX();
-            int exitedVehicleY = movingObject.getY();
+            exitedVehicleX = movingObject.getX();
+            exitedVehicleY = movingObject.getY();
             matchfield.initializeSecondMovingObject(selectedObject, exitedVehicleX, exitedVehicleY);
             matchfield.getSecondMovingObjectImageView().setRotate(rotation);
             tractor.setSelected(false);
@@ -531,7 +540,9 @@ public class SideControlPane {
     private void enterVehicle(MovingObject movingObject, Matchfield matchfield, Farmer farmer, Tractor tractor){
         buttonAction.setOnMouseClicked(mouseEvent -> {
             movingObject.getPlaces().remove(0);
-            matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(2));
+            matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(exitedObject));
+            matchfield.setTileOfObject(exitedVehicleX, exitedVehicleY);
+            matchfield.getMovingObjectImageView().setRotate(rotation);
             matchfield.deleteSecondImageView();
             tractor.setSelected(true);
             tractorButton.setDisable(false);
@@ -539,6 +550,8 @@ public class SideControlPane {
             setMovingObjectToTractor(movingObject, tractor);
             farmer.setSelected(false);
             farmerButton.setDisable(true);
+            movingObject.setX(exitedVehicleX);
+            movingObject.setY(exitedVehicleY);
         });
     }
 
@@ -553,7 +566,7 @@ public class SideControlPane {
     private void setMovingObjectToTractor(MovingObject movingObject, Tractor tractor) {
         int column = movingObject.getX();
         int row = movingObject.getY();
-        //movingObject = tractor;
+        movingObject = tractor;
         tractor.setX(column);
         tractor.setY(row);
     }

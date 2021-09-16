@@ -33,7 +33,6 @@ public class MenuScene {
     private LSButton buttonEnd;
     SceneController sceneController = new SceneController();
     Game game = new Game();
-    ViewManager viewManager = new ViewManager();
 
     /**
      * Constructs an object of the class MenuScene. It initializes the menuPane with the method initializeMenuPane().
@@ -102,14 +101,23 @@ public class MenuScene {
 
     /**
      * Getter for the menuScene.
+     *
      * @return the requested menuScene.
      */
     public Scene getMenuScene(){
         return menuScene;
     }
 
-    public LSButton getButtonNewGame() {
-        return buttonNewGame;
+    /**
+     * This method helps to set the buttons load game and save game disabled or not. e.g. when the game is played for
+     * the first time, the buttons should be disabled as there is nothing to be saved or relaoded.
+     *
+     * @param reloadGame boolean of the disability of the button loadGame
+     * @param saveGame boolean of the disability of the button saveGame
+     */
+    private void buttonsDisabled(boolean reloadGame, boolean saveGame) {
+        buttonLoadGame.setDisable(reloadGame);
+        buttonSaveGame.setDisable(saveGame);
     }
     
    

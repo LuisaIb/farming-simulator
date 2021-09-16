@@ -1,11 +1,8 @@
 package gui.controller;
 
 import gameboard.GameValue;
-import gameboard.objects.*;
 import gameboard.tiles.FieldTile;
 import gui.view.GameScene;
-import gui.view.Matchfield;
-import gui.view.SideControlPane;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;

@@ -24,8 +24,6 @@ public class MovingObjectController {
     private SideControlPane sideControlPane;
 
 
-
-
     public MovingObjectController(GameScene gameScene, MovingObject movingObject, GameController gameController,
                                   GameValue gameValue, Farmer farmer, Tractor tractor, Harvester harvester,
                                   Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile){
