@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import simulator.Game;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This class implements the methods, that are responsible for the change of the scene.
@@ -42,11 +43,16 @@ public class SceneController {
     };
 
     public EventHandler<Event> setSceneToReloadGameScene = event -> {
-//        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-//        game = new Game();
-//        GameScene gameScene = game.reloadGame();
-//        window.setScene(gameScene.getGameScene());
-//        window.show();
+    	try {
+    		TimeUnit.SECONDS.sleep(5);
+    		} catch (InterruptedException e) {
+    		e.printStackTrace();
+    		}
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        game = new Game();
+        GameScene gameScene = game.reloadGame();
+        window.setScene(gameScene.getGameScene());
+        window.show();
     };
 
     public EventHandler<Event> setSceneToDifficultyScene = event -> {

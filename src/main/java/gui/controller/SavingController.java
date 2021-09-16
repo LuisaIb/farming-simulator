@@ -5,6 +5,7 @@ import gameboard.objects.Cultivator;
 import gameboard.objects.DumpTruck;
 import gameboard.tiles.FieldTile;
 import datastorage.ObjectToJsonb;
+import datastorage.ObjectToPojo;
 import gameboard.GameValue;
 import gameboard.objects.Harvester;
 import simulator.LevelOfDifficulty;
@@ -17,9 +18,10 @@ public class SavingController {
 	
 	 public void createFunctionality(GameScene gameScene, GameValue gameValue, Farmer farmer, Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile, Silo silo, LevelOfDifficulty levelOfDifficulty){
 	        ObjectToJsonb otj = new ObjectToJsonb();
+	        ObjectToPojo otp = new ObjectToPojo();
 	        gameScene.getInformationBox().getMenuButton().setOnMouseClicked(mouseEvent -> {
-	        	otj.toSerialize(gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile, silo, levelOfDifficulty);
-	            
+	        	//otj.toSerialize(gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile, silo, levelOfDifficulty);
+	            otp.toDeserialize();
 	        });
 	      
 	    }

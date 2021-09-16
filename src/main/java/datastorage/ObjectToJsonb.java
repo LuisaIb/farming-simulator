@@ -132,17 +132,19 @@ public class ObjectToJsonb {
 	
 		public void writeFile(StringBuilder sb) {
 		try {
-			File textdatei = new File("src/main/java/datastorage/SavingInformation/farmersimulator.txt");
-			if (textdatei.createNewFile()) {
+			File textFile = new File("src/main/java/datastorage/SavingInformation/farmersimulator.txt");
+			textFile.setWritable(true);
+			if (textFile.createNewFile()) {
 			System.out.println("Textdatei erstellt.");
 			} else {
 			System.out.println("Textdatei existiert bereits.");
 			}
 			
 			try {
-			FileWriter fileWriter = new FileWriter(textdatei);
+			FileWriter fileWriter = new FileWriter(textFile);
 				fileWriter.write(sb.toString());
 				fileWriter.close();
+				textFile.setWritable(false);
 			
 			System.out.println("In die Textdatei wurde geschrieben.");
 			} catch (IOException e) {

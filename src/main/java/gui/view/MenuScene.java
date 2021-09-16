@@ -13,6 +13,7 @@ import simulator.Game;
 import static gui.view.ViewManager.HEIGHT;
 import static gui.view.ViewManager.WIDTH;
 
+import datastorage.ObjectToPojo;
 import gameboard.objects.Farmer;
 
 /**
@@ -69,6 +70,10 @@ public class MenuScene {
         buttonNewGame.setOnMouseClicked(sceneController.setSceneToDifficultyScene);
         buttonLoadGame = new LSButton("Spiel laden",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
+        buttonLoadGame.setOnMouseClicked(MouseEvent->{
+        	ObjectToPojo otp = new ObjectToPojo();
+        	otp.toDeserialize();
+        });
         buttonLoadGame.setOnMouseClicked(sceneController.setSceneToReloadGameScene);
         buttonSaveGame = new LSButton("Spiel speichern",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
