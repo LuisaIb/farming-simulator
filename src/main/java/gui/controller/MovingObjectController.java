@@ -158,8 +158,12 @@ public class MovingObjectController {
     public void proofAction(){
         int x = movingObject.getX();
         int y = movingObject.getY();
-        mofc.proofActionButtonFunctionality(x, y, movingObject);
+        mofc.proofActionButtonFunctionality(x, y, movingObject, gameValue, farmer, tractor, harvester, cultivator,
+                dumpTruck, seedDrill);
         double rotation = gameScene.getMatchfield().getMovingObjectImageView().getRotate();
+
+            System.out.println("object exited has to be 5 or 6: " + mofc.getExitedObject());
+
         if ((x == 16 || x == 17) && y == 13) {
             setButtonAction(false, "select vehicle");
         } else if (x == 27 && y == 5 && farmer.isSelected()) {
@@ -184,7 +188,7 @@ public class MovingObjectController {
                 y == mofc.getRowExited()) {
             setButtonAction(false, "enter vehicle");
         } else if(harvester.isSelected() &&
-                (mofc.getObjectExited() == 5 || mofc.getObjectExited() == 6) &&
+                (mofc.getExitedObject() == 5 || mofc.getExitedObject() == 6) &&
                 mofc.getRotation() == matchfield.getMovingObjectImageView().getRotate() &&
                 x == mofc.getColumnToFillFromHarvester() &&
                 y == mofc.getRowToFillFromHarvester()) {
