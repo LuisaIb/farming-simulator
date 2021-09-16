@@ -41,7 +41,7 @@ public class SideControlPane {
     private final String PATH_TO_CULTIVATOR = "src/main/java/gui/view/resources/machines/cultivatorSide.png";
     private final String PATH_TO_DUMP_TRUCK = "src/main/java/gui/view/resources/machines/dumpTruckSide.png";
     private final String PATH_TO_SEED_DRILL = "src/main/java/gui/view/resources/machines/seedDrillSide.png";
-    GameController gameController = new GameController();
+    GameController gameController;
     private int columnExitedVehicle;
     private int rowExitedVehicle;
     private boolean tractorExited = false;
@@ -61,8 +61,9 @@ public class SideControlPane {
      * @param seedDrill - hands the boolean to the method initializeSidePane()
      */
     protected SideControlPane(boolean farmer, boolean tractor, boolean harvester, boolean cultivator,
-                              boolean dumpTruck, boolean seedDrill){
+                              boolean dumpTruck, boolean seedDrill, GameController gameController){
         initializeSidePane(farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
+        this.gameController = gameController;
     }
 
     /**
