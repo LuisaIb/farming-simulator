@@ -303,6 +303,7 @@ public class Game {
 		
 		Jsonb jsonb = JsonbBuilder.create();
 		String serializedsf = jsonb.toJson(farmer);
+				
 				System.out.println(serializedsf);
 		return serializedsf;
 	}
@@ -469,7 +470,28 @@ public class Game {
     	/**
     	 * This method deserialize the JSONB file. It is also possible to get the position of the farmer.
     	 * It implements a new position (x and y value) of the farmer.
+    	 * 
     	 */
+//		
+//		farmer.setX(getFarmerX());
+//		
+//		Jsonb jsonb = JsonbBuilder.create();
+//		
+//		String serializedsf = jsonb.toJson(farmer);
+//				//System.out.println(serializedsf);
+//			
+//				Farmer deserializedfX = jsonb.fromJson(serializedsf, Farmer.class);
+//				int xf = deserializedfX.getX();
+//				System.out.println(xf);
+//				
+//				Farmer deserializedfY = jsonb.fromJson(serializedsf, Farmer.class);
+//				int yf = deserializedfY.getY();
+//				
+//				Farmer deserializedSelectedf = jsonb.fromJson(serializedsf, Farmer.class);
+//				boolean selectedf = deserializedSelectedf.isSelected();
+//				
+//				farmer = new Farmer(xf, yf, selectedf);
+		
 		GetPojoMovingObject gpp = new GetPojoMovingObject();
 			Farmer deserializedfX = gpp.toDeserializeFarmer(toSerializeFarmer());
 			int xf = deserializedfX.getX();
@@ -588,10 +610,6 @@ public class Game {
 		seedDrill = new SeedDrill(xsd, ysd, selectedsd);
 		
 		 GameController gameController2 = new GameController();
-
-//	        gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
-//	                cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
-//	                fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow());
 
 	        gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
 	                cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
