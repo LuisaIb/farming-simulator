@@ -140,7 +140,7 @@ public class GameController {
                 if (now - lastUpdate >= 100_000_000) {
                     //gameScene.moveObject(movingObject, tractor, harvester, gameScene, gameController);
                     movingObjectController.moveObject(movingObject, tractor, harvester, gameScene,
-                            gameScene.getGameController(), gameScene.getMatchfield());
+                            gameController, gameScene.getMatchfield());
                     proofAction(gameScene, movingObject, sideControlPane, farmer, tractor, harvester,
                             cultivator, dumpTruck, seedDrill, fieldTile, gameValue);
                     lastUpdate = now;

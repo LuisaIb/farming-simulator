@@ -141,8 +141,9 @@ public class Game {
 				gameController);
         selectedObject = getSelectedObject();
         fillInformationFields(gameScene, silo, harvester, tractor, gameValue);
-		gameController.initGameLoop(gameScene, fieldTile, getMovingObject(), getSelectedObject(), gameValue, gameScene.getSideControlPane(), farmer, tractor,
-				harvester, cultivator, dumpTruck, seedDrill, gameController, movingObjectController);
+		gameController.initGameLoop(gameScene, fieldTile, getMovingObject(), getSelectedObject(), gameValue,
+				gameScene.getSideControlPane(), farmer, tractor, harvester, cultivator, dumpTruck, seedDrill,
+				gameController, movingObjectController);
         GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
         return gameScene;
     }
