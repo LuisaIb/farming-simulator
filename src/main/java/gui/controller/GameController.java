@@ -155,38 +155,47 @@ public class GameController {
     }
 
     private void proofFieldCounter(GameScene gameScene, FieldTile fieldTile){
-        fieldCounter1++;
         growthStageField1 = fieldTile.getGrowthState();
         growthStageField2 = fieldTile.getGrowthState2();
         growthSTageField3 = fieldTile.getGrowthState3();
-        if (fieldCounter1 == 50) {
+
             if (growthStageField1 > 1 && growthStageField1 < 5) {
-                growthStageField1++;
-                fieldTile.setGrowthState(growthStageField1);
-                for (int i = 855; i < 915; i++) {
-                    gameScene.getMatchfield().getImageViewField1(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthStageField1));
+                fieldCounter1++;
+                if (fieldCounter1 == 50) {
+                    growthStageField1++;
+                    fieldTile.setGrowthState(growthStageField1);
+                    for (int i = 855; i < 915; i++) {
+                        gameScene.getMatchfield().getImageViewField1(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthStageField1));
+                    }
+                    fieldCounter1 = 0;
                 }
+
             }
 
             if (growthStageField2 > 1 && growthStageField2 < 5) {
-                growthStageField2++;
-                fieldTile.setGrowthState2(growthStageField2);
-                for (int i = 914; i < 977; i++) {
-                    gameScene.getMatchfield().getImageViewField2(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthStageField2));
+                fieldCounter2++;
+                if (fieldCounter2 == 50) {
+                    growthStageField2++;
+                    fieldTile.setGrowthState2(growthStageField2);
+                    for (int i = 914; i < 977; i++) {
+                        gameScene.getMatchfield().getImageViewField2(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthStageField2));
+                    }
+                    fieldCounter2 = 0;
                 }
             }
 
 
             if (growthSTageField3 > 1 && growthSTageField3 < 5) {
-                growthSTageField3++;
-                fieldTile.setGrowthState3(growthSTageField3);
-                for (int i = 977; i < 1045; i++) {
-                    gameScene.getMatchfield().getImageViewField3(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthSTageField3));
+                fieldCounter3++;
+                if (fieldCounter3 == 50) {
+                    growthSTageField3++;
+                    fieldTile.setGrowthState3(growthSTageField3);
+                    for (int i = 977; i < 1045; i++) {
+                        gameScene.getMatchfield().getImageViewField3(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthSTageField3));
+                    }
+                    fieldCounter3 = 0;
                 }
             }
-
-            fieldCounter1 = 0;
-        }
     }
 
 }

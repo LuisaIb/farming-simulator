@@ -22,6 +22,7 @@ public class MovingObjectController {
     private FieldTile fieldTile;
     private Matchfield matchfield;
     private SideControlPane sideControlPane;
+    private MovingObjectFunctionalityController movingObjectFunctionalityController;
 
 
     public MovingObjectController(GameScene gameScene, MovingObject movingObject, GameController gameController,
@@ -40,13 +41,19 @@ public class MovingObjectController {
         this.fieldTile = fieldTile;
         this.matchfield = gameScene.getMatchfield();
         this.sideControlPane = gameScene.getSideControlPane();
+        initializeFunctionality();
+    }
+
+    private void initializeFunctionality(){
+        movingObjectFunctionalityController = new MovingObjectFunctionalityController(gameScene, movingObject,
+                gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile);
     }
 
 
-    private void createButtonActionFunctionality(int column, int row){
-        sideControlPane.createActionButtonFunctionality(matchfield, farmer, tractor, harvester, cultivator, dumpTruck,
-                seedDrill, column, row, fieldTile, movingObject, gameValue);
-    }
+    //private void createButtonActionFunctionality(int column, int row){
+    //    sideControlPane.createActionButtonFunctionality(matchfield, farmer, tractor, harvester, cultivator, dumpTruck,
+    //            seedDrill, column, row, fieldTile, movingObject, gameValue);
+    //}
 
 
     public void moveObject() {
@@ -149,7 +156,7 @@ public class MovingObjectController {
     public void proofAction(){
         int x = movingObject.getX();
         int y = movingObject.getY();
-        createButtonActionFunctionality(x, y);
+        movingObjectFunctionalityController.proofActionButtonFunctionality(x, y);
         if ((x == 16 || x == 17) && y == 13) {
             setButtonAction(false, "select vehicle");
         } else if (x == 27 && y == 5 && farmer.isSelected()) {
@@ -170,9 +177,9 @@ public class MovingObjectController {
                 sideControlPane.getDumpTruckButton().setDisable(true);
                 sideControlPane.getSeedDrillButton().setDisable(true);
             }
-        } else if (farmer.isSelected() && gameScene.getSideControlPane().isTractorExited() &&
-                farmer.getX() == gameScene.getSideControlPane().getColumnExitedVehicle() &&
-                farmer.getY() == gameScene.getSideControlPane().getRowExitedVehicle()) {
+        } else if (farmer.isSelected() && movingObjectFunctionalityController.isTractorExited() &&
+                farmer.getX() == movingObjectFunctionalityController.getColumnExited() &&
+                farmer.getY() == movingObjectFunctionalityController.getRowExited()) {
             setButtonAction(false, "enter vehicle");
         } else {
             setButtonAction(true, "");

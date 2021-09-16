@@ -374,7 +374,7 @@ public class Matchfield {
      * @param column index of the column to which the image view is set, handed to the method setTileOfObject()
      * @param row index of the column to which the image view is set, handed to the method setTileOfObject()
      */
-    protected void initializeSecondMovingObject(int selectedObject, int column, int row){
+    public void initializeSecondMovingObject(int selectedObject, int column, int row){
         setSecondImageView(selectedObject);
         setTileOfSecondObject(column, row);
         matchfield.getChildren().add(secondMovingObjectImageView);
@@ -383,7 +383,7 @@ public class Matchfield {
     /**
      * This method deletes the image view of the secondMovingObject.
      */
-    protected void deleteSecondImageView(){
+    public void deleteSecondImageView(){
         matchfield.getChildren().remove(matchfield.getChildren().size()-1);
     }
 
