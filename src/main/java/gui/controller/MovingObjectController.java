@@ -202,6 +202,7 @@ public class MovingObjectController {
         int y = movingObject.getY();
         if (x > 19 && y > 13) {
             if (cultivator.isSelected() && fieldTile.getGrowthState() == 6) {
+
                 fieldTile.cultivateField(gameScene.getMatchfield(), x, y, 1);
             }
             if (seedDrill.isSelected() && fieldTile.getGrowthState() == 1) {

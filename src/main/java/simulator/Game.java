@@ -53,6 +53,7 @@ public class Game {
 	        silo = new Silo();
 
         movingObject = farmer;
+
         GameController gameController = new GameController();
 
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
