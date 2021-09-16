@@ -20,10 +20,10 @@ import static gui.view.ViewManager.WIDTH;
 public class GameScene {
     private Pane gamePane;
     private Scene gameScene;
-    Matchfield matchfield;
-    MovingObject movingObject = new MovingObject();
-    InformationBox informationBox;
-    SideControlPane sideControlPane;
+    private Matchfield matchfield;
+    private MovingObject movingObject = new MovingObject();
+    private InformationBox informationBox;
+    private SideControlPane sideControlPane;
 
     /**
      * This method implements all the Nodes for the game scene with the help of the other classes InformationBox,
@@ -53,7 +53,7 @@ public class GameScene {
         gamePane.setPrefWidth(WIDTH);
         gamePane.setPrefHeight(HEIGHT);
         initializeInformationBox();
-        initializeSideControlPane(farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
+        initializeSideControlPane(farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, gameController);
         initializeMatchfield(stageOfGrowthField1, stageOfGrowthField2, stageOfGrowthField3, selectedObject, column, row);
         movingObject.setX(column);
         movingObject.setY(row);
@@ -105,8 +105,9 @@ public class GameScene {
      * @param seedDrill hands the boolean to the constructor of the class SideControlPane
      */
     private void initializeSideControlPane(boolean farmer, boolean tractor, boolean harvester, boolean cultivator,
-                                           boolean dumpTruck, boolean seedDrill){
-        sideControlPane = new SideControlPane(farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
+                                           boolean dumpTruck, boolean seedDrill, GameController gameController){
+        sideControlPane = new SideControlPane(farmer, tractor, harvester, cultivator, dumpTruck, seedDrill,
+                gameController);
         gamePane.getChildren().add(sideControlPane.getSidePane());
     }
 

@@ -18,7 +18,7 @@ public class ViewManager {
      * Initializes the mainStage. It sets the height, width, title and icon as well as the first scene that is shown.
      */
     public void initializeStage(){
-        mainStage.setTitle("Landwirtschaftssimulator");
+        mainStage.setTitle("farming simulator");
         mainStage.setResizable(false);
         Image iconImage = new ImageManager().getImage("src/main/java/gui/view/resources/machines/tractorSide.png",
                 40, 40, false, false);
