@@ -23,21 +23,21 @@ import gameboard.objects.Farmer;
  */
 
 public class MenuScene {
-    private Pane menuPane = new Pane();
-    private Scene menuScene = new Scene(menuPane, WIDTH, HEIGHT);
+    private Pane menuPane;
+    private Scene menuScene;
     private static final String PATH_TO_BACKGROUND_IMAGE = "src/main/java/gui/view/resources/background/field.jpg";
     private LSButton buttonNewGame;
     private LSButton buttonLoadGame;
     private LSButton buttonSaveGame;
     private LSButton buttonHelp;
     private LSButton buttonEnd;
-    SceneController sceneController = new SceneController();
-    Game game = new Game();
 
     /**
      * Constructs an object of the class MenuScene. It initializes the menuPane with the method initializeMenuPane().
      */
     public MenuScene(){
+        menuPane = new Pane();
+        menuScene = new Scene(menuPane, WIDTH, HEIGHT);
         initializeMenuPane();
     }
 
@@ -59,6 +59,7 @@ public class MenuScene {
      * This method implements the buttons of the menu. Therefore, it uses a VBox.
      */
     private void initializeButtons(){
+        SceneController sceneController = new SceneController();
         VBox menuBox = new VBox(10);
         menuBox.setLayoutX(WIDTH/2 - 100);
         menuBox.setLayoutY(HEIGHT/2 - 150);
@@ -71,24 +72,6 @@ public class MenuScene {
         buttonLoadGame.setOnMouseClicked(sceneController.setSceneToReloadGameScene);
         buttonSaveGame = new LSButton("Spiel speichern",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
-        buttonSaveGame.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-            game.toSerializeFarmer();
-//            game.toSerializeGame();
-            game.toSerializeLevel();
-            game.toSerializeFieldtiles();
-            game.toSerializeSilo();
-
-           // game.toSerializeCourtTrade();
-
-            game.toSerializeTractor();
-            game.toSerializeHarvester();
-            game.toSerializeCultivator();
-            game.toSerializeDumpTruck();
-            game.toSerializeSeedDrill();
-            
-            
-        });
-
         buttonHelp = new LSButton("Hilfe",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonHelp.setOnMouseClicked(sceneController.setSceneToHelpScene);
@@ -120,6 +103,25 @@ public class MenuScene {
     private void buttonsDisabled(boolean reloadGame, boolean saveGame) {
         buttonLoadGame.setDisable(reloadGame);
         buttonSaveGame.setDisable(saveGame);
+    }
+
+    public void buttonFunctionality(Farmer farmer){
+        Game game = new Game();
+        buttonSaveGame.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
+            game.toSerializeFarmer(farmer);
+//            game.toSerializeGame();
+//            game.toSerializeLevel();
+//            game.toSerializeFieldtiles();
+//            game.toSerializeSilo();
+//
+//           // game.toSerializeCourtTrade();
+//
+//            game.toSerializeTractor();
+//            game.toSerializeHarvester();
+//            game.toSerializeCultivator();
+//            game.toSerializeDumpTruck();
+//            game.toSerializeSeedDrill();
+        });
     }
     
    

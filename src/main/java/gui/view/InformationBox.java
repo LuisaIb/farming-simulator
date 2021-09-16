@@ -1,10 +1,11 @@
 package gui.view;
 
+import gameboard.objects.Farmer;
 import gui.controller.SceneController;
 import gui.model.LSButton;
 import gui.model.LSTextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import simulator.Game;
 
 import static gui.view.ViewManager.WIDTH;
 
@@ -53,12 +54,7 @@ public class InformationBox {
         harvesterField = new LSTextField("harvester",40, 175, 0, 0, 14);
         newsField = new LSTextField("news",40, 450, 0, 0, 16);
         menuButton = new LSButton("Menu", 40, 100,750, 0, 16);
-
-//        menuButton.setOnMouseClicked(sceneController.setSceneToMenuScene);
-        menuButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-        	game.toSerializeFarmer();
-        });
-        
+        menuButton.setOnMouseClicked(sceneController.setSceneToMenuScene);
         informationBox.getChildren().addAll(timeField, moneyField, siloField, tractorField, harvesterField,
                 newsField, menuButton);
     }
@@ -94,4 +90,14 @@ public class InformationBox {
     public LSTextField getTractorField() {
         return tractorField;
     }
+
+
+    public void createFunctionality(Farmer farmer){
+        Game game = new Game();
+        menuButton.setOnMouseClicked(mouseEvent -> {
+            game.toSerializeFarmer(farmer);
+        });
+
+    }
+
 }

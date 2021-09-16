@@ -13,6 +13,7 @@ import gameboard.tiles.FieldTile;
 import gui.controller.MovingObjectController;
 import gui.model.GameInformation;
 import gui.view.GameScene;
+import gui.view.MenuScene;
 
 
 /**
@@ -79,8 +80,6 @@ public class Game {
  
 
 	public GameScene createNewGame(int lod){
-        	
-
         	farmer = new Farmer();
         	System.out.println(farmer.getX());
         	setFarmerX(farmer.getX());
@@ -147,6 +146,9 @@ public class Game {
         fillInformationFields(gameScene, silo, harvester, tractor, gameValue);
 		gameController.initGameLoop(gameScene, fieldTile, gameValue, movingObjectController);
         GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
+
+        gameScene.getInformationBox().createFunctionality(farmer);
+
         return gameScene;
     }
 
@@ -296,7 +298,7 @@ public class Game {
 	 * This method gets the position of the farmer of the class...
 	 * @return serialized as a JSONB object of the farmer's position
 	 */
-	public String toSerializeFarmer() {
+	public String toSerializeFarmer(Farmer farmer) {
 		Jsonb jsonb = JsonbBuilder.create();
 		String serializedsf = jsonb.toJson(farmer);
 		System.out.println("Test" + serializedsf);
@@ -488,15 +490,15 @@ public class Game {
 //				farmer = new Farmer(xf, yf, selectedf);
 		
 		GetPojoMovingObject gpp = new GetPojoMovingObject();
-			Farmer deserializedfX = gpp.toDeserializeFarmer(toSerializeFarmer());
-			int xf = deserializedfX.getX();
-			System.out.println(xf);
-			
-			Farmer deserializedfY = gpp.toDeserializeFarmer(toSerializeFarmer());
-			int yf = deserializedfY.getY();
-			
-			Farmer deserializedSelectedf = gpp.toDeserializeFarmer(toSerializeFarmer());
-			boolean selectedf = deserializedSelectedf.isSelected();
+//			Farmer deserializedfX = gpp.toDeserializeFarmer(toSerializeFarmer());
+//			int xf = deserializedfX.getX();
+//			System.out.println(xf);
+//
+//			Farmer deserializedfY = gpp.toDeserializeFarmer(toSerializeFarmer());
+//			int yf = deserializedfY.getY();
+//
+//			Farmer deserializedSelectedf = gpp.toDeserializeFarmer(toSerializeFarmer());
+//			boolean selectedf = deserializedSelectedf.isSelected();
 			
 //			Game deserializedfX = gpp.toDeserializeFarmer(toSerializeFarmer());
 //			int xf = deserializedfX.getFarmerX();
@@ -507,7 +509,7 @@ public class Game {
 //			Game deserializedSelectedf = gpp.toDeserializeFarmer(toSerializeFarmer());
 //			boolean selectedf = deserializedSelectedf.isFarmerIsSelected();
 		
-		farmer = new Farmer(xf, yf, selectedf);
+		//farmer = new Farmer(xf, yf, selectedf);
 		
     	/**
     	 * This method deserialize the JSONB file. It is also possible to get the position of the tractor.

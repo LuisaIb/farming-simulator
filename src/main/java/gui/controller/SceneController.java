@@ -43,7 +43,7 @@ public class SceneController {
 
     public EventHandler<Event> setSceneToReloadGameScene = event -> {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Game game = new Game();
+        game = new Game();
         GameScene gameScene = game.reloadGame();
         window.setScene(gameScene.getGameScene());
         window.show();
