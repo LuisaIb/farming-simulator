@@ -108,7 +108,7 @@ public class MenuScene {
     public void buttonFunctionality(Farmer farmer){
         Game game = new Game();
         buttonSaveGame.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-            game.toSerializeFarmer(farmer);
+//            game.toSerializeFarmer(farmer);
 //            game.toSerializeGame();
 //            game.toSerializeLevel();
 //            game.toSerializeFieldtiles();

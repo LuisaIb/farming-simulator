@@ -91,13 +91,8 @@ public class InformationBox {
         return tractorField;
     }
 
-
-    public void createFunctionality(Farmer farmer){
-        Game game = new Game();
-        menuButton.setOnMouseClicked(mouseEvent -> {
-            game.toSerializeFarmer(farmer);
-        });
-
+    public LSButton getMenuButton() {
+    	return menuButton;
     }
-
+   
 }
