@@ -129,20 +129,15 @@ public class GameController {
         return downPressed;
     }
 
-    public void initGameLoop(GameScene gameScene, FieldTile fieldTile, MovingObject movingObject, int selectedObject,
-                             GameValue gameValue, SideControlPane sideControlPane, Farmer farmer, Tractor tractor,
-                             Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill,
-                             GameController gameController, MovingObjectController movingObjectController){
+    public void initGameLoop(GameScene gameScene, FieldTile fieldTile, GameValue gameValue,
+                             MovingObjectController movingObjectController){
         gameTimer = new AnimationTimer() {
             private long lastUpdate = 0;
             @Override
             public void handle(long now) {
                 if (now - lastUpdate >= 100_000_000) {
-                    //gameScene.moveObject(movingObject, tractor, harvester, gameScene, gameController);
-                    movingObjectController.moveObject(movingObject, tractor, harvester, gameScene,
-                            gameController, gameScene.getMatchfield());
-                    proofAction(gameScene, movingObject, sideControlPane, farmer, tractor, harvester,
-                            cultivator, dumpTruck, seedDrill, fieldTile, gameValue);
+                    movingObjectController.moveObject();
+                    movingObjectController.proofAction();
                     lastUpdate = now;
                     DayCounter(gameValue);
                     proofFieldCounter(gameScene, fieldTile);
@@ -194,92 +189,6 @@ public class GameController {
 
             fieldCounter1 = 0;
         }
-    }
-
-    private void proofAction(GameScene gameScene, MovingObject movingObject, SideControlPane sideControlPane,
-                             Farmer farmer, Tractor tractor, Harvester harvester, Cultivator cultivator,
-                             DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile, GameValue gameValue){
-        int x = movingObject.getX();
-        int y = movingObject.getY();
-        createButtonActionFunctionality(sideControlPane, gameScene.getMatchfield(), farmer, tractor, harvester,
-                cultivator, dumpTruck, seedDrill, x, y, fieldTile, movingObject, gameValue);
-        if ((x == 16 || x == 17) && y == 13) {
-            gameScene.getSideControlPane().getButtonAction().setDisable(false);
-            gameScene.getSideControlPane().getButtonAction().setText("select vehicle");
-        } else if (x == 27 && y == 5 && farmer.isSelected()) {
-            gameScene.getSideControlPane().getButtonAction().setDisable(false);
-            gameScene.getSideControlPane().getButtonAction().setText("buy field");
-        } else if (x == 27 && y == 5 && dumpTruck.isSelected()) {
-            gameScene.getSideControlPane().getButtonAction().setDisable(false);
-            gameScene.getSideControlPane().getButtonAction().setText("sell grain");
-        } else if((x == 14 || x == 15) && y == 5 && (tractor.isSelected() || harvester.isSelected())) {
-            gameScene.getSideControlPane().getButtonAction().setDisable(false);
-            gameScene.getSideControlPane().getButtonAction().setText("fill tank");
-        } else if (tractor.isSelected() &&
-                ((gameScene.getMatchfield().getMovingObjectImageView().getRotate() == 0 && movingObject.proofPassabilty(x+1, y)) ||
-                        gameScene.getMatchfield().getMovingObjectImageView().getRotate() == 90 && movingObject.proofPassabilty(x, y+1) ||
-                        gameScene.getMatchfield().getMovingObjectImageView().getRotate() == 180 && movingObject.proofPassabilty(x-1, y) ||
-                        gameScene.getMatchfield().getMovingObjectImageView().getRotate() == 270 && movingObject.proofPassabilty(x, y-1))) {
-            gameScene.getSideControlPane().getButtonAction().setDisable(false);
-            gameScene.getSideControlPane().getButtonAction().setText("exit vehicle");
-            if (tractor.isSelected() || !tractor.isAttachement()) {
-                sideControlPane.getCultivatorButton().setDisable(true);
-                sideControlPane.getDumpTruckButton().setDisable(true);
-                sideControlPane.getSeedDrillButton().setDisable(true);
-            }
-        } else if (farmer.isSelected() && gameScene.getSideControlPane().isTractorExited() &&
-                farmer.getX() == gameScene.getSideControlPane().getColumnExitedVehicle() &&
-                farmer.getY() == gameScene.getSideControlPane().getRowExitedVehicle()) {
-                gameScene.getSideControlPane().getButtonAction().setDisable(false);
-                gameScene.getSideControlPane().getButtonAction().setText("enter vehicle");
-        } else {
-            gameScene.getSideControlPane().getButtonAction().setDisable(true);
-            gameScene.getSideControlPane().getButtonAction().setText("");
-            if (tractor.isSelected() || !tractor.isAttachement()) {
-                sideControlPane.getCultivatorButton().setDisable(true);
-                sideControlPane.getDumpTruckButton().setDisable(true);
-                sideControlPane.getSeedDrillButton().setDisable(true);
-            }
-        }
-        if (x > 19 && y > 13) {
-            if (cultivator.isSelected() && fieldTile.getGrowthState() == 6) {
-                fieldTile.cultivateField(gameScene.getMatchfield(), x, y, 1);
-            }
-            if (seedDrill.isSelected() && fieldTile.getGrowthState() == 1) {
-                fieldTile.sowField(gameScene.getMatchfield(), x, y, 1);
-            }
-            if (harvester.isSelected() && fieldTile.getGrowthState() == 5) {
-                fieldTile.harvestField(gameScene.getMatchfield(), x, y, 1);
-            }
-        } else if(x > 8 && x < 19 && y > 13) {
-            if (cultivator.isSelected() && fieldTile.getGrowthState2() == 6) {
-                fieldTile.cultivateField(gameScene.getMatchfield(), x, y, 2);
-            }
-            if (seedDrill.isSelected() && fieldTile.getGrowthState2() == 1) {
-                fieldTile.sowField(gameScene.getMatchfield(), x, y, 2);
-            }
-            if (harvester.isSelected() && fieldTile.getGrowthState2() == 5) {
-                fieldTile.harvestField(gameScene.getMatchfield(), x, y, 2);
-            }
-        } else if (x > 19 && y > 5 && y < 13) {
-            if (cultivator.isSelected() && fieldTile.getGrowthState3() == 6) {
-                fieldTile.cultivateField(gameScene.getMatchfield(), x, y, 3);
-            }
-            if (seedDrill.isSelected() && fieldTile.getGrowthState3() == 1) {
-                fieldTile.sowField(gameScene.getMatchfield(), x, y, 3);
-            }
-            if (harvester.isSelected() && fieldTile.getGrowthState3() == 5) {
-                fieldTile.harvestField(gameScene.getMatchfield(), x, y, 3);
-            }
-        }
-    }
-
-    private void createButtonActionFunctionality(SideControlPane sideControlPane, Matchfield matchfield, Farmer farmer,
-                                                 Tractor tractor, Harvester harvester, Cultivator cultivator,
-                                                 DumpTruck dumpTruck, SeedDrill seedDrill, int column, int row,
-                                                 FieldTile fieldTile, MovingObject movingObject, GameValue gameValue){
-        sideControlPane.createActionButtonFunctionality(matchfield, farmer, tractor, harvester, cultivator, dumpTruck,
-                seedDrill, column, row, fieldTile, movingObject, gameValue);
     }
 
 }

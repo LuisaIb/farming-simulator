@@ -134,16 +134,16 @@ public class Game {
 
         movingObject = farmer;
         GameController gameController = new GameController();
-		MovingObjectController movingObjectController = new MovingObjectController();
+
         gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
 				cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
 				fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(),getColumn(),getRow(),
 				gameController);
+		MovingObjectController movingObjectController = new MovingObjectController(gameScene, movingObject,
+				gameController, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile);
         selectedObject = getSelectedObject();
         fillInformationFields(gameScene, silo, harvester, tractor, gameValue);
-		gameController.initGameLoop(gameScene, fieldTile, getMovingObject(), getSelectedObject(), gameValue,
-				gameScene.getSideControlPane(), farmer, tractor, harvester, cultivator, dumpTruck, seedDrill,
-				gameController, movingObjectController);
+		gameController.initGameLoop(gameScene, fieldTile, gameValue, movingObjectController);
         GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
         return gameScene;
     }
@@ -606,9 +606,9 @@ public class Game {
 	        System.out.println(getColumn());
 	        System.out.println(getRow());
 	        selectedObject = getSelectedObject();
-	        MovingObjectController movingObjectController2 = new MovingObjectController();
-			gameController2.initGameLoop(gameScene, fieldTile, getMovingObject(), getSelectedObject(), gameValue, gameScene.getSideControlPane(), farmer, tractor,
-					harvester, cultivator, dumpTruck, seedDrill, gameController2, movingObjectController2);
+	        MovingObjectController movingObjectController2 = new MovingObjectController(gameScene, movingObject,
+					gameController, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile);
+			gameController2.initGameLoop(gameScene, fieldTile, gameValue, movingObjectController2);
 	        GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
 	        return gameScene;
     }
