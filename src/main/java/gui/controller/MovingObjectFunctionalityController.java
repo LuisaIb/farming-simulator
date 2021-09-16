@@ -282,15 +282,15 @@ public class MovingObjectFunctionalityController {
     private void setMovingObjectToFarmer(){
         int column = movingObject.getX();
         int row = movingObject.getY();
-        //movingObject = farmer;
-        farmer.setX(column);
-        farmer.setX(row);
+        movingObject = farmer;
+        //farmer.setX(column);
+        //farmer.setX(row);
     }
 
     private void setMovingObjectToTractor() {
         int column = movingObject.getX();
         int row = movingObject.getY();
-        //movingObject = tractor;
+        movingObject = tractor;
         tractor.setX(column);
         tractor.setY(row);
     }
@@ -298,7 +298,7 @@ public class MovingObjectFunctionalityController {
     private void setMovingObjectToHarvester(){
         int column = movingObject.getX();
         int row = movingObject.getY();
-        //movingObject = harvester;
+        movingObject = harvester;
         harvester.setX(column);
         harvester.setY(row);
     }

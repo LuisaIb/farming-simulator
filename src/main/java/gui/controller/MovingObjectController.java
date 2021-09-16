@@ -50,12 +50,6 @@ public class MovingObjectController {
     }
 
 
-    //private void createButtonActionFunctionality(int column, int row){
-    //    sideControlPane.createActionButtonFunctionality(matchfield, farmer, tractor, harvester, cultivator, dumpTruck,
-    //            seedDrill, column, row, fieldTile, movingObject, gameValue);
-    //}
-
-
     public void moveObject() {
         if (gameController.isRightPressed() && !gameController.isLeftPressed() &&
                 !gameController.isUpPressed() && !gameController.isDownPressed()) {
