@@ -77,12 +77,9 @@ public class MenuScene {
             game.toSerializeLevel();
             game.toSerializeFieldtiles();
             game.toSerializeSilo();
-<<<<<<< HEAD
-=======
 
            // game.toSerializeCourtTrade();
 
->>>>>>> branch 'main' of git@github.com:IsabelJnz/Landwirtschaftssimulator_SE2.git
             game.toSerializeTractor();
             game.toSerializeHarvester();
             game.toSerializeCultivator();
