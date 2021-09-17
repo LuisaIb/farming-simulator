@@ -85,6 +85,19 @@ public class ObjectToJsonb {
 		 */
 		 
 	
+	/**
+	 * @param gameValue
+	 * @param farmer
+	 * @param tractor
+	 * @param harvester
+	 * @param cultivator
+	 * @param dumpTruck
+	 * @param seedDrill
+	 * @param fieldTile
+	 * @param silo
+	 * @param levelOfDifficulty
+	 * @param courtTrade
+	 */
 	public void toSerialize(GameValue gameValue, Farmer farmer, Tractor tractor, Harvester harvester,
 							Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile,
 							Silo silo, LevelOfDifficulty levelOfDifficulty, CourtTrade courtTrade) {
@@ -137,6 +150,9 @@ public class ObjectToJsonb {
 		writeFile(sb);
 	}
 	
+		/**
+		 * @param sb
+		 */
 		public void writeFile(StringBuilder sb) {
 		try {
 			File textFile = new File("src/main/java/datastorage/SavingInformation/farmersimulator.txt");

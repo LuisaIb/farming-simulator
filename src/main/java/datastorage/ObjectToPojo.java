@@ -37,6 +37,9 @@ public class ObjectToPojo {
 		return sb;
 	}
 
+	/**
+	 * 
+	 */
 	public void toDeserialize() {
 		try {
 			File gameFile = new File("src/main/java/datastorage/SavingInformation/farmersimulator.txt");
@@ -60,6 +63,9 @@ public class ObjectToPojo {
 		System.out.println(sb);
 	}
 	
+	/**
+	 * @return
+	 */
 	public String[] getDeserializedGameObjects() {
 		game = new String[11];
 		game = sb.toString().split(System.getProperty("line.separator"));

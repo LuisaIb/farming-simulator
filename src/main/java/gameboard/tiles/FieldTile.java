@@ -1,11 +1,7 @@
 package gameboard.tiles;
 
-import gameboard.objects.MovingObject;
 import gui.view.Matchfield;
-
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Timer;
 
 /**
  * This class represents a tile, which is a field with its several properties
