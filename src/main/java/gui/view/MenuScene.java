@@ -65,27 +65,26 @@ public class MenuScene {
         menuBox.setLayoutX(WIDTH/2 - 100);
         menuBox.setLayoutY(HEIGHT/2 - 150);
 
-        buttonNewGame = new LSButton("Neues Spiel", 50, 250, HEIGHT/2,
+        buttonNewGame = new LSButton("new game", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonNewGame.setOnMouseClicked(sceneController.setSceneToDifficultyScene);
-        buttonLoadGame = new LSButton("Spiel laden",50, 250, HEIGHT/2,
+        buttonLoadGame = new LSButton("load game",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonLoadGame.setOnMouseClicked(MouseEvent->{
         	ObjectToPojo otp = new ObjectToPojo();
         	otp.toDeserialize();
         });
         buttonLoadGame.setOnMouseClicked(sceneController.setSceneToReloadGameScene);
-        buttonSaveGame = new LSButton("Spiel speichern",50, 250, HEIGHT/2,
-                WIDTH/2, 20);
-        buttonHelp = new LSButton("Hilfe",50, 250, HEIGHT/2,
+        //buttonSaveGame = new LSButton("save game",50, 250, HEIGHT/2,
+        //        WIDTH/2, 20);
+        buttonHelp = new LSButton("help",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonHelp.setOnMouseClicked(sceneController.setSceneToHelpScene);
-        buttonEnd = new LSButton("Beenden",50, 250, HEIGHT/2,
+        buttonEnd = new LSButton("end game",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonEnd.setOnMouseClicked(sceneController.endGame);
 
-        menuBox.getChildren().addAll(buttonNewGame, buttonLoadGame, buttonSaveGame,
-                buttonHelp, buttonEnd);
+        menuBox.getChildren().addAll(buttonNewGame, buttonLoadGame, buttonHelp, buttonEnd);
         menuPane.getChildren().add(menuBox);
     }
 
