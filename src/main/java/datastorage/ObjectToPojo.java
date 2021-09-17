@@ -61,67 +61,8 @@ public class ObjectToPojo {
 	}
 	
 	public String[] getDeserializedGameObjects() {
-		game = new String[10];
+		game = new String[11];
 		game = sb.toString().split(System.getProperty("line.separator"));
 		return game;
-	}
-	
-	public GameValue toDeserializeGameValue() {
-		Jsonb jb = JsonbBuilder.create();
-		GameValue deserialized = jb.fromJson(game[0], GameValue.class);
-		return deserialized;	
-	}
-
-	public Farmer toDeserializeFarmer() {
-		Jsonb jb = JsonbBuilder.create();
-		Farmer deserialized = jb.fromJson(game[1], Farmer.class);
-		return deserialized;	
-	}
-	
-	public Tractor toDeserializeTractor() {
-		Jsonb jb = JsonbBuilder.create();
-		Tractor deserialized = jb.fromJson(game[2], Tractor.class);
-		return deserialized;	
-	}
-	
-	public Harvester toDeserializeHarvester() {
-		Jsonb jb = JsonbBuilder.create();
-		Harvester deserialized = jb.fromJson(game[3], Harvester.class);
-		return deserialized;	
-	}
-	
-	public Cultivator toDeserializeCultivator() {
-		Jsonb jb = JsonbBuilder.create();
-		Cultivator deserialized = jb.fromJson(game[4], Cultivator.class);
-		return deserialized;	
-	}
-	
-	public DumpTruck toDeserializeDumpTruck() {
-		Jsonb jb = JsonbBuilder.create();
-		DumpTruck deserialized = jb.fromJson(game[5], DumpTruck.class);
-		return deserialized;	
-	}
-	public SeedDrill toDeserializeSeedDrill() {
-		Jsonb jb = JsonbBuilder.create();
-		SeedDrill deserialized = jb.fromJson(game[6], SeedDrill.class);
-		return deserialized;	
-	}
-	
-	public FieldTile toDeserializeFieldTile() {
-		Jsonb jb = JsonbBuilder.create();
-		FieldTile deserialized = jb.fromJson(game[7], FieldTile.class);
-		return deserialized;	
-	}
-	
-	public Silo toDeserializeSilo() {
-		Jsonb jb = JsonbBuilder.create();
-		Silo deserialized = jb.fromJson(game[8], Silo.class);
-		return deserialized;	
-	}
-	
-	public LevelOfDifficulty toDeserializeLevelOfDifficulty() {
-		Jsonb jb = JsonbBuilder.create();
-		LevelOfDifficulty deserialized = jb.fromJson(game[9], LevelOfDifficulty.class);
-		return deserialized;	
 	}
 }

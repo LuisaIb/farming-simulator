@@ -11,7 +11,7 @@ import javafx.beans.property.SimpleIntegerProperty;
  */
 public class Machine extends MovingObject{
 
-	private final int PETROL_TANK_CAPACITY = 150;
+	private final int PETROL_TANK_CAPACITY = 200;
 	//stands for the petrol tank of the machines
 	private IntegerProperty petrolTankFillLevel = new SimpleIntegerProperty();
 

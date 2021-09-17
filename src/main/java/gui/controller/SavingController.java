@@ -3,6 +3,7 @@ package gui.controller;
 import gameboard.objects.Farmer;
 import gameboard.objects.Cultivator;
 import gameboard.objects.DumpTruck;
+import gameboard.tiles.CourtTrade;
 import gameboard.tiles.FieldTile;
 import datastorage.ObjectToJsonb;
 import datastorage.ObjectToPojo;
@@ -16,12 +17,13 @@ import gameboard.objects.Tractor;
 
 public class SavingController {
 	
-	 public void createFunctionality(GameScene gameScene, GameValue gameValue, Farmer farmer, Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile, Silo silo, LevelOfDifficulty levelOfDifficulty){
+	 public void createFunctionality(GameScene gameScene, GameValue gameValue, Farmer farmer, Tractor tractor,
+									 Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck,
+									 SeedDrill seedDrill, FieldTile fieldTile, Silo silo,
+									 LevelOfDifficulty levelOfDifficulty, CourtTrade courtTrade){
 	        ObjectToJsonb otj = new ObjectToJsonb();
-	        ObjectToPojo otp = new ObjectToPojo();
 	        gameScene.getInformationBox().getMenuButton().setOnMouseClicked(mouseEvent -> {
-	        	//otj.toSerialize(gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile, silo, levelOfDifficulty);
-	            otp.toDeserialize();
+	        	otj.toSerialize(gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile, silo, levelOfDifficulty, courtTrade);
 	        });
 	      
 	    }

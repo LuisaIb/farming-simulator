@@ -54,26 +54,18 @@ public class MovingObjectController {
         if (gameController.isRightPressed() && !gameController.isLeftPressed() &&
                 !gameController.isUpPressed() && !gameController.isDownPressed()) {
             move('r');
-            System.out.println("moving object x: " + movingObject.getX());
-            System.out.println("moving object y: " + movingObject.getY());
         }
         if (gameController.isLeftPressed() && !gameController.isRightPressed() &&
                 !gameController.isUpPressed() && !gameController.isDownPressed()) {
             move('l');
-            System.out.println("moving object x: " + movingObject.getX());
-            System.out.println("moving object y: " + movingObject.getY());
         }
         if (gameController.isUpPressed() && !gameController.isRightPressed() &&
                 !gameController.isLeftPressed() && !gameController.isDownPressed()) {
            move('u');
-            System.out.println("moving object x: " + movingObject.getX());
-            System.out.println("moving object y: " + movingObject.getY());
         }
         if (gameController.isDownPressed() && !gameController.isRightPressed() &&
                 !gameController.isLeftPressed() && !gameController.isUpPressed()) {
             move('d');
-            System.out.println("moving object x: " + movingObject.getX());
-            System.out.println("moving object y: " + movingObject.getY());
         }
     }
 
@@ -169,8 +161,8 @@ public class MovingObjectController {
             setButtonAction(false, "buy field");
         } else if (x == 27 && y == 5 && dumpTruck.isSelected() && dumpTruck.getGrainFillLevel() != 0) {
             setButtonAction(false, "sell grain");
-        } else if((x == 14 || x == 15) && y == 5 && (tractor.isSelected() && tractor.getPetrolTankFillLevel() < 150
-                || harvester.isSelected() && harvester.getPetrolTankFillLevel() < 50)) {
+        } else if((x == 14 || x == 15) && y == 5 && (tractor.isSelected() && tractor.getPetrolTankFillLevel() < 200
+                || harvester.isSelected() && harvester.getPetrolTankFillLevel() < 200)) {
             setButtonAction(false, "fill tank");
         } else if (tractor.isSelected() && ((rotation == 0 && movingObject.proofPassabilty(x+1, y)) ||
                 rotation == 90 && movingObject.proofPassabilty(x, y+1) ||

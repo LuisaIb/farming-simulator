@@ -14,8 +14,11 @@ import java.util.Timer;
  */
 public class FieldTile extends Tile{
 	
-	private Timer timer = new Timer(); //needed for the field growing on its own
-
+	private int sellingPrice;
+	private int harvest;
+	private boolean owningField1;
+	private boolean owningField2;
+	private boolean owningField3;
 
 	private HashMap<Integer, Integer> indexesField1;
 	HashMap<Integer, Boolean> tilesField1Completed = new HashMap<Integer, Boolean>();
@@ -45,21 +48,41 @@ public class FieldTile extends Tile{
 	 * @param growthState2
 	 * @param growthState3
 	 */
-	public FieldTile(int growthState, int growthState2, int growthState3 ) {
+	public FieldTile(int growthState, int growthState2, int growthState3, int sellingPrice, int harvest,
+					 boolean owningField2, boolean owningField3) {
 		super();
 		this.growthState = growthState;
 		this.growthState2 = growthState2;
 		this.growthState3 = growthState3;
+		this.sellingPrice = sellingPrice;
+		this.harvest = harvest;
+		owningField1 = true;
+		this.owningField2 = owningField2;
+		this.owningField3 = owningField3;
 		initializeHashMaps();
 	}
 	
 	/**
 	 * this empty constructor is for starting a new game
 	 */
-	public FieldTile() {
+	public FieldTile(int level) {
+		super();
 		growthState = 1;
 		growthState2 = 0;
 		growthState3 = 0;
+		if (level == 1) {
+			sellingPrice = 500;
+			harvest = 3;
+		} else if (level == 2) {
+			sellingPrice = 750;
+			harvest = 2;
+		} else if (level == 3) {
+			sellingPrice = 1000;
+			harvest = 1;
+		}
+		owningField1 = true;
+		owningField2 = false;
+		owningField3 = false;
 		initializeHashMaps();
 	}
 
@@ -588,4 +611,43 @@ public class FieldTile extends Tile{
 	}
 
 
+	public boolean isOwningField1() {
+		return owningField1;
+	}
+
+	public boolean isOwningField2() {
+		return owningField2;
+	}
+
+	public boolean isOwningField3() {
+		return owningField3;
+	}
+
+	public void setOwningField1(boolean owningField1) {
+		this.owningField1 = owningField1;
+	}
+
+	public void setOwningField2(boolean owningField2) {
+		this.owningField2 = owningField2;
+	}
+
+	public void setOwningField3(boolean owningField3) {
+		this.owningField3 = owningField3;
+	}
+
+	public int getHarvest() {
+		return harvest;
+	}
+
+	public void setHarvest(int harvest) {
+		this.harvest = harvest;
+	}
+
+	public int getSellingPrice() {
+		return sellingPrice;
+	}
+
+	public void setSellingPrice(int sellingPrice) {
+		this.sellingPrice = sellingPrice;
+	}
 }

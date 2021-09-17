@@ -139,7 +139,7 @@ public class GameController {
 
     private void DayCounter(GameValue gameValue) {
         dayCounter++;
-        if (dayCounter == 50) {
+        if (dayCounter == 100) {
             gameValue.setDay(gameValue.getDay()+1);
             System.out.println(gameValue.getDay());
             dayCounter = 0;
@@ -153,7 +153,7 @@ public class GameController {
 
             if (growthStageField1 > 1 && growthStageField1 < 5) {
                 fieldCounter1++;
-                if (fieldCounter1 == 50) {
+                if (fieldCounter1 == 500) {
                     growthStageField1++;
                     fieldTile.setGrowthState(growthStageField1);
                     for (int i = 855; i < 915; i++) {
@@ -166,7 +166,7 @@ public class GameController {
 
             if (growthStageField2 > 1 && growthStageField2 < 5) {
                 fieldCounter2++;
-                if (fieldCounter2 == 50) {
+                if (fieldCounter2 == 500) {
                     growthStageField2++;
                     fieldTile.setGrowthState2(growthStageField2);
                     for (int i = 914; i < 977; i++) {
@@ -179,7 +179,7 @@ public class GameController {
 
             if (growthSTageField3 > 1 && growthSTageField3 < 5) {
                 fieldCounter3++;
-                if (fieldCounter3 == 50) {
+                if (fieldCounter3 == 500) {
                     growthSTageField3++;
                     fieldTile.setGrowthState3(growthSTageField3);
                     for (int i = 977; i < 1045; i++) {

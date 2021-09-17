@@ -6,9 +6,7 @@ import gui.model.LSButton;
 import gui.model.LSTextField;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import simulator.LevelOfDifficulty;
 
 import static gui.view.ViewManager.WIDTH;
 import static gui.view.ViewManager.HEIGHT;
@@ -46,7 +44,7 @@ public class DifficultyScene {
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         Background background = new Background(backgroundImage);
         difficultyPane.setBackground(background);
-        LSTextField headline = new LSTextField("Bitte waehle den Schwierigkeitsgrad aus",
+        LSTextField headline = new LSTextField("please choose level of difficulty",
                 50, 500, WIDTH/2-235, 150, 20);
         difficultyPane.getChildren().add(headline);
         initializeButtons();
@@ -60,16 +58,16 @@ public class DifficultyScene {
         difficultyBox.setLayoutX(WIDTH/2 - 100);
         difficultyBox.setLayoutY(HEIGHT/2 - 150);
 
-        buttonEasy = new LSButton("Leicht", 50, 250, HEIGHT/2,
+        buttonEasy = new LSButton("easy", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonEasy.setOnMouseClicked(sceneController.setSceneToEasyGameScene);
-        buttonMedium = new LSButton("Mittel", 50, 250, HEIGHT/2,
+        buttonMedium = new LSButton("medium", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonMedium.setOnMouseClicked(sceneController.setSceneToMediumGameScene);
-        buttonHard = new LSButton("Schwer",50, 250, HEIGHT/2,
+        buttonHard = new LSButton("hard",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonHard.setOnMouseClicked(sceneController.setSceneToHardGameScene);
-        buttonBackToScene = new LSButton("Zurueck",50, 250, HEIGHT/2,
+        buttonBackToScene = new LSButton("back",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonBackToScene.setOnMouseClicked(sceneController.setSceneToMenuScene);
 

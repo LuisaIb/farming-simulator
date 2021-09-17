@@ -3,6 +3,7 @@ package gui.controller;
 import gameboard.GameValue;
 import gameboard.objects.*;
 import gameboard.tiles.FieldTile;
+import gameboard.tiles.Tile;
 import gui.model.LSButton;
 import gui.view.GameScene;
 import gui.view.Matchfield;
@@ -37,6 +38,7 @@ public class MovingObjectFunctionalityController {
     private int exitedObject;
     private int columnToFillFromHarvester;
     private int rowToFillFromHarvester;
+    Tile tile = new Tile();
 
     public MovingObjectFunctionalityController(GameScene gameScene, MovingObject movingObject, GameValue gameValue,
                                                Farmer farmer, Tractor tractor, Harvester harvester,
@@ -219,23 +221,15 @@ public class MovingObjectFunctionalityController {
 
     private void setExitedIntegers(double rotation, MovingObject movingObject){
         if (rotation == 0) {
-            System.out.println("moving object x in setExitedIntegers" + movingObject.getX());
-            System.out.println("moving object y in setExitedIntegers" + movingObject.getY());
             columnExited = movingObject.getX()+1;
             rowExited = movingObject.getY();
         } else if (rotation == 90) {
-            System.out.println("moving object x in setExitedIntegers" + movingObject.getX());
-            System.out.println("moving object y in setExitedIntegers" + movingObject.getY());
             columnExited = movingObject.getX();
             rowExited = movingObject.getY()+1;
         } else if (rotation == 180) {
-            System.out.println("moving object x in setExitedIntegers" + movingObject.getX());
-            System.out.println("moving object y in setExitedIntegers" + movingObject.getY());
             columnExited = movingObject.getX()-1;
             rowExited = movingObject.getY();
         } else if (rotation == 270) {
-            System.out.println("moving object x in setExitedIntegers" + movingObject.getX());
-            System.out.println("moving object y in setExitedIntegers" + movingObject.getY());
             columnExited = movingObject.getX();
             rowExited = movingObject.getY()-1;
         }
@@ -279,7 +273,7 @@ public class MovingObjectFunctionalityController {
         tractor.setSelected(false);
         tractorButton.setDisable(true);
         tractorExited = true;
-        movingObject.getPlaces().add(0, exitedVehicleY*30+exitedVehicleX);
+        tile.getPlaces().add(0, exitedVehicleY*30+exitedVehicleX);
     }
 
     private void changeToFarmerAfterExited(MovingObject movingObject, Farmer farmer){
@@ -301,7 +295,7 @@ public class MovingObjectFunctionalityController {
     }
 
     private void removeSecondMovingObject(MovingObject movingObject){
-        movingObject.getPlaces().remove(0);
+        tile.getPlaces().remove(0);
         matchfield.deleteSecondImageView();
         farmer.setSelected(false);
         farmerButton.setDisable(true);

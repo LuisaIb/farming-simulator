@@ -478,7 +478,7 @@ public class Matchfield {
         ImageView movingObjectImageView = null;
         switch(selectedObject){
             case 1:
-                movingObjectImageView = new ImageView(getImage(PATH_TO_FARMER));
+                movingObjectImageView = new ImageView(getImage(PATH_TO_FARMER, TILE_WIDTH/2, TILE_HEIGHT/2));
                 break;
             case 2:
                 movingObjectImageView = new ImageView(getImage(PATH_TO_TRACTOR));
@@ -512,7 +512,7 @@ public class Matchfield {
         Image movingObjectImage = null;
         switch(selectedObject){
             case 1:
-                movingObjectImage = getImage(PATH_TO_FARMER);
+                movingObjectImage = getImage(PATH_TO_FARMER, TILE_WIDTH/2, TILE_HEIGHT/2);
                 break;
             case 2:
                 movingObjectImage = getImage(PATH_TO_TRACTOR);

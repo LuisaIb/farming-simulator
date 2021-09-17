@@ -14,6 +14,7 @@ import gameboard.objects.Farmer;
 import gameboard.objects.Harvester;
 import gameboard.objects.SeedDrill;
 import gameboard.objects.Tractor;
+import gameboard.tiles.CourtTrade;
 import gameboard.tiles.FieldTile;
 import gameboard.tiles.Silo;
 import simulator.LevelOfDifficulty;
@@ -84,7 +85,9 @@ public class ObjectToJsonb {
 		 */
 		 
 	
-	public void toSerialize(GameValue gameValue, Farmer farmer, Tractor tractor, Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile, Silo silo, LevelOfDifficulty levelOfDifficulty) {
+	public void toSerialize(GameValue gameValue, Farmer farmer, Tractor tractor, Harvester harvester,
+							Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile,
+							Silo silo, LevelOfDifficulty levelOfDifficulty, CourtTrade courtTrade) {
 		Jsonb jsonb = JsonbBuilder.create();
 		
 		String serializedGameValue = jsonb.toJson(gameValue);
@@ -125,6 +128,10 @@ public class ObjectToJsonb {
 		
 		String serializedlod = jsonb.toJson(levelOfDifficulty);
 		sb.append(serializedlod);
+		sb.append(System.getProperty("line.separator"));
+
+		String serializedct = jsonb.toJson(courtTrade);
+		sb.append(serializedct);
 		sb.append(System.getProperty("line.separator"));
 
 		writeFile(sb);

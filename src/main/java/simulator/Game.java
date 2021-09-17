@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
+import gameboard.tiles.CourtTrade;
 import org.eclipse.yasson.internal.Unmarshaller;
 
 import datastorage.ObjectToPojo;
@@ -34,6 +35,7 @@ public class Game {
     private DumpTruck dumpTruck;
     private SeedDrill seedDrill;
     private FieldTile fieldTile;
+    private CourtTrade courtTrade;
     private int selectedObject;
     private GameValue gameValue;
     private LevelOfDifficulty levelOfDifficulty;
@@ -43,15 +45,17 @@ public class Game {
  
 
 	public GameScene createNewGame(int lod){
+		levelOfDifficulty = new LevelOfDifficulty(lod);
+
         	farmer = new Farmer();
         	tractor = new Tractor();
 	        harvester = new Harvester();
 	        cultivator = new Cultivator();
 	        dumpTruck = new DumpTruck();
 	        seedDrill = new SeedDrill();
-	        fieldTile = new FieldTile();
-	        gameValue = new GameValue();
-	        levelOfDifficulty = new LevelOfDifficulty(lod);
+	        fieldTile = new FieldTile(lod);
+	        gameValue = new GameValue(lod);
+	        courtTrade = new CourtTrade(lod);
 	        silo = new Silo();
 
         	movingObject = farmer;
@@ -70,7 +74,8 @@ public class Game {
     	    GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
 
     	    SavingController sc = new SavingController();
-        	sc.createFunctionality(gameScene, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile, silo, levelOfDifficulty);
+        	sc.createFunctionality(gameScene, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill,
+					fieldTile, silo, levelOfDifficulty, courtTrade);
 
         	return gameScene;
     }
@@ -194,22 +199,18 @@ public class Game {
     	 */
     		
 		seedDrill = jb.fromJson(deserializedGame[6], SeedDrill.class);
-		try {
-    		TimeUnit.SECONDS.sleep(5);
-    		} catch (InterruptedException e) {
-    		e.printStackTrace();
-    		}
+
+
+		courtTrade = jb.fromJson(deserializedGame[10], CourtTrade.class);
+
+
 		 GameController gameController2 = new GameController();
 
 	        gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
 	                cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
 	                fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(), 1, 1,
 					gameController2);
-			gameScene.getInformationBox().getSiloField().setText("Corn in silo: " + silo.getCapacityAsString());
-			gameScene.getInformationBox().getHarvesterField().setText(harvester.getPetrolTankFillLevelAsString());
-			gameScene.getInformationBox().getTractorField().setText(tractor.getPetrolTankFillLevelAsString());
-			gameScene.getInformationBox().getTimeField().setText(gameValue.getDayAsString());
-			gameScene.getInformationBox().getMoneyField().setText(gameValue.getCashAsString());
+		fillInformationFields(gameScene, silo, harvester, tractor, gameValue);
 	        System.out.println(getSelectedObject());
 	        selectedObject = getSelectedObject();
 	        MovingObjectController movingObjectController2 = new MovingObjectController(gameScene, movingObject,
