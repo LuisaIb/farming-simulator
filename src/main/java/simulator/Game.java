@@ -1,8 +1,12 @@
 package simulator;
 
 
+import java.util.concurrent.TimeUnit;
+
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+
+import org.eclipse.yasson.internal.Unmarshaller;
 
 import datastorage.ObjectToPojo;
 import gameboard.GameValue;
@@ -111,17 +115,19 @@ public class Game {
      * @return
      */
     public GameScene reloadGame() {
+    	ObjectToPojo otp = new ObjectToPojo();
+    	otp.toDeserialize();
         GameScene gameScene = new GameScene();
 		GameController gameController = new GameController();
-		ObjectToPojo otp = new ObjectToPojo();
 		String[] deserializedGame = otp.getDeserializedGameObjects();
+		System.out.println(deserializedGame[0]);
 		Jsonb jb = JsonbBuilder.create();
         //all numeric values
         /**
     	 * This method deserialize the JSONB file. It is also possible to get the values of the cash, the tank filling and the gameday.
     	 * It implements a new GameValue object by using the class constructor.
     	 */
-    	
+	
 		gameValue = jb.fromJson(deserializedGame[0], GameValue.class);
     	
     	/**
@@ -188,7 +194,11 @@ public class Game {
     	 */
     		
 		seedDrill = jb.fromJson(deserializedGame[6], SeedDrill.class);
-		
+		try {
+    		TimeUnit.SECONDS.sleep(5);
+    		} catch (InterruptedException e) {
+    		e.printStackTrace();
+    		}
 		 GameController gameController2 = new GameController();
 
 	        gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),

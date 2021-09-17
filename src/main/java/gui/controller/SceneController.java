@@ -43,11 +43,6 @@ public class SceneController {
     };
 
     public EventHandler<Event> setSceneToReloadGameScene = event -> {
-    	try {
-    		TimeUnit.SECONDS.sleep(5);
-    		} catch (InterruptedException e) {
-    		e.printStackTrace();
-    		}
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         game = new Game();
         GameScene gameScene = game.reloadGame();

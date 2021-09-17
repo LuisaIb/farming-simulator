@@ -71,8 +71,7 @@ public class MenuScene {
         buttonLoadGame = new LSButton("load game",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonLoadGame.setOnMouseClicked(MouseEvent->{
-        	ObjectToPojo otp = new ObjectToPojo();
-        	otp.toDeserialize();
+        
         });
         buttonLoadGame.setOnMouseClicked(sceneController.setSceneToReloadGameScene);
         //buttonSaveGame = new LSButton("save game",50, 250, HEIGHT/2,

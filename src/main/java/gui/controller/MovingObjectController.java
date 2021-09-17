@@ -162,8 +162,7 @@ public class MovingObjectController {
                 dumpTruck, seedDrill);
         double rotation = gameScene.getMatchfield().getMovingObjectImageView().getRotate();
 
-            System.out.println("object exited has to be 5 or 6: " + mofc.getExitedObject());
-
+           
         if ((x == 16 || x == 17) && y == 13) {
             setButtonAction(false, "select vehicle");
         } else if (x == 27 && y == 5 && farmer.isSelected()) {
