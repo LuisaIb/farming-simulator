@@ -1,6 +1,9 @@
 package simulator;
 
 
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
+
 import datastorage.ObjectToPojo;
 import gameboard.GameValue;
 import gameboard.tiles.Silo;
@@ -111,35 +114,36 @@ public class Game {
         GameScene gameScene = new GameScene();
 		GameController gameController = new GameController();
 		ObjectToPojo otp = new ObjectToPojo();
-		
+		String[] deserializedGame = otp.getDeserializedGameObjects();
+		Jsonb jb = JsonbBuilder.create();
         //all numeric values
         /**
     	 * This method deserialize the JSONB file. It is also possible to get the values of the cash, the tank filling and the gameday.
     	 * It implements a new GameValue object by using the class constructor.
     	 */
     	
-		gameValue = otp.toDeserializeGameValue();
+		gameValue = jb.fromJson(deserializedGame[0], GameValue.class);
     	
     	/**
     	 * This method deserialize the JSONB file. It is also possible to get the level of difficulty.
     	 * It implements a new LevelOfDifficulty object by using the class constructor.
     	 */
 			    			
-    	levelOfDifficulty = otp.toDeserializeLevelOfDifficulty();
+    	levelOfDifficulty = jb.fromJson(deserializedGame[9], LevelOfDifficulty.class);
     	
     	/**
     	 * This method deserialize the JSONB file. It is also possible to get the growth state of field one, the growth state of field two and the growth state of field three.
     	 * It implements a new FieldTile object by using the class constructor.
     	 */
     					
-		fieldTile = otp.toDeserializeFieldTile();
+		fieldTile = jb.fromJson(deserializedGame[7], FieldTile.class);
 		    	
     	/**
     	 * This method deserialize the JSONB file. It is also possible to get the capacity of the silo.
     	 * It implements a new Silo object by using the class constructor.
     	 */
     				
-		silo = otp.toDeserializeSilo();
+		silo = jb.fromJson(deserializedGame[8], Silo.class);
     					
         // all positions
     	/**
@@ -148,42 +152,42 @@ public class Game {
     	 * 
     	 */
 		
-		farmer = otp.toDeserializeFarmer();
+		farmer = jb.fromJson(deserializedGame[1], Farmer.class);
 		
     	/**
     	 * This method deserialize the JSONB file. It is also possible to get the position of the tractor.
     	 * It implements a new position (x and y value) of the tractor.
     	 */
     	
-		tractor = otp.toDeserializeTractor();
+		tractor = jb.fromJson(deserializedGame[2], Tractor.class);
     		
     	/**
     	 * This method deserialize the JSONB file. It is also possible to get the position of the harvester.
     	 * It implements a new position (x and y value) of the harvester.
     	 */
     	
-		harvester = otp.toDeserializeHarvester();
+		harvester = jb.fromJson(deserializedGame[3], Harvester.class);
     	
     	/**
     	 * This method deserialize the JSONB file. It is also possible to get the position of the harvester.
     	 * It implements a new position (x and y value) of the harvester.
     	 */
     		    		
-		cultivator = otp.toDeserializeCultivator();
+		cultivator = jb.fromJson(deserializedGame[4], Cultivator.class);
     		
     	/**
     	 * This method deserialize the JSONB file. It is also possible to get the position of the harvester.
     	 * It implements a new position (x and y value) of the harvester.
     	 */
     	
-		dumpTruck = otp.toDeserializeDumpTruck();
+		dumpTruck = jb.fromJson(deserializedGame[5], DumpTruck.class);
     		
     	/**
     	 * This method deserialize the JSONB file. It is also possible to get the position of the harvester.
     	 * It implements a new position (x and y value) of the harvester.
     	 */
     		
-		seedDrill = otp.toDeserializeSeedDrill();
+		seedDrill = jb.fromJson(deserializedGame[6], SeedDrill.class);
 		
 		 GameController gameController2 = new GameController();
 

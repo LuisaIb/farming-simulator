@@ -58,7 +58,6 @@ public class ObjectToPojo {
 			}
 		
 		System.out.println(sb);
-		getDeserializedGameObjects();
 	}
 	
 	public String[] getDeserializedGameObjects() {
