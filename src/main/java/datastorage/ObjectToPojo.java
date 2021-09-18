@@ -7,20 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
-
-import gameboard.GameValue;
-import gameboard.objects.Cultivator;
-import gameboard.objects.DumpTruck;
-import gameboard.objects.Farmer;
-import gameboard.objects.Harvester;
-import gameboard.objects.SeedDrill;
-import gameboard.objects.Tractor;
-import gameboard.tiles.FieldTile;
-import gameboard.tiles.Silo;
-import simulator.LevelOfDifficulty;
-
 /**
  * @author Isabel
  *
@@ -37,6 +23,9 @@ public class ObjectToPojo {
 		return sb;
 	}
 
+	/**
+	 * 
+	 */
 	public void toDeserialize() {
 		try {
 			File gameFile = new File("src/main/java/datastorage/SavingInformation/farmersimulator.txt");
@@ -51,15 +40,18 @@ public class ObjectToPojo {
 			fileReader.close();
 						
 			} else {
-			System.out.println("Es gibt keine Textdatei, aus der gelesen werden kann.");
+			System.out.println("There is no existing textfile that can be read.");
 			}
 			} catch (IOException e) {
-			System.out.println("Fehler: " + e.getMessage());
+			System.out.println("ERROR: " + e.getMessage());
 			}
 		
 		System.out.println(sb);
 	}
 	
+	/**
+	 * @return
+	 */
 	public String[] getDeserializedGameObjects() {
 		game = new String[11];
 		game = sb.toString().split(System.getProperty("line.separator"));

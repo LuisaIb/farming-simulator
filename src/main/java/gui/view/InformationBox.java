@@ -1,11 +1,9 @@
 package gui.view;
 
-import gameboard.objects.Farmer;
 import gui.controller.SceneController;
 import gui.model.LSButton;
 import gui.model.LSTextField;
 import javafx.scene.layout.HBox;
-import simulator.Game;
 
 import static gui.view.ViewManager.WIDTH;
 
@@ -67,6 +65,9 @@ public class InformationBox {
         return informationBox;
     }
 
+    /**
+     * @return
+     */
     public LSTextField getNewsField() {
         return newsField;
     }

@@ -26,58 +26,6 @@ import simulator.LevelOfDifficulty;
 public class ObjectToJsonb {
 	StringBuilder sb = new StringBuilder();
 	 // all numeric values
-		/**
-		 * This method gets the values of the cash, the filling and the gameday of the class GameValue.
-		 * @return serialized as a JSONB object of the cash, filling values and the day.
-		 * 	/**
-		 * This method gets the value of the level of difficulty of the class LevelOfDifficulty.
-		 * @return serialized as a JSONB object of the level of difficulty.
-		 */
-		
-		/**
-		 * This method gets the growth state of all three fields of the class FieldTile.
-		 * @return serialized as a JSONB object of the fieldtile's conditions.
-		 */
-	
-		
-		
-		/**
-		 * This method gets the filling of the silo.
-		 * @return serialized as a JSONB object of the Silo's conditions.
-		 */
-		
-
-		
-	    // all position values
-	    /**
-		 * This method gets the position of the farmer of the class...
-		 * @return serialized as a JSONB object of the farmer's position
-		 */
-		
-		
-		/**
-		 * This method gets the position of the tractor of the class...
-		 * @return serialized as a JSONB object of the tractor's positions
-		 */
-		
-		
-		/**
-		 * This method gets the position of the harvester of the class...
-		 * @return serialized as a JSONB object of the tractor's positions
-		 */
-		
-		
-		/**
-		 * This method gets the information of the Cultivator.
-		 * @return serialized as a JSONB object of the tractor's positions
-		 */
-		
-		
-		/**
-		 * This method gets the information of the Cultivator.
-		 * @return serialized as a JSONB object of the tractor's positions
-		 */
-		
 		
 		/**
 		 * This method gets the information of the Cultivator.
@@ -85,6 +33,19 @@ public class ObjectToJsonb {
 		 */
 		 
 	
+	/**
+	 * @param gameValue
+	 * @param farmer
+	 * @param tractor
+	 * @param harvester
+	 * @param cultivator
+	 * @param dumpTruck
+	 * @param seedDrill
+	 * @param fieldTile
+	 * @param silo
+	 * @param levelOfDifficulty
+	 * @param courtTrade
+	 */
 	public void toSerialize(GameValue gameValue, Farmer farmer, Tractor tractor, Harvester harvester,
 							Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile,
 							Silo silo, LevelOfDifficulty levelOfDifficulty, CourtTrade courtTrade) {
@@ -137,14 +98,17 @@ public class ObjectToJsonb {
 		writeFile(sb);
 	}
 	
+		/**
+		 * @param sb
+		 */
 		public void writeFile(StringBuilder sb) {
 		try {
 			File textFile = new File("src/main/java/datastorage/SavingInformation/farmersimulator.txt");
 			textFile.setWritable(true);
 			if (textFile.createNewFile()) {
-			System.out.println("Textdatei erstellt.");
+			System.out.println("created a textfile");
 			} else {
-			System.out.println("Textdatei existiert bereits.");
+			System.out.println("textfile already exists");
 			}
 			
 			try {
@@ -153,13 +117,13 @@ public class ObjectToJsonb {
 				fileWriter.close();
 				textFile.setWritable(false);
 			
-			System.out.println("In die Textdatei wurde geschrieben.");
+			System.out.println("edit the textfile");
 			} catch (IOException e) {
-			System.out.println("Es konnte nicht in die Textdatei geschrieben werden.");
+			System.out.println("not possible to edit the textfile");
 			}
 
 			} catch (IOException e) {
-			System.out.println("Textdatei konnte nicht erstellt werden.");
+			System.out.println("not possible to create a textfile");
 			}
 		}
 }

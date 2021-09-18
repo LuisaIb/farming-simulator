@@ -25,6 +25,19 @@ public class MovingObjectController {
     private MovingObjectFunctionalityController mofc;
 
 
+    /**
+     * @param gameScene
+     * @param movingObject
+     * @param gameController
+     * @param gameValue
+     * @param farmer
+     * @param tractor
+     * @param harvester
+     * @param cultivator
+     * @param dumpTruck
+     * @param seedDrill
+     * @param fieldTile
+     */
     public MovingObjectController(GameScene gameScene, MovingObject movingObject, GameController gameController,
                                   GameValue gameValue, Farmer farmer, Tractor tractor, Harvester harvester,
                                   Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile){
@@ -44,11 +57,17 @@ public class MovingObjectController {
         initializeFunctionality();
     }
 
+    /**
+     * 
+     */
     private void initializeFunctionality(){
         mofc = new MovingObjectFunctionalityController(gameScene);
     }
 
 
+    /**
+     * 
+     */
     public void moveObject() {
         if (gameController.isRightPressed() && !gameController.isLeftPressed() &&
                 !gameController.isUpPressed() && !gameController.isDownPressed()) {
@@ -68,6 +87,9 @@ public class MovingObjectController {
         }
     }
 
+    /**
+     * @param direction
+     */
     private void move(char direction){
         rotate(direction);
         boolean moveSuccess = false;
@@ -119,6 +141,10 @@ public class MovingObjectController {
         }
     }
 
+    /**
+     * @param x
+     * @param y
+     */
     private void movingSuccessful(int x, int y){
         matchfield.setTileOfObject(x, y);
         if (tractor.isSelected()) {
@@ -129,6 +155,9 @@ public class MovingObjectController {
         }
     }
 
+    /**
+     * @param direction
+     */
     private void rotate(char direction){
         switch (direction) {
             case 'r':
@@ -146,6 +175,9 @@ public class MovingObjectController {
         }
     }
 
+    /**
+     * 
+     */
     public void proofAction(){
         int x = movingObject.getX();
         int y = movingObject.getY();
@@ -193,11 +225,18 @@ public class MovingObjectController {
         }
     }
 
+    /**
+     * @param disabled
+     * @param text
+     */
     private void setButtonAction(boolean disabled, String text){
         gameScene.getSideControlPane().getButtonAction().setDisable(disabled);
         gameScene.getSideControlPane().getButtonAction().setText(text);
     }
 
+    /**
+     * 
+     */
     public void proofFieldAction(){
         int x = movingObject.getX();
         int y = movingObject.getY();

@@ -83,14 +83,6 @@ public class GameValue {
 	}
 
 	/**
-	 *This method is needed for serializing this class into JSONB.
-	 */
-	@Override
-	public String toString() {
-		return "Game [cash=" + cashProperty + " +  day=" + day + "]";
-	}
-
-	/**
 	 * @return
 	 */
 	public IntegerProperty cashProperty(){
@@ -112,7 +104,7 @@ public class GameValue {
 	/**
 	 * @return
 	 */
-	public String getDayAsString(){
+	public String getDayAsString() {
 		return "" + day.get();
 	}
 }
