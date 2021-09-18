@@ -70,12 +70,14 @@ public class Harvester extends Machine {
 	 */
 	public void unloadToDumpTruck(DumpTruck dumpTruck){
 		int grainToFill = dumpTruck.getGrainTankCapacity() - dumpTruck.getGrainFillLevel();
+		System.out.println(grainToFill);
 		if (grainTankFillLevel <= grainToFill) {
 			dumpTruck.setGrainFillLevel(dumpTruck.getGrainFillLevel() + grainTankFillLevel);
 			grainTankFillLevel = 0;
 			System.out.println("grain tank fill level of harvester is now: " + grainTankFillLevel);
 			System.out.println("dump truck fill level of dump truck is now: " + dumpTruck.getGrainFillLevel());
 		} else {
+			System.out.println(grainTankFillLevel);
 			dumpTruck.setGrainFillLevel(dumpTruck.getGrainFillLevel() + grainToFill);
 			grainTankFillLevel = grainTankFillLevel - grainToFill;
 		}
