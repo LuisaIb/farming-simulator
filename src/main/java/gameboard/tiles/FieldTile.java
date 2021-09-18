@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 /**
  * This class represents a tile, which is a field with its several properties
- * @author Luisaibele
+ * @author Luisaibele, Judith
  *
  */
 public class FieldTile{
@@ -19,6 +19,7 @@ public class FieldTile{
 	private boolean owningField1;
 	private boolean owningField2;
 	private boolean owningField3;
+	private InformationBox informationbox;
 
 	private HashMap<Integer, Integer> indexesField1;
 	HashMap<Integer, Boolean> tilesField1Completed = new HashMap<Integer, Boolean>();
@@ -41,8 +42,13 @@ public class FieldTile{
 	 * growthstate = 6 -> abgeerntet
 	 * 
 	 */
+	
+	
+	/**
+	 * Empty Constructor of FieldTile
+	 */
 	public FieldTile() {
-		super();
+		
 	}
 	
 	/**
@@ -113,18 +119,14 @@ public class FieldTile{
 	 */
 	public void setGrowthState(int growthState, InformationBox informationBox) {
 		this.growthState = growthState;
-		// if else statement without timer for growing
 		if(growthState == 5) {
 			informationBox.getNewsField().setText("The first field is ready to harvest!");
-			System.out.println("The first field is ready to harvest!");
 		}else if(growthState == 6){
 			informationBox.getNewsField().setText("The first field is ready to get cultivated!");
-			System.out.println("The first field is ready to get cultivated!");
 		}else if(growthState == 1){
 			informationBox.getNewsField().setText("The first field is ready for sowing!");
-			System.out.println("The first field is ready for sowing!");
 		}else {
-			System.out.println("The first field is growing now!");
+			informationBox.getNewsField().setText("The first field is growing now!");
 		}
 	}
 	
@@ -140,17 +142,16 @@ public class FieldTile{
 	 * this method sets the growthState of the second field
 	 * @param growthState2
 	 */
-	public void setGrowthState2(int growthState2) {
+	public void setGrowthState2(int growthState2, InformationBox informationBox) {
 		this.growthState2 = growthState2;
 		if(growthState2 == 5) {
-			System.out.println("The second field is ready to harvest!");
-			//timer.stop
+			informationBox.getNewsField().setText("The second field is ready to harvest!");
 		}else if(growthState2 == 6){
-			System.out.println("The second field is ready to get cultivated!");
+			informationBox.getNewsField().setText("The second field is ready to get cultivated!");
 		}else if(growthState2 == 1){
-			System.out.println("The second field is ready for sowing!");
+			informationBox.getNewsField().setText("The second field is ready for sowing!");
 		}else {
-			System.out.println("The second field is growing now!");
+			informationBox.getNewsField().setText("The second field is growing now!");
 		}
 	}
 
@@ -166,28 +167,19 @@ public class FieldTile{
 	 * this method sets the growthState of the third field
 	 * @param growthState3
 	 */
-	public void setGrowthState3(int growthState3) {
+	public void setGrowthState3(int growthState3, InformationBox informationBox) {
 		this.growthState3 = growthState3;
 		if(growthState3 == 5) {
-			System.out.println("The third field is ready to harvest!");
-			//timer.stop
+			informationBox.getNewsField().setText("The third field is ready to harvest!");
 		}else if(growthState3 == 6){
-			System.out.println("The third field is ready to get cultivated!");
+			informationBox.getNewsField().setText("The third field is ready to get cultivated!");
 		}else if(growthState3 == 1){
-			System.out.println("The third field is ready for sowing!");
+			informationBox.getNewsField().setText("The third field is ready for sowing!");
 		}else {
-			System.out.println("The third field is growing now!");
+			informationBox.getNewsField().setText("The third field is growing now!");
 		}
 	}
 	
-	/**
-	 * this method is there so the field is able to grow by time
-	 * @param growthState
-	 */
-	public void growing(int growthState) {
-		
-	}
-
 	/**
 	 * This method creates the HashMap of field 1. As key it has the index of the coordinates (y*30 + x) and as
 	 * value the matching index of the image view on the grid pane.
@@ -339,7 +331,7 @@ public class FieldTile{
 			}
 			completelyCultivated = proofCompleteField(column, row, field);
 			if (completelyCultivated) {
-				this.setGrowthState2(1);
+				this.setGrowthState2(1, informationBox);
 				System.out.println("Stage growth of field 2 is now 1: " + this.getGrowthState2());
 				setTilesField2False();
 			}
@@ -352,7 +344,7 @@ public class FieldTile{
 			}
 			completelyCultivated = proofCompleteField(column, row, field);
 			if (completelyCultivated) {
-				this.setGrowthState3(1);
+				this.setGrowthState3(1, informationBox);
 				System.out.println("Stage growth of field 3 is now 1: " + this.getGrowthState3());
 				setTilesField3False();
 			}
@@ -391,7 +383,7 @@ public class FieldTile{
 			}
 			completelySowed = proofCompleteField(column, row, field);
 			if (completelySowed) {
-				this.setGrowthState2(2);
+				this.setGrowthState2(2, informationBox);
 				System.out.println("Stage growth of field 1 is now 2: " + this.getGrowthState2());
 				setTilesField2False();
 			}
@@ -404,7 +396,7 @@ public class FieldTile{
 			}
 			completelySowed = proofCompleteField(column, row, field);
 			if (completelySowed) {
-				this.setGrowthState3(2);
+				this.setGrowthState3(2, informationBox);
 				System.out.println("Stage growth of field 1 is now 2: " + this.getGrowthState3());
 				setTilesField3False();
 			}
@@ -449,7 +441,7 @@ public class FieldTile{
 				}
 				completelyHarvested = proofCompleteField(column, row, field);
 				if (completelyHarvested) {
-					this.setGrowthState2(6);
+					this.setGrowthState2(6, informationBox);
 					System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState2());
 					setTilesField2False();
 				}
@@ -463,7 +455,7 @@ public class FieldTile{
 				}
 				completelyHarvested = proofCompleteField(column, row, field);
 				if (completelyHarvested) {
-					this.setGrowthState3(6);
+					this.setGrowthState3(6, informationBox);
 					System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState3());
 					setTilesField3False();
 				}
@@ -602,52 +594,98 @@ public class FieldTile{
 	}
 
 
+	/**
+	 * Getter for owningField1
+	 * @return owningField1
+	 */
 	public boolean isOwningField1() {
 		return owningField1;
 	}
 
+	/**
+	 * Getter for owningField2
+	 * @return owningField2
+	 */
 	public boolean isOwningField2() {
 		return owningField2;
 	}
 
+	/**
+	 * Getter for owningField3
+	 * @return owningField3
+	 */
 	public boolean isOwningField3() {
 		return owningField3;
 	}
 
+	/**
+	 * Setter for owningField1
+	 * @param owningField1
+	 */
 	public void setOwningField1(boolean owningField1) {
 		this.owningField1 = owningField1;
 	}
 
+	/**
+	 * Setter for owningField2
+	 * @param owningField2
+	 */
 	public void setOwningField2(boolean owningField2) {
 		this.owningField2 = owningField2;
 	}
 
+	/**
+	 * Setter for owningField3
+	 * @param owningField3
+	 */
 	public void setOwningField3(boolean owningField3) {
 		this.owningField3 = owningField3;
 	}
 
+	/**
+	 * Getter for harvest
+	 * @return harvest
+	 */
 	public int getHarvest() {
 		return harvest;
 	}
 
+	/**
+	 * Setter for harvest
+	 * @param harvest
+	 */
 	public void setHarvest(int harvest) {
 		this.harvest = harvest;
 	}
 
+	/**
+	 * Getter for SellingPrice
+	 * @return sellingPrice
+	 */
 	public int getSellingPrice() {
 		return sellingPrice;
 	}
 
+	/**
+	 * Setter for sellingPrice
+	 * @param sellingPrice
+	 */
 	public void setSellingPrice(int sellingPrice) {
 		this.sellingPrice = sellingPrice;
 	}
 
+	/**
+	 * this method represents the functionality of the game, which enables the farmer
+	 * to buy more fields
+	 * @param gameValue
+	 * @param gameScene
+	 */
 	public void buyField(GameValue gameValue, GameScene gameScene){
 		if (!owningField2) {
 			if (gameValue.getCash() >= sellingPrice) {
 				owningField2 = true;
 				gameValue.setCash(gameValue.getCash()-sellingPrice);
-				setGrowthState2(1);
+				setGrowthState2(1, informationbox);
 				for (int i = 914; i < 975; i++) {
 					gameScene.getMatchfield().getImageViewField2(i).setImage(gameScene.getMatchfield().getCorrectImageField(1));
 				}
@@ -658,7 +696,7 @@ public class FieldTile{
 			if (gameValue.getCash() >= sellingPrice) {
 				owningField3 = true;
 				gameValue.setCash(gameValue.getCash()-sellingPrice);
-				setGrowthState3(1);
+				setGrowthState3(1, informationbox);
 				for (int i = 975; i < 1045; i++) {
 					gameScene.getMatchfield().getImageViewField3(i).setImage(gameScene.getMatchfield().getCorrectImageField(1));
 				}

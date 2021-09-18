@@ -169,7 +169,7 @@ public class GameController {
                 fieldCounter2++;
                 if (fieldCounter2 == 50) {
                     growthStageField2++;
-                    fieldTile.setGrowthState2(growthStageField2);
+                    fieldTile.setGrowthState2(growthStageField2, gameScene.getInformationBox());
                     for (int i = 914; i < 975; i++) {
                         gameScene.getMatchfield().getImageViewField2(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthStageField2));
                     }
@@ -182,7 +182,7 @@ public class GameController {
                 fieldCounter3++;
                 if (fieldCounter3 == 50) {
                     growthSTageField3++;
-                    fieldTile.setGrowthState3(growthSTageField3);
+                    fieldTile.setGrowthState3(growthSTageField3, gameScene.getInformationBox());
                     for (int i = 975; i < 1045; i++) {
                         gameScene.getMatchfield().getImageViewField3(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthSTageField3));
                     }
