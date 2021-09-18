@@ -45,8 +45,7 @@ public class MovingObjectController {
     }
 
     private void initializeFunctionality(){
-        mofc = new MovingObjectFunctionalityController(gameScene, movingObject, gameValue, farmer, tractor, harvester,
-                cultivator, dumpTruck, seedDrill, fieldTile);
+        mofc = new MovingObjectFunctionalityController(gameScene);
     }
 
 
@@ -192,7 +191,6 @@ public class MovingObjectController {
                 sideControlPane.getSeedDrillButton().setDisable(true);
             }
         }
-
     }
 
     private void setButtonAction(boolean disabled, String text){
