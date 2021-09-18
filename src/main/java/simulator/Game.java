@@ -15,8 +15,6 @@ import gui.controller.SavingController;
 import gui.model.GameInformation;
 import gui.view.GameScene;
 
-
-
 /**
  * @author Isabel
  *
@@ -79,8 +77,6 @@ public class Game {
 
         	return gameScene;
     }
-
-
 
 
 	/**
@@ -148,54 +144,7 @@ public class Game {
     	courtTrade = jb.fromJson(deserializedGame[10], CourtTrade.class);
 
     	 //all numeric values
-        /**
-    	 * This method deserialize the JSONB file. It is also possible to get the values of the cash, the tank filling and the gameday.
-    	 * It implements a new GameValue object by using the class constructor.
-    	 */
-    	/**
-    	 * This method deserialize the JSONB file. It is also possible to get the level of difficulty.
-    	 * It implements a new LevelOfDifficulty object by using the class constructor.
-    	 */
-    	
-    	/**
-    	 * This method deserialize the JSONB file. It is also possible to get the growth state of field one, the growth state of field two and the growth state of field three.
-    	 * It implements a new FieldTile object by using the class constructor.
-    	 */
-			    	
-    	/**
-    	 * This method deserialize the JSONB file. It is also possible to get the capacity of the silo.
-    	 * It implements a new Silo object by using the class constructor.
-    	 */
-    					
-        // all positions
-    	/**
-    	 * This method deserialize the JSONB file. It is also possible to get the position of the farmer.
-    	 * It implements a new position (x and y value) of the farmer.
-    	 * 
-    	 */
-		
-			
-    	/**
-    	 * This method deserialize the JSONB file. It is also possible to get the position of the tractor.
-    	 * It implements a new position (x and y value) of the tractor.
-    	 */
-    	
-		   		
-    	/**
-    	 * This method deserialize the JSONB file. It is also possible to get the position of the harvester.
-    	 * It implements a new position (x and y value) of the harvester.
-    	 */
-    	    	
-    	/**
-    	 * This method deserialize the JSONB file. It is also possible to get the position of the harvester.
-    	 * It implements a new position (x and y value) of the harvester.
-    	 */
-    		
-    	/**
-    	 * This method deserialize the JSONB file. It is also possible to get the position of the harvester.
-    	 * It implements a new position (x and y value) of the harvester.
-    	 */
-    		
+        
     	/**
     	 * This method deserialize the JSONB file. It is also possible to get the position of the harvester.
     	 * It implements a new position (x and y value) of the harvester.

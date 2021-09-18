@@ -104,7 +104,7 @@ public class GameValue {
 	/**
 	 * @return
 	 */
-	public String getDayAsString(){
+	public String getDayAsString() {
 		return "" + day.get();
 	}
 }

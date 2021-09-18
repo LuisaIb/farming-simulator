@@ -95,15 +95,6 @@ public class FieldTile extends Tile{
 	}
 		
 	/**
-	 * this method is supposed to check whether the farmer can run over 
-	 * a field tile or not
-	 * @return the checked boolean value
-	 */
-	public boolean isSolid() {
-		return true;
-	}
-	
-	/**
 	 * this method gets the growthState of the first field
 	 * @return growthState
 	 */
@@ -188,15 +179,6 @@ public class FieldTile extends Tile{
 	 */
 	public void growing(int growthState) {
 		
-	}
-
-	/**
-	 * this method is needed for serializing this class into JSONB
-	 */
-	@Override
-	public String toString() {
-		return "FieldTile [growthState=" + growthState + ", growthState2=" + growthState2 + ", growthState3="
-				+ growthState3 + "]";
 	}
 
 	/**

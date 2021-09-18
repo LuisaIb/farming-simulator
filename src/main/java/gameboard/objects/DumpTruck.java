@@ -70,4 +70,25 @@ public class DumpTruck extends WorkingDevice {
 	public int getGrainFillLevel() {
 		return grainFillLevel;
 	}
+
+	/**
+	 * @return the silo
+	 */
+	public Silo getSilo() {
+		return silo;
+	}
+
+	/**
+	 * @param silo the silo to set
+	 */
+	public void setSilo(Silo silo) {
+		this.silo = silo;
+	}
+
+	/**
+	 * @param grainFillLevel the grainFillLevel to set
+	 */
+	public void setGrainFillLevel(int grainFillLevel) {
+		this.grainFillLevel = grainFillLevel;
+	}
 }
