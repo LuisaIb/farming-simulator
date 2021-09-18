@@ -6,7 +6,6 @@ import gameboard.objects.DumpTruck;
 import gameboard.tiles.CourtTrade;
 import gameboard.tiles.FieldTile;
 import datastorage.ObjectToJsonb;
-import datastorage.ObjectToPojo;
 import gameboard.GameValue;
 import gameboard.objects.Harvester;
 import simulator.LevelOfDifficulty;

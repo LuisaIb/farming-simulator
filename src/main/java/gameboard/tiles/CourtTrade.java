@@ -10,6 +10,9 @@ public class CourtTrade extends TileWithBuilding{
     private double sellingPrice;
 
 
+    public CourtTrade() {
+    	super();
+    }
     /**
      * Constructor of CourtTrade
      * @param level

@@ -37,6 +37,9 @@ public class FieldTile extends Tile{
 	 * growthstate = 6 -> abgeerntet
 	 * 
 	 */
+	public FieldTile() {
+		super();
+	}
 	
 	/**
 	 * this constructor sets the growthState for each field tile
@@ -44,7 +47,7 @@ public class FieldTile extends Tile{
 	 * @param growthState2
 	 * @param growthState3
 	 */
-	public FieldTile(int growthState, int growthState2, int growthState3, int sellingPrice, int harvest,
+	public FieldTile(int growthState, int growthState2, int growthState3, int sellingPrice, int harvest, boolean owningField1,
 					 boolean owningField2, boolean owningField3) {
 		super();
 		this.growthState = growthState;
@@ -52,7 +55,7 @@ public class FieldTile extends Tile{
 		this.growthState3 = growthState3;
 		this.sellingPrice = sellingPrice;
 		this.harvest = harvest;
-		owningField1 = true;
+		this.owningField1 = owningField1;
 		this.owningField2 = owningField2;
 		this.owningField3 = owningField3;
 		initializeHashMaps();
