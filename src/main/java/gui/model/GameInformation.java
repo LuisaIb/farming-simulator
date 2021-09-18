@@ -54,6 +54,6 @@ public class GameInformation {
                 informationBox.getHarvesterField().setText("petrol harvester: " + harvester.getPetrolTankFillLevelAsString()));
 
         silo.capacity().addListener((observableValue, number, t1) ->
-                informationBox.getSiloField().setText("corn in silo: " + silo.getCapacityAsString()));
+                informationBox.getSiloField().setText("corn in silo: " + silo.getFillLevelAsString()));
     }
 }

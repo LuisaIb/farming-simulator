@@ -2,7 +2,8 @@ package gui.controller;
 
 import gameboard.GameValue;
 import gameboard.objects.*;
-import gameboard.tiles.Tile;
+import gameboard.tiles.FieldTile;
+import gameboard.tiles.Silo;
 import gui.model.LSButton;
 import gui.view.GameScene;
 import gui.view.Matchfield;
@@ -44,13 +45,14 @@ public class MovingObjectFunctionalityController {
 
     public void proofActionButtonFunctionality(int column, int row, MovingObject movingObject, GameValue gameValue,
                                                Farmer farmer, Tractor tractor, Harvester harvester,
-                                               Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill) {
-        if (column == 27 && row == 5) {
-            sellGrain(dumpTruck, gameValue);
+                                               Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile,
+                                               Silo silo) {
+        if (column == 27 && row == 5 && farmer.isSelected() && !fieldTile.isOwningField3()) {
+            buyField(gameValue, gameScene, fieldTile);
         } else if (column == 27 && row == 5) {
-            buyField();
+            sellGrain(dumpTruck, gameValue);
         } else if ((column == 14 || column == 15) && row == 5) {
-            fillTank(tractor, harvester);
+            fillTank(gameValue, tractor, harvester);
         } else if ((column == 16 || column == 17) && row == 13) {
             selectVehicle(movingObject, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
             selectWorkingDevice(movingObject, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
@@ -58,9 +60,11 @@ public class MovingObjectFunctionalityController {
             exitVehicle(movingObject, farmer, tractor, cultivator, dumpTruck, seedDrill);
         } else if(farmer.isSelected() && tractorExited && farmer.getX() == columnExited &&
                 farmer.getY() == rowExited){
-            enterVehicle(movingObject, farmer, tractor);
+            enterVehicle(movingObject, farmer, tractor, cultivator, dumpTruck, seedDrill);
         } else if (harvester.isSelected() && column == columnToFillFromHarvester && row == rowToFillFromHarvester) {
-            unloadToDumpTruck();
+            unloadToDumpTruck(harvester, dumpTruck);
+        } else if ((column == 12 || column == 13) && row == 13 && dumpTruck.isSelected() && dumpTruck.getGrainFillLevel() != 0) {
+            unloadToSilo(dumpTruck, silo);
         }
     }
 
@@ -160,29 +164,31 @@ public class MovingObjectFunctionalityController {
 
     protected void sellGrain(DumpTruck dumpTruck, GameValue gameValue) {
         buttonAction.setOnMouseClicked(mouseEvent -> {
-            dumpTruck.unloadToCourtTrade(gameValue, dumpTruck.getGrainFillLevel());
+            dumpTruck.sellingGrain(gameValue);
+            matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(5));
         });
     }
 
-    protected void buyField(){
-        //Methode, um nächstes Feld zu kaufen
+    protected void buyField(GameValue gameValue, GameScene gameScene, FieldTile fieldTile){
+        buttonAction.setOnMouseClicked(mouseEvent -> {
+            fieldTile.buyField(gameValue, gameScene);
+        });
     }
 
-    protected void fillTank(Tractor tractor, Harvester harvester) {
+    protected void fillTank(GameValue gameValue, Tractor tractor, Harvester harvester) {
         buttonAction.setOnMouseClicked(mouseEvent -> {
             if (tractor.isSelected()) {
-                // Methode zum Tanken
+                tractor.fillTank(gameValue);
             }
             if (harvester.isSelected()) {
-                // Methode zum Tanken
+                harvester.fillTank(gameValue);
             }
         });
     }
 
-    private void unloadToDumpTruck(){
+    private void unloadToDumpTruck(Harvester harvester, DumpTruck dumpTruck){
         buttonAction.setOnMouseClicked(mouseEvent -> {
-            //entsprechende Methode aufrufen
-            System.out.println("unloaded to dump truck");
+            harvester.unloadToDumpTruck(harvester, dumpTruck);
             exitedObject = 6;
             matchfield.getSecondMovingObjectImageView().setImage(matchfield.getTheRightImage(6));
         });
@@ -285,10 +291,11 @@ public class MovingObjectFunctionalityController {
         setMovingObjectToFarmer(movingObject, farmer);
     }
 
-    protected void enterVehicle(MovingObject movingObject, Farmer farmer, Tractor tractor){
+    protected void enterVehicle(MovingObject movingObject, Farmer farmer, Tractor tractor, Cultivator cultivator,
+                                DumpTruck dumpTruck, SeedDrill seedDrill){
         buttonAction.setOnMouseClicked(mouseEvent -> {
             removeSecondMovingObject(movingObject, farmer);
-            changeBackToExitedVehicle(movingObject, tractor);
+            changeBackToExitedVehicle(movingObject, tractor, cultivator, dumpTruck, seedDrill);
         });
     }
 
@@ -299,16 +306,34 @@ public class MovingObjectFunctionalityController {
         farmerButton.setDisable(true);
     }
 
-    private void changeBackToExitedVehicle(MovingObject movingObject, Tractor tractor){
+    private void changeBackToExitedVehicle(MovingObject movingObject, Tractor tractor, Cultivator cultivator,
+                                           DumpTruck dumpTruck, SeedDrill seedDrill){
         matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(exitedObject));
         matchfield.setTileOfObject(exitedVehicleX, exitedVehicleY);
         matchfield.getMovingObjectImageView().setRotate(rotation);
         tractor.setSelected(true);
         tractorButton.setDisable(false);
         tractorExited = false;
+        if (exitedObject == 4){
+            cultivator.setSelected(true);
+            cultivatorButton.setDisable(false);
+        } else if (exitedObject == 5 || exitedObject == 6){
+            dumpTruck.setSelected(true);
+            dumpTruckButton.setDisable(false);
+        } else if (exitedObject == 7){
+            seedDrill.setSelected(true);
+            seedDrillButton.setDisable(false);
+        }
         movingObject.setX(exitedVehicleX);
         movingObject.setY(exitedVehicleY);
         setMovingObjectToTractor(movingObject, tractor);
+    }
+
+    private void unloadToSilo(DumpTruck dumpTruck, Silo silo){
+        dumpTruck.unloadToSilo(silo);
+        if (dumpTruck.getGrainFillLevel() == 0) {
+            matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(5));
+        }
     }
 
     private void setMovingObjectToFarmer(MovingObject movingObject, Farmer farmer){

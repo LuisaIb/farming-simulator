@@ -51,7 +51,7 @@ public class InformationBox {
         tractorField = new LSTextField("tractor",40, 175, 0, 0, 14);
         harvesterField = new LSTextField("harvester",40, 175, 0, 0, 14);
         newsField = new LSTextField("news",40, 450, 0, 0, 16);
-        menuButton = new LSButton("save", 40, 100,750, 0, 16);// menu + dropdown auswahl oder extra feld (Speichern, beenden, hilfe)
+        menuButton = new LSButton("save & end", 40, 100,750, 0, 12);// menu + dropdown auswahl oder extra feld (Speichern, beenden, hilfe)
         menuButton.setOnMouseClicked(sceneController.setSceneToMenuScene);
         informationBox.getChildren().addAll(timeField, moneyField, siloField, tractorField, harvesterField,
                 newsField, menuButton);

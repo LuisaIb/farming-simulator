@@ -1,6 +1,7 @@
 package gameboard.objects;
 
 import exceptions.WrongMachineException;
+import gui.view.InformationBox;
 
 /**
  *  this class represents the harvester with its properties to harvest a field
@@ -60,19 +61,29 @@ public class Harvester extends Machine {
 		return grainTankFillLevel;
 	}
 
-	/**
-	 * this method represents the functionality to harvest a field 
-	 * when it's ready to do so
-	 * @param growthState
-	 */
-	public int harvest(int growthState) throws WrongMachineException{
-		//checking if harvester is at the right place for this action
-		if(growthState == 5) {
-			growthState++;
-		} else {
-			throw new WrongMachineException("You can not use the harvester yet!");
+
+	public void setGrainTankFillLevel(int grainTankFillLevel, InformationBox informationBox) {
+		this.grainTankFillLevel = grainTankFillLevel;
+		if (grainTankFillLevel == GRAIN_TANK_CAPACITY) {
+			informationBox.getNewsField().setText("the grain tank of the harvester is full");
 		}
-		return growthState;
 	}
-	
+
+	public int getGRAIN_TANK_CAPACITY(){
+		return GRAIN_TANK_CAPACITY;
+	}
+
+
+	public void unloadToDumpTruck(Harvester harvester, DumpTruck dumpTruck){
+		int grainToFill = dumpTruck.getGrainTankCapacity() - dumpTruck.getGrainFillLevel();
+		if (grainTankFillLevel <= grainToFill) {
+			dumpTruck.setGrainFillLevel(dumpTruck.getGrainFillLevel() + grainTankFillLevel);
+			System.out.println("grain tank fill level of harvester is now: " + grainTankFillLevel);
+			System.out.println("dump truck fill level of dump truck is now: " + dumpTruck.getGrainFillLevel());
+		} else {
+			grainTankFillLevel = grainTankFillLevel - grainToFill;
+			dumpTruck.setGrainFillLevel(dumpTruck.getGrainFillLevel() + grainToFill);
+		}
+	}
+
 }

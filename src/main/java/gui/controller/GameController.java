@@ -3,6 +3,7 @@ package gui.controller;
 import gameboard.GameValue;
 import gameboard.tiles.FieldTile;
 import gui.view.GameScene;
+import gui.view.InformationBox;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -153,9 +154,9 @@ public class GameController {
 
             if (growthStageField1 > 1 && growthStageField1 < 5) {
                 fieldCounter1++;
-                if (fieldCounter1 == 500) {
+                if (fieldCounter1 == 50) {
                     growthStageField1++;
-                    fieldTile.setGrowthState(growthStageField1);
+                    fieldTile.setGrowthState(growthStageField1, gameScene.getInformationBox());
                     for (int i = 855; i < 915; i++) {
                         gameScene.getMatchfield().getImageViewField1(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthStageField1));
                     }
@@ -166,10 +167,10 @@ public class GameController {
 
             if (growthStageField2 > 1 && growthStageField2 < 5) {
                 fieldCounter2++;
-                if (fieldCounter2 == 500) {
+                if (fieldCounter2 == 50) {
                     growthStageField2++;
                     fieldTile.setGrowthState2(growthStageField2);
-                    for (int i = 914; i < 977; i++) {
+                    for (int i = 914; i < 975; i++) {
                         gameScene.getMatchfield().getImageViewField2(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthStageField2));
                     }
                     fieldCounter2 = 0;
@@ -179,10 +180,10 @@ public class GameController {
 
             if (growthSTageField3 > 1 && growthSTageField3 < 5) {
                 fieldCounter3++;
-                if (fieldCounter3 == 500) {
+                if (fieldCounter3 == 50) {
                     growthSTageField3++;
                     fieldTile.setGrowthState3(growthSTageField3);
-                    for (int i = 977; i < 1045; i++) {
+                    for (int i = 975; i < 1045; i++) {
                         gameScene.getMatchfield().getImageViewField3(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthSTageField3));
                     }
                     fieldCounter3 = 0;

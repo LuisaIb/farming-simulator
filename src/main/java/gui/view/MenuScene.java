@@ -28,7 +28,6 @@ public class MenuScene {
     private static final String PATH_TO_BACKGROUND_IMAGE = "src/main/java/gui/view/resources/background/field.jpg";
     private LSButton buttonNewGame;
     private LSButton buttonLoadGame;
-    private LSButton buttonSaveGame;
     private LSButton buttonHelp;
     private LSButton buttonEnd;
 
@@ -69,12 +68,7 @@ public class MenuScene {
         buttonNewGame.setOnMouseClicked(sceneController.setSceneToDifficultyScene);
         buttonLoadGame = new LSButton("load game",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
-        buttonLoadGame.setOnMouseClicked(MouseEvent->{
-        
-        });
         buttonLoadGame.setOnMouseClicked(sceneController.setSceneToReloadGameScene);
-        //buttonSaveGame = new LSButton("save game",50, 250, HEIGHT/2,
-        //        WIDTH/2, 20);
         buttonHelp = new LSButton("help",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonHelp.setOnMouseClicked(sceneController.setSceneToHelpScene);
@@ -96,23 +90,13 @@ public class MenuScene {
     }
 
     /**
-     * This method helps to set the buttons load game and save game disabled or not. e.g. when the game is played for
-     * the first time, the buttons should be disabled as there is nothing to be saved or relaoded.
+     * This method helps to set the button load game disabled or not. e.g. when the game is played for the first time,
+     * the button should be disabled as there is nothing to be relaoded.
      *
      * @param reloadGame boolean of the disability of the button loadGame
-     * @param saveGame boolean of the disability of the button saveGame
      */
-    private void buttonsDisabled(boolean reloadGame, boolean saveGame) {
+    private void buttonsDisabled(boolean reloadGame) {
         buttonLoadGame.setDisable(reloadGame);
-        buttonSaveGame.setDisable(saveGame);
     }
-
-    public void buttonFunctionality(Farmer farmer){
-        Game game = new Game();
-        buttonSaveGame.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
-//            
-        });
-    }
-    
    
 }

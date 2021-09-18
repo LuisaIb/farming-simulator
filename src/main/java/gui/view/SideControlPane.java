@@ -7,10 +7,7 @@ import gui.controller.GameController;
 import gui.model.ImageManager;
 import gui.model.LSButton;
 import javafx.scene.image.Image;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.*;
 
 import static gui.view.ViewManager.HEIGHT;
 import static gui.view.ViewManager.WIDTH;
@@ -220,6 +217,12 @@ public class SideControlPane {
             gameController.setRightPressed(false);
         });
         buttonAction = new LSButton("", 50, 150,45,HEIGHT/100*87, 14);
+        Image image = new ImageManager().getImage("src/main/java/gui/model/resources/background_orange.png",
+                150, 50, false, false);
+        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Background background = new Background(backgroundImage);
+        buttonAction.setBackground(background);
         buttonAction.setDisable(true);
         sidePane.getChildren().addAll(buttonUp, buttonDown, buttonLeft, buttonRight, buttonAction);
     }

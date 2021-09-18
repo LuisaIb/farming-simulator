@@ -49,23 +49,22 @@ public class Game {
         	tractor = new Tractor();
 	        harvester = new Harvester();
 	        cultivator = new Cultivator();
-	        dumpTruck = new DumpTruck();
+	        dumpTruck = new DumpTruck(lod);
 	        seedDrill = new SeedDrill();
 	        fieldTile = new FieldTile(lod);
 	        gameValue = new GameValue(lod);
 	        courtTrade = new CourtTrade(lod);
-	        silo = new Silo();
+	        silo = new Silo(lod);
 
         	movingObject = farmer;
 
         	GameController gameController = new GameController();
-
 	        gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
 					cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
 					fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), 1, farmer.getX(), farmer.getY(),
 					gameController);
 			MovingObjectController movingObjectController = new MovingObjectController(gameScene, movingObject,
-					gameController, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile);
+					gameController, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile, silo);
     	    selectedObject = getSelectedObject();
         	fillInformationFields(gameScene, silo, harvester, tractor, gameValue);
 			gameController.initGameLoop(gameScene, fieldTile, gameValue, movingObjectController);
@@ -88,7 +87,7 @@ public class Game {
 	 */
 	private void fillInformationFields(GameScene gameScene, Silo silo, Harvester harvester, Tractor tractor,
 									   GameValue gameValue){
-		gameScene.getInformationBox().getSiloField().setText("corn in silo: " + silo.getCapacityAsString());
+		gameScene.getInformationBox().getSiloField().setText("corn in silo: " + silo.getFillLevelAsString());
 		gameScene.getInformationBox().getHarvesterField().setText("petrol harvester: " + harvester.getPetrolTankFillLevelAsString());
 		gameScene.getInformationBox().getTractorField().setText("petrol tractor: " + tractor.getPetrolTankFillLevelAsString());
 		gameScene.getInformationBox().getTimeField().setText("day: " + gameValue.getDayAsString());
@@ -159,7 +158,7 @@ public class Game {
 	        System.out.println(getSelectedObject());
 	        selectedObject = getSelectedObject();
 	        MovingObjectController movingObjectController2 = new MovingObjectController(gameScene, movingObject,
-					gameController, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile);
+					gameController, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile, silo);
 			gameController2.initGameLoop(gameScene, fieldTile, gameValue, movingObjectController2);
 	        GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
 	        return gameScene;

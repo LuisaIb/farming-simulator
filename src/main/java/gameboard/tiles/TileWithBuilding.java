@@ -5,13 +5,12 @@ package gameboard.tiles;
  * @author Luisaibele
  *
  */
-public class TileWithBuilding extends Tile{
+public class TileWithBuilding{
 
 	/**
 	 * Constructor of TileWithBuilding
 	 */
 	public TileWithBuilding() {
-		super();
 		
 	}
 	

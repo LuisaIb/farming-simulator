@@ -1,5 +1,9 @@
 package gameboard.tiles;
 
+import gameboard.GameValue;
+import gameboard.objects.Harvester;
+import gui.view.GameScene;
+import gui.view.InformationBox;
 import gui.view.Matchfield;
 import java.util.HashMap;
 
@@ -8,7 +12,7 @@ import java.util.HashMap;
  * @author Luisaibele
  *
  */
-public class FieldTile extends Tile{
+public class FieldTile{
 	
 	private int sellingPrice;
 	private int harvest;
@@ -49,7 +53,6 @@ public class FieldTile extends Tile{
 	 */
 	public FieldTile(int growthState, int growthState2, int growthState3, int sellingPrice, int harvest, boolean owningField1,
 					 boolean owningField2, boolean owningField3) {
-		super();
 		this.growthState = growthState;
 		this.growthState2 = growthState2;
 		this.growthState3 = growthState3;
@@ -65,7 +68,6 @@ public class FieldTile extends Tile{
 	 * this empty constructor is for starting a new game
 	 */
 	public FieldTile(int level) {
-		super();
 		growthState = 1;
 		growthState2 = 0;
 		growthState3 = 0;
@@ -109,15 +111,17 @@ public class FieldTile extends Tile{
 	 * this method sets the growthState of the first field
 	 * @param growthState
 	 */
-	public void setGrowthState(int growthState) {
+	public void setGrowthState(int growthState, InformationBox informationBox) {
 		this.growthState = growthState;
 		// if else statement without timer for growing
 		if(growthState == 5) {
+			informationBox.getNewsField().setText("The first field is ready to harvest!");
 			System.out.println("The first field is ready to harvest!");
-			//timer.stop
 		}else if(growthState == 6){
+			informationBox.getNewsField().setText("The first field is ready to get cultivated!");
 			System.out.println("The first field is ready to get cultivated!");
 		}else if(growthState == 1){
+			informationBox.getNewsField().setText("The first field is ready for sowing!");
 			System.out.println("The first field is ready for sowing!");
 		}else {
 			System.out.println("The first field is growing now!");
@@ -311,7 +315,7 @@ public class FieldTile extends Tile{
 	 * @param row y-value of the moving object to calculate the index.
 	 * @param field number of the field
 	 */
-	public void cultivateField(Matchfield matchfield, int column, int row, int field){
+	public void cultivateField(Matchfield matchfield, int column, int row, int field, InformationBox informationBox){
 		int indexMovingObject = (row * 30) + column;
 		boolean completelyCultivated = false;
 		if (field == 1) {
@@ -322,7 +326,7 @@ public class FieldTile extends Tile{
 			}
 			completelyCultivated = proofCompleteField(column, row, field);
 			if (completelyCultivated) {
-				this.setGrowthState(1);
+				this.setGrowthState(1, informationBox);
 				System.out.println("Stage growth of field 1 is now 1: " + this.getGrowthState());
 				setTilesField1False();
 			}
@@ -363,7 +367,7 @@ public class FieldTile extends Tile{
 	 * @param row y-value of the moving object to calculate the index.
 	 * @param field number of the field
 	 */
-	public void sowField(Matchfield matchfield, int column, int row, int field){
+	public void sowField(Matchfield matchfield, int column, int row, int field, InformationBox informationBox){
 		int indexMovingObject = (row * 30) + column;
 		boolean completelySowed = false;
 		if (field == 1) {
@@ -374,7 +378,7 @@ public class FieldTile extends Tile{
 			}
 			completelySowed = proofCompleteField(column, row, field);
 			if (completelySowed) {
-				this.setGrowthState(2);
+				this.setGrowthState(2, informationBox);
 				System.out.println("Stage growth of field 1 is now 2: " + this.getGrowthState());
 				setTilesField1False();
 			}
@@ -416,49 +420,55 @@ public class FieldTile extends Tile{
 	 * @param row y-value of the moving object to calculate the index.
 	 * @param field number of the field
 	 */
-	public void harvestField(Matchfield matchfield, int column, int row, int field){
+	public void harvestField(Matchfield matchfield, int column, int row, int field, InformationBox informationBox,
+							 Harvester harvester){
 		int indexMovingObject = (row * 30) + column;
 		boolean completelyHarvested = false;
-		if (field == 1) {
-			for(Integer indexCombo : indexesField1.keySet()) {
-				if (indexCombo == indexMovingObject) {
-					matchfield.getImageViewField1(indexesField1.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
-				}
-			}
-			completelyHarvested = proofCompleteField(column, row, field);
-			if (completelyHarvested) {
-				this.setGrowthState(6);
-				System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState());
-				setTilesField1False();
-			}
-		}
-		if (field == 2) {
-			for(Integer indexCombo : indexesField2.keySet()) {
-				if (indexCombo == indexMovingObject) {
-					matchfield.getImageViewField2(indexesField2.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
-				}
-			}
-			completelyHarvested = proofCompleteField(column, row, field);
-			if (completelyHarvested) {
-				this.setGrowthState2(6);
-				System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState2());
-				setTilesField2False();
-			}
-		}
-		if (field == 3) {
-			for(Integer indexCombo : indexesField3.keySet()) {
-				if (indexCombo == indexMovingObject) {
-					matchfield.getImageViewField3(indexesField3.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
-				}
-			}
-			completelyHarvested = proofCompleteField(column, row, field);
-			if (completelyHarvested) {
-				this.setGrowthState3(6);
-				System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState3());
-				setTilesField3False();
-			}
-		}
 
+		if (harvester.getGrainTankFillLevel() != harvester.getGRAIN_TANK_CAPACITY()) {
+			if (field == 1) {
+				for(Integer indexCombo : indexesField1.keySet()) {
+					if (indexCombo == indexMovingObject) {
+						matchfield.getImageViewField1(indexesField1.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
+						harvester.setGrainTankFillLevel(harvester.getGrainTankFillLevel()+harvest, informationBox);
+					}
+				}
+				completelyHarvested = proofCompleteField(column, row, field);
+				if (completelyHarvested) {
+					this.setGrowthState(6, informationBox);
+					System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState());
+					setTilesField1False();
+				}
+			}
+			if (field == 2) {
+				for(Integer indexCombo : indexesField2.keySet()) {
+					if (indexCombo == indexMovingObject) {
+						matchfield.getImageViewField2(indexesField2.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
+						harvester.setGrainTankFillLevel(harvester.getGrainTankFillLevel()+harvest, informationBox);
+					}
+				}
+				completelyHarvested = proofCompleteField(column, row, field);
+				if (completelyHarvested) {
+					this.setGrowthState2(6);
+					System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState2());
+					setTilesField2False();
+				}
+			}
+			if (field == 3) {
+				for(Integer indexCombo : indexesField3.keySet()) {
+					if (indexCombo == indexMovingObject) {
+						matchfield.getImageViewField3(indexesField3.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
+						harvester.setGrainTankFillLevel(harvester.getGrainTankFillLevel()+harvest, informationBox);
+					}
+				}
+				completelyHarvested = proofCompleteField(column, row, field);
+				if (completelyHarvested) {
+					this.setGrowthState3(6);
+					System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState3());
+					setTilesField3False();
+				}
+			}
+		}
 	}
 
 
@@ -631,4 +641,31 @@ public class FieldTile extends Tile{
 	public void setSellingPrice(int sellingPrice) {
 		this.sellingPrice = sellingPrice;
 	}
+
+	public void buyField(GameValue gameValue, GameScene gameScene){
+		if (!owningField2) {
+			if (gameValue.getCash() >= sellingPrice) {
+				owningField2 = true;
+				gameValue.setCash(gameValue.getCash()-sellingPrice);
+				setGrowthState2(1);
+				for (int i = 914; i < 975; i++) {
+					gameScene.getMatchfield().getImageViewField2(i).setImage(gameScene.getMatchfield().getCorrectImageField(1));
+				}
+			} else {
+				gameScene.getInformationBox().getNewsField().setText("you do not have enough money to buy this field");
+			}
+		} else {
+			if (gameValue.getCash() >= sellingPrice) {
+				owningField3 = true;
+				gameValue.setCash(gameValue.getCash()-sellingPrice);
+				setGrowthState3(1);
+				for (int i = 975; i < 1045; i++) {
+					gameScene.getMatchfield().getImageViewField3(i).setImage(gameScene.getMatchfield().getCorrectImageField(1));
+				}
+			} else {
+				gameScene.getInformationBox().getNewsField().setText("you do not have enough money to buy this field");
+			}
+		}
+	}
+
 }

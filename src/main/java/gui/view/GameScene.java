@@ -2,9 +2,14 @@ package gui.view;
 
 import gameboard.objects.MovingObject;
 import gui.controller.GameController;
+import gui.model.ImageManager;
+import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
+
+import java.util.concurrent.TimeUnit;
 
 import static gui.view.ViewManager.HEIGHT;
 import static gui.view.ViewManager.WIDTH;
@@ -24,6 +29,7 @@ public class GameScene {
     private MovingObject movingObject = new MovingObject();
     private InformationBox informationBox;
     private SideControlPane sideControlPane;
+    private final String PATH_GAME_OVER = "src/main/java/gui/view/resources/background/GameOver.png";
 
     /**
      * This method implements all the Nodes for the game scene with the help of the other classes InformationBox,
@@ -149,4 +155,16 @@ public class GameScene {
         matchfield.initializeMovingObject(selectedObject, column, row);
         gamePane.getChildren().add(matchfield.getMatchfield());
     }
+
+    public void setGameOver(){
+        Image image = new ImageManager().getImage(PATH_GAME_OVER, WIDTH, HEIGHT, false, false);
+        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Background background = new Background(backgroundImage);
+        gamePane.getChildren().remove(informationBox.getInformationBox());
+        gamePane.getChildren().remove(sideControlPane.getSidePane());
+        gamePane.getChildren().remove(matchfield.getMatchfield());
+        gamePane.setBackground(background);
+    }
+
 }

@@ -4,7 +4,9 @@ import exceptions.MovingExcpetion;
 import gameboard.GameValue;
 import gameboard.objects.*;
 import gameboard.tiles.FieldTile;
+import gameboard.tiles.Silo;
 import gui.view.GameScene;
+import gui.view.InformationBox;
 import gui.view.Matchfield;
 import gui.view.SideControlPane;
 
@@ -22,6 +24,8 @@ public class MovingObjectController {
     private FieldTile fieldTile;
     private Matchfield matchfield;
     private SideControlPane sideControlPane;
+    private InformationBox informationBox;
+    private Silo silo;
     private MovingObjectFunctionalityController mofc;
 
 
@@ -40,7 +44,8 @@ public class MovingObjectController {
      */
     public MovingObjectController(GameScene gameScene, MovingObject movingObject, GameController gameController,
                                   GameValue gameValue, Farmer farmer, Tractor tractor, Harvester harvester,
-                                  Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile){
+                                  Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile,
+                                  Silo silo){
         this.gameScene = gameScene;
         this.movingObject = movingObject;
         this.gameController = gameController;
@@ -52,8 +57,10 @@ public class MovingObjectController {
         this.dumpTruck = dumpTruck;
         this.seedDrill = seedDrill;
         this.fieldTile = fieldTile;
+        this.silo = silo;
         this.matchfield = gameScene.getMatchfield();
         this.sideControlPane = gameScene.getSideControlPane();
+        this.informationBox = gameScene.getInformationBox();
         initializeFunctionality();
     }
 
@@ -148,10 +155,10 @@ public class MovingObjectController {
     private void movingSuccessful(int x, int y){
         matchfield.setTileOfObject(x, y);
         if (tractor.isSelected()) {
-            tractor.setPetrolTankFillLevel(tractor.getPetrolTankFillLevel()-1);
+            tractor.lowPetrolLevel(tractor.getPetrolTankFillLevel()-1, gameScene);
         }
         if (harvester.isSelected()) {
-            harvester.setPetrolTankFillLevel(tractor.getPetrolTankFillLevel()-1);
+            harvester.lowPetrolLevel(harvester.getPetrolTankFillLevel()-1, gameScene);
         }
     }
 
@@ -182,13 +189,13 @@ public class MovingObjectController {
         int x = movingObject.getX();
         int y = movingObject.getY();
         mofc.proofActionButtonFunctionality(x, y, movingObject, gameValue, farmer, tractor, harvester, cultivator,
-                dumpTruck, seedDrill);
+                dumpTruck, seedDrill, fieldTile, silo);
         double rotation = gameScene.getMatchfield().getMovingObjectImageView().getRotate();
 
            
         if ((x == 16 || x == 17) && y == 13) {
             setButtonAction(false, "select vehicle");
-        } else if (x == 27 && y == 5 && farmer.isSelected()) {
+        } else if (x == 27 && y == 5 && farmer.isSelected() && !fieldTile.isOwningField3()) {
             setButtonAction(false, "buy field");
         } else if (x == 27 && y == 5 && dumpTruck.isSelected() && dumpTruck.getGrainFillLevel() != 0) {
             setButtonAction(false, "sell grain");
@@ -209,11 +216,13 @@ public class MovingObjectController {
                 x == mofc.getColumnExited() &&
                 y == mofc.getRowExited()) {
             setButtonAction(false, "enter vehicle");
-        } else if(harvester.isSelected() &&
+        } else if(harvester.isSelected() && harvester.getGrainTankFillLevel() != 0 &&
                 (mofc.getExitedObject() == 5 || mofc.getExitedObject() == 6) &&
                 mofc.getRotation() == matchfield.getMovingObjectImageView().getRotate() &&
                 x == mofc.getColumnToFillFromHarvester() &&
                 y == mofc.getRowToFillFromHarvester()) {
+            setButtonAction(false, "unload");
+        } else if ((x == 12 || x == 13) && y == 13 && dumpTruck.isSelected() && dumpTruck.getGrainFillLevel() != 0) {
             setButtonAction(false, "unload");
         } else {
             setButtonAction(true, "");
@@ -242,34 +251,33 @@ public class MovingObjectController {
         int y = movingObject.getY();
         if (x > 19 && y > 13) {
             if (cultivator.isSelected() && fieldTile.getGrowthState() == 6) {
-
-                fieldTile.cultivateField(gameScene.getMatchfield(), x, y, 1);
+                fieldTile.cultivateField(gameScene.getMatchfield(), x, y, 1, gameScene.getInformationBox());
             }
             if (seedDrill.isSelected() && fieldTile.getGrowthState() == 1) {
-                fieldTile.sowField(gameScene.getMatchfield(), x, y, 1);
+                fieldTile.sowField(gameScene.getMatchfield(), x, y, 1, gameScene.getInformationBox());
             }
             if (harvester.isSelected() && fieldTile.getGrowthState() == 5) {
-                fieldTile.harvestField(gameScene.getMatchfield(), x, y, 1);
+                fieldTile.harvestField(gameScene.getMatchfield(), x, y, 1, gameScene.getInformationBox(), harvester);
             }
         } else if(x > 8 && x < 19 && y > 13) {
             if (cultivator.isSelected() && fieldTile.getGrowthState2() == 6) {
-                fieldTile.cultivateField(gameScene.getMatchfield(), x, y, 2);
+                fieldTile.cultivateField(gameScene.getMatchfield(), x, y, 2, gameScene.getInformationBox());
             }
             if (seedDrill.isSelected() && fieldTile.getGrowthState2() == 1) {
-                fieldTile.sowField(gameScene.getMatchfield(), x, y, 2);
+                fieldTile.sowField(gameScene.getMatchfield(), x, y, 2, gameScene.getInformationBox());
             }
             if (harvester.isSelected() && fieldTile.getGrowthState2() == 5) {
-                fieldTile.harvestField(gameScene.getMatchfield(), x, y, 2);
+                fieldTile.harvestField(gameScene.getMatchfield(), x, y, 2, gameScene.getInformationBox(), harvester);
             }
         } else if (x > 19 && y > 5 && y < 13) {
             if (cultivator.isSelected() && fieldTile.getGrowthState3() == 6) {
-                fieldTile.cultivateField(gameScene.getMatchfield(), x, y, 3);
+                fieldTile.cultivateField(gameScene.getMatchfield(), x, y, 3, gameScene.getInformationBox());
             }
             if (seedDrill.isSelected() && fieldTile.getGrowthState3() == 1) {
-                fieldTile.sowField(gameScene.getMatchfield(), x, y, 3);
+                fieldTile.sowField(gameScene.getMatchfield(), x, y, 3, gameScene.getInformationBox());
             }
             if (harvester.isSelected() && fieldTile.getGrowthState3() == 5) {
-                fieldTile.harvestField(gameScene.getMatchfield(), x, y, 3);
+                fieldTile.harvestField(gameScene.getMatchfield(), x, y, 3, gameScene.getInformationBox(), harvester);
             }
         }
     }

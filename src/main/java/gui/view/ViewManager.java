@@ -41,4 +41,8 @@ public class ViewManager {
         return menuScene;
     }
 
+    public Stage getMainStage(){
+        return mainStage;
+    }
+
 }

@@ -1,12 +1,9 @@
 package gameboard.objects;
 
 import exceptions.MovingExcpetion;
-import gameboard.tiles.Tile;
 import gui.view.GameScene;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * this class represents any object on the gameboard,

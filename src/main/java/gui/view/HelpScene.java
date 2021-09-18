@@ -34,14 +34,20 @@ public class HelpScene {
     }
 
     private void initializeText(){
-        LSTextField helpText = new LSTextField("Hier kommt der Text hin", HEIGHT-100, WIDTH, 0, 0, 16);
-        helpText.setStyle( "-fx-background-color: rgba(255,255,255,0.5);");
+        LSTextField helpText = new LSTextField("", HEIGHT-100, WIDTH, 0, 0, 16);
+        Image image = new ImageManager().getImage("src/main/java/gui/view/resources/background/helpText.png",
+                1400, 800, false, false);
+        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Background background = new Background(backgroundImage);
+        helpText.setBackground(background);
+        //helpText.setStyle( "-fx-background-color: rgba(255,255,255,0.5);");
         helpPane.getChildren().add(helpText);
     }
 
     private void initializeButton(){
         SceneController sceneController = new SceneController();
-        LSButton buttonBack = new LSButton("Zurueck", 50, 150, WIDTH/2 - 50, HEIGHT-75, 20);
+        LSButton buttonBack = new LSButton("back", 50, 150, WIDTH/2 - 50, HEIGHT-75, 20);
         buttonBack.setOnMouseClicked(sceneController.setSceneToMenuScene);
         helpPane.getChildren().add(buttonBack);
     }
