@@ -28,7 +28,6 @@ public class MovingObjectFunctionalityController {
     private int exitedObject;
     private int columnToFillFromHarvester;
     private int rowToFillFromHarvester;
-    Tile tile = new Tile();
 
     public MovingObjectFunctionalityController(GameScene gameScene){
         this.gameScene = gameScene;
@@ -272,7 +271,7 @@ public class MovingObjectFunctionalityController {
         tractor.setSelected(false);
         tractorButton.setDisable(true);
         tractorExited = true;
-        tile.getPlaces().add(0, exitedVehicleY*30+exitedVehicleX);
+        movingObject.getPlaces().add(0, exitedVehicleY*30+exitedVehicleX);
     }
 
     private void changeToFarmerAfterExited(MovingObject movingObject, Farmer farmer){
@@ -294,7 +293,7 @@ public class MovingObjectFunctionalityController {
     }
 
     private void removeSecondMovingObject(MovingObject movingObject, Farmer farmer){
-        tile.getPlaces().remove(0);
+        movingObject.getPlaces().remove(0);
         matchfield.deleteSecondImageView();
         farmer.setSelected(false);
         farmerButton.setDisable(true);
