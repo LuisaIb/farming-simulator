@@ -1,9 +1,7 @@
 package gameboard.objects;
 
-import exceptions.EmptyTankException;
 import gameboard.GameValue;
 import gui.view.GameScene;
-import gui.view.InformationBox;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
