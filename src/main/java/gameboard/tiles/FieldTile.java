@@ -429,42 +429,45 @@ public class FieldTile{
 			if (field == 1) {
 				for(Integer indexCombo : indexesField1.keySet()) {
 					if (indexCombo == indexMovingObject) {
-						matchfield.getImageViewField1(indexesField1.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
-						harvester.setGrainTankFillLevel(harvester.getGrainTankFillLevel()+harvest, informationBox);
+						if (!tilesField1Completed.get(indexCombo)) {
+							matchfield.getImageViewField1(indexesField1.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
+							harvester.setGrainTankFillLevel(harvester.getGrainTankFillLevel()+harvest, informationBox);
+						}
 					}
 				}
 				completelyHarvested = proofCompleteField(column, row, field);
 				if (completelyHarvested) {
 					this.setGrowthState(6, informationBox);
-					System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState());
 					setTilesField1False();
 				}
 			}
 			if (field == 2) {
 				for(Integer indexCombo : indexesField2.keySet()) {
 					if (indexCombo == indexMovingObject) {
-						matchfield.getImageViewField2(indexesField2.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
-						harvester.setGrainTankFillLevel(harvester.getGrainTankFillLevel()+harvest, informationBox);
+						if (!tilesField2Completed.get(indexCombo)) {
+							matchfield.getImageViewField2(indexesField2.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
+							harvester.setGrainTankFillLevel(harvester.getGrainTankFillLevel()+harvest, informationBox);
+						}
 					}
 				}
 				completelyHarvested = proofCompleteField(column, row, field);
 				if (completelyHarvested) {
 					this.setGrowthState2(6);
-					System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState2());
 					setTilesField2False();
 				}
 			}
 			if (field == 3) {
 				for(Integer indexCombo : indexesField3.keySet()) {
 					if (indexCombo == indexMovingObject) {
-						matchfield.getImageViewField3(indexesField3.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
-						harvester.setGrainTankFillLevel(harvester.getGrainTankFillLevel()+harvest, informationBox);
+						if (!tilesField3Completed.get(indexCombo)) {
+							matchfield.getImageViewField3(indexesField3.get(indexCombo)).setImage(matchfield.getCorrectImageField(6));
+							harvester.setGrainTankFillLevel(harvester.getGrainTankFillLevel()+harvest, informationBox);
+						}
 					}
 				}
 				completelyHarvested = proofCompleteField(column, row, field);
 				if (completelyHarvested) {
 					this.setGrowthState3(6);
-					System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState3());
 					setTilesField3False();
 				}
 			}
