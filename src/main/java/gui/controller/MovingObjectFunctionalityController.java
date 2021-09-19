@@ -191,6 +191,8 @@ public class MovingObjectFunctionalityController {
             harvester.unloadToDumpTruck(harvester, dumpTruck);
             exitedObject = 6;
             matchfield.getSecondMovingObjectImageView().setImage(matchfield.getTheRightImage(6));
+            System.out.println("harvester grain tank fill level should be 0 after unloading: " + harvester.getGrainTankFillLevel());
+
         });
     }
 
