@@ -169,12 +169,8 @@ public class FieldTile{
 	public void setGrowthState3(int growthState3) {
 		this.growthState3 = growthState3;
 		if(growthState3 == 5) {
-<<<<<<< main
-			informationBox.getNewsField().setText("The third field is ready to harvest!");
-=======
+			
 			System.out.println("The third field is ready to harvest!");
->>>>>>> 3fe9183 several changes trying to fix the bug
-			//timer.stop
 		}else if(growthState3 == 6){
 			System.out.println("The third field is ready to get cultivated!");
 		}else if(growthState3 == 1){
@@ -342,12 +338,9 @@ public class FieldTile{
 			}
 			completelyCultivated = proofCompleteField(column, row, field);
 			if (completelyCultivated) {
-<<<<<<< main
-				this.setGrowthState2(1, informationBox);
-=======
+				this.setGrowthState2(1);
 				this.setGrowthState2(1);
 				System.out.println("Stage growth of field 2 is now 1: " + this.getGrowthState2());
->>>>>>> 3fe9183 several changes trying to fix the bug
 				setTilesField2False();
 			}
 		}
@@ -359,12 +352,9 @@ public class FieldTile{
 			}
 			completelyCultivated = proofCompleteField(column, row, field);
 			if (completelyCultivated) {
-<<<<<<< main
-				this.setGrowthState3(1, informationBox);
-=======
+				this.setGrowthState3(1);
 				this.setGrowthState3(1);
 				System.out.println("Stage growth of field 3 is now 1: " + this.getGrowthState3());
->>>>>>> 3fe9183 several changes trying to fix the bug
 				setTilesField3False();
 			}
 		}
@@ -401,12 +391,11 @@ public class FieldTile{
 			}
 			completelySowed = proofCompleteField(column, row, field);
 			if (completelySowed) {
-<<<<<<< main
-				this.setGrowthState2(2, informationBox);
-=======
+				this.setGrowthState2(2);
+
 				this.setGrowthState2(2);
 				System.out.println("Stage growth of field 1 is now 2: " + this.getGrowthState2());
->>>>>>> 3fe9183 several changes trying to fix the bug
+
 				setTilesField2False();
 			}
 		}
@@ -418,12 +407,11 @@ public class FieldTile{
 			}
 			completelySowed = proofCompleteField(column, row, field);
 			if (completelySowed) {
-<<<<<<< main
-				this.setGrowthState3(2, informationBox);
-=======
+
+				this.setGrowthState3(2);
+
 				this.setGrowthState3(2);
 				System.out.println("Stage growth of field 1 is now 2: " + this.getGrowthState3());
->>>>>>> 3fe9183 several changes trying to fix the bug
 				setTilesField3False();
 			}
 		}
@@ -470,12 +458,12 @@ public class FieldTile{
 				}
 				completelyHarvested = proofCompleteField(column, row, field);
 				if (completelyHarvested) {
-<<<<<<< main
-					this.setGrowthState2(6, informationBox);
-=======
+
+					this.setGrowthState2(6);
+
 					this.setGrowthState2(6);
 					System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState2());
->>>>>>> 3fe9183 several changes trying to fix the bug
+
 					setTilesField2False();
 				}
 			}
@@ -490,12 +478,11 @@ public class FieldTile{
 				}
 				completelyHarvested = proofCompleteField(column, row, field);
 				if (completelyHarvested) {
-<<<<<<< main
-					this.setGrowthState3(6, informationBox);
-=======
+
+					this.setGrowthState3(6);
+
 					this.setGrowthState3(6);
 					System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState3());
->>>>>>> 3fe9183 several changes trying to fix the bug
 					setTilesField3False();
 				}
 			}
@@ -678,11 +665,8 @@ public class FieldTile{
 			if (gameValue.getCash() >= sellingPrice) {
 				owningField2 = true;
 				gameValue.setCash(gameValue.getCash()-sellingPrice);
-<<<<<<< main
-				setGrowthState2(1, gameScene.getInformationBox());
-=======
 				setGrowthState2(1);
->>>>>>> 3fe9183 several changes trying to fix the bug
+				setGrowthState2(1);
 				for (int i = 914; i < 975; i++) {
 					gameScene.getMatchfield().getImageViewField2(i).setImage(gameScene.getMatchfield().getCorrectImageField(1));
 				}
@@ -693,11 +677,11 @@ public class FieldTile{
 			if (gameValue.getCash() >= sellingPrice) {
 				owningField3 = true;
 				gameValue.setCash(gameValue.getCash()-sellingPrice);
-<<<<<<< main
-				setGrowthState3(1, gameScene.getInformationBox());
-=======
+
 				setGrowthState3(1);
->>>>>>> 3fe9183 several changes trying to fix the bug
+
+				setGrowthState3(1);
+
 				for (int i = 975; i < 1045; i++) {
 					gameScene.getMatchfield().getImageViewField3(i).setImage(gameScene.getMatchfield().getCorrectImageField(1));
 				}

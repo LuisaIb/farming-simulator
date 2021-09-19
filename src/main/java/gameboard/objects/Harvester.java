@@ -1,6 +1,5 @@
 package gameboard.objects;
 
-import exceptions.WrongMachineException;
 import gui.view.InformationBox;
 
 /**
@@ -82,11 +81,8 @@ public class Harvester extends Machine {
 			System.out.println("grain tank fill level of harvester is now: " + grainTankFillLevel);
 			System.out.println("dump truck fill level of dump truck is now: " + dumpTruck.getGrainFillLevel());
 		} else {
-<<<<<<< main
 			System.out.println(grainTankFillLevel);
 			dumpTruck.setGrainFillLevel(dumpTruck.getGrainFillLevel() + grainToFill);
-=======
->>>>>>> 3fe9183 several changes trying to fix the bug
 			grainTankFillLevel = grainTankFillLevel - grainToFill;
 			dumpTruck.setGrainFillLevel(dumpTruck.getGrainFillLevel() + grainToFill);
 		}

@@ -1,6 +1,5 @@
 package gameboard.objects;
 
-import exceptions.WrongMachineException;
 
 /**
  * this class represents the device Cultivator, 
@@ -18,16 +17,5 @@ public class Cultivator extends WorkingDevice {
 		super(x, y, selected);
 	}
 
-	/**
-	 * @param growthState
-	 */
-	public int wrapField(int growthState) throws WrongMachineException{
-		if(growthState == 6) {
-			growthState++;
-		} else {
-			throw new WrongMachineException("You can not use the harvester yet!");
-		}
-		return growthState;
-	}
-
+	
 }
