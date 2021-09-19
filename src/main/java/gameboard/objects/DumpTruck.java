@@ -52,7 +52,8 @@ public class DumpTruck extends WorkingDevice {
 	}
 	
 	/**
-	 * this method unloads the grain from the Dump Truck into the Silo
+	 * this method represents the functionality to unload grain from 
+	 * the Dump Truck into the Silo
 	 */
 	public void unloadToSilo(Silo silo) {
 		int siloFillLevel = silo.getFillLevel();
@@ -67,6 +68,11 @@ public class DumpTruck extends WorkingDevice {
 		}
 	}
 
+	/**
+	 * this method represents the functionality to load grain from the silo
+	 * to the dumpTruck
+	 * @param silo
+	 */
 	public void loadFromSilo(Silo silo) {
 		int grainToFill = grainTankCapacity - grainFillLevel;
 		if (silo.getFillLevel() >= grainToFill) {
@@ -119,10 +125,18 @@ public class DumpTruck extends WorkingDevice {
 		this.grainFillLevel = grainFillLevel;
 	}
 
+	/**
+	 * Getter for grainTankCapacity
+	 * @return grainTankCapacity
+	 */
 	public int getGrainTankCapacity() {
 		return grainTankCapacity;
 	}
 
+	/**
+	 * Setter for grainTankCapacity
+	 * @param grainTankCapacity
+	 */
 	public void setGrainTankCapacity(int grainTankCapacity) {
 		this.grainTankCapacity = grainTankCapacity;
 	}

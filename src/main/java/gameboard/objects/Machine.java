@@ -12,8 +12,8 @@ import javafx.beans.property.SimpleIntegerProperty;
  */
 public class Machine extends MovingObject{
 
-	private final int PETROL_TANK_CAPACITY = 200;
-	//stands for the petrol tank of the machines
+	private final int PETROL_TANK_CAPACITY = 200; // capacity of the tank
+	//amount of litres in the tank:
 	private IntegerProperty petrolTankFillLevel = new SimpleIntegerProperty();
 
 	
@@ -81,6 +81,10 @@ public class Machine extends MovingObject{
 		return "" + petrolTankFillLevel.get();
 	}
 
+	/**
+	 * this method represents the functionality to fuel a machine
+	 * @param gameValue
+	 */
 	public void fillTank(GameValue gameValue){
 		int litresToTank = 200 - petrolTankFillLevel.get();
 		if (gameValue.getCash() >= litresToTank) {

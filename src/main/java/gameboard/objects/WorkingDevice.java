@@ -7,7 +7,8 @@ package gameboard.objects;
  *
  */
 public class WorkingDevice extends MovingObject{
-    /**
+   
+	/**
      * empty constructor of WorkingDevice for starting a new game
      */
     public WorkingDevice(){

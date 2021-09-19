@@ -61,6 +61,11 @@ public class Harvester extends Machine {
 	}
 
 
+	/**
+	 * Setter for grainTankFillLevel
+	 * @param grainTankFillLevel
+	 * @param informationBox
+	 */
 	public void setGrainTankFillLevel(int grainTankFillLevel, InformationBox informationBox) {
 		this.grainTankFillLevel = grainTankFillLevel;
 		if (grainTankFillLevel == GRAIN_TANK_CAPACITY) {
@@ -68,11 +73,21 @@ public class Harvester extends Machine {
 		}
 	}
 
+	/**
+	 * Getter for GRAIN_TANK_CAPACITY
+	 * @return GRAIN_TANK_CAPACITY
+	 */
 	public int getGRAIN_TANK_CAPACITY(){
 		return GRAIN_TANK_CAPACITY;
 	}
 
 
+	/**
+	 * this method represents the functionality of the harvester to unload
+	 * grain to the dump truck
+	 * @param harvester
+	 * @param dumpTruck
+	 */
 	public void unloadToDumpTruck(Harvester harvester, DumpTruck dumpTruck){
 		int grainToFill = dumpTruck.getGrainTankCapacity() - dumpTruck.getGrainFillLevel();
 		System.out.println(grainToFill);

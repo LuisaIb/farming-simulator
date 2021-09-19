@@ -15,9 +15,9 @@ import java.util.HashMap;
  */
 public class FieldTile{
 	
-	private int sellingPrice;
-	private int harvest;
-	private boolean owningField1;
+	private int sellingPrice; //the amount of money you get for selling the harvest
+	private int harvest; //the amount of grain you get per part of the field
+	private boolean owningField1; //boolean variable whether you own this field or not
 	private boolean owningField2;
 	private boolean owningField3;
 
