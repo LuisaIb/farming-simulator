@@ -49,7 +49,7 @@ public class Game {
         	tractor = new Tractor();
 	        harvester = new Harvester();
 	        cultivator = new Cultivator();
-	        dumpTruck = new DumpTruck();
+	        dumpTruck = new DumpTruck(lod);
 	        seedDrill = new SeedDrill();
 	        fieldTile = new FieldTile(lod);
 	        gameValue = new GameValue(lod);

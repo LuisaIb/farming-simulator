@@ -116,12 +116,15 @@ public class FieldTile{
 		// if else statement without timer for growing
 		if(growthState == 5) {
 			informationBox.getNewsField().setText("The first field is ready to harvest!");
+			System.out.println("The first field is ready to harvest!");
 		}else if(growthState == 6){
 			informationBox.getNewsField().setText("The first field is ready to get cultivated!");
+			System.out.println("The first field is ready to get cultivated!");
 		}else if(growthState == 1){
 			informationBox.getNewsField().setText("The first field is ready for sowing!");
+			System.out.println("The first field is ready for sowing!");
 		}else {
-			informationBox.getNewsField().setText("The first field is growing now!");
+			System.out.println("The first field is growing now!");
 		}
 	}
 	
@@ -137,16 +140,17 @@ public class FieldTile{
 	 * this method sets the growthState of the second field
 	 * @param growthState2
 	 */
-	public void setGrowthState2(int growthState2, InformationBox informationBox) {
+	public void setGrowthState2(int growthState2) {
 		this.growthState2 = growthState2;
 		if(growthState2 == 5) {
-			informationBox.getNewsField().setText("The second field is ready to harvest!");
+			System.out.println("The second field is ready to harvest!");
+			//timer.stop
 		}else if(growthState2 == 6){
-			informationBox.getNewsField().setText("The second field is ready to get cultivated!");
+			System.out.println("The second field is ready to get cultivated!");
 		}else if(growthState2 == 1){
-			informationBox.getNewsField().setText("The second field is ready for sowing!");
+			System.out.println("The second field is ready for sowing!");
 		}else {
-			informationBox.getNewsField().setText("The second field is growing now!");
+			System.out.println("The second field is growing now!");
 		}
 	}
 
@@ -162,17 +166,21 @@ public class FieldTile{
 	 * this method sets the growthState of the third field
 	 * @param growthState3
 	 */
-	public void setGrowthState3(int growthState3, InformationBox informationBox) {
+	public void setGrowthState3(int growthState3) {
 		this.growthState3 = growthState3;
 		if(growthState3 == 5) {
+<<<<<<< main
 			informationBox.getNewsField().setText("The third field is ready to harvest!");
+=======
+			System.out.println("The third field is ready to harvest!");
+>>>>>>> 3fe9183 several changes trying to fix the bug
 			//timer.stop
 		}else if(growthState3 == 6){
-			informationBox.getNewsField().setText("The third field is ready to get cultivated!");
+			System.out.println("The third field is ready to get cultivated!");
 		}else if(growthState3 == 1){
-			informationBox.getNewsField().setText("The third field is ready for sowing!");
+			System.out.println("The third field is ready for sowing!");
 		}else {
-			informationBox.getNewsField().setText("The third field is growing now!");
+			System.out.println("The third field is growing now!");
 		}
 	}
 	
@@ -334,7 +342,12 @@ public class FieldTile{
 			}
 			completelyCultivated = proofCompleteField(column, row, field);
 			if (completelyCultivated) {
+<<<<<<< main
 				this.setGrowthState2(1, informationBox);
+=======
+				this.setGrowthState2(1);
+				System.out.println("Stage growth of field 2 is now 1: " + this.getGrowthState2());
+>>>>>>> 3fe9183 several changes trying to fix the bug
 				setTilesField2False();
 			}
 		}
@@ -346,7 +359,12 @@ public class FieldTile{
 			}
 			completelyCultivated = proofCompleteField(column, row, field);
 			if (completelyCultivated) {
+<<<<<<< main
 				this.setGrowthState3(1, informationBox);
+=======
+				this.setGrowthState3(1);
+				System.out.println("Stage growth of field 3 is now 1: " + this.getGrowthState3());
+>>>>>>> 3fe9183 several changes trying to fix the bug
 				setTilesField3False();
 			}
 		}
@@ -383,7 +401,12 @@ public class FieldTile{
 			}
 			completelySowed = proofCompleteField(column, row, field);
 			if (completelySowed) {
+<<<<<<< main
 				this.setGrowthState2(2, informationBox);
+=======
+				this.setGrowthState2(2);
+				System.out.println("Stage growth of field 1 is now 2: " + this.getGrowthState2());
+>>>>>>> 3fe9183 several changes trying to fix the bug
 				setTilesField2False();
 			}
 		}
@@ -395,7 +418,12 @@ public class FieldTile{
 			}
 			completelySowed = proofCompleteField(column, row, field);
 			if (completelySowed) {
+<<<<<<< main
 				this.setGrowthState3(2, informationBox);
+=======
+				this.setGrowthState3(2);
+				System.out.println("Stage growth of field 1 is now 2: " + this.getGrowthState3());
+>>>>>>> 3fe9183 several changes trying to fix the bug
 				setTilesField3False();
 			}
 		}
@@ -442,7 +470,12 @@ public class FieldTile{
 				}
 				completelyHarvested = proofCompleteField(column, row, field);
 				if (completelyHarvested) {
+<<<<<<< main
 					this.setGrowthState2(6, informationBox);
+=======
+					this.setGrowthState2(6);
+					System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState2());
+>>>>>>> 3fe9183 several changes trying to fix the bug
 					setTilesField2False();
 				}
 			}
@@ -457,7 +490,12 @@ public class FieldTile{
 				}
 				completelyHarvested = proofCompleteField(column, row, field);
 				if (completelyHarvested) {
+<<<<<<< main
 					this.setGrowthState3(6, informationBox);
+=======
+					this.setGrowthState3(6);
+					System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState3());
+>>>>>>> 3fe9183 several changes trying to fix the bug
 					setTilesField3False();
 				}
 			}
@@ -640,7 +678,11 @@ public class FieldTile{
 			if (gameValue.getCash() >= sellingPrice) {
 				owningField2 = true;
 				gameValue.setCash(gameValue.getCash()-sellingPrice);
+<<<<<<< main
 				setGrowthState2(1, gameScene.getInformationBox());
+=======
+				setGrowthState2(1);
+>>>>>>> 3fe9183 several changes trying to fix the bug
 				for (int i = 914; i < 975; i++) {
 					gameScene.getMatchfield().getImageViewField2(i).setImage(gameScene.getMatchfield().getCorrectImageField(1));
 				}
@@ -651,7 +693,11 @@ public class FieldTile{
 			if (gameValue.getCash() >= sellingPrice) {
 				owningField3 = true;
 				gameValue.setCash(gameValue.getCash()-sellingPrice);
+<<<<<<< main
 				setGrowthState3(1, gameScene.getInformationBox());
+=======
+				setGrowthState3(1);
+>>>>>>> 3fe9183 several changes trying to fix the bug
 				for (int i = 975; i < 1045; i++) {
 					gameScene.getMatchfield().getImageViewField3(i).setImage(gameScene.getMatchfield().getCorrectImageField(1));
 				}
