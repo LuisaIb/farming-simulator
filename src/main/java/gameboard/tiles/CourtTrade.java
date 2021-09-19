@@ -10,9 +10,13 @@ public class CourtTrade extends TileWithBuilding{
     private double sellingPrice;
 
 
+    /**
+     * Empty Constructor of CourtTrade for reloading the game.
+     */
     public CourtTrade() {
     	super();
     }
+    
     /**
      * Constructor of CourtTrade
      * @param level

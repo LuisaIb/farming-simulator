@@ -13,7 +13,7 @@ public class Silo extends TileWithBuilding{
 	private int capacity; // just inspiration
 
 	/**
-	 * Empty constructor for loading.
+	 * Empty constructor of Silo for loading the game.
 	 */
 	public Silo(){
 
@@ -21,7 +21,7 @@ public class Silo extends TileWithBuilding{
 
 
 	/**
-	 * This empty constructor will be used for starting a new game.
+	 * Empty constructor of Silo for starting a new game.
 	 */
 	public Silo(int lod) {
 		if (lod == 1) {
@@ -33,14 +33,6 @@ public class Silo extends TileWithBuilding{
 		}
 		fillLevel.set(0);
 	}
-	
-	/**
-	 * Constructor of the Silo for reloading / continuing the game 
-	 * @param fillLevel
-	 */
-//	public Silo(int fillLevel) {
-//		this.fillLevel.set(fillLevel);
-//	}
 
 	/**
 	 * Getter of capacity 
@@ -66,22 +58,28 @@ public class Silo extends TileWithBuilding{
 		return "" + fillLevel.get();
 	}
 
+	/**
+	 * Getter for fillLevel 
+	 * @return
+	 */
 	public IntegerProperty capacity(){
 		return fillLevel;
 	}
 
+	/**
+	 * Getter for capacity
+	 * @return
+	 */
 	public int getCapacity() {
 		return capacity;
 	}
 
+	/**
+	 * Setter for capacity
+	 * @param capacity
+	 */
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}
 
-	/*
-	 * to be implemented
-	 * final variable for full capacity
-	 * throw exception if no capacity left
-	 * capacity = 100? or more?
-	 */
 }

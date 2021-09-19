@@ -1,5 +1,6 @@
 /**
- * this package deals with the single tiles on the gameboard
+ * this package deals with the single tiles and their properties / functionalities
+ * on the gameboard
  * @author Isabel
  *
  */
