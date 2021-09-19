@@ -3,27 +3,39 @@ package gui.controller;
 import gameboard.GameValue;
 import gameboard.tiles.FieldTile;
 import gui.view.GameScene;
-import gui.view.InformationBox;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+/**
+ * This class implements a timer that enables the player to move around, counts the days and makes the fields grow with
+ * timer. To move around it proofs, if right, left, up or down is pressed and as long one of these directions is pressed
+ * the moving object moves around. The pressed booleans are set in the gameScene.
+ */
 public class GameController {
     private AnimationTimer gameTimer;
+    // booleans that are needed for moving around
     private boolean rightPressed;
     private boolean leftPressed;
     private boolean upPressed;
     private boolean downPressed;
+    // field counter for growing
     private int fieldCounter1 = 0;
     private int fieldCounter2 = 0;
     private int fieldCounter3 = 0;
-    private int growthStageField1;
-    private int growthStageField2;
-    private int growthSTageField3;
+    private int growthStateField1;
+    private int growthStateField2;
+    private int growthStateField3;
+    // counter for the day in the game
     private int dayCounter = 0;
 
-
+    /**
+     * This method sets right, left, up or down pressed if the correct key on the keyboard is pressed.
+     *
+     * @param keyEvent the key that is pressed on the keyboard
+     */
     public void setBooleansPressed(KeyEvent keyEvent){
+        // checking, if D for right, A for left, W for up or S for down is pressed
         if (keyEvent.getCode().equals(KeyCode.D)) {
             rightPressed = true;
         } else if (keyEvent.getCode().equals(KeyCode.A)){
@@ -35,7 +47,13 @@ public class GameController {
         }
     }
 
+    /**
+     * This method sets right, left up or down released if the key on the keyboard is released.
+     *
+     * @param keyEvent the key on the keyboard that is released
+     */
     public void setBooleansReleased(KeyEvent keyEvent){
+        // setting the booleans to false for stopping to move around
         if (keyEvent.getCode().equals(KeyCode.D)) {
             rightPressed = false;
         } else if (keyEvent.getCode().equals(KeyCode.A)){
@@ -119,26 +137,45 @@ public class GameController {
         return downPressed;
     }
 
+    /**
+     * This method implements the timer and with every 100 milliseconds it calls the methods moveObject(), proofAction(),
+     * and proofFieldAction() from the class movingObjectController. It also calls the methods dayCounter, that
+     * increases the day, and proofFieldCounter() that makes the fields grow.
+     *
+     * @param gameScene the gameScene of the actual game
+     * @param fieldTile the fieldTile of the actual game
+     * @param gameValue the gameValue of the actual game
+     * @param movingObjectController the movingObjectController of the actual game
+     */
     public void initGameLoop(GameScene gameScene, FieldTile fieldTile, GameValue gameValue,
                              MovingObjectController movingObjectController){
         gameTimer = new AnimationTimer() {
+            // local variable to proof the last update in the timer
             private long lastUpdate = 0;
             @Override
             public void handle(long now) {
                 if (now - lastUpdate >= 100_000_000) {
+                    // methods for moving around, proofing actions when moving around and to process the fields
                     movingObjectController.moveObject();
                     movingObjectController.proofAction();
                     movingObjectController.proofFieldAction();
-                    lastUpdate = now;
-                    DayCounter(gameValue);
+                    // methods for the day and growing of the fields
+                    dayCounter(gameValue);
                     proofFieldCounter(gameScene, fieldTile);
+                    lastUpdate = now;
                 }
             }
         };
         gameTimer.start();
     }
 
-    private void DayCounter(GameValue gameValue) {
+    /**
+     * Everytime this method is called it increments the int dayCounter and if dayCounter reaches 100 it increases the
+     * day.
+     *
+     * @param gameValue the gameValue of the actual game
+     */
+    private void dayCounter(GameValue gameValue) {
         dayCounter++;
         if (dayCounter == 100) {
             gameValue.setDay(gameValue.getDay()+1);
@@ -147,48 +184,58 @@ public class GameController {
         }
     }
 
+    /**
+     * This method proofs, if the state of growth of all three fields. If it is bigger than one it starts a counter
+     * and every time the method is called it increments it. If the counter reaches 500 it
+     *
+     * @param gameScene the gameScene of the actual game
+     * @param fieldTile the fieldTile of the actual game
+     */
     private void proofFieldCounter(GameScene gameScene, FieldTile fieldTile){
-        growthStageField1 = fieldTile.getGrowthState();
-        growthStageField2 = fieldTile.getGrowthState2();
-        growthSTageField3 = fieldTile.getGrowthState3();
+        growthStateField1 = fieldTile.getGrowthState();
+        growthStateField2 = fieldTile.getGrowthState2();
+        growthStateField3 = fieldTile.getGrowthState3();
 
-            if (growthStageField1 > 1 && growthStageField1 < 5) {
-                fieldCounter1++;
-                if (fieldCounter1 == 50) {
-                    growthStageField1++;
-                    fieldTile.setGrowthState(growthStageField1, gameScene.getInformationBox());
-                    for (int i = 855; i < 915; i++) {
-                        gameScene.getMatchfield().getImageViewField1(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthStageField1));
-                    }
-                    fieldCounter1 = 0;
+        // growing of field 1
+        if (growthStateField1 > 1 && growthStateField1 < 5) {
+            fieldCounter1++;
+            if (fieldCounter1 == 500) {
+                growthStateField1++;
+                fieldTile.setGrowthState(growthStateField1, gameScene.getInformationBox());
+                // indexes of the image on the grid pane
+                for (int i = 855; i < 915; i++) {
+                    gameScene.getMatchfield().getImageViewField1(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthStateField1));
                 }
-
+                fieldCounter1 = 0;
             }
+        }
 
-            if (growthStageField2 > 1 && growthStageField2 < 5) {
-                fieldCounter2++;
-                if (fieldCounter2 == 50) {
-                    growthStageField2++;
-                    fieldTile.setGrowthState2(growthStageField2);
-                    for (int i = 915; i < 975; i++) {
-                        gameScene.getMatchfield().getImageViewField2(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthStageField2));
-                    }
-                    fieldCounter2 = 0;
+        // growing of field 2
+        if (growthStateField2 > 1 && growthStateField2 < 5) {
+            fieldCounter2++;
+            if (fieldCounter2 == 500) {
+                growthStateField2++;
+                fieldTile.setGrowthState2(growthStateField2);
+                // indexes of the image on the grid pane
+                for (int i = 915; i < 975; i++) {
+                    gameScene.getMatchfield().getImageViewField2(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthStateField2));
                 }
+                fieldCounter2 = 0;
             }
+        }
 
-
-            if (growthSTageField3 > 1 && growthSTageField3 < 5) {
-                fieldCounter3++;
-                if (fieldCounter3 == 50) {
-                    growthSTageField3++;
-                    fieldTile.setGrowthState3(growthSTageField3);
-                    for (int i = 975; i < 1045; i++) {
-                        gameScene.getMatchfield().getImageViewField3(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthSTageField3));
-                    }
-                    fieldCounter3 = 0;
+        // growing of field 3
+        if (growthStateField3 > 1 && growthStateField3 < 5) {
+            fieldCounter3++;
+            if (fieldCounter3 == 500) {
+                growthStateField3++;
+                fieldTile.setGrowthState3(growthStateField3);
+                // indexes of the image on the grid pane
+                for (int i = 975; i < 1045; i++) {
+                    gameScene.getMatchfield().getImageViewField3(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthStateField3));
                 }
+                fieldCounter3 = 0;
             }
+        }
     }
-
 }
