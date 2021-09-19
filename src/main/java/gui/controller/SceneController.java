@@ -4,6 +4,7 @@ import gui.view.DifficultyScene;
 import gui.view.GameScene;
 import gui.view.HelpScene;
 import gui.view.MenuScene;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -96,11 +97,11 @@ public class SceneController {
     };
 
     /**
-     * This method ends the game by closing the stage.
+     * This method ends the game.
      */
     public EventHandler<Event> endGame = event -> {
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.close();
+        Platform.exit();
+        System.exit(0);
     };
 
 

@@ -5,52 +5,63 @@ import gameboard.tiles.CourtTrade;
 import gameboard.tiles.FieldTile;
 import datastorage.ObjectToJsonb;
 import gameboard.GameValue;
-import gui.view.ViewManager;
 import javafx.application.Platform;
-import javafx.scene.Node;
-import javafx.stage.Stage;
 import simulator.LevelOfDifficulty;
 import gameboard.tiles.Silo;
 import gui.view.GameScene;
-
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This class implements the functionality of the save & end button of the informationBox of the gameScene. It saves the
+ * game to a text file with an object of the class ObjectToJsonb and the method toSerialize(). After saving it waits for
+ * two seconds and then ends the game.
+ *
+ * @author Isabel
+ * @author Judith
+ */
 public class SavingController {
 
-	 /**
-	 * @param gameScene
-	 * @param gameValue
-	 * @param farmer
-	 * @param tractor
-	 * @param harvester
-	 * @param cultivator
-	 * @param dumpTruck
-	 * @param seedDrill
-	 * @param fieldTile
-	 * @param silo
-	 * @param levelOfDifficulty
-	 * @param courtTrade
+	/**
+	 * This method implements the functionality of the save & end button. It sets the game to sleep for two seconds
+	 * before closing it.
+	 *
+	 * @param gameScene the gameScene object of the actual game
+	 * @param gameValue the gameValue object of the actual game
+	 * @param farmer the farmer object of the actual game
+	 * @param tractor the tractor object of the actual game
+	 * @param harvester the harvester object of the actual game
+	 * @param cultivator the cultivator object of the actual game
+	 * @param dumpTruck the dumpTruck object of the actual game
+	 * @param seedDrill the seedDrill object of the actual game
+	 * @param fieldTile the fieldTile object of the actual game
+	 * @param silo the silo object of the actual game
+	 * @param levelOfDifficulty the levelOfDifficulty object of the actual game
+	 * @param courtTrade the courtTrade object of the actual game
+	 * @param movingObject the movingObject object of the actual game
 	 */
 	public void createFunctionality(GameScene gameScene, GameValue gameValue, Farmer farmer, Tractor tractor,
 									Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck,
 									SeedDrill seedDrill, FieldTile fieldTile, Silo silo,
 									LevelOfDifficulty levelOfDifficulty, CourtTrade courtTrade, MovingObject movingObject){
-	        ObjectToJsonb otj = new ObjectToJsonb();
+		ObjectToJsonb otj = new ObjectToJsonb();
+        gameScene.getInformationBox().getMenuButton().setOnMouseClicked(mouseEvent -> {
+      	otj.toSerialize(gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile, silo,
+				levelOfDifficulty, courtTrade, movingObject);
+      	// sleep for two seconds so the game doesn't close immediately after clicking on the button end & save
+      	try {
+      		TimeUnit.SECONDS.sleep(2);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			close();
+	    });
+	}
 
-	        gameScene.getInformationBox().getMenuButton().setOnMouseClicked(mouseEvent -> {
-	        	otj.toSerialize(gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile, silo, levelOfDifficulty, courtTrade, movingObject);
-				gameScene.getInformationBox().getNewsField().setText("game saved");
-			try {
-					TimeUnit.SECONDS.sleep(5);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				close();
-	        });
-	    }
-	    private void close(){
-			Platform.exit();
-			System.exit(0);
-		}
-
+	/**
+	 * This method closes the program.
+	 */
+	private void close(){
+		Platform.exit();
+		System.exit(0);
+	}
 }
