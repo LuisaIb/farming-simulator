@@ -1,7 +1,5 @@
 package gameboard.objects;
 
-import exceptions.WrongMachineException;
-
 /**
  * this class represents the device Cultivator, 
  * which is supposed to wrap a field when it's read to do so
@@ -21,11 +19,11 @@ public class Cultivator extends WorkingDevice {
 	/**
 	 * @param growthState
 	 */
-	public int wrapField(int growthState) throws WrongMachineException{
+	public int wrapField(int growthState){
 		if(growthState == 6) {
 			growthState++;
 		} else {
-			throw new WrongMachineException("You can not use the harvester yet!");
+			
 		}
 		return growthState;
 	}

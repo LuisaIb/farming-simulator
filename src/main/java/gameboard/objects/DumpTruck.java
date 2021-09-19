@@ -2,18 +2,21 @@ package gameboard.objects;
 
 import gameboard.GameValue;
 import gameboard.tiles.Silo;
+import simulator.LevelOfDifficulty;
 
 /**
- * This class implements the properties and functionalities of a DumpTruck.
+ * This class represents the properties and functionalities of a DumpTruck.
  * @author Luisaibele
  *
  */
 public class DumpTruck extends WorkingDevice {
 	
-	private int grainTankCapacity;
-	private int grainFillLevel;
+	private int grainTankCapacity; //how much grain can be in the dumpTruck?
+	private int grainFillLevel; //how much grain is in the dumpTruck?
 	private Silo silo = new Silo();
 	private GameValue gv = new GameValue();
+	LevelOfDifficulty lofd = new LevelOfDifficulty();
+
 	
 	/**
 	 * the constructor sets the harvest fill level of the Dump Truck
@@ -27,8 +30,9 @@ public class DumpTruck extends WorkingDevice {
 	/**
 	 * This constructor will be used for starting a new game.
 	 */
-	public DumpTruck(int lod) {
+	public DumpTruck() {
 		super(18, 7, false);
+		int lod = lofd.getLevel();
 		grainFillLevel = 0;
 		if (lod == 1) {
 			grainTankCapacity = 180;
@@ -90,30 +94,41 @@ public class DumpTruck extends WorkingDevice {
 	}
 
 	/**
-	 * @return the silo
+	 * Getter for silo object
+	 * @return silo object
 	 */
 	public Silo getSilo() {
 		return silo;
 	}
 
 	/**
-	 * @param silo the silo to set
+	 * Setter for silo object
+	 * @param silo object
 	 */
 	public void setSilo(Silo silo) {
 		this.silo = silo;
 	}
 
 	/**
+	 * Setter for grainFillLevel
 	 * @param grainFillLevel the grainFillLevel to set
 	 */
 	public void setGrainFillLevel(int grainFillLevel) {
 		this.grainFillLevel = grainFillLevel;
 	}
 
+	/**
+	 * Getter for grainTankCapacity
+	 * @return grainTankCapacity
+	 */
 	public int getGrainTankCapacity() {
 		return grainTankCapacity;
 	}
 
+	/**
+	 * Setter for grainTankCapacity
+	 * @param grainTankCapacity
+	 */
 	public void setGrainTankCapacity(int grainTankCapacity) {
 		this.grainTankCapacity = grainTankCapacity;
 	}
