@@ -8,7 +8,8 @@ import gui.view.Matchfield;
 import java.util.HashMap;
 
 /**
- * This class represents a tile, which is a field with its several properties
+ * This class represents a tile, which is part of one of the three fields, with its several properties
+ * and functionalities (i. e. to grow))
  * @author Luisaibele
  *
  */
@@ -40,6 +41,10 @@ public class FieldTile{
 	 * growthstate = 5 -> erntereif
 	 * growthstate = 6 -> abgeerntet
 	 * 
+	 */
+	
+	/**
+	 * Empty Constructor of FieldTile for reloading the game
 	 */
 	public FieldTile() {
 		super();
@@ -109,7 +114,7 @@ public class FieldTile{
 	}
 
 	/**
-	 * this method sets the growthState of the first field
+	 *  Empty Setter of growthState for reloading the game
 	 * @param growthState
 	 */
 	public void setGrowthState(int growthState) {
@@ -118,23 +123,19 @@ public class FieldTile{
 
 
 	/**
-	 * this method sets the growthState of the first field
+	 *  Setter of growthState for the first field
 	 * @param growthState
 	 */
 	public void setGrowthState(int growthState, InformationBox informationBox) {
 		this.growthState = growthState;
-		// if else statement without timer for growing
 		if(growthState == 5) {
-			informationBox.getNewsField().setText("The first field is ready to harvest!");
-			System.out.println("The first field is ready to harvest!");
+			informationBox.getNewsField().setText("The first field is ready to harvest!");			
 		}else if(growthState == 6){
-			informationBox.getNewsField().setText("The first field is ready to get cultivated!");
-			System.out.println("The first field is ready to get cultivated!");
+			informationBox.getNewsField().setText("The first field is ready to get cultivated!");			
 		}else if(growthState == 1){
-			informationBox.getNewsField().setText("The first field is ready for sowing!");
-			System.out.println("The first field is ready for sowing!");
+			informationBox.getNewsField().setText("The first field is ready for sowing!");			
 		}else {
-			System.out.println("The first field is growing now!");
+			informationBox.getNewsField().setText("The first field is growing now!");
 		}
 	}
 	
@@ -147,20 +148,27 @@ public class FieldTile{
 	}
 
 	/**
-	 * this method sets the growthState of the second field
+	 * Empty Setter of growthState2 for reloading the game
 	 * @param growthState2
 	 */
 	public void setGrowthState2(int growthState2) {
 		this.growthState2 = growthState2;
+	}
+
+	/**
+	 *  Setter of growthState2 for the second field
+	 * @param growthState2
+	 */
+	public void setGrowthState2(int growthState2, InformationBox informationBox) {
+		this.growthState2 = growthState2;
 		if(growthState2 == 5) {
-			System.out.println("The second field is ready to harvest!");
-			//timer.stop
+			informationBox.getNewsField().setText("The second field is ready to harvest!");
 		}else if(growthState2 == 6){
-			System.out.println("The second field is ready to get cultivated!");
+			informationBox.getNewsField().setText("The second field is ready to get cultivated!");
 		}else if(growthState2 == 1){
-			System.out.println("The second field is ready for sowing!");
+			informationBox.getNewsField().setText("The second field is ready for sowing!");
 		}else {
-			System.out.println("The second field is growing now!");
+			informationBox.getNewsField().setText("The second field is growing now!");
 		}
 	}
 
@@ -171,22 +179,29 @@ public class FieldTile{
 	public int getGrowthState3() {
 		return growthState3;
 	}
-
+	
 	/**
-	 * this method sets the growthState of the third field
+	 *  Empty Setter of growthState3 for reloading the game
 	 * @param growthState3
 	 */
 	public void setGrowthState3(int growthState3) {
 		this.growthState3 = growthState3;
-		if(growthState3 == 5) {
-			
-			System.out.println("The third field is ready to harvest!");
+	}
+
+	/**
+	 * Setter of growthState3 for the third field
+	 * @param growthState3
+	 */
+	public void setGrowthState3(int growthState3, InformationBox informationBox) {
+		this.growthState3 = growthState3;
+		if(growthState3 == 5) {			
+			informationBox.getNewsField().setText("The third field is ready to harvest!");
 		}else if(growthState3 == 6){
-			System.out.println("The third field is ready to get cultivated!");
+			informationBox.getNewsField().setText("The third field is ready to get cultivated!");
 		}else if(growthState3 == 1){
-			System.out.println("The third field is ready for sowing!");
+			informationBox.getNewsField().setText("The third field is ready for sowing!");
 		}else {
-			System.out.println("The third field is growing now!");
+			informationBox.getNewsField().setText("The third field is growing now!");
 		}
 	}
 
@@ -623,46 +638,92 @@ public class FieldTile{
 	}
 
 
+	/**
+	 * Getter for owningField1
+	 * @return owningField1
+	 */
 	public boolean isOwningField1() {
 		return owningField1;
 	}
 
+	/**
+	 * Getter for owningField2
+	 * @return owningField2
+	 */
 	public boolean isOwningField2() {
 		return owningField2;
 	}
 
+	/**
+	 * Getter for owningField3
+	 * @return owningField3
+	 */
 	public boolean isOwningField3() {
 		return owningField3;
 	}
 
+	/**
+	 * Setter for owningField1
+	 * @param owningField1
+	 */
 	public void setOwningField1(boolean owningField1) {
 		this.owningField1 = owningField1;
 	}
 
+	/**
+	 * Setter for owningField2
+	 * @param owningField2
+	 */
 	public void setOwningField2(boolean owningField2) {
 		this.owningField2 = owningField2;
 	}
 
+	/**
+	 * Setter for owningField3
+	 * @param owningField3
+	 */
 	public void setOwningField3(boolean owningField3) {
 		this.owningField3 = owningField3;
 	}
 
+	/**
+	 * Getter for harvest
+	 * @return harvest
+	 */
 	public int getHarvest() {
 		return harvest;
 	}
 
+	/**
+	 * Setter for harvest
+	 * @param harvest
+	 */
 	public void setHarvest(int harvest) {
 		this.harvest = harvest;
 	}
 
+	/**
+	 * Getter for sellingPrice
+	 * @return sellingPrice
+	 */
 	public int getSellingPrice() {
 		return sellingPrice;
 	}
 
+	/**
+	 * Setter for sellingPrice
+	 * @param sellingPrice
+	 */
 	public void setSellingPrice(int sellingPrice) {
 		this.sellingPrice = sellingPrice;
 	}
 
+	/**
+	 * this method represents the functionality of the farmer to buy additional fields to the first field 
+	 * in the course of the game
+	 * @param gameValue
+	 * @param gameScene
+	 */
 	public void buyField(GameValue gameValue, GameScene gameScene){
 		if (!owningField2) {
 			if (gameValue.getCash() >= sellingPrice) {
