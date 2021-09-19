@@ -23,9 +23,6 @@ public class GameController {
     private int fieldCounter1 = 0;
     private int fieldCounter2 = 0;
     private int fieldCounter3 = 0;
-    private int growthStateField1;
-    private int growthStateField2;
-    private int growthStateField3;
     // counter for the day in the game
     private int dayCounter = 0;
 
@@ -192,9 +189,9 @@ public class GameController {
      * @param fieldTile the fieldTile of the actual game
      */
     private void proofFieldCounter(GameScene gameScene, FieldTile fieldTile){
-        growthStateField1 = fieldTile.getGrowthState();
-        growthStateField2 = fieldTile.getGrowthState2();
-        growthStateField3 = fieldTile.getGrowthState3();
+        int growthStateField1 = fieldTile.getGrowthState();
+        int growthStateField2 = fieldTile.getGrowthState2();
+        int growthStateField3 = fieldTile.getGrowthState3();
 
         // growing of field 1
         if (growthStateField1 > 1 && growthStateField1 < 5) {
