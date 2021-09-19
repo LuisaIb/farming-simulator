@@ -10,6 +10,10 @@ import gui.view.GameScene;
 import gui.view.Matchfield;
 import gui.view.SideControlPane;
 
+/**
+ * This class implements all the actions that are possible when moving around e. g. selecting a vehicle, exiting and
+ * entering or unload grain to the silo or sell it at the court trade.
+ */
 public class MovingObjectFunctionalityController {
     private GameScene gameScene;
     private Matchfield matchfield;

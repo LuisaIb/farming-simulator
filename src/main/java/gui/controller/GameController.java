@@ -11,6 +11,8 @@ import javafx.scene.input.KeyEvent;
  * This class implements a timer that enables the player to move around, counts the days and makes the fields grow with
  * timer. To move around it proofs, if right, left, up or down is pressed and as long one of these directions is pressed
  * the moving object moves around. The pressed booleans are set in the gameScene.
+ *
+ * @author Judith
  */
 public class GameController {
     private AnimationTimer gameTimer;
@@ -139,9 +141,9 @@ public class GameController {
      * and proofFieldAction() from the class movingObjectController. It also calls the methods dayCounter, that
      * increases the day, and proofFieldCounter() that makes the fields grow.
      *
-     * @param gameScene the gameScene of the actual game
-     * @param fieldTile the fieldTile of the actual game
-     * @param gameValue the gameValue of the actual game
+     * @param gameScene the gameScene object of the actual game
+     * @param fieldTile the fieldTile object of the actual game
+     * @param gameValue the gameValue object of the actual game
      * @param movingObjectController the movingObjectController of the actual game
      */
     public void initGameLoop(GameScene gameScene, FieldTile fieldTile, GameValue gameValue,
@@ -170,7 +172,7 @@ public class GameController {
      * Everytime this method is called it increments the int dayCounter and if dayCounter reaches 100 it increases the
      * day.
      *
-     * @param gameValue the gameValue of the actual game
+     * @param gameValue the gameValue object of the actual game
      */
     private void dayCounter(GameValue gameValue) {
         dayCounter++;
@@ -185,8 +187,8 @@ public class GameController {
      * This method proofs, if the state of growth of all three fields. If it is bigger than one it starts a counter
      * and every time the method is called it increments it. If the counter reaches 500 it
      *
-     * @param gameScene the gameScene of the actual game
-     * @param fieldTile the fieldTile of the actual game
+     * @param gameScene the gameScene object of the actual game
+     * @param fieldTile the fieldTile object of the actual game
      */
     private void proofFieldCounter(GameScene gameScene, FieldTile fieldTile){
         int growthStateField1 = fieldTile.getGrowthState();

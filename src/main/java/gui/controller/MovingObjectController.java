@@ -11,7 +11,13 @@ import gui.view.InformationBox;
 import gui.view.Matchfield;
 import gui.view.SideControlPane;
 
+/**
+ * This class implements some methods to move around and to process the fields.
+ *
+ * @author Judith
+ */
 public class MovingObjectController {
+    // declaring some objects of the actual game that are initialized in the constructor
     private GameScene gameScene;
     private MovingObject movingObject;
     private GameController gameController;
@@ -32,17 +38,22 @@ public class MovingObjectController {
 
 
     /**
-     * @param gameScene
-     * @param movingObject
-     * @param gameController
-     * @param gameValue
-     * @param farmer
-     * @param tractor
-     * @param harvester
-     * @param cultivator
-     * @param dumpTruck
-     * @param seedDrill
-     * @param fieldTile
+     * Constructor of the class MovingObjectController that initializes some objects and by calling the method
+     * initializeFunctionaliy() an object of the class MovingObjectFunctionalityController to make some actions possible.
+     *
+     * @param gameScene the gameScene object of the actual game
+     * @param movingObject the movingObject object of the actual game
+     * @param gameController the gameController object of the actual game
+     * @param gameValue the gameValue object of the actual game
+     * @param farmer the farmer object of the actual game
+     * @param tractor the tractor object of the actual game
+     * @param harvester the harvester object of the actual game
+     * @param cultivator the cultivator object of the actual game
+     * @param dumpTruck the dumpTruck object of the actual game
+     * @param seedDrill the seedDrill objet of the actual game
+     * @param fieldTile the fieldTile object of the actual game
+     * @param silo the silo object of the actual game
+     * @param courtTrade the courtTrade object of the actual game
      */
     public MovingObjectController(GameScene gameScene, MovingObject movingObject, GameController gameController,
                                   GameValue gameValue, Farmer farmer, Tractor tractor, Harvester harvester,
@@ -68,7 +79,8 @@ public class MovingObjectController {
     }
 
     /**
-     * 
+     * This method initializes an object of the class MovingObjectFunctionalityController and hands the constructor
+     * the gameScene object of the actual game.
      */
     private void initializeFunctionality(){
         mofc = new MovingObjectFunctionalityController(gameScene);
@@ -76,9 +88,11 @@ public class MovingObjectController {
 
 
     /**
-     * 
+     * This method proofs if only one of the directions right, left, up and down is pressed. It calls the method
+     * move() and hands it a character depending on the direction in which the moving object is moving.
      */
     public void moveObject() {
+        // checking if only one of the directions is pressed because the moving object can not move diagonally
         if (gameController.isRightPressed() && !gameController.isLeftPressed() &&
                 !gameController.isUpPressed() && !gameController.isDownPressed()) {
             move('r');
@@ -98,21 +112,29 @@ public class MovingObjectController {
     }
 
     /**
-     * @param direction
+     * This method moves the moving object depending on the direction that is handed to it. If moving is successful it
+     * sets the boolean true and the image view of the moving object is set to the new tile with the help of the method
+     * movingSuccessful().
+     *
+     * @param direction to which the player want to move the moving object
      */
     private void move(char direction){
+        // method to set the rotation of the image view to the right one
         rotate(direction);
         boolean moveSuccess = false;
+        // new values of x and y of the moving object to set the image view
         int newX = 0;
         int newY = 0;
+        // checking the character for the direction to move
         if (direction == 'r') {
             try {
+                // if moving isn't successful the rest of the try-block will not be performed so there's no need to proof that
                 movingObject.moveRight(gameScene);
                 moveSuccess = true;
                 newX = matchfield.getColumnOfMovingObject()+1;
                 newY = matchfield.getRowOfMovingObject();
             } catch (MovingExcpetion e) {
-
+                // if moving isn't possible there is nothing happening
             }
         }
         if (direction == 'l') {
@@ -122,7 +144,7 @@ public class MovingObjectController {
                 newX = matchfield.getColumnOfMovingObject()-1;
                 newY = matchfield.getRowOfMovingObject();
             } catch (MovingExcpetion e) {
-
+                // if moving isn't possible there is nothing happening
             }
         }
         if (direction == 'u') {
@@ -132,7 +154,7 @@ public class MovingObjectController {
                 newX = matchfield.getColumnOfMovingObject();
                 newY = matchfield.getRowOfMovingObject()-1;
             } catch (MovingExcpetion e) {
-
+                // if moving isn't possible there is nothing happening
             }
         }
         if (direction == 'd') {
@@ -142,7 +164,7 @@ public class MovingObjectController {
                 newX = matchfield.getColumnOfMovingObject();
                 newY = matchfield.getRowOfMovingObject()+1;
             } catch (MovingExcpetion e) {
-
+                // if moving isn't possible there is nothing happening
             }
         }
 
@@ -152,12 +174,17 @@ public class MovingObjectController {
     }
 
     /**
-     * @param x
-     * @param y
+     * If moving is successful the image view of the moving object is set to the new tile and if the tractor or the
+     * harvester is selected the tank gets decreased.
+     *
+     * @param x column to which the moving object is set
+     * @param y row to which the moving object is set
      */
     private void movingSuccessful(int x, int y){
         matchfield.setTileOfObject(x, y);
         if (tractor.isSelected()) {
+            // the actual gameScene object has to be handed to the method because when the tank gets too low there is
+            // a message shown in the information Box
             tractor.lowPetrolLevel(tractor.getPetrolTankFillLevel()-1, gameScene);
         }
         if (harvester.isSelected()) {
@@ -166,7 +193,9 @@ public class MovingObjectController {
     }
 
     /**
-     * @param direction
+     * This method rotates the image view of the moving object depending on the moving direction.
+     *
+     * @param direction moving direction of the moving object
      */
     private void rotate(char direction){
         switch (direction) {
@@ -186,13 +215,17 @@ public class MovingObjectController {
     }
 
     /**
-     * 
+     * This method proofs, if some action is possible on the tile on which the moving object is standing. If some
+     * action is possible the button isn't disabled any longer and the text of the button show what action is possible.
      */
     public void proofAction(){
+        // x and y of the moving object as they are needed for the if-else-statements
         int x = movingObject.getX();
         int y = movingObject.getY();
+        // initializing the functionality of the action button and handing it all the actual needed objects
         mofc.proofActionButtonFunctionality(x, y, movingObject, gameValue, farmer, tractor, harvester, cultivator,
                 dumpTruck, seedDrill, fieldTile, silo, courtTrade);
+        // rotation needed for unloading from harvester to dump truck
         double rotation = gameScene.getMatchfield().getMovingObjectImageView().getRotate();
 
         if ((x == 16 || x == 17) && y == 13) {
@@ -206,31 +239,39 @@ public class MovingObjectController {
             setButtonAction(false, "fill tank");
         } else if ((x == 12 || x == 13) && y == 13 && dumpTruck.isSelected()) {
             if (dumpTruck.getGrainFillLevel() != 0) {
+                // unload from dump truck to silo
                 setButtonAction(false, "unload");
             } else if (dumpTruck.getGrainFillLevel() != dumpTruck.getGrainTankCapacity()) {
+                // load dump truck from silo
                 setButtonAction(false, "load");
             }
+        // checking if it is possible to exit the vehicle on the left side or if there is a not passable tile
         } else if (tractor.isSelected() && ((rotation == 0 && movingObject.proofPassabilty(x+1, y)) ||
                 rotation == 90 && movingObject.proofPassabilty(x, y+1) ||
                 rotation == 180 && movingObject.proofPassabilty(x-1, y) ||
                 rotation == 270 && movingObject.proofPassabilty(x, y-1))) {
             setButtonAction(false, "exit vehicle");
-            if (tractor.isSelected() || !tractor.isAttachement()) {
-                sideControlPane.getCultivatorButton().setDisable(true);
-                sideControlPane.getDumpTruckButton().setDisable(true);
-                sideControlPane.getSeedDrillButton().setDisable(true);
-            }
+//            if (tractor.isSelected() || !tractor.isAttachement()) {
+//                sideControlPane.getCultivatorButton().setDisable(true);
+//                sideControlPane.getDumpTruckButton().setDisable(true);
+//                sideControlPane.getSeedDrillButton().setDisable(true);
+//            }
+        // proofing if the farmer is standing on the left side of the tractor to enter it again
         } else if (farmer.isSelected() && mofc.isTractorExited() &&
                 x == mofc.getColumnExited() &&
                 y == mofc.getRowExited()) {
             setButtonAction(false, "enter vehicle");
+        // to unload from harvester to dump truck is has to be on the right side of the dump truck and looking into the
+        // same direction
         } else if(harvester.isSelected() && harvester.getGrainTankFillLevel() != 0 &&
                 (mofc.getExitedObject() == 5 || mofc.getExitedObject() == 6) &&
                 mofc.getRotation() == matchfield.getMovingObjectImageView().getRotate() &&
                 x == mofc.getColumnToFillFromHarvester() &&
                 y == mofc.getRowToFillFromHarvester()) {
             setButtonAction(false, "unload");
-        } else {
+        // if the player selects the tractor and no attachment and walks away from the barn the buttons of the working
+        // devices have to be set disabled
+        } else if (tractor.isSelected() && !tractor.isAttachement()) {
             setButtonAction(true, "");
             if (tractor.isSelected() || !tractor.isAttachement()) {
                 sideControlPane.getCultivatorButton().setDisable(true);
@@ -241,8 +282,10 @@ public class MovingObjectController {
     }
 
     /**
-     * @param disabled
-     * @param text
+     * This method helps to set the button action disabled or able to click and to set the text of it.
+     *
+     * @param disabled boolean to set the action button disabled
+     * @param text text that is shown on the action button
      */
     private void setButtonAction(boolean disabled, String text){
         gameScene.getSideControlPane().getButtonAction().setDisable(disabled);
@@ -250,13 +293,18 @@ public class MovingObjectController {
     }
 
     /**
-     * 
+     * This method proofs if the right machine or working device is attached to process the field depending on the
+     * stage of growth.
      */
     public void proofFieldAction(){
+        // column and row of the moving object to proof later, if it is one of the fields
         int x = movingObject.getX();
         int y = movingObject.getY();
+        // field 1
         if (x > 19 && y > 13) {
             if (cultivator.isSelected() && fieldTile.getGrowthState() == 6) {
+                // if the field is growth state 6 it has to be cultivated, therefore the cultivator has to be attached
+                // to cultivate the field the method cultivateField() of the class fieldTile is called
                 fieldTile.cultivateField(gameScene.getMatchfield(), x, y, 1, gameScene.getInformationBox());
             }
             if (seedDrill.isSelected() && fieldTile.getGrowthState() == 1) {
@@ -265,6 +313,7 @@ public class MovingObjectController {
             if (harvester.isSelected() && fieldTile.getGrowthState() == 5) {
                 fieldTile.harvestField(gameScene.getMatchfield(), x, y, 1, gameScene.getInformationBox(), harvester);
             }
+        // field 2
         } else if(x > 8 && x < 19 && y > 13) {
             if (cultivator.isSelected() && fieldTile.getGrowthState2() == 6) {
                 fieldTile.cultivateField(gameScene.getMatchfield(), x, y, 2, gameScene.getInformationBox());
@@ -275,6 +324,7 @@ public class MovingObjectController {
             if (harvester.isSelected() && fieldTile.getGrowthState2() == 5) {
                 fieldTile.harvestField(gameScene.getMatchfield(), x, y, 2, gameScene.getInformationBox(), harvester);
             }
+        // field 3
         } else if (x > 19 && y > 5 && y < 13) {
             if (cultivator.isSelected() && fieldTile.getGrowthState3() == 6) {
                 fieldTile.cultivateField(gameScene.getMatchfield(), x, y, 3, gameScene.getInformationBox());
