@@ -1,22 +1,17 @@
 package gui.controller;
 
-import gameboard.objects.Farmer;
-import gameboard.objects.Cultivator;
-import gameboard.objects.DumpTruck;
+import gameboard.objects.*;
 import gameboard.tiles.CourtTrade;
 import gameboard.tiles.FieldTile;
 import datastorage.ObjectToJsonb;
 import gameboard.GameValue;
-import gameboard.objects.Harvester;
 import gui.view.ViewManager;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import simulator.LevelOfDifficulty;
-import gameboard.objects.SeedDrill;
 import gameboard.tiles.Silo;
 import gui.view.GameScene;
-import gameboard.objects.Tractor;
 
 import java.util.concurrent.TimeUnit;
 
@@ -37,13 +32,13 @@ public class SavingController {
 	 * @param courtTrade
 	 */
 	public void createFunctionality(GameScene gameScene, GameValue gameValue, Farmer farmer, Tractor tractor,
-									 Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck,
-									 SeedDrill seedDrill, FieldTile fieldTile, Silo silo,
-									 LevelOfDifficulty levelOfDifficulty, CourtTrade courtTrade){
+									Harvester harvester, Cultivator cultivator, DumpTruck dumpTruck,
+									SeedDrill seedDrill, FieldTile fieldTile, Silo silo,
+									LevelOfDifficulty levelOfDifficulty, CourtTrade courtTrade, MovingObject movingObject){
 	        ObjectToJsonb otj = new ObjectToJsonb();
 
 	        gameScene.getInformationBox().getMenuButton().setOnMouseClicked(mouseEvent -> {
-	        	otj.toSerialize(gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile, silo, levelOfDifficulty, courtTrade);
+	        	otj.toSerialize(gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile, silo, levelOfDifficulty, courtTrade, movingObject);
 				gameScene.getInformationBox().getNewsField().setText("game saved");
 			try {
 					TimeUnit.SECONDS.sleep(5);

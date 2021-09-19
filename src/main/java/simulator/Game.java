@@ -35,6 +35,7 @@ public class Game {
     private LevelOfDifficulty levelOfDifficulty;
     private Silo silo;
     private GameScene gameScene = new GameScene();
+	GameController gameController;
 
  
 
@@ -58,13 +59,14 @@ public class Game {
 
         	movingObject = farmer;
 
-        	GameController gameController = new GameController();
+        	gameController = new GameController();
 	        gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
 					cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
 					fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), 1, farmer.getX(), farmer.getY(),
 					gameController);
 			MovingObjectController movingObjectController = new MovingObjectController(gameScene, movingObject,
-					gameController, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile, silo);
+					gameController, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile,
+					silo, courtTrade);
     	    selectedObject = getSelectedObject();
         	fillInformationFields(gameScene, silo, harvester, tractor, gameValue);
 			gameController.initGameLoop(gameScene, fieldTile, gameValue, movingObjectController);
@@ -72,10 +74,42 @@ public class Game {
 
     	    SavingController sc = new SavingController();
         	sc.createFunctionality(gameScene, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill,
-					fieldTile, silo, levelOfDifficulty, courtTrade);
+					fieldTile, silo, levelOfDifficulty, courtTrade, movingObject);
 
         	return gameScene;
     }
+
+
+//    private void getSelectedObject(Farmer farmer, Tractor tractor, Harvester harvester, Cultivator cultivator,
+//								   DumpTruck dumpTruck, SeedDrill seedDrill){
+//		if (farmer.isSelected()){
+//			selectedObject = 1;
+//		} else if (tractor.isSelected()) {
+//			if (cultivator.isSelected()) {
+//				selectedObject = 4;
+//			} else if (dumpTruck.isSelected()){
+//				if (dumpTruck.getGrainFillLevel() == 0) {
+//					selectedObject = 5;
+//				} else {
+//					selectedObject = 6;
+//				}
+//			} else if (seedDrill.isSelected()) {
+//				selectedObject = 7;
+//			} else {
+//				selectedObject = 2;
+//			}
+//		} else if (harvester.isSelected()) {
+//			selectedObject = 3;
+//		}
+//	}
+
+	private int getX(MovingObject movingObject){
+		return movingObject.getX();
+	}
+
+	private int getY(MovingObject movingObject){
+		return movingObject.getY();
+	}
 
 
 	/**
@@ -105,9 +139,13 @@ public class Game {
         	if (cultivator.isSelected()) {
         		selectedObject = 4;
 			} else if (dumpTruck.isSelected()){
-        		selectedObject = 5;
+        		if (dumpTruck.getGrainFillLevel() == 0) {
+					selectedObject = 5;
+				} else {
+        			selectedObject =6;
+				}
 			} else if (seedDrill.isSelected()) {
-        		selectedObject = 6;
+        		selectedObject = 7;
 			} else {
 				selectedObject=2;
 			}
@@ -125,7 +163,6 @@ public class Game {
     	ObjectToPojo otp = new ObjectToPojo();
     	otp.toDeserialize();
         GameScene gameScene = new GameScene();
-		GameController gameController = new GameController();
 		String[] deserializedGame = otp.getDeserializedGameObjects();
 		System.out.println(deserializedGame[0]);
 		Jsonb jb = JsonbBuilder.create();
@@ -141,6 +178,7 @@ public class Game {
 		silo = jb.fromJson(deserializedGame[8], Silo.class);
     	levelOfDifficulty = jb.fromJson(deserializedGame[9], LevelOfDifficulty.class);
     	courtTrade = jb.fromJson(deserializedGame[10], CourtTrade.class);
+    	movingObject = jb.fromJson(deserializedGame[11], MovingObject.class);
 
     	 //all numeric values
         
@@ -148,19 +186,30 @@ public class Game {
     	 * This method deserialize the JSONB file. It is also possible to get the position of the harvester.
     	 * It implements a new position (x and y value) of the harvester.
     	 */
-		GameController gameController2 = new GameController();
 
-	        gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
-	                cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
-	                fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(), 1, 1,
-					gameController2);
+		System.out.println("field 1 stage of growth: " + fieldTile.getGrowthState());
+
+		tractor.setX(movingObject.getX());
+		tractor.setY(movingObject.getY());
+		movingObject = tractor;
+
+		gameController = new GameController();
+		gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
+				cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
+				fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), getSelectedObject(), getX(movingObject), getY(movingObject),
+				gameController);
+		MovingObjectController movingObjectController = new MovingObjectController(gameScene, movingObject,
+				gameController, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile,
+				silo, courtTrade);
+		selectedObject = getSelectedObject();
 		fillInformationFields(gameScene, silo, harvester, tractor, gameValue);
-	        System.out.println(getSelectedObject());
-	        selectedObject = getSelectedObject();
-	        MovingObjectController movingObjectController2 = new MovingObjectController(gameScene, movingObject,
-					gameController, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile, silo);
-			gameController2.initGameLoop(gameScene, fieldTile, gameValue, movingObjectController2);
-	        GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
-	        return gameScene;
+		gameController.initGameLoop(gameScene, fieldTile, gameValue, movingObjectController);
+		GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
+
+		SavingController sc = new SavingController();
+		sc.createFunctionality(gameScene, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill,
+				fieldTile, silo, levelOfDifficulty, courtTrade, movingObject);
+
+		return gameScene;
     }
 }

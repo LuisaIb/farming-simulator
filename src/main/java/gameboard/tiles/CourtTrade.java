@@ -20,11 +20,11 @@ public class CourtTrade extends TileWithBuilding{
     public CourtTrade(int level) {
         super();
         if (level == 1) {
-            sellingPrice = 2;
+            sellingPrice = 4;
         } else if (level == 2) {
-            sellingPrice = 1.5;
+            sellingPrice = 3;
         } else if (level == 3) {
-            sellingPrice = 1;
+            sellingPrice = 2;
         }
     }
 

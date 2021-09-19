@@ -43,6 +43,7 @@ public class FieldTile{
 	 */
 	public FieldTile() {
 		super();
+		initializeHashMaps();
 	}
 	
 	/**
@@ -106,6 +107,15 @@ public class FieldTile{
 	public int getGrowthState() {
 		return growthState;
 	}
+
+	/**
+	 * this method sets the growthState of the first field
+	 * @param growthState
+	 */
+	public void setGrowthState(int growthState) {
+		this.growthState = growthState;
+	}
+
 
 	/**
 	 * this method sets the growthState of the first field
@@ -179,14 +189,7 @@ public class FieldTile{
 			System.out.println("The third field is growing now!");
 		}
 	}
-	
-	/**
-	 * this method is there so the field is able to grow by time
-	 * @param growthState
-	 */
-	public void growing(int growthState) {
-		
-	}
+
 
 	/**
 	 * This method creates the HashMap of field 1. As key it has the index of the coordinates (y*30 + x) and as

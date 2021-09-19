@@ -3,6 +3,7 @@ package gui.controller;
 import exceptions.MovingExcpetion;
 import gameboard.GameValue;
 import gameboard.objects.*;
+import gameboard.tiles.CourtTrade;
 import gameboard.tiles.FieldTile;
 import gameboard.tiles.Silo;
 import gui.view.GameScene;
@@ -26,6 +27,7 @@ public class MovingObjectController {
     private SideControlPane sideControlPane;
     private InformationBox informationBox;
     private Silo silo;
+    private CourtTrade courtTrade;
     private MovingObjectFunctionalityController mofc;
 
 
@@ -45,7 +47,7 @@ public class MovingObjectController {
     public MovingObjectController(GameScene gameScene, MovingObject movingObject, GameController gameController,
                                   GameValue gameValue, Farmer farmer, Tractor tractor, Harvester harvester,
                                   Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile,
-                                  Silo silo){
+                                  Silo silo, CourtTrade courtTrade){
         this.gameScene = gameScene;
         this.movingObject = movingObject;
         this.gameController = gameController;
@@ -58,6 +60,7 @@ public class MovingObjectController {
         this.seedDrill = seedDrill;
         this.fieldTile = fieldTile;
         this.silo = silo;
+        this.courtTrade = courtTrade;
         this.matchfield = gameScene.getMatchfield();
         this.sideControlPane = gameScene.getSideControlPane();
         this.informationBox = gameScene.getInformationBox();
@@ -189,10 +192,9 @@ public class MovingObjectController {
         int x = movingObject.getX();
         int y = movingObject.getY();
         mofc.proofActionButtonFunctionality(x, y, movingObject, gameValue, farmer, tractor, harvester, cultivator,
-                dumpTruck, seedDrill, fieldTile, silo);
+                dumpTruck, seedDrill, fieldTile, silo, courtTrade);
         double rotation = gameScene.getMatchfield().getMovingObjectImageView().getRotate();
 
-           
         if ((x == 16 || x == 17) && y == 13) {
             setButtonAction(false, "select vehicle");
         } else if (x == 27 && y == 5 && farmer.isSelected() && !fieldTile.isOwningField3()) {
@@ -202,6 +204,12 @@ public class MovingObjectController {
         } else if((x == 14 || x == 15) && y == 5 && (tractor.isSelected() && tractor.getPetrolTankFillLevel() < 200
                 || harvester.isSelected() && harvester.getPetrolTankFillLevel() < 200)) {
             setButtonAction(false, "fill tank");
+        } else if ((x == 12 || x == 13) && y == 13 && dumpTruck.isSelected()) {
+            if (dumpTruck.getGrainFillLevel() != 0) {
+                setButtonAction(false, "unload");
+            } else if (dumpTruck.getGrainFillLevel() != dumpTruck.getGrainTankCapacity()) {
+                setButtonAction(false, "load");
+            }
         } else if (tractor.isSelected() && ((rotation == 0 && movingObject.proofPassabilty(x+1, y)) ||
                 rotation == 90 && movingObject.proofPassabilty(x, y+1) ||
                 rotation == 180 && movingObject.proofPassabilty(x-1, y) ||
@@ -221,8 +229,6 @@ public class MovingObjectController {
                 mofc.getRotation() == matchfield.getMovingObjectImageView().getRotate() &&
                 x == mofc.getColumnToFillFromHarvester() &&
                 y == mofc.getRowToFillFromHarvester()) {
-            setButtonAction(false, "unload");
-        } else if ((x == 12 || x == 13) && y == 13 && dumpTruck.isSelected() && dumpTruck.getGrainFillLevel() != 0) {
             setButtonAction(false, "unload");
         } else {
             setButtonAction(true, "");

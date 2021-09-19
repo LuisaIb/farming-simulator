@@ -53,7 +53,7 @@ public class ObjectToPojo {
 	 * @return
 	 */
 	public String[] getDeserializedGameObjects() {
-		game = new String[11];
+		game = new String[12];
 		game = sb.toString().split(System.getProperty("line.separator"));
 		return game;
 	}

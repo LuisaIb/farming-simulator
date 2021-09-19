@@ -8,12 +8,7 @@ import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
 import gameboard.GameValue;
-import gameboard.objects.Cultivator;
-import gameboard.objects.DumpTruck;
-import gameboard.objects.Farmer;
-import gameboard.objects.Harvester;
-import gameboard.objects.SeedDrill;
-import gameboard.objects.Tractor;
+import gameboard.objects.*;
 import gameboard.tiles.CourtTrade;
 import gameboard.tiles.FieldTile;
 import gameboard.tiles.Silo;
@@ -48,7 +43,7 @@ public class ObjectToJsonb {
 	 */
 	public void toSerialize(GameValue gameValue, Farmer farmer, Tractor tractor, Harvester harvester,
 							Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile,
-							Silo silo, LevelOfDifficulty levelOfDifficulty, CourtTrade courtTrade) {
+							Silo silo, LevelOfDifficulty levelOfDifficulty, CourtTrade courtTrade, MovingObject movingObject) {
 		Jsonb jsonb = JsonbBuilder.create();
 		
 		String serializedGameValue = jsonb.toJson(gameValue);
@@ -93,6 +88,10 @@ public class ObjectToJsonb {
 
 		String serializedct = jsonb.toJson(courtTrade);
 		sb.append(serializedct);
+		sb.append(System.getProperty("line.separator"));
+
+		String serializedmo = jsonb.toJson(movingObject);
+		sb.append(serializedmo);
 		sb.append(System.getProperty("line.separator"));
 
 		writeFile(sb);

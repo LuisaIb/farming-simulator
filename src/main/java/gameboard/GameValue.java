@@ -42,7 +42,7 @@ public class GameValue {
 	public GameValue(int level) {//1-3
 		day.set(1);
 		if(level == 1) {
-			cashProperty.set(200); //Bezin, Getreidetank voll, Hofladen voll
+			cashProperty.set(1000); //Bezin, Getreidetank voll, Hofladen voll - vorher 200
 		}else if(level == 2) {
 			cashProperty.set(100); //Bezin voll, Getreidetank halb leer, Hofladen halb leer
 		}else if(level == 3) {

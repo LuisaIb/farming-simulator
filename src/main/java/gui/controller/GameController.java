@@ -170,7 +170,7 @@ public class GameController {
                 if (fieldCounter2 == 50) {
                     growthStageField2++;
                     fieldTile.setGrowthState2(growthStageField2);
-                    for (int i = 914; i < 975; i++) {
+                    for (int i = 915; i < 975; i++) {
                         gameScene.getMatchfield().getImageViewField2(i).setImage(gameScene.getMatchfield().getCorrectImageField(growthStageField2));
                     }
                     fieldCounter2 = 0;

@@ -1,6 +1,7 @@
 package gameboard.objects;
 
 import gameboard.GameValue;
+import gameboard.tiles.CourtTrade;
 import gameboard.tiles.Silo;
 
 /**
@@ -16,12 +17,10 @@ public class DumpTruck extends WorkingDevice {
 	private GameValue gv = new GameValue();
 	
 	/**
-	 * the constructor sets the harvest fill level of the Dump Truck
-	 * @param grainFillLevel
+	 * Default constructor.
 	 */
-	public DumpTruck(int x, int y, boolean selected, int grainFillLevel) {
-		super(x, y, selected);
-		this.grainFillLevel = grainFillLevel;
+	public DumpTruck() {
+
 	}
 	
 	/**
@@ -58,26 +57,34 @@ public class DumpTruck extends WorkingDevice {
 		int siloFillLevel = silo.getFillLevel();
 		int grainToFill = silo.getCapacity() - siloFillLevel;
 		if (grainFillLevel <= grainToFill) {
+			silo.setFillLevel(silo.getFillLevel() + grainFillLevel);
 			grainFillLevel = 0;
-			silo.setFillLevel(silo.getFillLevel() + grainToFill);
 		} else {
 			grainFillLevel = grainFillLevel - grainToFill;
 			silo.setFillLevel(silo.getFillLevel() + grainToFill);
 		}
+	}
 
+	public void loadFromSilo(Silo silo) {
+		int grainToFill = grainTankCapacity - grainFillLevel;
+		if (silo.getFillLevel() >= grainToFill) {
+			grainFillLevel = grainFillLevel + grainToFill;
+			silo.setFillLevel(silo.getFillLevel() - grainToFill);
+		} else {
+			grainFillLevel = grainFillLevel + silo.getFillLevel();
+			silo.setFillLevel(0);
+		}
 
-		int capacity = silo.getFillLevel() + grainFillLevel;
-		silo.setFillLevel(capacity);
-		grainFillLevel = 0;
 	}
 	
 	/**
 	 * this method unloads the grain from the Dump Truck to the Court Trade
 	 * in order to receive money
 	 */
-	public void sellingGrain(GameValue gv) {
-		int cash = gv.getCash() + (grainFillLevel * 2);
-		gv.setCash(cash);
+	public void sellingGrain(GameValue gv, CourtTrade courtTrade) {
+		double cash = gv.getCash() + (grainFillLevel * courtTrade.getSellingPrice());
+		int cash2 = (int) cash;
+		gv.setCash(cash2);
 		grainFillLevel = 0;
 	}
 
