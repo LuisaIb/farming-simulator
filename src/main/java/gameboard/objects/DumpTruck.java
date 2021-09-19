@@ -54,7 +54,7 @@ public class DumpTruck extends WorkingDevice {
 	/**
 	 * this method unloads the grain from the Dump Truck into the Silo
 	 */
-	public void unloadToSilo(Silo silo, InformationBox informationBox) {
+	public void unloadToSilo(Silo silo) {
 		int siloFillLevel = silo.getFillLevel();
 		int grainToFill = silo.getCapacity() - siloFillLevel;
 		if (grainFillLevel <= grainToFill) {
@@ -63,7 +63,7 @@ public class DumpTruck extends WorkingDevice {
 		} else {
 			grainFillLevel = grainFillLevel - grainToFill;
 			silo.setFillLevel(silo.getFillLevel() + grainToFill);
-			informationBox.getNewsField().setText("The Silo is full!");
+//			informationBox.getNewsField().setText("The Silo is full!");
 		}
 	}
 
