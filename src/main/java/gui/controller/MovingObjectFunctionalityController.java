@@ -13,11 +13,14 @@ import gui.view.SideControlPane;
 /**
  * This class implements all the actions that are possible when moving around e. g. selecting a vehicle, exiting and
  * entering or unload grain to the silo or sell it at the court trade.
+ *
+ * @author Judith
  */
 public class MovingObjectFunctionalityController {
     private GameScene gameScene;
     private Matchfield matchfield;
     private SideControlPane sideControlPane;
+    // buttons that are needed to implement the functionality
     private LSButton buttonAction;
     private LSButton farmerButton;
     private LSButton tractorButton;
@@ -25,13 +28,17 @@ public class MovingObjectFunctionalityController {
     private LSButton cultivatorButton;
     private LSButton dumpTruckButton;
     private LSButton seedDrillButton;
+    // column and row on the left side of the tractor in which the farmer exits and enters the tractor
     private int columnExited;
     private int rowExited;
     private boolean tractorExited = false;
+    // column and row on which the tractor stands
     private int exitedVehicleX;
     private int exitedVehicleY;
+    // rotation of the imageView of the movingObject
     private double rotation;
     private int exitedObject;
+    // column and row on the right side of the tractor to unload the harvester to the dumpTruck
     private int columnToFillFromHarvester;
     private int rowToFillFromHarvester;
 
