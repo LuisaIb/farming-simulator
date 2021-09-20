@@ -4,7 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /**
- * 
+ * this class is there for some basic values like the time (days) or the money
  * @author Isabel
  * @param cash
  * @param day
@@ -83,14 +83,16 @@ public class GameValue {
 	}
 
 	/**
-	 * @return
+	 * Getter for cashProperty
+	 * @return cashProperty
 	 */
 	public IntegerProperty cashProperty(){
 		return cashProperty;
 	}
 
 	/**
-	 * @return
+	 * Getter for day
+	 * @return day
 	 */
 	public IntegerProperty day(){ return day; }
 

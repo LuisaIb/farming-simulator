@@ -16,6 +16,7 @@ import gui.model.GameInformation;
 import gui.view.GameScene;
 
 /**
+ * this class represents ...
  * @author Isabel
  *
  */
@@ -103,16 +104,28 @@ public class Game {
 //		}
 //	}
 
+	/**
+	 * this method is there to get the X-Coordinate of the selected Moving Object
+	 * @param movingObject
+	 * @return
+	 */
 	private int getX(MovingObject movingObject){
 		return movingObject.getX();
 	}
 
+	/**
+	 * this method is there to get the Y-Coordinate of the selected Moving Object
+	 * @param movingObject
+	 * @return
+	 */
 	private int getY(MovingObject movingObject){
 		return movingObject.getY();
 	}
 
 
 	/**
+	 * this method is there to fill the information fields in the game scene
+	 * with the belonging properties
 	 * @param gameScene
 	 * @param silo
 	 * @param harvester
@@ -130,6 +143,8 @@ public class Game {
 
 
 	/**
+	 * this method is there to determine the currently selected object 
+	 * when reloading the game
 	 * @return
 	 */
 	public int getSelectedObject(){
@@ -157,6 +172,8 @@ public class Game {
 
 
     /**
+     * this method represents the functionality to reload the game after having 
+     * saved it
      * @return
      */
     public GameScene reloadGame() {

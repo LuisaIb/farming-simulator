@@ -4,13 +4,12 @@
 package simulator;
 
 /**
+ * this class represents the level of difficulty, in which the player plays the game
  * @author Isabel
  * @param level
  *
  */
 public class LevelOfDifficulty {
-	// Enum bei den Positionen der Movemethode einsetzten UP DOWN, LEFT RIGHT...
-	
 	private int level;
 	
 	/**
