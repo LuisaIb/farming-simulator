@@ -8,11 +8,11 @@ import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
 import gameboard.GameValue;
+import gameboard.LevelOfDifficulty;
 import gameboard.objects.*;
 import gameboard.tiles.CourtTrade;
 import gameboard.tiles.FieldTile;
 import gameboard.tiles.Silo;
-import simulator.LevelOfDifficulty;
 
 /**
  * @author Isabel

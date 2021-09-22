@@ -12,7 +12,6 @@ import java.util.Scanner;
  *
  */
 public class ObjectToPojo {
-	//"src/main/java/datastorage/SavingInformation/farmersimulator.txt"
 	StringBuilder sb = new StringBuilder();
 	String[] game;
 	
@@ -28,7 +27,7 @@ public class ObjectToPojo {
 	 */
 	public void toDeserialize() {
 		try {
-			File gameFile = new File("src/main/java/datastorage/SavingInformation/farmersimulator.txt");
+			File gameFile = new File("src/main/java/datastorage/SavingInformation/farmersimulator.txt");//"src/main/java/datastorage/SavingInformation/farmersimulator.txt"
 			gameFile.setWritable(false);
 			if (gameFile.exists()) {
 			Scanner fileReader = new Scanner(gameFile);

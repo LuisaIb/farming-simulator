@@ -1,7 +1,7 @@
 /**
  * 
  */
-package simulator;
+package gameboard;
 
 /**
  * this class represents the level of difficulty, in which the player plays the game
