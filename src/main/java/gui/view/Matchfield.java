@@ -7,6 +7,8 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 
+import java.util.HashMap;
+
 import static gui.view.ViewManager.HEIGHT;
 
 /**
@@ -170,6 +172,19 @@ public class Matchfield {
         for (int i = 0; i < 5; i++) {
             ImageView imageViewPath = new ImageView(imagePath);
             addToGridPane(imageViewPath, 24, i);
+        }
+    }
+
+    public void fillWithField1(HashMap<Integer, Boolean> tilesProcessedField1, int stateOfGrowth){
+        int newStateOfGrowth = stateOfGrowth+1;
+        if (newStateOfGrowth > 6) {
+            newStateOfGrowth = 1;
+        }
+        for(Integer index : tilesProcessedField1.keySet()) {
+            if (tilesProcessedField1.get(index)) {
+
+                getImageViewField1(index).setImage(getCorrectImageField(newStateOfGrowth));
+            }
         }
     }
 

@@ -222,7 +222,7 @@ public class Game {
 		fillInformationFields(gameScene, silo, harvester, tractor, gameValue);
 		gameController.initGameLoop(gameScene, fieldTile, gameValue, movingObjectController);
 		GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
-
+		//gameScene.getMatchfield().fillWithField1(fieldTile.getTilesField1Completed(), fieldTile.getGrowthState());
 		SavingController sc = new SavingController();
 		sc.createFunctionality(gameScene, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill,
 				fieldTile, silo, levelOfDifficulty, courtTrade, movingObject);

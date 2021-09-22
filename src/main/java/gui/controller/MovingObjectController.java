@@ -251,11 +251,11 @@ public class MovingObjectController {
                 rotation == 180 && movingObject.proofPassabilty(x-1, y) ||
                 rotation == 270 && movingObject.proofPassabilty(x, y-1))) {
             setButtonAction(false, "exit vehicle");
-//            if (tractor.isSelected() || !tractor.isAttachement()) {
-//                sideControlPane.getCultivatorButton().setDisable(true);
-//                sideControlPane.getDumpTruckButton().setDisable(true);
-//                sideControlPane.getSeedDrillButton().setDisable(true);
-//            }
+            if (tractor.isSelected() || !tractor.isAttachement()) {
+                sideControlPane.getCultivatorButton().setDisable(true);
+                sideControlPane.getDumpTruckButton().setDisable(true);
+                sideControlPane.getSeedDrillButton().setDisable(true);
+            }
         // proofing if the farmer is standing on the left side of the tractor to enter it again
         } else if (farmer.isSelected() && mofc.isTractorExited() &&
                 x == mofc.getColumnExited() &&
@@ -271,7 +271,7 @@ public class MovingObjectController {
             setButtonAction(false, "unload");
         // if the player selects the tractor and no attachment and walks away from the barn the buttons of the working
         // devices have to be set disabled
-        } else if (tractor.isSelected() && !tractor.isAttachement()) {
+        } else {
             setButtonAction(true, "");
             if (tractor.isSelected() || !tractor.isAttachement()) {
                 sideControlPane.getCultivatorButton().setDisable(true);
