@@ -17,12 +17,11 @@ import gui.model.GameInformation;
 import gui.view.GameScene;
 
 /**
- * this class represents ...
- * @author Isabel
+ * this class deals with staring a new game and reloading an old game status. 
+ * @author Isabel, Judith
  *
  */
 public class Game {
-
     MovingObject movingObject = new MovingObject();
     private Farmer farmer;  
     private Tractor tractor;
@@ -39,28 +38,28 @@ public class Game {
     private GameScene gameScene = new GameScene();
 	GameController gameController;
 
- 
-
 	/**
+	 * This method deals with starting a new game, the param Level Of Difficulty has to be transferred.
 	 * @param lod
-	 * @return
+	 * This param decides how the new game objects: 
+	 * levelofdifficulty, dumptruck, seeddrill, fieldtile, gamevalue, courttrade and silo are implemented.
+	 * the other objects are implemented with an empty constructor.
+	 * @return the gameScene
 	 */
 	public GameScene createNewGame(int lod){
 		levelOfDifficulty = new LevelOfDifficulty(lod);
-
-        	farmer = new Farmer();
-        	tractor = new Tractor();
-	        harvester = new Harvester();
-	        cultivator = new Cultivator();
-	        dumpTruck = new DumpTruck(lod);
-	        seedDrill = new SeedDrill();
-	        fieldTile = new FieldTile(lod);
-	        gameValue = new GameValue(lod);
-	        courtTrade = new CourtTrade(lod);
-	        silo = new Silo(lod);
+    	farmer = new Farmer();
+    	tractor = new Tractor();
+        harvester = new Harvester();
+        cultivator = new Cultivator();
+        dumpTruck = new DumpTruck(lod);
+        seedDrill = new SeedDrill();
+        fieldTile = new FieldTile(lod);
+        gameValue = new GameValue(lod);
+        courtTrade = new CourtTrade(lod);
+        silo = new Silo(lod);
 
         	movingObject = farmer;
-
         	gameController = new GameController();
 	        gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
 					cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
@@ -173,9 +172,10 @@ public class Game {
 
 
     /**
-     * this method represents the functionality to reload the game after having 
-     * saved it
-     * @return
+     * this method represents the functionality to reload the game after having saved it
+     * It's the other part of the saving process. The serialized JSON-B in the String Array, is deserialized into a new dedicated object.
+     * All saved information are set in the constructor of the new dedicated object.
+     * @return new gameScene
      */
     public GameScene reloadGame() {
     	ObjectToPojo otp = new ObjectToPojo();
@@ -197,13 +197,6 @@ public class Game {
     	levelOfDifficulty = jb.fromJson(deserializedGame[9], LevelOfDifficulty.class);
     	courtTrade = jb.fromJson(deserializedGame[10], CourtTrade.class);
     	movingObject = jb.fromJson(deserializedGame[11], MovingObject.class);
-
-    	 //all numeric values
-        
-    	/**
-    	 * This method deserialize the JSONB file. It is also possible to get the position of the harvester.
-    	 * It implements a new position (x and y value) of the harvester.
-    	 */
 
 		System.out.println("field 1 stage of growth: " + fieldTile.getGrowthState());
 

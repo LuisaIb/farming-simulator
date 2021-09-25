@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
+ * This class represents a part of the deserializing process, 
+ * where all the game information that are needed for the reloading process are put into a String Array.
  * @author Isabel
  *
  */
@@ -16,14 +18,15 @@ public class ObjectToPojo {
 	String[] game;
 	
 	/**
-	 * @return the sb
+	 * @return the StringBuilder sb, with all the game information
 	 */
 	public StringBuilder getSb() {
 		return sb;
 	}
 
 	/**
-	 * 
+	 * This method deals with a part of the deserializing process.
+	 * The textfile information are written in a new StringBuilder.
 	 */
 	public void toDeserialize() {
 		try {
@@ -35,21 +38,21 @@ public class ObjectToPojo {
 			while (fileReader.hasNextLine()) {
 			sb.append(fileReader.nextLine()); 
 			sb.append(System.getProperty("line.separator"));
-			}
+		}
 			fileReader.close();
 						
-			} else {
+		} else {
 			System.out.println("There is no existing textfile that can be read.");
 			}
-			} catch (IOException e) {
+		} catch (IOException e) {
 			System.out.println("ERROR: " + e.getMessage());
-			}
+		}
 		
-		System.out.println(sb);
 	}
 	
 	/**
-	 * @return
+	 * This method deals with splitting up the StringBuilder Object and put it into a String Array.
+	 * @return the String Array with all the game information
 	 */
 	public String[] getDeserializedGameObjects() {
 		game = new String[12];

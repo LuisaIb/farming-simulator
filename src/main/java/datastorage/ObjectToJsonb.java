@@ -15,37 +15,46 @@ import gameboard.tiles.FieldTile;
 import gameboard.tiles.Silo;
 
 /**
+ * This class represents the serializing process, 
+ * where all the game information that need to be saved are converted into a JSON-B.
  * @author Isabel
  *
  */
 public class ObjectToJsonb {
 	StringBuilder sb = new StringBuilder();
-	 // all numeric values
-		
-		/**
-		 * This method gets the information of the Cultivator.
-		 * @return serialized as a JSONB object of the tractor's positions
-		 */
-		 
-	
+	 // all numeric values, all moving object values
 	/**
+	 * This method gets the information of the following params.
 	 * @param gameValue
+	 * saved information: cash, day
 	 * @param farmer
+	 * saved information: position, is selected
 	 * @param tractor
+	 * saved information: position, is selected, is attached, petrol tank capacity
 	 * @param harvester
+	 * saved information: position, is selected, is attached, petrol tank capacity, grain tank capacity
 	 * @param cultivator
+	 * saved information: position, is selected, is attached
 	 * @param dumpTruck
+	 * saved information: position, is selected, is attached
 	 * @param seedDrill
+	 * saved information: position, is selected, is attached
 	 * @param fieldTile
+	 * saved information: fieldtile conditions, bought fields
 	 * @param silo
+	 * saved information: capacity
 	 * @param levelOfDifficulty
+	 * saved information: chosen level
 	 * @param courtTrade
+	 * saved information: selling price
+	 * It puts the serialized JSON-B into a StringBuilder Object.
+	 * This JSON-B is written into a textfile, that is located in "src/main/java/datastorage/SavingInformation/farmersimulator.txt"
 	 */
 	public void toSerialize(GameValue gameValue, Farmer farmer, Tractor tractor, Harvester harvester,
 							Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile,
 							Silo silo, LevelOfDifficulty levelOfDifficulty, CourtTrade courtTrade, MovingObject movingObject) {
-		Jsonb jsonb = JsonbBuilder.create();
 		
+		Jsonb jsonb = JsonbBuilder.create();
 		String serializedGameValue = jsonb.toJson(gameValue);
 		sb.append(serializedGameValue);
 		sb.append(System.getProperty("line.separator"));
@@ -98,6 +107,8 @@ public class ObjectToJsonb {
 	}
 	
 		/**
+		 * This method deals with writing the StringBuilder Object into a textfile, that is set write-protected.
+		 * It checks if a textfile already exists or not. If there is already a textfile, the information will be overwritten.
 		 * @param sb
 		 */
 		public void writeFile(StringBuilder sb) {
@@ -106,22 +117,23 @@ public class ObjectToJsonb {
 			textFile.setWritable(true);
 			if (textFile.createNewFile()) {
 			System.out.println("created a textfile");
+			
 			} else {
 			System.out.println("textfile already exists");
 			}
 			
-			try {
+		try {
 			FileWriter fileWriter = new FileWriter(textFile);
 				fileWriter.write(sb.toString());
 				fileWriter.close();
 				textFile.setWritable(false);
 			
 			System.out.println("edit the textfile");
-			} catch (IOException e) {
+		} catch (IOException e) {
 			System.out.println("not possible to edit the textfile");
 			}
 
-			} catch (IOException e) {
+		} catch (IOException e) {
 			System.out.println("not possible to create a textfile");
 			}
 		}
