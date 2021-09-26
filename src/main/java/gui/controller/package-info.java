@@ -1,6 +1,7 @@
 /**
- * This package contains the controller classes like SceneController and MovingObjectController.
+ * This package contains the controller classes like SceneController and MovingObjectController. It implements a lot of
+ * the functionality to the game.
  *
- * @author Judith Romer
+ * @author Judith
  */
 package gui.controller;
