@@ -216,32 +216,10 @@ public class FieldTile{
 	private void createHashMapField1(){
 		indexesField1 = new HashMap<Integer, Integer>();
 		int fieldIndex = 855;
-		for (int i = 440; i <= 449; i++) {
-			indexesField1.put(i, fieldIndex);
-			fieldIndex++;
-		}
-
-		for (int i = 470; i <= 479; i++) {
-			indexesField1.put(i, fieldIndex);
-			fieldIndex++;
-		}
-
-		for (int i = 500; i <= 509; i++) {
-			indexesField1.put(i, fieldIndex);
-			fieldIndex++;
-		}
-
-		for (int i = 530; i <= 539; i++) {
-			indexesField1.put(i, fieldIndex);
-			fieldIndex++;
-		}
-
-		for (int i = 560; i <= 569; i++) {
-			indexesField1.put(i, fieldIndex);
-			fieldIndex++;
-		}
-
-		for (int i = 590; i <= 599; i++) {
+		for (int i = 440; i <= 599; i++) {
+			if (i % 30 == 0) {
+				i = i + 20;
+			}
 			indexesField1.put(i, fieldIndex);
 			fieldIndex++;
 		}
@@ -554,7 +532,7 @@ public class FieldTile{
 	 */
 	private void setTilesField1False(){
 		for (int i = 440; i <= 599; i++) {
-			if (i == 450 || i == 480 || i == 510 || i == 540 || i == 570) {
+			if (i % 30 == 0) {
 				i = i + 20;
 			}
 			tilesField1Completed.put(i, false);
