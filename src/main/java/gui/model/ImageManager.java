@@ -12,6 +12,7 @@ public class ImageManager {
     /**
      * This method returns an image from the path that is given to it in the parameters by using a constructor of
      * the class Image.
+     * @see Image
      *
      * @param path path to the image that will be loaded, handed to the constructor of the class Image
      * @param width sets the width of the image, handed to the constructor of the class Image

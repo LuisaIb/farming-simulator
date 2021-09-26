@@ -1,6 +1,8 @@
 /**
- * This package contains the image for the buttons and text fields.
+ * This package contains the images for the buttons and text fields.
  *
- * @author Judith Romer
+ * The image is free to use by kangbch from pixabay.com - https://pixabay.com/de/photos/gerstenfeld-weizen-landwirtschaft-1684052/
+ *
+ * @author Judith
  */
 package gui.model.resources;

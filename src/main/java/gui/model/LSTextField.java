@@ -12,10 +12,13 @@ import javafx.scene.text.Font;
  * @author Judith
  */
 public class LSTextField extends TextField {
-    /* A variable, that saves the path to the background image of the text field in a String. */
+    /**
+     * String with the path to the background image of the text field
+     */
     private final String IMAGE_PATH = "src/main/java/gui/model/resources/background.png";
 
-    /** Constructs an object of the class LSTextField. As you can tell by the name of the class, it creates a
+    /**
+     * Constructs an object of the class LSTextField. As you can tell by the name of the class, it creates a
      * text field.
      *
      * @param text text, that is shown in the text field
@@ -31,7 +34,8 @@ public class LSTextField extends TextField {
         this.setTextFieldStyle(height, width, layoutX, layoutY);
     }
 
-    /** Sets the font of the text field to Verdana and the size of the font to the parameter fontSize.
+    /**
+     * Sets the font of the text field to Verdana and the size of the font to the parameter fontSize.
      *
      * @param fontSize size of the font on the text field
      */
@@ -39,7 +43,8 @@ public class LSTextField extends TextField {
         this.setFont(Font.font("Verdana", fontSize));
     }
 
-    /** Defines the style of the text field. It makes the text field not editable by the user, sets the background
+    /**
+     * Defines the style of the text field. It makes the text field not editable by the user, sets the background
      * image by using the method getImage() of the class ImageManager, the final variable and the parameters. The
      * alignment of the text is set to the center.
      *

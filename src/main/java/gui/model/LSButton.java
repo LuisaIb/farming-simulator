@@ -11,10 +11,13 @@ import javafx.scene.text.Font;
  * @author Judith
  */
 public class LSButton  extends Button {
-    /* A variable, that saves the path to the background image of the button in a String. */
+    /**
+     * String that saves the path to the background image of the button
+     */
     private final String IMAGE_PATH = "src/main/java/gui/model/resources/background.png";
 
-    /** Constructs an object of the class LSButton with text on it and a nice background image by using the methode
+    /**
+     * Constructs an object of the class LSButton with text on it and a nice background image by using the methode
      * setButtonBackground().
      *
      * @param text text, that is shown on the button
@@ -31,8 +34,9 @@ public class LSButton  extends Button {
         this.setButtonLayout(height, width, layoutX, layoutY);
     }
 
-    /** Constructs an object of the class LSButton without text and background image, but with an individualized image,
-     *  that is given to the method as a parameter.
+    /**
+     * Constructs an object of the class LSButton without text and background image, but with an individualized image,
+     * that is given to the method as a parameter.
      *
      * @param image image, that is shown on the button, handed to the method setButtonBackground()
      * @param height height of the button, handed to the method setButtonLayout()
@@ -45,7 +49,8 @@ public class LSButton  extends Button {
         this.setButtonBackground(image);
     }
 
-    /** Sets the font of the button to Verdana and the size of the font to the parameter fontSize.
+    /**
+     * Sets the font of the button to Verdana and the size of the font to the parameter fontSize.
      *
      * @param fontSize size of the font on the button
      */
@@ -53,7 +58,8 @@ public class LSButton  extends Button {
         this.setFont(Font.font("Verdana", fontSize));
     }
 
-    /** Defines the size and alignment of the button. The alignment of the text is set to the center.
+    /**
+     * Defines the size and alignment of the button. The alignment of the text is set to the center.
      *
      * @param height height of the button
      * @param width width of the button
@@ -68,7 +74,8 @@ public class LSButton  extends Button {
         this.setAlignment(Pos.CENTER);
     }
 
-    /** Sets the background image by using the method getImage() of the class ImageManager, the final variable and
+    /**
+     * Sets the background image by using the method getImage() of the class ImageManager, the final variable and
      * the parameters.
      *
      * @param height height of the image (the same height as the button)
@@ -82,8 +89,7 @@ public class LSButton  extends Button {
         this.setBackground(background);
     }
 
-    /** Sets the background image by using the image of the parameters. As the method will never be used outside this
-     * class, it is private.
+    /** Sets the background image by using the image of the parameters.
      *
      * @param image image, that is set as background
      */
