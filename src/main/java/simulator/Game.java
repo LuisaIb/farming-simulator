@@ -170,6 +170,28 @@ public class Game {
         return selectedObject;
     }
 
+	/**
+	 * This method proofs, which moving object is selected, sets it as the moving object, and sets the x- and y-values
+	 * to the ones of the moving object. This method is used for reloading the game.
+	 */
+	private void setMovingObject(){
+		if(farmer.isSelected()){
+			farmer.setX(movingObject.getX());
+			farmer.setY(movingObject.getY());
+			movingObject = farmer;
+		}else if(tractor.isSelected()){
+			if (tractor.isSelected()) {
+				tractor.setX(movingObject.getX());
+				tractor.setY(movingObject.getY());
+				movingObject = tractor;
+			}
+		}else if(harvester.isSelected()){
+			harvester.setX(movingObject.getX());
+			harvester.setY(movingObject.getY());
+			movingObject = harvester;
+		}
+	}
+
 
     /**
      * this method represents the functionality to reload the game after having saved it
@@ -200,9 +222,7 @@ public class Game {
 
 		System.out.println("field 1 stage of growth: " + fieldTile.getGrowthState());
 
-		tractor.setX(movingObject.getX());
-		tractor.setY(movingObject.getY());
-		movingObject = tractor;
+		setMovingObject();
 
 		gameController = new GameController();
 		gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
