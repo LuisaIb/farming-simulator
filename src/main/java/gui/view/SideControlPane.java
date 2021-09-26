@@ -1,8 +1,5 @@
 package gui.view;
 
-import gameboard.GameValue;
-import gameboard.objects.*;
-import gameboard.tiles.FieldTile;
 import gui.controller.GameController;
 import gui.model.ImageManager;
 import gui.model.LSButton;

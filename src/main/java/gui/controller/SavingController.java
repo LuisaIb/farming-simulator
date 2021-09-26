@@ -44,7 +44,7 @@ public class SavingController {
 									SeedDrill seedDrill, FieldTile fieldTile, Silo silo,
 									LevelOfDifficulty levelOfDifficulty, CourtTrade courtTrade, MovingObject movingObject){
 		ObjectToJsonb otj = new ObjectToJsonb();
-        gameScene.getInformationBox().getMenuButton().setOnMouseClicked(mouseEvent -> {
+        gameScene.getInformationBox().getSaveButton().setOnMouseClicked(mouseEvent -> {
       	otj.toSerialize(gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, fieldTile, silo,
 				levelOfDifficulty, courtTrade, movingObject);
       	// sleep for two seconds so the game doesn't close immediately after clicking on the button end & save

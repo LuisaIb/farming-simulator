@@ -6,50 +6,144 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-
 import java.util.HashMap;
-import java.util.List;
 
 import static gui.view.ViewManager.HEIGHT;
 
 /**
  * This class implements the grid pane with the matchfield and offers methods to fill the pane with image views of the
- * ground and the buildings.
+ * ground, the buildings and the moving objects.
  *
  * @author Judith
  */
 public class Matchfield {
+    /**
+     * grid pane for the matchfield with a size of 20 x 30 tiles
+     */
     private GridPane matchfield = new GridPane();
+    /**
+     * height of the matchfield
+     */
     private static final int HEIGHT_PANE = 860;
+    /**
+     * width of the matchfield
+     */
     private static final int WIDTH_PANE = 1120;
+    /**
+     * number of columns of the grid pane
+     */
     private static final int NUMBER_COLUMNS = 30;
+    /**
+     * number of rows of the grid pane
+     */
     private static final int NUMBER_ROWS = 20;
+    /**
+     * height of the image of one tile
+     */
     protected static double TILE_HEIGHT = (HEIGHT_PANE / NUMBER_ROWS)+0.5;
+    /**
+     * width of the image of one tile
+     */
     protected static double TILE_WIDTH = (WIDTH_PANE / NUMBER_COLUMNS)+0.5;
+    /**
+     * String with the path to the image of the grasslands
+     */
     private static final String PATH_TO_GRASSLANDS = "src/main/java/gui/view/resources/ground/grasslands.png";
+    /**
+     * String with the path to the image of the forest
+     */
     private static final String PATH_TO_FOREST = "src/main/java/gui/view/resources/ground/forest.png";
-    private static final String PATH_TO_GROWTH_STAGE_1 = "src/main/java/gui/view/resources/ground/growthStage1.png";
-    private static final String PATH_TO_GROWTH_STAGE_2 = "src/main/java/gui/view/resources/ground/growthStage2.png";
-    private static final String PATH_TO_GROWTH_STAGE_3 = "src/main/java/gui/view/resources/ground/growthStage3.png";
+    /**
+     * String with the path to the image of the first state of growth of the fields
+     */
+    private static final String PATH_TO_GROWTH_STATE_1 = "src/main/java/gui/view/resources/ground/growthState1.png";
+    /**
+     * String with the path to the image of the second state of growth of the fields
+     */
+    private static final String PATH_TO_GROWTH_STATE_2 = "src/main/java/gui/view/resources/ground/growthState2.png";
+    /**
+     * String with the path to the image of the third state of growth of the fields
+     */
+    private static final String PATH_TO_GROWTH_STATE_3 = "src/main/java/gui/view/resources/ground/growthState3.png";
+    /**
+     * String with the path to the image of the harvested field
+     */
     private static final String PATH_TO_HARVESTED = "src/main/java/gui/view/resources/ground/harvested.png";
+    /**
+     * String with the path to the image of the path
+     */
     private static final String PATH_TO_PATH = "src/main/java/gui/view/resources/ground/path.png";
+    /**
+     * String with the path to the image of the field that is ready for sowing
+     */
     private static final String PATH_TO_READY_FOR_SOWING = "src/main/java/gui/view/resources/ground/readyForSowing.png";
+    /**
+     * String with the path to the image of the field that is ready to harvest
+     */
     private static final String PATH_TO_READY_TO_HARVEST = "src/main/java/gui/view/resources/ground/readyToHarvest.png";
+    /**
+     * String with the path to the image of the barn
+     */
     private static final String PATH_TO_BARN = "src/main/java/gui/view/resources/buildings/barn.png";
+    /**
+     * String with the path to the image of the gas station
+     */
     private static final String PATH_TO_GAS_STATION = "src/main/java/gui/view/resources/buildings/gasStation.png";
+    /**
+     * String with the path to the image of the land trade / court trade
+     */
     private static final String PATH_TO_LAND_TRADE = "src/main/java/gui/view/resources/buildings/landTrade.png";
+    /**
+     * String with the path to the image of the silo
+     */
     private static final String PATH_TO_SILO = "src/main/java/gui/view/resources/buildings/silo.png";
+    /**
+     * String with the path to the image of the farmer
+     */
     private static final String PATH_TO_FARMER = "src/main/java/gui/view/resources/movingObjects/farmer.png";
+    /**
+     * String with the path to the image of the tractor
+     */
     private static final String PATH_TO_TRACTOR = "src/main/java/gui/view/resources/movingObjects/tractor.png";
+    /**
+     * String with the path to the image of the harvester
+     */
     private static final String PATH_TO_HARVESTER = "src/main/java/gui/view/resources/movingObjects/harvester.png";
+    /**
+     * String with the path to the image of the cultivator
+     */
     private static final String PATH_TO_CULTIVATOR = "src/main/java/gui/view/resources/movingObjects/cultivator.png";
+    /**
+     * String with the path to the image of the empty dump truck
+     */
     private static final String PATH_TO_DUMP_TRUCK_EMPTY = "src/main/java/gui/view/resources/movingObjects/dumpTruckEmpty.png";
+    /**
+     * String with the path to the image of the full dump truck
+     */
     private static final String PATH_TO_DUMP_TRUCK_Full = "src/main/java/gui/view/resources/movingObjects/dumpTruckFull.png";
+    /**
+     * String with the path to the image of the seed drill
+     */
     private static final String PATH_TO_SEED_DRILL = "src/main/java/gui/view/resources/movingObjects/seedDrill.png";
+    /**
+     *  image view of the moving object
+     */
     private ImageView movingObjectImageView;
+    /**
+     * image view of the second moving object - the exited tractor
+     */
     private ImageView secondMovingObjectImageView;
+    /**
+     * image view of the first field
+     */
     private ImageView imageViewField1;
+    /**
+     * image view of the second field
+     */
     private ImageView imageViewField2;
+    /**
+     * image view of the thrid field
+     */
     private ImageView imageViewField3;
 
     /**
@@ -62,23 +156,23 @@ public class Matchfield {
     /**
      * Constructor with parameters that initializes the pane and all image views.
      *
-     * @param stageOfGrowthField1 hands the integer to the method setField1()
-     * @param stageOfGrowthField2 hands the integer to the method setField2()
-     * @param stageOfGrowthField3 hands the integer to the method setField3()
+     * @param stateOfGrowthField1 hands the integer to the method setField1()
+     * @param stateOfGrowthField2 hands the integer to the method setField2()
+     * @param stateOfGrowthField3 hands the integer to the method setField3()
      */
-    protected Matchfield(int stageOfGrowthField1, int stageOfGrowthField2, int stageOfGrowthField3){
+    protected Matchfield(int stateOfGrowthField1, int stateOfGrowthField2, int stateOfGrowthField3){
         initializeMatchfield();
         fillWithGrassland();
         fillWithForest();
         fillWithBuildings();
         fillWithPath();
-        setField1(stageOfGrowthField1);
-        setField2(stageOfGrowthField2);
-        setField3(stageOfGrowthField3);
+        setField1(stateOfGrowthField1);
+        setField2(stateOfGrowthField2);
+        setField3(stateOfGrowthField3);
     }
 
     /**
-     * Sets the size and style of the grid pane matchfield and adds columns and rows.
+     * Sets the size and style of the matchfield grid pane and adds columns and rows.
      */
     private void initializeMatchfield(){
         matchfield.setPrefWidth(WIDTH_PANE);
@@ -179,10 +273,10 @@ public class Matchfield {
     /**
      * Adds the image views of the first field to the matchfield.
      */
-    protected void setField1(int stageOfGrowth){
+    protected void setField1(int stateOfGrowth){
         for (int j = 14; j < NUMBER_ROWS; j++) {
             for (int i = 20; i < NUMBER_COLUMNS; i++){
-            imageViewField1 = getImageViewField(stageOfGrowth);
+            imageViewField1 = getImageViewField(stateOfGrowth);
             addToGridPane(imageViewField1, i, j);
             }
         }
@@ -211,7 +305,6 @@ public class Matchfield {
         }
     }
 
-
     /**
      * Getter for the imageViewField1.
      *
@@ -226,10 +319,10 @@ public class Matchfield {
     /**
      * Adds the image views of the second field to the matchfield.
      */
-    protected void setField2(int stageOfGrowth){
+    protected void setField2(int stateOfGrowth){
         for (int j = 14; j < NUMBER_ROWS; j++) {
             for (int i = 9; i < 19; i++){
-            imageViewField2 = getImageViewField(stageOfGrowth);
+            imageViewField2 = getImageViewField(stateOfGrowth);
             addToGridPane(imageViewField2, i, j);
             }
         }
@@ -272,10 +365,10 @@ public class Matchfield {
     /**
      * Adds the image views of the third field to the matchfield.
      */
-    protected void setField3(int stageOfGrowth){
+    protected void setField3(int stateOfGrowth){
         for (int j = 6; j < 13; j++) {
             for (int i = 20; i < NUMBER_COLUMNS; i++){
-            imageViewField3 = getImageViewField(stageOfGrowth);
+            imageViewField3 = getImageViewField(stateOfGrowth);
             addToGridPane(imageViewField3, i, j);
             }
         }
@@ -370,25 +463,25 @@ public class Matchfield {
     }
 
     /**
-     * Method that helps to get the image view of the fields depending on the stage of growth.
+     * Method that helps to get the image view of the fields depending on the state of growth.
      *
-     * @param stageOfGrowth stage of growth of the field
+     * @param stateOfGrowth state of growth of the field
      * @return the requested image view
      */
-    private ImageView getImageViewField(int stageOfGrowth){
-        ImageView imageViewField = new ImageView(getCorrectImageField(stageOfGrowth));
+    private ImageView getImageViewField(int stateOfGrowth){
+        ImageView imageViewField = new ImageView(getCorrectImageField(stateOfGrowth));
         return imageViewField;
     }
 
     /**
-     * This method helps to get the right image for the field depending on the stage of growth.
+     * This method helps to get the right image for the field depending on the state of growth.
      *
-     * @param stageOfGrowth integer that is used for the switch case to get the right image
+     * @param stateOfGrowth integer that is used for the switch case to get the right image
      * @return the requested image
      */
-    public Image getCorrectImageField(int stageOfGrowth){
+    public Image getCorrectImageField(int stateOfGrowth){
         Image imageField = null;
-        switch(stageOfGrowth){
+        switch(stateOfGrowth){
             case 0:
                 imageField = getImage(PATH_TO_GRASSLANDS);
                 break;
@@ -396,13 +489,13 @@ public class Matchfield {
                 imageField = getImage(PATH_TO_READY_FOR_SOWING);
                 break;
             case 2:
-                imageField = getImage(PATH_TO_GROWTH_STAGE_1);
+                imageField = getImage(PATH_TO_GROWTH_STATE_1);
                 break;
             case 3:
-                imageField = getImage(PATH_TO_GROWTH_STAGE_2);
+                imageField = getImage(PATH_TO_GROWTH_STATE_2);
                 break;
             case 4:
-                imageField = getImage(PATH_TO_GROWTH_STAGE_3);
+                imageField = getImage(PATH_TO_GROWTH_STATE_3);
                 break;
             case 5:
                 imageField = getImage(PATH_TO_READY_TO_HARVEST);
@@ -608,7 +701,4 @@ public class Matchfield {
         }
         return movingObjectImage;
     }
-
-
-
 }

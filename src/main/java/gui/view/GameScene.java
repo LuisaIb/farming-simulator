@@ -3,13 +3,10 @@ package gui.view;
 import gameboard.objects.MovingObject;
 import gui.controller.GameController;
 import gui.model.ImageManager;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
-
-import java.util.concurrent.TimeUnit;
 
 import static gui.view.ViewManager.HEIGHT;
 import static gui.view.ViewManager.WIDTH;
@@ -23,18 +20,39 @@ import static gui.view.ViewManager.WIDTH;
  * @author Judith
  */
 public class GameScene {
+    /**
+     * new pane that holds all the nodes of the gameScene
+     */
     private Pane gamePane;
+    /**
+     * new scene that shows the gamePane
+     */
     private Scene gameScene;
+    /**
+     * object of the class Matchfield to add it to the gamePane
+     */
     private Matchfield matchfield;
+    /**
+     * object of the class MovingObject
+     */
     private MovingObject movingObject = new MovingObject();
+    /**
+     * object of the class InformationBox to add it to the gamePane
+     */
     private InformationBox informationBox;
+    /**
+     * object of the class SideControlPane to add it to the gamePane
+     */
     private SideControlPane sideControlPane;
+    /**
+     * String with the path to the background image of the scene
+     */
     private final String PATH_GAME_OVER = "src/main/java/gui/view/resources/background/GameOver.png";
 
     /**
      * This method implements all the Nodes for the game scene with the help of the other classes InformationBox,
-     * Matchfield, MovingObjectOnMatchfield and SideControlPane. It also adds event handlers to the game scene to
-     * react to the players input on the keyboard.
+     * Matchfield and SideControlPane. It also adds event handlers to the game scene to react to the players input on
+     * the keyboard.
      *
      * @param farmer hands the boolean selected to the method initializeSideControlPane()
      * @param tractor hands the boolean selected to the method initializeSideControlPane()
@@ -48,8 +66,7 @@ public class GameScene {
      * @param selectedObject integer of the selected moving object that is shown on the matchfield
      * @param column index of the column to which the image view is set
      * @param row index of the column to which the image view is set
-     * @param gameController object of the class gameController that is implemented in the gameClass and handed to this
-     *                       method
+     * @param gameController the GameController object of the actual game
      *
      */
     public void initializeGameScene(boolean farmer, boolean tractor, boolean harvester, boolean cultivator,
@@ -156,6 +173,9 @@ public class GameScene {
         gamePane.getChildren().add(matchfield.getMatchfield());
     }
 
+    /**
+     * This method removes all the nodes on the gamePane and adds the game over image.
+     */
     public void setGameOver(){
         Image image = new ImageManager().getImage(PATH_GAME_OVER, WIDTH, HEIGHT, false, false);
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,

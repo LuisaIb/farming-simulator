@@ -13,16 +13,41 @@ import static gui.view.ViewManager.HEIGHT;
 
 /**
  * This class implements the scene to choose the level of difficulty when starting a new game.
+ *
+ * @author Judith
  */
-
 public class DifficultyScene {
+    /**
+     * button to choose an easy game
+     */
     private LSButton buttonEasy;
+    /**
+     * button to choose a medium hard game
+     */
     private LSButton buttonMedium;
+    /**
+     * button to choose a hard game
+     */
     private LSButton buttonHard;
+    /**
+     * button to go back to the gameScene
+     */
     private LSButton buttonBackToScene;
+    /**
+     * new Pane that holds the nodes of the difficultyScene
+     */
     private Pane difficultyPane =  new Pane();
+    /**
+     * new scene that shows the difficultyPane
+     */
     private Scene difficultyScene = new Scene(difficultyPane, WIDTH, HEIGHT);
+    /**
+     * String with the path to the background image of the scene
+     */
     private static final String PATH_TO_BACKGROUND_IMAGE = "src/main/java/gui/view/resources/background/field.jpg";
+    /**
+     * object of the class SceneController
+     */
     SceneController sceneController = new SceneController();
 
     /**

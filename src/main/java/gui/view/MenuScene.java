@@ -6,29 +6,46 @@ import gui.model.LSButton;
 
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import simulator.Game;
 
 import static gui.view.ViewManager.HEIGHT;
 import static gui.view.ViewManager.WIDTH;
 
-import gameboard.objects.Farmer;
-
 /**
  * This class implements the menuScene. This scene is the first scene that is shown, when starting the game. It provides
- * buttons for a new game, load game, save game, help and end game.
+ * buttons for a new game, load game, help and end game.
  *
  * @author Judith
  */
 
 public class MenuScene {
+    /**
+     * new pane that holds all the nodes of the menuScene
+     */
     private Pane menuPane;
+    /**
+     * new scene that show the menuPane
+     */
     private Scene menuScene;
+    /**
+     * String with the path to the background image of the scene
+     */
     private static final String PATH_TO_BACKGROUND_IMAGE = "src/main/java/gui/view/resources/background/field.jpg";
+    /**
+     * button for a new game
+     */
     private LSButton buttonNewGame;
+    /**
+     * button for reloading the old game
+     */
     private LSButton buttonLoadGame;
+    /**
+     * button for the helpScene
+     */
     private LSButton buttonHelp;
+    /**
+     * button to end the game
+     */
     private LSButton buttonEnd;
 
     /**
