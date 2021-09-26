@@ -59,8 +59,6 @@ public class Game {
         courtTrade = new CourtTrade(lod);
         silo = new Silo(lod);
 
-        System.out.println(fieldTile.getTilesField1CompletedForMatchfield());
-
         	movingObject = farmer;
         	gameController = new GameController();
 	        gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
@@ -220,8 +218,6 @@ public class Game {
     	levelOfDifficulty = jb.fromJson(deserializedGame[9], LevelOfDifficulty.class);
     	courtTrade = jb.fromJson(deserializedGame[10], CourtTrade.class);
     	movingObject = jb.fromJson(deserializedGame[11], MovingObject.class);
-
-		System.out.println("field 1 stage of growth: " + fieldTile.getGrowthState());
 
 		setMovingObject();
 

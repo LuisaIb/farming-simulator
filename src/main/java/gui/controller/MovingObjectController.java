@@ -311,11 +311,6 @@ public class MovingObjectController {
             }
             if (seedDrill.isSelected() && fieldTile.getGrowthState() == 1) {
                 fieldTile.sowField(gameScene.getMatchfield(), x, y, 1, gameScene.getInformationBox());
-
-                HashMap<Integer, Boolean> test = fieldTile.getTilesField1CompletedForMatchfield();
-                for (Integer index: test.keySet()) {
-                    System.out.println("key: " + index + " and value: " + test.get(index));
-                }
             }
             if (harvester.isSelected() && fieldTile.getGrowthState() == 5) {
                 fieldTile.harvestField(gameScene.getMatchfield(), x, y, 1, gameScene.getInformationBox(), harvester);
