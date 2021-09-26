@@ -232,32 +232,10 @@ public class FieldTile{
 	private void createHashMapField2(){
 		indexesField2 = new HashMap<Integer, Integer>();
 		int fieldIndex = 915;
-		for (int i = 429; i <= 438; i++) {
-			indexesField2.put(i, fieldIndex);
-			fieldIndex++;
-		}
-
-		for (int i = 459; i <= 468; i++) {
-			indexesField2.put(i, fieldIndex);
-			fieldIndex++;
-		}
-
-		for (int i = 489; i <= 498; i++) {
-			indexesField2.put(i, fieldIndex);
-			fieldIndex++;
-		}
-
-		for (int i = 519; i <= 528; i++) {
-			indexesField2.put(i, fieldIndex);
-			fieldIndex++;
-		}
-
-		for (int i = 549; i <= 558; i++) {
-			indexesField2.put(i, fieldIndex);
-			fieldIndex++;
-		}
-
-		for (int i = 579; i <= 588; i++) {
+		for (int i = 429; i <= 588; i++) {
+			if (i % 30 == 19) {
+				i = i + 20;
+			}
 			indexesField2.put(i, fieldIndex);
 			fieldIndex++;
 		}
@@ -270,37 +248,10 @@ public class FieldTile{
 	private void createHashMapField3(){
 		indexesField3 = new HashMap<Integer, Integer>();
 		int fieldIndex = 975;
-		for (int i = 200; i <= 209; i++) {
-			indexesField3.put(i, fieldIndex);
-			fieldIndex++;
-		}
-
-		for (int i = 230; i <= 239; i++) {
-			indexesField3.put(i, fieldIndex);
-			fieldIndex++;
-		}
-
-		for (int i = 260; i <= 269; i++) {
-			indexesField3.put(i, fieldIndex);
-			fieldIndex++;
-		}
-
-		for (int i = 290; i <= 299; i++) {
-			indexesField3.put(i, fieldIndex);
-			fieldIndex++;
-		}
-
-		for (int i = 320; i <= 329; i++) {
-			indexesField3.put(i, fieldIndex);
-			fieldIndex++;
-		}
-
-		for (int i = 350; i <= 359; i++) {
-			indexesField3.put(i, fieldIndex);
-			fieldIndex++;
-		}
-
-		for (int i = 380; i <= 389; i++) {
+		for (int i = 200; i <= 389; i++) {
+			if (i % 30 == 0) {
+				i = i + 20;
+			}
 			indexesField3.put(i, fieldIndex);
 			fieldIndex++;
 		}
@@ -393,7 +344,7 @@ public class FieldTile{
 				this.setGrowthState2(2);
 
 				this.setGrowthState2(2);
-				System.out.println("Stage growth of field 1 is now 2: " + this.getGrowthState2());
+				System.out.println("Stage growth of field 2 is now 2: " + this.getGrowthState2());
 
 				setTilesField2False();
 			}
@@ -410,7 +361,7 @@ public class FieldTile{
 				this.setGrowthState3(2);
 
 				this.setGrowthState3(2);
-				System.out.println("Stage growth of field 1 is now 2: " + this.getGrowthState3());
+				System.out.println("Stage growth of field 3 is now 2: " + this.getGrowthState3());
 				setTilesField3False();
 			}
 		}
@@ -461,7 +412,7 @@ public class FieldTile{
 					this.setGrowthState2(6);
 
 					this.setGrowthState2(6);
-					System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState2());
+					System.out.println("Stage growth of field 2 is now 6: " + this.getGrowthState2());
 
 					setTilesField2False();
 				}
@@ -481,7 +432,7 @@ public class FieldTile{
 					this.setGrowthState3(6);
 
 					this.setGrowthState3(6);
-					System.out.println("Stage growth of field 1 is now 6: " + this.getGrowthState3());
+					System.out.println("Stage growth of field 3 is now 6: " + this.getGrowthState3());
 					setTilesField3False();
 				}
 			}
@@ -543,27 +494,10 @@ public class FieldTile{
 	 * This method puts all values of the HashMap to false.
 	 */
 	private void setTilesField2False(){
-		for (int i = 429; i <= 438; i++) {
-			tilesField2Completed.put(i, false);
-		}
-
-		for (int i = 459; i <= 468; i++) {
-			tilesField2Completed.put(i, false);
-		}
-
-		for (int i = 489; i <= 498; i++) {
-			tilesField2Completed.put(i, false);
-		}
-
-		for (int i = 519; i <= 528; i++) {
-			tilesField2Completed.put(i, false);
-		}
-
-		for (int i = 549; i <= 558; i++) {
-			tilesField2Completed.put(i, false);
-		}
-
-		for (int i = 579; i <= 588; i++) {
+		for (int i = 429; i <= 588; i++) {
+			if (i % 30 == 19) {
+				i = i + 20;
+			}
 			tilesField2Completed.put(i, false);
 		}
 	}
@@ -572,31 +506,10 @@ public class FieldTile{
 	 * This method puts all values of the HashMap to false.
 	 */
 	private void setTilesField3False(){
-		for (int i = 200; i <= 209; i++) {
-			tilesField3Completed.put(i, false);
-		}
-
-		for (int i = 230; i <= 239; i++) {
-			tilesField3Completed.put(i, false);
-		}
-
-		for (int i = 260; i <= 269; i++) {
-			tilesField3Completed.put(i, false);
-		}
-
-		for (int i = 290; i <= 299; i++) {
-			tilesField3Completed.put(i, false);
-		}
-
-		for (int i = 320; i <= 329; i++) {
-			tilesField3Completed.put(i, false);
-		}
-
-		for (int i = 350; i <= 359; i++) {
-			tilesField3Completed.put(i, false);
-		}
-
-		for (int i = 380; i <= 389; i++) {
+		for (int i = 200; i <= 389; i++) {
+			if (i % 30 == 0) {
+				i = i + 20;
+			}
 			tilesField3Completed.put(i, false);
 		}
 	}
@@ -695,7 +608,7 @@ public class FieldTile{
 				gameValue.setCash(gameValue.getCash()-sellingPrice);
 				setGrowthState2(1);
 				setGrowthState2(1);
-				for (int i = 914; i < 975; i++) {
+				for (int i = 915; i < 975; i++) {
 					gameScene.getMatchfield().getImageViewField2(i).setImage(gameScene.getMatchfield().getCorrectImageField(1));
 				}
 			} else {
@@ -719,14 +632,30 @@ public class FieldTile{
 		}
 	}
 
+	/**
+	 * Getter for the HashMap tilesField1Completed that is used for filling the matchfield with the correct image view.
+	 *
+	 * @return the requested HashMap tilesField1Completed
+	 */
 	public HashMap<Integer, Boolean> getTilesField1CompletedForMatchfield() {
 		return tilesField1Completed;
 	}
 
+	/**
+	 * Getter for the HashMap indexesField1 that is used for filling the matchfield with the correct image view.
+	 *
+	 * @return the requested HashMap indexesField1
+	 */
 	public HashMap<Integer, Integer> getIndexesField1ForMatchfield() {
 		return indexesField1;
 	}
 
+	/**
+	 * Getter for the HashMap tilesField1Completed that is used for saving and loading. Therefore, it creates an
+	 * ArrayList that is filled with the booleans of the HashMap.
+	 *
+	 * @return an ArrayList with all the values of the HashMap tilesField1Completed
+	 */
 	public List<Boolean> getTilesField1Completed() {
 		ArrayList<Boolean> field1Completed = new ArrayList<>();
 		for (Integer indexOfTile : tilesField1Completed.keySet()) {
@@ -735,6 +664,11 @@ public class FieldTile{
 		return field1Completed;
 	}
 
+	/**
+	 * Seter for the HashMap tilesField1Completed that is used for saving and loading.
+	 *
+	 * @param field1Completed an ArrayList whit which the values of the HashMap tilesField1Completed are filled
+	 */
 	public void setTilesField1Completed(ArrayList<Boolean> field1Completed) {
 		int index = 0;
 		for (Integer indexOfTile : tilesField1Completed.keySet()) {
@@ -742,4 +676,97 @@ public class FieldTile{
 			index++;
 		}
 	}
+
+
+	/**
+	 * Getter for the HashMap tilesField2Completed that is used for filling the matchfield with the correct image view.
+	 *
+	 * @return the requested HashMap tilesField2Completed
+	 */
+	public HashMap<Integer, Boolean> getTilesField2CompletedForMatchfield() {
+		return tilesField2Completed;
+	}
+
+	/**
+	 * Getter for the HashMap indexesField2 that is used for filling the matchfield with the correct image view.
+	 *
+	 * @return the requested HashMap indexesField2
+	 */
+	public HashMap<Integer, Integer> getIndexesField2ForMatchfield() {
+		return indexesField2;
+	}
+
+	/**
+	 * Getter for the HashMap tilesField2Completed that is used for saving and loading. Therefore, it creates an
+	 * ArrayList that is filled with the booleans of the HashMap.
+	 *
+	 * @return an ArrayList with all the values of the HashMap tilesField2Completed
+	 */
+	public List<Boolean> getTilesField2Completed() {
+		ArrayList<Boolean> field2Completed = new ArrayList<>();
+		for (Integer indexOfTile : tilesField2Completed.keySet()) {
+			field2Completed.add(tilesField2Completed.get(indexOfTile));
+		}
+		return field2Completed;
+	}
+
+	/**
+	 * Seter for the HashMap tilesField2Completed that is used for saving and loading.
+	 *
+	 * @param field2Completed an ArrayList whit which the values of the HashMap tilesField2Completed are filled
+	 */
+	public void setTilesField2Completed(ArrayList<Boolean> field2Completed) {
+		int index = 0;
+		for (Integer indexOfTile : tilesField2Completed.keySet()) {
+			tilesField2Completed.put(indexOfTile, field2Completed.get(index));
+			index++;
+		}
+	}
+
+
+	/**
+	 * Getter for the HashMap tilesField3Completed that is used for filling the matchfield with the correct image view.
+	 *
+	 * @return the requested HashMap tilesField3Completed
+	 */
+	public HashMap<Integer, Boolean> getTilesField3CompletedForMatchfield() {
+		return tilesField3Completed;
+	}
+
+	/**
+	 * Getter for the HashMap indexesField3 that is used for filling the matchfield with the correct image view.
+	 *
+	 * @return the requested HashMap indexesField3
+	 */
+	public HashMap<Integer, Integer> getIndexesField3ForMatchfield() {
+		return indexesField3;
+	}
+
+	/**
+	 * Getter for the HashMap tilesField3Completed that is used for saving and loading. Therefore, it creates an
+	 * ArrayList that is filled with the booleans of the HashMap.
+	 *
+	 * @return an ArrayList with all the values of the HashMap tilesField3Completed
+	 */
+	public List<Boolean> getTilesField3Completed() {
+		ArrayList<Boolean> field3Completed = new ArrayList<>();
+		for (Integer indexOfTile : tilesField3Completed.keySet()) {
+			field3Completed.add(tilesField3Completed.get(indexOfTile));
+		}
+		return field3Completed;
+	}
+
+	/**
+	 * Seter for the HashMap tilesField3Completed that is used for saving and loading.
+	 *
+	 * @param field3Completed an ArrayList whit which the values of the HashMap tilesField3Completed are filled
+	 */
+	public void setTilesField3Completed(ArrayList<Boolean> field3Completed) {
+		int index = 0;
+		for (Integer indexOfTile : tilesField3Completed.keySet()) {
+			tilesField3Completed.put(indexOfTile, field3Completed.get(index));
+			index++;
+		}
+	}
+
 }

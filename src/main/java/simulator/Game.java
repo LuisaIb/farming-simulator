@@ -15,6 +15,7 @@ import gui.controller.MovingObjectController;
 import gui.controller.SavingController;
 import gui.model.GameInformation;
 import gui.view.GameScene;
+import gui.view.Matchfield;
 
 /**
  * this class deals with staring a new game and reloading an old game status. 
@@ -233,12 +234,20 @@ public class Game {
 		fillInformationFields(gameScene, silo, harvester, tractor, gameValue);
 		gameController.initGameLoop(gameScene, fieldTile, gameValue, movingObjectController);
 		GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
-		gameScene.getMatchfield().fillWithField1(fieldTile.getIndexesField1ForMatchfield(),
-				fieldTile.getTilesField1CompletedForMatchfield(), fieldTile.getGrowthState());
+		fillMatchfieldWithFields(fieldTile, gameScene.getMatchfield());
 		SavingController sc = new SavingController();
 		sc.createFunctionality(gameScene, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill,
 				fieldTile, silo, levelOfDifficulty, courtTrade, movingObject);
 
 		return gameScene;
     }
+
+    private void fillMatchfieldWithFields(FieldTile fieldTile, Matchfield matchfield) {
+		matchfield.fillWithField1(fieldTile.getIndexesField1ForMatchfield(),
+				fieldTile.getTilesField1CompletedForMatchfield(), fieldTile.getGrowthState());
+		matchfield.fillWithField2(fieldTile.getIndexesField2ForMatchfield(),
+				fieldTile.getTilesField2CompletedForMatchfield(), fieldTile.getGrowthState2());
+		matchfield.fillWithField3(fieldTile.getIndexesField3ForMatchfield(),
+				fieldTile.getTilesField3CompletedForMatchfield(), fieldTile.getGrowthState3());
+	}
 }

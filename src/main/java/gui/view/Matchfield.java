@@ -176,6 +176,28 @@ public class Matchfield {
         }
     }
 
+    /**
+     * Adds the image views of the first field to the matchfield.
+     */
+    protected void setField1(int stageOfGrowth){
+        for (int j = 14; j < NUMBER_ROWS; j++) {
+            for (int i = 20; i < NUMBER_COLUMNS; i++){
+            imageViewField1 = getImageViewField(stageOfGrowth);
+            addToGridPane(imageViewField1, i, j);
+            }
+        }
+    }
+
+    /**
+     * This method is used when reloading the game. If parts of field 1 have been processed before saving it sets the
+     * correct image views to the grid pane.
+     *
+     * @param indexes HashMap of the class FieldTile that holds the matching indexes of the moving object on the
+     *                matchfield and the index of the node on the grid pane
+     * @param completed HashMap of the class FieldTile that holds the indexes of each tile of the field and if it is
+     *                  already processed
+     * @param stateOfGrowth state of growth of field 1
+     */
     public void fillWithField1(HashMap<Integer, Integer> indexes, HashMap<Integer, Boolean> completed, int stateOfGrowth){
         int newStateOfGrowth = stateOfGrowth+1;
         if (newStateOfGrowth > 6) {
@@ -189,17 +211,6 @@ public class Matchfield {
         }
     }
 
-    /**
-     * Adds the image views of the first field to the matchfield.
-     */
-    protected void setField1(int stageOfGrowth){
-        for (int j = 14; j < NUMBER_ROWS; j++) {
-            for (int i = 20; i < NUMBER_COLUMNS; i++){
-            imageViewField1 = getImageViewField(stageOfGrowth);
-            addToGridPane(imageViewField1, i, j);
-            }
-        }
-    }
 
     /**
      * Getter for the imageViewField1.
@@ -225,6 +236,29 @@ public class Matchfield {
     }
 
     /**
+     * This method is used when reloading the game. If parts of field 2 have been processed before saving it sets the
+     * correct image views to the grid pane.
+     *
+     * @param indexes HashMap of the class FieldTile that holds the matching indexes of the moving object on the
+     *                matchfield and the index of the node on the grid pane
+     * @param completed HashMap of the class FieldTile that holds the indexes of each tile of the field and if it is
+     *                  already processed
+     * @param stateOfGrowth state of growth of field 2
+     */
+    public void fillWithField2(HashMap<Integer, Integer> indexes, HashMap<Integer, Boolean> completed, int stateOfGrowth){
+        int newStateOfGrowth = stateOfGrowth+1;
+        if (newStateOfGrowth > 6) {
+            newStateOfGrowth = 1;
+        }
+
+        for (Integer index : completed.keySet()) {
+            if (completed.get(index)) {
+                getImageViewField2(indexes.get(index)).setImage(getCorrectImageField(newStateOfGrowth));
+            }
+        }
+    }
+
+    /**
      * Getter for the imageViewField2.
      *
      * @param index index of the image view in the list of children
@@ -243,6 +277,29 @@ public class Matchfield {
             for (int i = 20; i < NUMBER_COLUMNS; i++){
             imageViewField3 = getImageViewField(stageOfGrowth);
             addToGridPane(imageViewField3, i, j);
+            }
+        }
+    }
+
+    /**
+     * This method is used when reloading the game. If parts of field 3 have been processed before saving it sets the
+     * correct image views to the grid pane.
+     *
+     * @param indexes HashMap of the class FieldTile that holds the matching indexes of the moving object on the
+     *                matchfield and the index of the node on the grid pane
+     * @param completed HashMap of the class FieldTile that holds the indexes of each tile of the field and if it is
+     *                  already processed
+     * @param stateOfGrowth state of growth of field 3
+     */
+    public void fillWithField3(HashMap<Integer, Integer> indexes, HashMap<Integer, Boolean> completed, int stateOfGrowth){
+        int newStateOfGrowth = stateOfGrowth+1;
+        if (newStateOfGrowth > 6) {
+            newStateOfGrowth = 1;
+        }
+
+        for (Integer index : completed.keySet()) {
+            if (completed.get(index)) {
+                getImageViewField3(indexes.get(index)).setImage(getCorrectImageField(newStateOfGrowth));
             }
         }
     }
