@@ -1,7 +1,6 @@
 package gui.view;
 
 import gui.model.ImageManager;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -11,13 +10,25 @@ import javafx.stage.Stage;
  * @author Judith
  */
 public class ViewManager {
+    /**
+     * the main stage of the game
+     */
     private Stage mainStage = new Stage();
+    /**
+     * height of the game
+     */
     protected static final int HEIGHT = 900;
+    /**
+     * widht of the game
+     */
     protected static final int WIDTH = 1400;
+    /**
+     * menuScene that is shown first on the stage when starting the game
+     */
     private MenuScene menuScene;
 
     /**
-     * Initializes the mainStage. It sets the height, width, title and icon as well as the first scene that is shown.
+     * Initializes the mainStage. It sets the title and icon as well as the first scene that is shown.
      */
     public void initializeStage(){
         mainStage.setTitle("farming simulator");
@@ -35,14 +46,6 @@ public class ViewManager {
     private void initilizeScene(){
         menuScene = new MenuScene();
         mainStage.setScene(menuScene.getMenuScene());
-    }
-
-    public MenuScene getMenuScene(){
-        return menuScene;
-    }
-
-    public Stage getMainStage(){
-        return mainStage;
     }
 
 }

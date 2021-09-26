@@ -16,27 +16,93 @@ import static gui.view.ViewManager.WIDTH;
  * @author Judith
  */
 public class SideControlPane {
+    /**
+     * pane that holds all the nodes of the sidePane on the right side of the gameScene
+     */
     private Pane sidePane = new Pane();
+    /**
+     * grid pane that holds the buttons to choose the moving object
+     */
     private GridPane machinePane = new GridPane();
+    /**
+     * button to choose the farmer
+     */
     private LSButton farmerButton;
+    /**
+     * button to choose the tractor
+     */
     private LSButton tractorButton;
+    /**
+     * button to choose the harvester
+     */
     private LSButton harvesterButton;
+    /**
+     * button to choose the cultivator
+     */
     private LSButton cultivatorButton;
+    /**
+     * button to choose the dumpTruck
+     */
     private LSButton dumpTruckButton;
+    /**
+     * button to choose the seedDrill
+     */
     private LSButton seedDrillButton;
+    /**
+     * button to move right
+     */
     private LSButton buttonRight;
+    /**
+     * button to move left
+     */
     private LSButton buttonLeft;
+    /**
+     * button to move up
+     */
     private LSButton buttonUp;
+    /**
+     * button to move down
+     */
     private LSButton buttonDown;
+    /**
+     * button to take some action like exit vehicle, sell grain, unload tumpTruck, ...
+     */
     private LSButton buttonAction;
+    /**
+     * height of the side pane
+     */
     private static final int HEIGHT_PANE = 860;
+    /**
+     * width of the side pane
+     */
     private static final int WIDTH_PANE = 250;
+    /**
+     * String with the path to the image of the farmer
+     */
     private final String PATH_TO_FARMER = "src/main/java/gui/view/resources/farmer/farmerSide.png";
+    /**
+     * String with the path to the image of the tractor
+     */
     private final String PATH_TO_TRACTOR = "src/main/java/gui/view/resources/machines/tractorSide.png";
+    /**
+     * String with the path to the image of the harvester
+     */
     private final String PATH_TO_HARVESTER = "src/main/java/gui/view/resources/machines/harvesterSide.png";
+    /**
+     * String with the path to the image of the cultivator
+     */
     private final String PATH_TO_CULTIVATOR = "src/main/java/gui/view/resources/machines/cultivatorSide.png";
+    /**
+     * String with the path to the image of the dumpTruck
+     */
     private final String PATH_TO_DUMP_TRUCK = "src/main/java/gui/view/resources/machines/dumpTruckSide.png";
+    /**
+     * String with the path to the image of the seedDrill
+     */
     private final String PATH_TO_SEED_DRILL = "src/main/java/gui/view/resources/machines/seedDrillSide.png";
+    /**
+     * object of the class GameController to set the booleans for moving around pressed and released
+     */
     GameController gameController;
 
 
@@ -233,30 +299,65 @@ public class SideControlPane {
         return sidePane;
     }
 
+    /**
+     * Getter for the buttonAction.
+     *
+     * @return the requested buttonAction
+     */
     public LSButton getButtonAction() {
         return buttonAction;
     }
 
+    /**
+     * Getter for the farmerButton.
+     *
+     * @return the requested farmerButton
+     */
     public LSButton getFarmerButton() {
         return farmerButton;
     }
 
+    /**
+     * Getter for the tractorButton.
+     *
+     * @return the requested tractorButton
+     */
     public LSButton getTractorButton() {
         return tractorButton;
     }
 
+    /**
+     * Getter for the harvesterButton.
+     *
+     * @return the requested harvesterButton
+     */
     public LSButton getHarvesterButton() {
         return harvesterButton;
     }
 
+    /**
+     * Getter for the cultivatorButton.
+     *
+     * @return the requested cultivatorButton
+     */
     public LSButton getCultivatorButton() {
         return cultivatorButton;
     }
 
+    /**
+     * Getter for the dumpTruckButton.
+     *
+     * @return the requested dumpTruckButton
+     */
     public LSButton getDumpTruckButton() {
         return dumpTruckButton;
     }
 
+    /**
+     * Getter for the seedDrillButton.
+     *
+     * @return the requested seedDrillButton
+     */
     public LSButton getSeedDrillButton() {
         return seedDrillButton;
     }
