@@ -5,7 +5,10 @@ import gameboard.objects.Harvester;
 import gui.view.GameScene;
 import gui.view.InformationBox;
 import gui.view.Matchfield;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * This class represents a tile, which is part of one of the three fields, with its several properties
@@ -550,27 +553,10 @@ public class FieldTile{
 	 * This method puts all values of the HashMap to false.
 	 */
 	private void setTilesField1False(){
-		for (int i = 440; i <= 449; i++) {
-			tilesField1Completed.put(i, false);
-		}
-
-		for (int i = 470; i <= 479; i++) {
-			tilesField1Completed.put(i, false);
-		}
-
-		for (int i = 500; i <= 509; i++) {
-			tilesField1Completed.put(i, false);
-		}
-
-		for (int i = 530; i <= 539; i++) {
-			tilesField1Completed.put(i, false);
-		}
-
-		for (int i = 560; i <= 569; i++) {
-			tilesField1Completed.put(i, false);
-		}
-
-		for (int i = 590; i <= 599; i++) {
+		for (int i = 440; i <= 599; i++) {
+			if (i == 450 || i == 480 || i == 510 || i == 540 || i == 570) {
+				i = i + 20;
+			}
 			tilesField1Completed.put(i, false);
 		}
 	}
@@ -752,6 +738,30 @@ public class FieldTile{
 			} else {
 				gameScene.getInformationBox().getNewsField().setText("you do not have enough money to buy this field");
 			}
+		}
+	}
+
+	public HashMap<Integer, Boolean> getTilesField1CompletedForMatchfield() {
+		return tilesField1Completed;
+	}
+
+	public HashMap<Integer, Integer> getIndexesField1ForMatchfield() {
+		return indexesField1;
+	}
+
+	public List<Boolean> getTilesField1Completed() {
+		ArrayList<Boolean> field1Completed = new ArrayList<>();
+		for (Integer indexOfTile : tilesField1Completed.keySet()) {
+			field1Completed.add(tilesField1Completed.get(indexOfTile));
+		}
+		return field1Completed;
+	}
+
+	public void setTilesField1Completed(ArrayList<Boolean> field1Completed) {
+		int index = 0;
+		for (Integer indexOfTile : tilesField1Completed.keySet()) {
+			tilesField1Completed.put(indexOfTile, field1Completed.get(index));
+			index++;
 		}
 	}
 }

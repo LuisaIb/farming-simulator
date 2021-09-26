@@ -11,6 +11,8 @@ import gui.view.InformationBox;
 import gui.view.Matchfield;
 import gui.view.SideControlPane;
 
+import java.util.HashMap;
+
 /**
  * This class implements some methods to move around and to process the fields.
  *
@@ -309,6 +311,11 @@ public class MovingObjectController {
             }
             if (seedDrill.isSelected() && fieldTile.getGrowthState() == 1) {
                 fieldTile.sowField(gameScene.getMatchfield(), x, y, 1, gameScene.getInformationBox());
+
+                HashMap<Integer, Boolean> test = fieldTile.getTilesField1CompletedForMatchfield();
+                for (Integer index: test.keySet()) {
+                    System.out.println("key: " + index + " and value: " + test.get(index));
+                }
             }
             if (harvester.isSelected() && fieldTile.getGrowthState() == 5) {
                 fieldTile.harvestField(gameScene.getMatchfield(), x, y, 1, gameScene.getInformationBox(), harvester);

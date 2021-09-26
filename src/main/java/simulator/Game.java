@@ -59,6 +59,8 @@ public class Game {
         courtTrade = new CourtTrade(lod);
         silo = new Silo(lod);
 
+        System.out.println(fieldTile.getTilesField1CompletedForMatchfield());
+
         	movingObject = farmer;
         	gameController = new GameController();
 	        gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
@@ -72,7 +74,6 @@ public class Game {
         	fillInformationFields(gameScene, silo, harvester, tractor, gameValue);
 			gameController.initGameLoop(gameScene, fieldTile, gameValue, movingObjectController);
     	    GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
-
     	    SavingController sc = new SavingController();
         	sc.createFunctionality(gameScene, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill,
 					fieldTile, silo, levelOfDifficulty, courtTrade, movingObject);
@@ -236,7 +237,8 @@ public class Game {
 		fillInformationFields(gameScene, silo, harvester, tractor, gameValue);
 		gameController.initGameLoop(gameScene, fieldTile, gameValue, movingObjectController);
 		GameInformation gameInformation = new GameInformation(gameScene.getInformationBox(), gameValue, tractor, harvester, silo);
-		//gameScene.getMatchfield().fillWithField1(fieldTile.getTilesField1Completed(), fieldTile.getGrowthState());
+		gameScene.getMatchfield().fillWithField1(fieldTile.getIndexesField1ForMatchfield(),
+				fieldTile.getTilesField1CompletedForMatchfield(), fieldTile.getGrowthState());
 		SavingController sc = new SavingController();
 		sc.createFunctionality(gameScene, gameValue, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill,
 				fieldTile, silo, levelOfDifficulty, courtTrade, movingObject);

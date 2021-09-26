@@ -8,6 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 
 import java.util.HashMap;
+import java.util.List;
 
 import static gui.view.ViewManager.HEIGHT;
 
@@ -175,15 +176,15 @@ public class Matchfield {
         }
     }
 
-    public void fillWithField1(HashMap<Integer, Boolean> tilesProcessedField1, int stateOfGrowth){
+    public void fillWithField1(HashMap<Integer, Integer> indexes, HashMap<Integer, Boolean> completed, int stateOfGrowth){
         int newStateOfGrowth = stateOfGrowth+1;
         if (newStateOfGrowth > 6) {
             newStateOfGrowth = 1;
         }
-        for(Integer index : tilesProcessedField1.keySet()) {
-            if (tilesProcessedField1.get(index)) {
 
-                getImageViewField1(index).setImage(getCorrectImageField(newStateOfGrowth));
+        for (Integer index : completed.keySet()) {
+            if (completed.get(index)) {
+                getImageViewField1(indexes.get(index)).setImage(getCorrectImageField(newStateOfGrowth));
             }
         }
     }
