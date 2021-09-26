@@ -48,7 +48,7 @@ public class ObjectToJsonb {
 	 * @param courtTrade
 	 * saved information: selling price
 	 * It puts the serialized JSON-B into a StringBuilder Object.
-	 * This JSON-B is written into a textfile, that is located in "src/main/java/datastorage/SavingInformation/farmersimulator.txt"
+	 * This JSON-B is written into a textfile, that is located in "src/main/java/datastorage/information/farmersimulator.txt"
 	 */
 	public void toSerialize(GameValue gameValue, Farmer farmer, Tractor tractor, Harvester harvester,
 							Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile,
@@ -113,7 +113,7 @@ public class ObjectToJsonb {
 		 */
 		public void writeFile(StringBuilder sb) {
 		try {
-			File textFile = new File("src/main/java/datastorage/SavingInformation/farmersimulator.txt");
+			File textFile = new File("src/main/java/datastorage/information/farmersimulator.txt");
 			textFile.setWritable(true);
 			if (textFile.createNewFile()) {
 			System.out.println("created a textfile");

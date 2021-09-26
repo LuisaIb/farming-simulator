@@ -30,7 +30,7 @@ public class ObjectToPojo {
 	 */
 	public void toDeserialize() {
 		try {
-			File gameFile = new File("src/main/java/datastorage/SavingInformation/farmersimulator.txt");//"src/main/java/datastorage/SavingInformation/farmersimulator.txt"
+			File gameFile = new File("src/main/java/datastorage/information/farmersimulator.txt");//"src/main/java/datastorage/information/farmersimulator.txt"
 			gameFile.setWritable(false);
 			if (gameFile.exists()) {
 			Scanner fileReader = new Scanner(gameFile);
