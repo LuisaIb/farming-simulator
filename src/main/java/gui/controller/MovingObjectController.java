@@ -7,7 +7,6 @@ import gameboard.tiles.CourtTrade;
 import gameboard.tiles.FieldTile;
 import gameboard.tiles.Silo;
 import gui.view.GameScene;
-import gui.view.InformationBox;
 import gui.view.Matchfield;
 import gui.view.SideControlPane;
 
