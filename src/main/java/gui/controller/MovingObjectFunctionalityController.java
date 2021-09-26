@@ -17,32 +17,96 @@ import gui.view.SideControlPane;
  * @author Judith
  */
 public class MovingObjectFunctionalityController {
+    /**
+     * the actual GameScene object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private GameScene gameScene;
+    /**
+     * the actual Matchfield object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private Matchfield matchfield;
+    /**
+     * the actual SideControlPane object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private SideControlPane sideControlPane;
     // buttons that are needed to implement the functionality
+    /**
+     * the buttonAction of the actual SideControlPane object
+     */
     private LSButton buttonAction;
+    /**
+     * the farmerButton of the actual SideControlPane object
+     */
     private LSButton farmerButton;
+    /**
+     * the tractorButton of the actual SideControlPane object
+     */
     private LSButton tractorButton;
+    /**
+     * the harvesterButton of the actual SideControlPane object
+     */
     private LSButton harvesterButton;
+    /**
+     * the cultivatorButton of the actual SideControlPane object
+     */
     private LSButton cultivatorButton;
+    /**
+     * the dumpTruckButton of the actual SideControlPane object
+     */
     private LSButton dumpTruckButton;
+    /**
+     * the seedDrillButton of the actual SideControlPane object
+     */
     private LSButton seedDrillButton;
     // column and row on the left side of the tractor in which the farmer exits and enters the tractor
+    /**
+     * integer to store the index of the column to which the farmer exited the tractor
+     */
     private int columnExited;
+    /**
+     * integer to store the index of the row to which the farmer exited the tractor
+     */
     private int rowExited;
+    /**
+     * boolean that stores the information if the farmer exited the tractor on the matchfield
+     */
     private boolean tractorExited = false;
-    // column and row on which the tractor stands
+    // column and row on which the tractor is placed
+    /**
+     * integer to store on which column the exited tractor is placed
+     */
     private int exitedVehicleX;
+    /**
+     * integer to store on which row the exited tractor is placed
+     */
     private int exitedVehicleY;
     // rotation of the imageView of the movingObject
+    /**
+     * rotation of the image view if the exited tractor
+     */
     private double rotation;
+    /**
+     * integer that stores the number of the exited object
+     */
     private int exitedObject;
     // column and row on the right side of the tractor to unload the harvester to the dumpTruck
+    /**
+     * integer that stores the column on the right side of the exited tractor and that is needed to proof if the
+     * harvester is standing on the correct side of the tractor
+     */
     private int columnToFillFromHarvester;
+    /**
+     * integer that stores the row on the right side of the exited tractor and that is needed to proof if the harvester
+     * is standing on the correct side of the tractor
+     */
     private int rowToFillFromHarvester;
 
-    public MovingObjectFunctionalityController(GameScene gameScene){
+    /**
+     * Constructor that initializes the variables of this class.
+     *
+     * @param gameScene the GameScene object of the actual game
+     */
+    protected MovingObjectFunctionalityController(GameScene gameScene){
         this.gameScene = gameScene;
         matchfield = gameScene.getMatchfield();
         sideControlPane = gameScene.getSideControlPane();
@@ -55,7 +119,24 @@ public class MovingObjectFunctionalityController {
         seedDrillButton = gameScene.getSideControlPane().getSeedDrillButton();
     }
 
-    public void proofActionButtonFunctionality(int column, int row, MovingObject movingObject, GameValue gameValue,
+    /**
+     * This method check if an action is possible and calls it.
+     *
+     * @param column integer of the column on which the moving object is standing
+     * @param row integer of the row on which the moving object is standing
+     * @param movingObject the MovingObjet object of the actual game
+     * @param gameValue the GameValue object of the actual game
+     * @param farmer the Farmer object of the actual game
+     * @param tractor the Tractor object of the actual game
+     * @param harvester the Harvester object of the actual game
+     * @param cultivator the Cultivator object of the actual game
+     * @param dumpTruck the DumpTruck object of the actual game
+     * @param seedDrill the SeedDrill object of the actual game
+     * @param fieldTile the FieldTile object of the actual game
+     * @param silo the Silo object of the actual game
+     * @param courtTrade the CourtTrade object of the actual game
+     */
+    protected void proofActionButtonFunctionality(int column, int row, MovingObject movingObject, GameValue gameValue,
                                                Farmer farmer, Tractor tractor, Harvester harvester,
                                                Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile,
                                                Silo silo, CourtTrade courtTrade) {
@@ -84,18 +165,33 @@ public class MovingObjectFunctionalityController {
         }
     }
 
-
-    protected void selectVehicle(MovingObject movingObject, Farmer farmer, Tractor tractor, Harvester harvester,
+    /**
+     * This method implements the functionality to select a vehicle or go back to the farmer at the barn. Therefore, the
+     * buttons on the pane on the right side are used. This method implements the functionality to choose the farmer or
+     * the harvester.
+     *
+     * @param movingObject the MovingObject object of the actual game
+     * @param farmer the Farmer object of the actual game
+     * @param tractor the Tractor object of the actual game
+     * @param harvester the Harvester object of the actual game
+     * @param cultivator the Cultivator object of the actual game
+     * @param dumpTruck the DumpTruck object of the actual game
+     * @param seedDrill the SeedDtrill object of the actual game
+     */
+    private void selectVehicle(MovingObject movingObject, Farmer farmer, Tractor tractor, Harvester harvester,
                                  Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
         buttonAction.setOnMouseClicked(MouseEvent -> {
-            farmerButton.setDisable(false);
-            if (!tractorExited) {
-                tractorButton.setDisable(false);
+            // if the farmer exited the tractor he can not enter another tractor at the barn
+            if (tractorExited) {
+                sideControlPane.setButtonsDisabled(true, false, true, false,
+                        false, false);
+            } else {
+                sideControlPane.setButtonsDisabled(true, true, true, false,
+                        false, false);
             }
-            harvesterButton.setDisable(false);
         });
 
-
+        // the farmer is selected by clicking the button of the farmer
         farmerButton.setOnMouseClicked(mouseEvent -> {
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(1));
             setMovingObjectToFarmer(movingObject, farmer);
@@ -107,6 +203,7 @@ public class MovingObjectFunctionalityController {
             tractor.setAttachement(false);
         });
 
+        // the harvester is selected by clicking the button of the harvester
         harvesterButton.setOnMouseClicked(mouseEvent -> {
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(3));
             setMovingObjectToHarvester(movingObject, harvester);
@@ -118,20 +215,23 @@ public class MovingObjectFunctionalityController {
         });
     }
 
-    private void setMovingObjectsSelected(boolean farmerSelected, boolean tractorSelected, boolean harvesterSelected,
-                                          boolean cultivatorSelected, boolean dumpTruckSelected, boolean seedDrillSelected,
-                                          Farmer farmer, Tractor tractor, Harvester harvester, Cultivator cultivator,
-                                          DumpTruck dumpTruck, SeedDrill seedDrill) {
-        farmer.setSelected(farmerSelected);
-        tractor.setSelected(tractorSelected);
-        harvester.setSelected(harvesterSelected);
-        cultivator.setSelected(cultivatorSelected);
-        dumpTruck.setSelected(dumpTruckSelected);
-        seedDrill.setSelected(seedDrillSelected);
-    }
-
-    protected void selectWorkingDevice(MovingObject movingObject, Farmer farmer, Tractor tractor, Harvester harvester,
+    /**
+     * This method implements the functionality to select a working device if the tractor is selected at the barn.
+     * Therefore, the buttons on the pane on the right side are used. This method implements the functionality to
+     * choose the tractor and one of the working devices.
+     *
+     * @param movingObject the MovingObject object of the actual game
+     * @param farmer the Farmer object of the actual game
+     * @param tractor the Tractor object of the actual game
+     * @param harvester the Harvester object of the actual game
+     * @param cultivator the Cultivator object of the actual game
+     * @param dumpTruck the DumpTruck object of the actual game
+     * @param seedDrill the SeedDrill object of the actual game
+     */
+    private void selectWorkingDevice(MovingObject movingObject, Farmer farmer, Tractor tractor, Harvester harvester,
                                        Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
+        // the tractor is selected by clicking the button of the tractor which makes the buttons of the
+        // working devices clickable
         tractorButton.setOnMouseClicked(MouseEvent -> {
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(2));
             setMovingObjectToTractor(movingObject, tractor);
@@ -143,6 +243,7 @@ public class MovingObjectFunctionalityController {
             tractor.setAttachement(false);
         });
 
+        // the cultivator is selected and attached by clicking the button of the cultivator
         cultivatorButton.setOnMouseClicked(mouseEvent -> {
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(4));
             sideControlPane.setButtonsDisabled(false, true, false, true, false,
@@ -153,6 +254,7 @@ public class MovingObjectFunctionalityController {
             tractor.setAttachement(true);
         });
 
+        // the dumpTruck is selected and attached by clicking the button of the dumpTruck
         dumpTruckButton.setOnMouseClicked(mouseEvent -> {
             if (dumpTruck.getGrainFillLevel() == 0) {
                 matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(5));
@@ -167,6 +269,7 @@ public class MovingObjectFunctionalityController {
             tractor.setAttachement(true);
         });
 
+        // the seedDrill is selected and attached by clicking the button of the seedDrill
         seedDrillButton.setOnMouseClicked(mouseEvent -> {
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(7));
             sideControlPane.setButtonsDisabled(false, true, false, false, false,
@@ -178,20 +281,71 @@ public class MovingObjectFunctionalityController {
         });
     }
 
-    protected void sellGrain(DumpTruck dumpTruck, GameValue gameValue, CourtTrade courtTrade) {
+    /**
+     * This method helps to set the different objects selected or not selected.
+     *
+     * @param farmerSelected boolean that is true if the farmer is selected
+     * @param tractorSelected boolean that is true if the tractor is selected
+     * @param harvesterSelected boolean that is true if the harvester is selected
+     * @param cultivatorSelected boolean that is true if the cultivator is selected
+     * @param dumpTruckSelected boolean that is true if the dumpTruck is selected
+     * @param seedDrillSelected boolean that is true if the seedDrill is selected
+     * @param farmer the Farmer object of the actual game
+     * @param tractor the Tractor object of the actual game
+     * @param harvester the Harvester object of the actual game
+     * @param cultivator the Cultivator object of the actual game
+     * @param dumpTruck the DumpTruck object of the actual game
+     * @param seedDrill the SeedDrill object of the actual game
+     */
+    private void setMovingObjectsSelected(boolean farmerSelected, boolean tractorSelected, boolean harvesterSelected,
+                                          boolean cultivatorSelected, boolean dumpTruckSelected, boolean seedDrillSelected,
+                                          Farmer farmer, Tractor tractor, Harvester harvester, Cultivator cultivator,
+                                          DumpTruck dumpTruck, SeedDrill seedDrill) {
+        farmer.setSelected(farmerSelected);
+        tractor.setSelected(tractorSelected);
+        harvester.setSelected(harvesterSelected);
+        cultivator.setSelected(cultivatorSelected);
+        dumpTruck.setSelected(dumpTruckSelected);
+        seedDrill.setSelected(seedDrillSelected);
+    }
+
+    /**
+     * This method implements the functionality to sell grain at the courtTrade.
+     *
+     * @param dumpTruck the DumpTruck object of the actual game
+     * @param gameValue the gameValue object of the actual game
+     * @param courtTrade the CourtTrade object of the actual game
+     */
+    private void sellGrain(DumpTruck dumpTruck, GameValue gameValue, CourtTrade courtTrade) {
         buttonAction.setOnMouseClicked(mouseEvent -> {
             dumpTruck.sellingGrain(gameValue, courtTrade);
+            // the image of the dumpTruck has to be changed to the empty image
             matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(5));
         });
     }
 
-    protected void buyField(GameValue gameValue, GameScene gameScene, FieldTile fieldTile){
+    /**
+     * This method implements the functionality to buy a field at the courtTrade.
+     *
+     * @param gameValue the GameValue object of the actual game
+     * @param gameScene the GameScene object of the actual game
+     * @param fieldTile the FieldTile object of the actual game
+     */
+    private void buyField(GameValue gameValue, GameScene gameScene, FieldTile fieldTile){
         buttonAction.setOnMouseClicked(mouseEvent -> {
             fieldTile.buyField(gameValue, gameScene);
         });
     }
 
-    protected void fillTank(GameValue gameValue, Tractor tractor, Harvester harvester) {
+    /**
+     * This method implements the functionality to fill the petrol tank of the tractor and the harvester at the
+     * gasStation.
+     *
+     * @param gameValue the GameValue object of the actual game
+     * @param tractor the Tractor object of the actual game
+     * @param harvester the Harvester object of the actual game
+     */
+    private void fillTank(GameValue gameValue, Tractor tractor, Harvester harvester) {
         buttonAction.setOnMouseClicked(mouseEvent -> {
             if (tractor.isSelected()) {
                 tractor.fillTank(gameValue);
@@ -202,17 +356,32 @@ public class MovingObjectFunctionalityController {
         });
     }
 
+    /**
+     * This method implements the functionality to unload the grain tank of the harvester to the dumpTruck.
+     *
+     * @param harvester the Harvester object of the actual game
+     * @param dumpTruck the DumpTruck object of the actual game
+     */
     private void unloadToDumpTruck(Harvester harvester, DumpTruck dumpTruck){
         buttonAction.setOnMouseClicked(mouseEvent -> {
             harvester.unloadToDumpTruck(harvester, dumpTruck);
+            // set the exited object to six because the dumpTruck isn't empty anymore
             exitedObject = 6;
             matchfield.getSecondMovingObjectImageView().setImage(matchfield.getTheRightImage(6));
-            System.out.println("harvester grain tank fill level should be 0 after unloading: " + harvester.getGrainTankFillLevel());
-
         });
     }
 
-    protected int getObjectExited(Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
+    /**
+     * This method checks if a and which of the working devices is attached when exiting the tractor. Depending on that
+     * it sets and returns an integer and sets the button of the working device disbaled and the working device itself
+     * not selected anymore.
+     *
+     * @param cultivator the Cultivator object of the actual game
+     * @param dumpTruck the DumpTruck object of the actual game
+     * @param seedDrill the SeedDrill object of the actual game
+     * @return an integer that is set depending on the attached working device
+     */
+    private int getObjectExited(Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
         int selectedObject;
         if (cultivator.isSelected()) {
             selectedObject = 4;
@@ -221,9 +390,11 @@ public class MovingObjectFunctionalityController {
             exitedObject = 4;
         } else if (dumpTruck.isSelected()) {
             if (dumpTruck.getGrainFillLevel() == 0) {
+                // empty dumpTruck
                 selectedObject = 5;
                 exitedObject = 5;
             } else {
+                // filled dumpTruck
                 selectedObject = 6;
                 exitedObject = 6;
             }
@@ -235,33 +406,50 @@ public class MovingObjectFunctionalityController {
             seedDrillButton.setDisable(true);
             seedDrill.setSelected(false);
         } else {
+            // no working device attached, only the tractor exited
             selectedObject = 2;
             exitedObject = 2;
         }
         return selectedObject;
     }
 
+    /**
+     * This method sets the variable columnExited and rowExited when exiting the tractor as well as the variables
+     * exitedVehicleX and exitedVehicleY. As the farmer exits the tractor on the left side the column and the row to
+     * which he exits depend on the direction.
+     *
+     * @param rotation rotation of the tractor
+     * @param movingObject the MovingObject object of the actual game
+     */
     private void setExitedIntegers(double rotation, MovingObject movingObject){
-        if (rotation == 0) {
+        if (rotation == 0) { // down
             columnExited = movingObject.getX()+1;
             rowExited = movingObject.getY();
-        } else if (rotation == 90) {
+        } else if (rotation == 90) { // left
             columnExited = movingObject.getX();
             rowExited = movingObject.getY()+1;
-        } else if (rotation == 180) {
+        } else if (rotation == 180) { // up
             columnExited = movingObject.getX()-1;
             rowExited = movingObject.getY();
-        } else if (rotation == 270) {
+        } else if (rotation == 270) { // right
             columnExited = movingObject.getX();
             rowExited = movingObject.getY()-1;
         }
         exitedVehicleX = movingObject.getX();
-        System.out.println(exitedVehicleX);
         exitedVehicleY = movingObject.getY();
-        System.out.println(exitedVehicleY);
     }
 
-    protected void exitVehicle(MovingObject movingObject, Farmer farmer, Tractor tractor, Cultivator cultivator, DumpTruck dumpTruck,
+    /**
+     * This method implements the functionality to exit the tractor.
+     *
+     * @param movingObject the MovingObject object of the actual game
+     * @param farmer the Farmer object of the actual game
+     * @param tractor the Tractor object of the actual game
+     * @param cultivator the Cultivator object of the actual game
+     * @param dumpTruck the DumpTruck object of the actual game
+     * @param seedDrill the SeedDrill object of the actual game
+     */
+    private void exitVehicle(MovingObject movingObject, Farmer farmer, Tractor tractor, Cultivator cultivator, DumpTruck dumpTruck,
                                SeedDrill seedDrill){
         buttonAction.setOnMouseClicked(mouseEvent -> {
             int exitedObject = getObjectExited(cultivator, dumpTruck, seedDrill);
@@ -273,6 +461,13 @@ public class MovingObjectFunctionalityController {
         });
     }
 
+    /**
+     * This method sets the variables columnToFillFromHarvester and rowToFillFromHarvester. As the harvester has to be
+     * on the right side of the tractor the values integers are set depending on the direction the tractor is facing to.
+     *
+     * @param rotation rotation of the tractor
+     * @param movingObject the MovingObject object of the actual game
+     */
     private void setIntegersToFillFromHarvester(double rotation, MovingObject movingObject){
         if (rotation == 0) {
             columnToFillFromHarvester = movingObject.getX()-1;
@@ -289,15 +484,30 @@ public class MovingObjectFunctionalityController {
         }
     }
 
+    /**
+     * This method implements a second image view that holds the image of the exited tractor and eventually of the
+     * attached working device.
+     *
+     * @param movingObject the MovingObject object of the actual game
+     * @param tractor the Tractor object of the actual game
+     */
     private void initializeSecondMovingObject(MovingObject movingObject,Tractor tractor){
         matchfield.initializeSecondMovingObject(exitedObject, exitedVehicleX, exitedVehicleY);
         matchfield.getSecondMovingObjectImageView().setRotate(rotation);
         tractor.setSelected(false);
         tractorButton.setDisable(true);
         tractorExited = true;
+        // the tile on which the tractor is standing - the moving object can't move onto it anymore
         movingObject.getPlaces().add(0, exitedVehicleY*30+exitedVehicleX);
     }
 
+    /**
+     * This method helps to exit the tractor by changing the moving object back to the farmer. The farmer has to be
+     * placed on the left side of the tractor and set selected.
+     *
+     * @param movingObject the MovingObject object of the actual game
+     * @param farmer the Farmer object of the actual game
+     */
     private void changeToFarmerAfterExited(MovingObject movingObject, Farmer farmer){
         matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(1));
         matchfield.getMovingObjectImageView().setRotate(rotation);
@@ -309,7 +519,17 @@ public class MovingObjectFunctionalityController {
         setMovingObjectToFarmer(movingObject, farmer);
     }
 
-    protected void enterVehicle(MovingObject movingObject, Farmer farmer, Tractor tractor, Cultivator cultivator,
+    /**
+     * This method implements the functionality to enter the tractor after exiting it.
+     *
+     * @param movingObject the MovingObject object of the actual game.
+     * @param farmer the Farmer object of the actual game
+     * @param tractor the Tractor object of the actual game
+     * @param cultivator the Cultivator object of the actual game
+     * @param dumpTruck the DumpTruck object of the actual game
+     * @param seedDrill the SeedDrill object of the actual game
+     */
+    private void enterVehicle(MovingObject movingObject, Farmer farmer, Tractor tractor, Cultivator cultivator,
                                 DumpTruck dumpTruck, SeedDrill seedDrill){
         buttonAction.setOnMouseClicked(mouseEvent -> {
             removeSecondMovingObject(movingObject, farmer);
@@ -317,13 +537,29 @@ public class MovingObjectFunctionalityController {
         });
     }
 
+    /**
+     * This method removes the image view of the exited tractor and sets the farmer not selected anymore.
+     *
+     * @param movingObject the MovingObject object of the actual game
+     * @param farmer the Farmer object of the actual game
+     */
     private void removeSecondMovingObject(MovingObject movingObject, Farmer farmer){
+        // the tile on which the exited tractor is standing is now passable again
         movingObject.getPlaces().remove(0);
         matchfield.deleteSecondImageView();
         farmer.setSelected(false);
         farmerButton.setDisable(true);
     }
 
+    /**
+     * This method helps to change from the farmer back to the exited tractor.
+     *
+     * @param movingObject the MovingObject object of the actual game
+     * @param tractor the Tractor object of the actual game
+     * @param cultivator the Cultivator object of the actual game
+     * @param dumpTruck the DumpTruck object of the actual game
+     * @param seedDrill the SeedDrill object of the actual game
+     */
     private void changeBackToExitedVehicle(MovingObject movingObject, Tractor tractor, Cultivator cultivator,
                                            DumpTruck dumpTruck, SeedDrill seedDrill){
         matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(exitedObject));
@@ -332,13 +568,13 @@ public class MovingObjectFunctionalityController {
         tractor.setSelected(true);
         tractorButton.setDisable(false);
         tractorExited = false;
-        if (exitedObject == 4){
+        if (exitedObject == 4){ // cultivator
             cultivator.setSelected(true);
             cultivatorButton.setDisable(false);
-        } else if (exitedObject == 5 || exitedObject == 6){
+        } else if (exitedObject == 5 || exitedObject == 6){ // dumpTruck - empty or nor
             dumpTruck.setSelected(true);
             dumpTruckButton.setDisable(false);
-        } else if (exitedObject == 7){
+        } else if (exitedObject == 7){ // seedDrill
             seedDrill.setSelected(true);
             seedDrillButton.setDisable(false);
         }
@@ -347,15 +583,27 @@ public class MovingObjectFunctionalityController {
         setMovingObjectToTractor(movingObject, tractor);
     }
 
+    /**
+     * This method implements the functionality to unload the dumpTruck to the silo.
+     *
+     * @param dumpTruck the DumpTruck object of the actual game
+     * @param silo the Silo object of the actual game
+     */
     private void unloadToSilo(DumpTruck dumpTruck, Silo silo){
         buttonAction.setOnMouseClicked(mouseEvent -> {
             dumpTruck.unloadToSilo(silo);
-            if (dumpTruck.getGrainFillLevel() == 0) {
+            if (dumpTruck.getGrainFillLevel() == 0) { // if the dumpTruck is now empty the image has to be changed
                 matchfield.getMovingObjectImageView().setImage(matchfield.getTheRightImage(5));
             }
         });
     }
 
+    /**
+     * This method implements the functionality to load the dumpTruck from the silo.
+     *
+     * @param dumpTruck the DumpTruck object of the actual game
+     * @param silo the Silo object of the actual game
+     */
     private void loadFromSilo(DumpTruck dumpTruck, Silo silo) {
         buttonAction.setOnMouseClicked(mouseEvent -> {
             dumpTruck.loadFromSilo(silo);
@@ -363,42 +611,95 @@ public class MovingObjectFunctionalityController {
         });
     }
 
+    /**
+     * This method sets the movingObject to the farmer.
+     *
+     * @param movingObject the MovingObject object of the actual game
+     * @param farmer the Farmer object of the actual game
+     */
     private void setMovingObjectToFarmer(MovingObject movingObject, Farmer farmer){
         movingObject = farmer;
     }
 
+    /**
+     * This method sets the movingObject to the tractor.
+     *
+     * @param movingObject the MovingObject object of the actual game
+     * @param tractor the Tractor object of the actual game
+     */
     private void setMovingObjectToTractor(MovingObject movingObject, Tractor tractor) {
         movingObject = tractor;
     }
 
+    /**
+     * This method sets the movingObject to the Harvester.
+     *
+     * @param movingObject the MovingObject object of the actual game
+     * @param harvester the Harvster object of the actual game
+     */
     private void setMovingObjectToHarvester(MovingObject movingObject, Harvester harvester){
         movingObject = harvester;
     }
 
+    /**
+     * Getter for the boolean tractorExited.
+     *
+     * @return the requested boolean tractorExited
+     */
     protected boolean isTractorExited(){
         return tractorExited;
     }
 
+    /**
+     * Getter for the integer columnExited.
+     *
+     * @return the requested integer columnExited
+     */
     protected int getColumnExited() {
         return columnExited;
     }
 
+    /**
+     * Getter for the integer rowExited.
+     *
+     * @return the requested integer rowExited
+     */
     protected int getRowExited() {
         return rowExited;
     }
 
+    /**
+     * Getter for the rotation of the tractor
+     *
+     * @return the requested rotation of the tractor
+     */
     protected double getRotation(){
         return rotation;
     }
 
+    /**
+     * Getter for the integer columnToFillFromHarvester.
+     *
+     * @return the requested integer columnToFillFromHarvester
+     */
     protected int getColumnToFillFromHarvester(){
         return columnToFillFromHarvester;
     }
 
+    /**
+     * Getter for the integer rowToFillFromHarvester.
+     *
+     * @return the requested integer rowToFillFromHarvester
+     */
     protected int getRowToFillFromHarvester(){
         return rowToFillFromHarvester;
     }
 
+    /**
+     * Getter for the integer exitedObject.
+     *
+     * @return the requested integer exitedObject
+     */
     protected int getExitedObject() {
         return exitedObject;
     }
