@@ -15,17 +15,45 @@ import javafx.scene.input.KeyEvent;
  * @author Judith
  */
 public class GameController {
+    /**
+     * timer that starts as soon as the gameScene is loaded.
+     */
     private AnimationTimer gameTimer;
     // booleans that are needed for moving around
+    /**
+     * boolean for moving around to check if right is pressed
+     */
     private boolean rightPressed;
+    /**
+     * boolean for moving around to check if left is pressed
+     */
     private boolean leftPressed;
+    /**
+     * boolean for moving around to check if up is pressed
+     */
     private boolean upPressed;
+    /**
+     * boolean for moving aroung to check if down is pressed
+     */
     private boolean downPressed;
-    // field counter for growing
+    // field counters for growing - as each field starts to grow at a different time we need three of them, one for each
+    // field
+    /**
+     * integer for counting how much time has passed to implement the growing of field 1
+     */
     private int fieldCounter1 = 0;
+    /**
+     * integer for counting how much time has passed to implement the growing of field 2
+     */
     private int fieldCounter2 = 0;
+    /**
+     * integer for counting how much time has passed to implement the growing of field 3
+     */
     private int fieldCounter3 = 0;
     // counter for the day in the game
+    /**
+     * inter for counting how much time has passed to implement the increasing of the day
+     */
     private int dayCounter = 0;
 
     /**
