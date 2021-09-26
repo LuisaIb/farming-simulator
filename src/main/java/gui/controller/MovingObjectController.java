@@ -11,8 +11,6 @@ import gui.view.InformationBox;
 import gui.view.Matchfield;
 import gui.view.SideControlPane;
 
-import java.util.HashMap;
-
 /**
  * This class implements some methods to move around and to process the fields.
  *
@@ -20,22 +18,69 @@ import java.util.HashMap;
  */
 public class MovingObjectController {
     // declaring some objects of the actual game that are initialized in the constructor
+    /**
+     * the actual GameScene object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private GameScene gameScene;
+    /**
+     * the actual MovingObject object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private MovingObject movingObject;
+    /**
+     * the actual GameController object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private GameController gameController;
+    /**
+     * the actual GameValue object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private GameValue gameValue;
+    /**
+     * the actual Farmer object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private Farmer farmer;
+    /**
+     * the actual Tractor object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private Tractor tractor;
+    /**
+     * the actual Harvester object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private Harvester harvester;
+    /**
+     * the actual Cultivator object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private Cultivator cultivator;
+    /**
+     * the actual DumpTruck object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private DumpTruck dumpTruck;
+    /**
+     * the actual SeedDrill object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private SeedDrill seedDrill;
+    /**
+     * the actual FieldTile object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private FieldTile fieldTile;
+    /**
+     * the actual Matchfield object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private Matchfield matchfield;
+    /**
+     * the actual SideControlPane object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private SideControlPane sideControlPane;
-    private InformationBox informationBox;
+    /**
+     * the actual Silo object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private Silo silo;
+    /**
+     * the actual CourtTrade object that has been created in the method createNewGame() or reloadGame() in the class Game
+     */
     private CourtTrade courtTrade;
+    /**
+     * an object of the class MovingObjectFunctionalityController to create some functionality of the moving object
+     */
     private MovingObjectFunctionalityController mofc;
 
 
@@ -76,12 +121,11 @@ public class MovingObjectController {
         this.courtTrade = courtTrade;
         this.matchfield = gameScene.getMatchfield();
         this.sideControlPane = gameScene.getSideControlPane();
-        this.informationBox = gameScene.getInformationBox();
         initializeFunctionality();
     }
 
     /**
-     * This method initializes an object of the class MovingObjectFunctionalityController and hands the constructor
+     * This method initializes an object of the class MovingObjectFunctionalityController and hands to the constructor
      * the gameScene object of the actual game.
      */
     private void initializeFunctionality(){
