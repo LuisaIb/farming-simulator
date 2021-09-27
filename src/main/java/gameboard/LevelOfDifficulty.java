@@ -1,15 +1,16 @@
-/**
- * 
- */
 package gameboard;
 
 /**
- * this class represents the level of difficulty, in which the player plays the game
+ * This class represents the level of difficulty, in which the player plays the game.
  * @author Isabel
- * @param level
- *
  */
 public class LevelOfDifficulty {
+	/**
+	 * integer that holds the level of difficulty
+	 * 1 = easy
+	 * 2 = medium
+	 * 3 = hard
+	 */
 	private int level;
 	
 	/**
@@ -22,7 +23,7 @@ public class LevelOfDifficulty {
 	}
 	
 	/**
-	 * This constructor deals with setting a level of difficulty of the game.
+	 * This default constructor is needed for the saving and loading process.
 	 */
 	public LevelOfDifficulty() {
 		
@@ -30,7 +31,7 @@ public class LevelOfDifficulty {
 
 	/**
 	 * This method gets the level of difficulty.
-	 * @return the level
+	 * @return the level of difficulty
 	 */
 	public int getLevel() {
 		return level;
@@ -47,9 +48,9 @@ public class LevelOfDifficulty {
 	/**
 	 * This method is needed for serializing this class into JSONB.
 	 */
-	@Override
-	public String toString() {
-		return "LevelOfDifficulty [level=" + level + "]";
-	}
+	//@Override
+	//public String toString() {
+	//	return "LevelOfDifficulty [level=" + level + "]";
+	//}
 		
 }

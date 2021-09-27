@@ -4,14 +4,18 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /**
- * this class is there for some basic values like the time (days) or the money
- * @author Isabel
- * @param cash
- * @param day
+ * This class implements some basic values like the time (as day) and the money.
+ * @author Isabel, Judith
  *
  */
 public class GameValue {
-	private IntegerProperty cashProperty = new SimpleIntegerProperty();
+	/**
+	 * IntegerProperty for the amount of money to make a binding for automatic change possible
+	 */
+	private IntegerProperty cash = new SimpleIntegerProperty();
+	/**
+	 * IntegerProperty for the day to make a binding for automatic change possible
+	 */
 	private IntegerProperty day = new SimpleIntegerProperty();
 	
 	/**
@@ -19,92 +23,99 @@ public class GameValue {
 	 * @param cash
 	 * @param day
 	 */
-	public GameValue(int cash, int day) {
-		this.cashProperty.set(cash);
-		this.day.set(day);
-	}
+	//public GameValue(int cash, int day) {
+	//	this.cash.set(cash);
+	//	this.day.set(day);
+	//}
 	
 	/**
 	 * This constructor will be used for starting a new game.
-	 * @param cash
-	 * @param day
 	 */
 	public GameValue() {
-		cashProperty.set(100);
+		cash.set(100);
 		day.set(1);
 	}
-	
+
 	/**
 	 * This constructor will be used for starting a new game according to the level of difficulty.
-	 * @param cash
-	 * @param day
+	 * @param level the level of difficulty the player has chosen
 	 */
 	public GameValue(int level) {//1-3
 		day.set(1);
 		if(level == 1) {
-			cashProperty.set(1000); //Bezin, Getreidetank voll, Hofladen voll - vorher 200
+			cash.set(200);
 		}else if(level == 2) {
-			cashProperty.set(100); //Bezin voll, Getreidetank halb leer, Hofladen halb leer
+			cash.set(100);
 		}else if(level == 3) {
-			cashProperty.set(50); // Bezin voll, Getreidetank leer, Hofladen leer
+			cash.set(50);
 		}
 	}
 	
 	/**
-	 * This method gets the day's value.
-	 * @return the day
+	 * Getter for the day.
+	 *
+	 * @return the requested value of day
 	 */
 	public int getDay() {
 		return day.get();
 	}
 
 	/**
-	 * This method sets the day's value.
-	 * @param day the day to set
+	 * Setter for the day.
+	 *
+	 * @param day the vale set to day
 	 */
 	public void setDay(int day) {
 		this.day.set(day);
 	}
 
 	/**
-	 * This method gets the cash value.
-	 * @return
+	 * Getter for the cash.
+	 *
+	 * @return the requested amount of cash
 	 */
 	public int getCash() {		
-		return cashProperty.get();
+		return cash.get();
 	}
 
 	/**
-	 * This method sets the cash value.
-	 * @param cash
+	 * Setter for the cash.
+	 *
+	 * @param cash the value set to cash
 	 */
 	public void setCash(int cash) {
-		this.cashProperty.set(cash);
+		this.cash.set(cash);
 	}
 
 	/**
-	 * Getter for cashProperty
-	 * @return cashProperty
+	 * Method to get the IntegerProperty cash.
+	 *
+	 * @return the requested IntegerProperty cash
 	 */
-	public IntegerProperty cashProperty(){
-		return cashProperty;
+	public IntegerProperty cash(){
+		return cash;
 	}
 
 	/**
-	 * Getter for day
-	 * @return day
+	 * Method to get the IntegerProperty day.
+	 *
+	 * @return the requested IntegerProperty day
 	 */
 	public IntegerProperty day(){ return day; }
 
 	/**
-	 * @return
+	 * This method is needed for the text field of the informationBox as the value of the cash is needed in a String.
+	 *
+	 * @return a String with the value of cash
 	 */
 	public String getCashAsString() {
-		return "" + cashProperty.get();
+		return "" + cash.get();
 	}
 
 	/**
-	 * @return
+	 * This method is needed for the text field of the informationBox as the value of the day is needed in a String.
+	 *
+	 * @return a String with the value of day
 	 */
 	public String getDayAsString() {
 		return "" + day.get();

@@ -41,7 +41,7 @@ public class GameInformation {
      * @param silo the actual object of the class Silo to get access to the property
      */
     private void synchronizeInformation(GameValue gameValue, Tractor tractor, Harvester harvester, Silo silo){
-        gameValue.cashProperty().addListener((observableValue, number, t1) ->
+        gameValue.cash().addListener((observableValue, number, t1) ->
                 informationBox.getMoneyField().setText("money: " + gameValue.getCashAsString()));
 
         gameValue.day().addListener((observableValue, number, t1) ->

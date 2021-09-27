@@ -108,7 +108,7 @@ public class Game {
 		gameValue = new GameValue(lod);
 		courtTrade = new CourtTrade(lod);
 		silo = new Silo(lod);
-		setMovingObject();
+		movingObject = farmer;
         gameController = new GameController();
 	    gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
 				cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),

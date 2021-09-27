@@ -1,14 +1,16 @@
 package gameboard.tiles;
 
 /**
- * this class represents the Court Trade, where the farmer can sell his grain
+ * This class represents the Court Trade, where the farmer can sell his grain
  * to earn money.
  * @author Luisaibele, Judith
  *
  */
 public class CourtTrade extends TileWithBuilding{
+    /**
+     * selling price of the grain is set depending on the level of difficulty
+     */
     private double sellingPrice;
-
 
     /**
      * Empty Constructor of CourtTrade for reloading the game.
@@ -18,8 +20,9 @@ public class CourtTrade extends TileWithBuilding{
     }
     
     /**
-     * Constructor of CourtTrade
-     * @param level
+     * Constructor of CourtTrade.
+     *
+     * @param level the level of difficulty the player has chosen
      */
     public CourtTrade(int level) {
         super();
@@ -33,16 +36,16 @@ public class CourtTrade extends TileWithBuilding{
     }
 
     /**
-     * Getter for SellingPrice
-     * @return sellingPrice
+     * Getter for sellingPrice
+     * @return the requested sellingPrice
      */
     public double getSellingPrice() {
         return sellingPrice;
     }
 
     /**
-     * Setter for SellingPrice
-     * @param sellingPrice
+     * Setter for sellingPrice
+     * @param sellingPrice the value that is set as sellingPrice
      */
     public void setSellingPrice(double sellingPrice) {
         this.sellingPrice = sellingPrice;

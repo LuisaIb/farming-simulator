@@ -11,28 +11,72 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * This class represents a tile, which is part of one of the three fields, with its several properties
- * and functionalities (i. e. to grow))
- * @author Luisaibele
+ * This class represents the three fields, with its several properties and functionalities (i. e. to grow).
+ * @author Luisaibele, Judith
  *
  */
-public class FieldTile{
-	
-	private int sellingPrice; //the amount of money you get for selling the harvest
+public class FieldTile {
+	/**
+	 * the amount of money the player has to pay for buying a field
+	 */
+	private int sellingPrice;
+	/**
+	 * the amount of grain the player gets for harvesting a tile of a field depends on the level of difficulty
+	 */
 	private int harvest; //the amount of grain you get per part of the field
+	/**
+	 * boolean that saves whether field 1 is owned by the player in the actual game or now
+	 */
 	private boolean owningField1; //boolean variable whether you own this field or not
+	/**
+	 * boolean that saves whether field 2 is owned by the player in the actual game or now
+	 */
 	private boolean owningField2;
+	/**
+	 * boolean that saves whether field 3 is owned by the player in the actual game or now
+	 */
 	private boolean owningField3;
-
+	/**
+	 * HashMap that has as key the indexes of the moving object (calculated: y*30 + x) and as values the indexes of
+	 * the image view on the grid pane of the matchfield for field 1
+	 */
 	private HashMap<Integer, Integer> indexesField1;
+	/**
+	 * HashMap that has as key the indexes of the moving object (calculated: y*30 + x) and as values booleans that
+	 * tell if the specific tile of field 1 has already been processed by the player
+	 */
 	HashMap<Integer, Boolean> tilesField1Completed = new HashMap<Integer, Boolean>();
+	/**
+	 * HashMap that has as key the indexes of the moving object (calculated: y*30 + x) and as values the indexes of
+	 * the image view on the grid pane of the matchfield for field 2
+	 */
 	private HashMap<Integer, Integer> indexesField2;
+	/**
+	 * HashMap that has as key the indexes of the moving object (calculated: y*30 + x) and as values booleans that
+	 * tell if the specific tile of field 2 has already been processed by the player
+	 */
 	HashMap<Integer, Boolean> tilesField2Completed = new HashMap<Integer, Boolean>();
+	/**
+	 * HashMap that has as key the indexes of the moving object (calculated: y*30 + x) and as values the indexes of
+	 * the image view on the grid pane of the matchfield for field 3
+	 */
 	private HashMap<Integer, Integer> indexesField3;
+	/**
+	 * HashMap that has as key the indexes of the moving object (calculated: y*30 + x) and as values booleans that
+	 * tell if the specific tile of field 3 has already been processed by the player
+	 */
 	HashMap<Integer, Boolean> tilesField3Completed = new HashMap<Integer, Boolean>();
-	
+	/**
+	 * representing the state of growth of the first field
+	 */
 	private int growthState; //representing the state of growth of the first field
+	/**
+	 * representing the state of growth of the second field
+	 */
 	private int growthState2; //representing the state of growth of the second field
+	/**
+	 * representing the state of growth of the third field
+	 */
 	private int growthState3; //representing the state of growth of the third field
 	/* 
 	 * growthStates overview:
@@ -47,34 +91,34 @@ public class FieldTile{
 	 */
 	
 	/**
-	 * Empty Constructor of FieldTile for reloading the game
+	 * Empty Constructor of FieldTile for reloading the game. It initializes the HashMaps immediately.
 	 */
 	public FieldTile() {
-		super();
 		initializeHashMaps();
 	}
 	
 	/**
-	 * this constructor sets the growthState for each field tile
+	 * This constructor sets the growthState for each field tile
 	 * @param growthState
 	 * @param growthState2
 	 * @param growthState3
 	 */
-	public FieldTile(int growthState, int growthState2, int growthState3, int sellingPrice, int harvest, boolean owningField1,
-					 boolean owningField2, boolean owningField3) {
-		this.growthState = growthState;
-		this.growthState2 = growthState2;
-		this.growthState3 = growthState3;
-		this.sellingPrice = sellingPrice;
-		this.harvest = harvest;
-		this.owningField1 = owningField1;
-		this.owningField2 = owningField2;
-		this.owningField3 = owningField3;
-		initializeHashMaps();
-	}
-	
+	//public FieldTile(int growthState, int growthState2, int growthState3, int sellingPrice, int harvest, boolean owningField1,
+	//				 boolean owningField2, boolean owningField3) {
+	//	this.growthState = growthState;
+	//	this.growthState2 = growthState2;
+	//	this.growthState3 = growthState3;
+	//	this.sellingPrice = sellingPrice;
+	//	this.harvest = harvest;
+	//	this.owningField1 = owningField1;
+	//	this.owningField2 = owningField2;
+	//	this.owningField3 = owningField3;
+	//	initializeHashMaps();
+	//}
+
 	/**
-	 * this empty constructor is for starting a new game
+	 * Constructor for starting a new game. The selling price to buy a field depends on the level of difficulty.
+	 * @param level the level of difficulty the player has chosen
 	 */
 	public FieldTile(int level) {
 		growthState = 1;
@@ -97,7 +141,7 @@ public class FieldTile{
 	}
 
 	/**
-	 * This method implements the HashMaps, that are needed for cultivating, sowing and harvesting the fields.
+	 * This method implements all the HashMaps, that are needed for cultivating, sowing and harvesting the fields.
 	 */
 	private void initializeHashMaps(){
 		createHashMapField1();
@@ -109,16 +153,16 @@ public class FieldTile{
 	}
 		
 	/**
-	 * this method gets the growthState of the first field
-	 * @return growthState
+	 * Getter for the state of growth of the first field
+	 * @return the requested growthState of field 1
 	 */
 	public int getGrowthState() {
 		return growthState;
 	}
 
 	/**
-	 *  Empty Setter of growthState for reloading the game
-	 * @param growthState
+	 * Setter of growthState for reloading the game
+	 * @param growthState the value that is set as state of growth of field 1
 	 */
 	public void setGrowthState(int growthState) {
 		this.growthState = growthState;
@@ -126,8 +170,10 @@ public class FieldTile{
 
 
 	/**
-	 *  Setter of growthState for the first field
-	 * @param growthState
+	 * Setter of growthState for the first field.
+	 *
+	 * @param growthState the value that is set as state of growth of field 1
+	 * @param informationBox the InformationBox object of the actual game
 	 */
 	public void setGrowthState(int growthState, InformationBox informationBox) {
 		this.growthState = growthState;
@@ -143,24 +189,25 @@ public class FieldTile{
 	}
 	
 	/**
-	 * this method gets the growthState of the second field
-	 * @return growthState2
+	 * Getter for the state of growth of the second field
+	 * @return the requested growthState2
 	 */
 	public int getGrowthState2() {
 		return growthState2;
 	}
 
 	/**
-	 * Empty Setter of growthState2 for reloading the game
-	 * @param growthState2
+	 * Setter of growthState2 for reloading the game
+	 * @param growthState2 the value that is set as state of growth of field 2
 	 */
 	public void setGrowthState2(int growthState2) {
 		this.growthState2 = growthState2;
 	}
 
 	/**
-	 *  Setter of growthState2 for the second field
-	 * @param growthState2
+	 * Setter of growthState2 for the second field
+	 * @param growthState2 the value that is set as state of growth of field 1
+	 * @param informationBox the InformationBox object of the actual game
 	 */
 	public void setGrowthState2(int growthState2, InformationBox informationBox) {
 		this.growthState2 = growthState2;
