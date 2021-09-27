@@ -1,9 +1,8 @@
 package gameboard.objects;
 
-
 /**
  * this class represents the device Cultivator, 
- * which is supposed to wrap a field when it's read to do so
+ * which is supposed to wrap a field when it's ready to do so
  * @author Luisaibele
  *
  */
@@ -18,13 +17,12 @@ public class Cultivator extends WorkingDevice {
 
 	/**
 	 * Constructor of Cultivator for loading the game.
-	 * @param x
-	 * @param y
-	 * @param selected
+	 * @param x the x-value to which the object is set on the matchfield
+	 * @param y the y-value to which the object is set on the matchfield
+	 * @param selected sets whether the object is selected or not
 	 */
 	public Cultivator(int x, int y, boolean selected){
 		super(x, y, selected);
 	}
-
 	
 }

@@ -8,17 +8,17 @@ package gameboard.objects;
 public class Farmer extends MovingObject{
 
 	/**
-	 * empty constructor of Farmer for starting the game
+	 * Constructor of Farmer for starting the game
 	 */
 	public Farmer(){
 		super(27, 5, true);
 	}
 
 	/**
-	 * constructor of Farmer to continue working with the farmer / reloading the game
-	 * @param x
-	 * @param y
-	 * @param selected
+	 * Constructor with parameters.
+	 * @param x the x-value to which the object is set on the matchfield
+	 * @param y the y-value to which the object is set on the matchfield
+	 * @param selected sets whether the object is selected or not
 	 */
 	public Farmer(int x, int y, boolean selected){
 		super(x, y, selected);
