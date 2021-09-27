@@ -14,7 +14,4 @@ public class TileWithBuilding{
 	public TileWithBuilding() {
 		
 	}
-	
-	
-
 }

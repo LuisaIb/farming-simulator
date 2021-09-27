@@ -4,24 +4,30 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /**
- * this class represents the Silo for the grain storage
- * @author Luisaibele
+ * This class represents the Silo for the grain storage
+ * @author Luisaibele, Judith
  *
  */
 public class Silo extends TileWithBuilding{
-	private IntegerProperty fillLevel = new SimpleIntegerProperty();	//represents the grain capacity of the silo
-	private int capacity; // just inspiration
+	/**
+	 * IntegerProperty for the amount of grain that is in the silo to make a binding for automatic change possible
+	 */
+	private IntegerProperty fillLevel = new SimpleIntegerProperty();
+	/**
+	 * the maximum amount of grain that can be filled into the silo
+	 */
+	private int capacity;
 
 	/**
-	 * Empty constructor of Silo for loading the game.
+	 * Default constructor of Silo for loading the game.
 	 */
 	public Silo(){
 
 	}
 
-
 	/**
-	 * Empty constructor of Silo for starting a new game.
+	 * Constructor of Silo for starting a new game. It sets the capacity depending on the level of difficulty the player
+	 * has chosen.
 	 */
 	public Silo(int lod) {
 		if (lod == 1) {
@@ -35,32 +41,34 @@ public class Silo extends TileWithBuilding{
 	}
 
 	/**
-	 * Getter of capacity 
-	 * @return the capacity
+	 * Getter of the fill level of the silo.
+	 * @return the requested fill level of the silo
 	 */
 	public int getFillLevel() {
 		return fillLevel.get();
 	}
 
 	/**
-	 * Setter of Capacity
-	 * @param capacity the capacity to set
+	 * Setter for the fill level of the silo.
+	 * @param fillLevel the value that is set as fill level
 	 */
-	public void setFillLevel(int capacity) {
-		this.fillLevel.set(capacity);
+	public void setFillLevel(int fillLevel) {
+		this.fillLevel.set(fillLevel);
 	}
 
 	/**
-	 * method to give information about silo capacity as a string back to the user
-	 * @return
+	 * This method is needed for the text field of the informationBox as the value of the fill level is needed in a String.
+	 *
+	 * @return a String with the value of fill level
 	 */
 	public String getFillLevelAsString(){
 		return "" + fillLevel.get();
 	}
 
 	/**
-	 * Getter for fillLevel 
-	 * @return
+	 * Method to get the IntegerProperty fillLevel.
+	 *
+	 * @return the requested IntegerProperty fillLevel
 	 */
 	public IntegerProperty capacity(){
 		return fillLevel;
@@ -68,7 +76,8 @@ public class Silo extends TileWithBuilding{
 
 	/**
 	 * Getter for capacity
-	 * @return
+	 *
+	 * @return the requested capacity of the silo
 	 */
 	public int getCapacity() {
 		return capacity;
@@ -76,7 +85,7 @@ public class Silo extends TileWithBuilding{
 
 	/**
 	 * Setter for capacity
-	 * @param capacity
+	 * @param capacity the value that is set as capacity of the silo
 	 */
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
