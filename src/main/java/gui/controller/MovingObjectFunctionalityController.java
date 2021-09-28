@@ -364,7 +364,7 @@ public class MovingObjectFunctionalityController {
      */
     private void unloadToDumpTruck(Harvester harvester, DumpTruck dumpTruck){
         buttonAction.setOnMouseClicked(mouseEvent -> {
-            harvester.unloadToDumpTruck(harvester, dumpTruck);
+            harvester.unloadToDumpTruck(dumpTruck, gameScene.getInformationBox());
             // set the exited object to six because the dumpTruck isn't empty anymore
             exitedObject = 6;
             matchfield.getSecondMovingObjectImageView().setImage(matchfield.getTheRightImage(6));

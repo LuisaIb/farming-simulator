@@ -75,7 +75,7 @@ public class Silo extends TileWithBuilding{
 	}
 
 	/**
-	 * Getter for capacity
+	 * Getter for capacity.
 	 *
 	 * @return the requested capacity of the silo
 	 */
@@ -84,7 +84,7 @@ public class Silo extends TileWithBuilding{
 	}
 
 	/**
-	 * Setter for capacity
+	 * Setter for capacity.
 	 * @param capacity the value that is set as capacity of the silo
 	 */
 	public void setCapacity(int capacity) {
