@@ -244,10 +244,18 @@ public class MovingObjectController {
      */
     private void rotate(char direction){
         switch (direction) {
-            case 'r' -> MATCHFIELD.getMovingObjectImageView().setRotate(270);
-            case 'l' -> MATCHFIELD.getMovingObjectImageView().setRotate(90);
-            case 'u' -> MATCHFIELD.getMovingObjectImageView().setRotate(180);
-            case 'd' -> MATCHFIELD.getMovingObjectImageView().setRotate(0);
+            case 'r':
+                MATCHFIELD.getMovingObjectImageView().setRotate(270);
+                break;
+            case 'l':
+                MATCHFIELD.getMovingObjectImageView().setRotate(90);
+                break;
+            case 'u':
+                MATCHFIELD.getMovingObjectImageView().setRotate(180);
+                break;
+            case 'd':
+                MATCHFIELD.getMovingObjectImageView().setRotate(0);
+                break;
         }
     }
 
