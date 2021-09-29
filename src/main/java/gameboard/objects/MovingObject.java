@@ -1,6 +1,6 @@
 package gameboard.objects;
 
-import exceptions.MovingExcpetion;
+import exceptions.MovingException;
 import gui.view.GameScene;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -89,89 +89,93 @@ public class MovingObject {
 	}
 
 	/**
-	 * this method represents the functionality of each object 
-	 * to move right
-	 * @param gameScene
-	 * @throws MovingExcpetion
+	 * This method represents the functionality of each object
+	 * to move right.
+	 * @param gameScene the GameScene object of the actual game
+	 * @throws MovingException It's not possible to move off the gameboard. If the player tries this method throws an
+	 * exception.
 	 */
-	public void moveRight(GameScene gameScene) throws MovingExcpetion {
+	public void moveRight(GameScene gameScene) throws MovingException {
 		if (x < 29 && proofPassabilty(x+1, y)) {
 			x++;
 		} else {
-			throw new MovingExcpetion("You can not walk further to the right.", gameScene.getInformationBox());
+			throw new MovingException("You can not walk further to the right.", gameScene.getInformationBox());
 		}
 	}
 
 
 	/**
-	 * this method represents the functionality of each object 
-	 * to move left
-	 * @param gameScene
-	 * @throws MovingExcpetion
+	 * This method represents the functionality of each object
+	 * to move left.
+	 * @param gameScene the GameScene object of the actual game
+	 * @throws MovingException It's not possible to move off the gameboard. If the player tries this method throws an
+	 * exception.
 	 */
-	public void moveLeft(GameScene gameScene) throws MovingExcpetion {
+	public void moveLeft(GameScene gameScene) throws MovingException {
 		if (x > 0 && proofPassabilty(x-1, y)) {
 			x--;
 		} else {
-			throw new MovingExcpetion("You can not walk further to the left.", gameScene.getInformationBox());
+			throw new MovingException("You can not walk further to the left.", gameScene.getInformationBox());
 		}
 	}
 
 	/**
-	 * this method represents the functionality of each object 
-	 * to move up
-	 * @param gameScene
-	 * @throws MovingExcpetion
+	 * This method represents the functionality of each object
+	 * to move up.
+	 * @param gameScene the GameScene object of the actual game
+	 * @throws MovingException It's not possible to move off the gameboard. If the player tries this method throws an
+	 * exception.
 	 */
-	public void moveUp(GameScene gameScene) throws MovingExcpetion {
+	public void moveUp(GameScene gameScene) throws MovingException {
 		if (y > 0 && proofPassabilty(x, y-1)) {
 			y--;
 		} else {
-			throw new MovingExcpetion("You can not walk further to the top.", gameScene.getInformationBox());
+			throw new MovingException("You can not walk further to the top.", gameScene.getInformationBox());
 		}
 	}
 
 	/**
-	 * this method represents the functionality of each object 
-	 * to move down
-	 * @param gameScene
-	 * @throws MovingExcpetion
+	 * This method represents the functionality of each object
+	 * to move down.
+	 * @param gameScene the GameScene object of the actual game
+	 * @throws MovingException It's not possible to move off the gameboard. If the player tries this method throws an
+	 * exception.
 	 */
-	public void moveDown(GameScene gameScene) throws MovingExcpetion {
+	public void moveDown(GameScene gameScene) throws MovingException {
 		if (y < 19 && proofPassabilty(x, y+1)) {
 			y++;
 		} else {
-			throw new MovingExcpetion("You can not walk further to the bottom.", gameScene.getInformationBox());
+			throw new MovingException("You can not walk further to the bottom.", gameScene.getInformationBox());
 		}
 	}
 
 	/**
-	 * hand over the x-Coordinate
-	 * @return x
+	 * Getter for the x-coordinate.
+	 * @return the requested value of x
 	 */
 	public int getX() {
 		return x;
 	}
 
 	/**
-	 * Sets the x-Coordinate
-	 * @param x - Coordinate
+	 * Setter for the x-Coordinate
+	 * @param x the value that is set as x-Coordinate
 	 */
 	public void setX(int x) {
 		this.x = x;
 	}
 
 	/**
-	 * hand over the y-Coordinate
-	 * @return y
+	 * Getter for the y-coordinate.
+	 * @return the requested value of y
 	 */
 	public int getY() {
 		return y;
 	}
 
 	/**
-	 * Sets the y-Coordinate
-	 * @param y - Coordinate
+	 * Setter for the x-Coordinate
+	 * @param y the value that is set as y-Coordinate
 	 */
 	public void setY(int y) {
 		this.y = y;

@@ -21,10 +21,15 @@ import gameboard.tiles.Silo;
  *
  */
 public class ObjectToJsonb {
+	/**
+	 * a StringBuilder that is used to write in all the information of the objects that need to be saved
+	 */
 	StringBuilder sb = new StringBuilder();
 	 // all numeric values, all moving object values
 	/**
 	 * This method gets the information of the following params.
+	 * It puts the serialized JSON-B into a StringBuilder Object.
+	 * This JSON-B is written into a textfile, that is located in "src/main/java/datastorage/information/farmersimulator.txt"
 	 * @param gameValue
 	 * saved information: cash, day
 	 * @param farmer
@@ -47,8 +52,6 @@ public class ObjectToJsonb {
 	 * saved information: chosen level
 	 * @param courtTrade
 	 * saved information: selling price
-	 * It puts the serialized JSON-B into a StringBuilder Object.
-	 * This JSON-B is written into a textfile, that is located in "src/main/java/datastorage/information/farmersimulator.txt"
 	 */
 	public void toSerialize(GameValue gameValue, Farmer farmer, Tractor tractor, Harvester harvester,
 							Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile,
@@ -109,32 +112,21 @@ public class ObjectToJsonb {
 		/**
 		 * This method deals with writing the StringBuilder Object into a textfile, that is set write-protected.
 		 * It checks if a textfile already exists or not. If there is already a textfile, the information will be overwritten.
-		 * @param sb
+		 * @param sb the StringBuilder with all the information to write into the text file
 		 */
 		public void writeFile(StringBuilder sb) {
-		try {
-			File textFile = new File("src/main/java/datastorage/information/farmersimulator.txt");
-			textFile.setWritable(true);
-			if (textFile.createNewFile()) {
-			System.out.println("created a textfile");
-			
-			} else {
-			System.out.println("textfile already exists");
-			}
-			
-		try {
-			FileWriter fileWriter = new FileWriter(textFile);
-				fileWriter.write(sb.toString());
-				fileWriter.close();
-				textFile.setWritable(false);
-			
-			System.out.println("edit the textfile");
-		} catch (IOException e) {
-			System.out.println("not possible to edit the textfile");
-			}
-
-		} catch (IOException e) {
-			System.out.println("not possible to create a textfile");
+			try {
+				File textFile = new File("src/main/java/datastorage/information/farmersimulator.txt");
+				textFile.setWritable(true);
+				textFile.createNewFile();
+				try {
+					FileWriter fileWriter = new FileWriter(textFile);
+					fileWriter.write(sb.toString());
+					fileWriter.close();
+					textFile.setWritable(false);
+				} catch (IOException e) {
+				}
+			} catch (IOException e) {
 			}
 		}
 }

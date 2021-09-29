@@ -14,40 +14,41 @@ import java.util.Scanner;
  *
  */
 public class ObjectToPojo {
+	/**
+	 * a StringBuilder that is used to write in all the information of the saved objects
+	 */
 	StringBuilder sb = new StringBuilder();
+	/**
+	 * an array that is used to separate the Strings of the object
+	 */
 	String[] game;
 	
 	/**
+	 * Getter for the StringBuilder.
 	 * @return the StringBuilder sb, with all the game information
 	 */
-	public StringBuilder getSb() {
-		return sb;
-	}
+	//public StringBuilder getSb() {
+	//	return sb;
+	//}
 
 	/**
 	 * This method deals with a part of the deserializing process.
-	 * The textfile information are written in a new StringBuilder.
+	 * The textfile information is written in a new StringBuilder.
 	 */
 	public void toDeserialize() {
 		try {
 			File gameFile = new File("src/main/java/datastorage/information/farmersimulator.txt");//"src/main/java/datastorage/information/farmersimulator.txt"
 			gameFile.setWritable(false);
 			if (gameFile.exists()) {
-			Scanner fileReader = new Scanner(gameFile);
-			
-			while (fileReader.hasNextLine()) {
-			sb.append(fileReader.nextLine()); 
-			sb.append(System.getProperty("line.separator"));
-		}
+				Scanner fileReader = new Scanner(gameFile);
+				while (fileReader.hasNextLine()) {
+				sb.append(fileReader.nextLine());
+				sb.append(System.getProperty("line.separator"));
+				}
 			fileReader.close();
-						
-		} else {
-			System.out.println("There is no existing textfile that can be read.");
 			}
 		} catch (IOException e) {
-			System.out.println("ERROR: " + e.getMessage());
 		}
-		
 	}
 	
 	/**

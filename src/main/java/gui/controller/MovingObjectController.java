@@ -1,6 +1,6 @@
 package gui.controller;
 
-import exceptions.MovingExcpetion;
+import exceptions.MovingException;
 import gameboard.GameValue;
 import gameboard.objects.*;
 import gameboard.tiles.CourtTrade;
@@ -178,7 +178,7 @@ public class MovingObjectController {
                 moveSuccess = true;
                 newX = matchfield.getColumnOfMovingObject()+1;
                 newY = matchfield.getRowOfMovingObject();
-            } catch (MovingExcpetion e) {
+            } catch (MovingException e) {
                 // if moving isn't possible there is nothing happening
             }
         }
@@ -188,7 +188,7 @@ public class MovingObjectController {
                 moveSuccess = true;
                 newX = matchfield.getColumnOfMovingObject()-1;
                 newY = matchfield.getRowOfMovingObject();
-            } catch (MovingExcpetion e) {
+            } catch (MovingException e) {
                 // if moving isn't possible there is nothing happening
             }
         }
@@ -198,7 +198,7 @@ public class MovingObjectController {
                 moveSuccess = true;
                 newX = matchfield.getColumnOfMovingObject();
                 newY = matchfield.getRowOfMovingObject()-1;
-            } catch (MovingExcpetion e) {
+            } catch (MovingException e) {
                 // if moving isn't possible there is nothing happening
             }
         }
@@ -208,7 +208,7 @@ public class MovingObjectController {
                 moveSuccess = true;
                 newX = matchfield.getColumnOfMovingObject();
                 newY = matchfield.getRowOfMovingObject()+1;
-            } catch (MovingExcpetion e) {
+            } catch (MovingException e) {
                 // if moving isn't possible there is nothing happening
             }
         }
