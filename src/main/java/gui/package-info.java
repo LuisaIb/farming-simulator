@@ -3,7 +3,7 @@
  * It contains "View", "Controller" and "Model".
  */
 /**
- * @author 
+ * @author Judith
  *
  */
 package gui;

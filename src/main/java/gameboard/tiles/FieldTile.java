@@ -222,6 +222,7 @@ public class FieldTile {
 	/**
 	 * Setter of growthState3 for the third field
 	 * @param growthState3 the value that is set as state of growth of field 3
+	 * @param infomationBox the informationBox object of the actual game
 	 */
 	public void setGrowthState3(int growthState3, InformationBox informationBox) {
 		this.growthState3 = growthState3;

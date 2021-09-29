@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 /**
  * This class contains the main method to start the game.
  * @author Luisaibele, Isabel, Judith
+ * @version 1.0
  *
  */
 public class Launcher extends Application {

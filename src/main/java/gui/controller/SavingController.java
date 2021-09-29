@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 public class SavingController {
 
 	/**
-	 * This method implements the functionality of the save & end button. It sets the game to sleep for two seconds
+	 * This method implements the functionality of the save and end button. It sets the game to sleep for two seconds
 	 * before closing it.
 	 *
 	 * @param gameScene the gameScene object of the actual game

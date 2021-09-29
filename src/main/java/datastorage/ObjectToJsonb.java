@@ -52,6 +52,8 @@ public class ObjectToJsonb {
 	 * saved information: chosen level
 	 * @param courtTrade
 	 * saved information: selling price
+	 * @param movingObject 
+	 * saved information: position, is selected
 	 */
 	public void toSerialize(GameValue gameValue, Farmer farmer, Tractor tractor, Harvester harvester,
 							Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, FieldTile fieldTile,

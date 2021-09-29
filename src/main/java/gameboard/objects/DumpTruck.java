@@ -29,6 +29,7 @@ public class DumpTruck extends WorkingDevice {
 	/**
 	 * This constructor will be used for starting a new game. The capacity of the grain tank is set depending on the
 	 * level of difficulty the player has chosen.
+	 * @param lod the level of difficulty the player has chosen
 	 */
 	public DumpTruck(int lod) {
 		super(18, 7, false);
@@ -45,6 +46,8 @@ public class DumpTruck extends WorkingDevice {
 	/**
 	 * This method represents the functionality to unload grain from
 	 * the Dump Truck into the Silo.
+	 * @param silo the silo object of the actual game
+	 * @param informationBox the informationBox of the actual game
 	 */
 	public void unloadToSilo(Silo silo, InformationBox informationBox) {
 		int siloFillLevel = silo.getFillLevel();
@@ -87,6 +90,8 @@ public class DumpTruck extends WorkingDevice {
 	/**
 	 * This method unloads the grain from the Dump Truck to the Court Trade
 	 * in order to receive money.
+	 * @param gv the gameValue object of the actual game
+	 * @param courtTrade the courtTrade object of the actual game
 	 */
 	public void sellingGrain(GameValue gv, CourtTrade courtTrade) {
 		double cash = gv.getCash() + (grainFillLevel * courtTrade.getSellingPrice());

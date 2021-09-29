@@ -28,6 +28,7 @@ public class Silo {
 	/**
 	 * Constructor of Silo for starting a new game. It sets the capacity depending on the level of difficulty the player
 	 * has chosen.
+	 * @param lod the level of difficulty the player has chosen
 	 */
 	public Silo(int lod) {
 		if (lod == 1) {
