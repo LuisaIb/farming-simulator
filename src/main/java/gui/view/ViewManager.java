@@ -19,7 +19,7 @@ public class ViewManager {
      */
     protected static final int HEIGHT = 900;
     /**
-     * widht of the game
+     * width of the game
      */
     protected static final int WIDTH = 1400;
     /**

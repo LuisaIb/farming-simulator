@@ -17,6 +17,9 @@ import simulator.Game;
  * @author Judith
  */
 public class SceneController {
+    /**
+     * the game that is initialized in the methods
+     */
     Game game;
 
     /**

@@ -272,6 +272,8 @@ public class Matchfield {
 
     /**
      * Adds the image views of the first field to the matchfield.
+     *
+     * @param stateOfGrowth the value that is set as state of growth of field 1
      */
     protected void setField1(int stateOfGrowth){
         for (int j = 14; j < NUMBER_ROWS; j++) {
@@ -318,6 +320,8 @@ public class Matchfield {
 
     /**
      * Adds the image views of the second field to the matchfield.
+     *
+     * @param stateOfGrowth the value that is set as state of growth of field 2
      */
     protected void setField2(int stateOfGrowth){
         for (int j = 14; j < NUMBER_ROWS; j++) {
@@ -364,6 +368,7 @@ public class Matchfield {
 
     /**
      * Adds the image views of the third field to the matchfield.
+     * @param stateOfGrowth the value that is set as state of growth of field 3
      */
     protected void setField3(int stateOfGrowth){
         for (int j = 6; j < 13; j++) {

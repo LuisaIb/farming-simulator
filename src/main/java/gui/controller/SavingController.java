@@ -12,7 +12,7 @@ import gui.view.GameScene;
 import java.util.concurrent.TimeUnit;
 
 /**
- * This class implements the functionality of the save & end button of the informationBox of the gameScene. It saves the
+ * This class implements the functionality of the save and end button of the informationBox of the gameScene. It saves the
  * game to a text file with an object of the class ObjectToJsonb and the method toSerialize(). After saving it waits for
  * two seconds and then ends the game.
  *

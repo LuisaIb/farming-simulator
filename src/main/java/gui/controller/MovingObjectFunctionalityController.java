@@ -155,7 +155,7 @@ public class MovingObjectFunctionalityController {
             fillTank(gameValue, tractor, harvester);
         } else if ((column == 16 || column == 17) && row == 13) {
             selectVehicle(movingObject, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
-            selectWorkingDevice(movingObject, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, column, row);
+            selectWorkingDevice(movingObject, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
         } else if (tractor.isSelected()){
             exitVehicle(movingObject, farmer, tractor, cultivator, dumpTruck, seedDrill);
         } else if(farmer.isSelected() && tractorExited && farmer.getX() == columnExited &&
@@ -225,7 +225,7 @@ public class MovingObjectFunctionalityController {
      * @param seedDrill the SeedDrill object of the actual game
      */
     private void selectWorkingDevice(MovingObject movingObject, Farmer farmer, Tractor tractor, Harvester harvester,
-                                       Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, int x, int y){
+                                       Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
         // the tractor is selected by clicking the button of the tractor which makes the buttons of the
         // working devices clickable
         TRACTOR_BUTTON.setOnMouseClicked(MouseEvent -> {
@@ -584,6 +584,7 @@ public class MovingObjectFunctionalityController {
      *
      * @param dumpTruck the DumpTruck object of the actual game
      * @param silo the Silo object of the actual game
+     * @param informationBox the InformationBox object of the actual game
      */
     private void unloadToSilo(DumpTruck dumpTruck, Silo silo, InformationBox informationBox){
         BUTTON_ACTION.setOnMouseClicked(mouseEvent -> {

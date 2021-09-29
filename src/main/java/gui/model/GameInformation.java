@@ -13,6 +13,9 @@ import gui.view.InformationBox;
  * @author Judith
  */
 public class GameInformation {
+    /**
+     * the InformationBox object of the actual game that is initialized in the constructor
+     */
     private final InformationBox INFORMATION_BOX;
 
     /**
