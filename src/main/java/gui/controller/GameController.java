@@ -15,10 +15,6 @@ import javafx.scene.input.KeyEvent;
  * @author Judith
  */
 public class GameController {
-    /**
-     * timer that starts as soon as the gameScene is loaded.
-     */
-    private AnimationTimer gameTimer;
     // booleans that are needed for moving around
     /**
      * boolean for moving around to check if right is pressed
@@ -176,7 +172,7 @@ public class GameController {
      */
     public void initGameLoop(GameScene gameScene, FieldTile fieldTile, GameValue gameValue,
                              MovingObjectController movingObjectController){
-        gameTimer = new AnimationTimer() {
+        AnimationTimer gameTimer = new AnimationTimer() {
             // local variable to proof the last update in the timer
             private long lastUpdate = 0;
             @Override

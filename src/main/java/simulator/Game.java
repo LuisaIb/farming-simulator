@@ -76,11 +76,6 @@ public class Game {
 	 */
     private Silo silo;
 	/**
-	 * an object of the class GameScene that is set to the specific GameScene that is implemented when starting or
-	 * reloading a game
-	 */
-    private GameScene gameScene = new GameScene();
-	/**
 	 * an object of the class GameController that is initialized in the methods to start or reload a game
 	 */
 	GameController gameController;
@@ -110,6 +105,7 @@ public class Game {
 		silo = new Silo(lod);
 		movingObject = farmer;
         gameController = new GameController();
+        GameScene gameScene = new GameScene();
 	    gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
 				cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
 				fieldTile.getGrowthState2(), fieldTile.getGrowthState3(), 1, farmer.getX(), farmer.getY(),
@@ -246,9 +242,7 @@ public class Game {
     	levelOfDifficulty = jb.fromJson(deserializedGame[9], LevelOfDifficulty.class);
     	courtTrade = jb.fromJson(deserializedGame[10], CourtTrade.class);
     	movingObject = jb.fromJson(deserializedGame[11], MovingObject.class);
-
 		setMovingObject();
-
 		gameController = new GameController();
 		gameScene.initializeGameScene(farmer.isSelected(),tractor.isSelected(),harvester.isSelected(),
 				cultivator.isSelected(),dumpTruck.isSelected(),seedDrill.isSelected(),fieldTile.getGrowthState(),
