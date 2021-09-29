@@ -5,7 +5,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- * This class contains the main mthod to start the game.
+ * This class contains the main method to start the game.
  * @author Luisaibele, Isabel, Judith
  *
  */

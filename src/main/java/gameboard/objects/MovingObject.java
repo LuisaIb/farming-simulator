@@ -22,7 +22,7 @@ public class MovingObject {
 	/**
 	 * boolean that saves if the moving object is selected at the moment
 	 */
-	private boolean selected = false; //check whether object is selected atm
+	private boolean selected; //check whether object is selected atm
 
 
 	// list for not passable points on the game board:
@@ -83,6 +83,7 @@ public class MovingObject {
 		for (Integer i: places) {
 			if (i == tileIndex) {
 				passable = false;
+				break;
 			}
 		}
 		return passable;

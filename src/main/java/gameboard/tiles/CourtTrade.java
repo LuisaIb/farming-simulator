@@ -16,7 +16,6 @@ public class CourtTrade {
      * Empty Constructor of CourtTrade for reloading the game.
      */
     public CourtTrade() {
-    	;
     }
     
     /**

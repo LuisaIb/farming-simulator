@@ -1,6 +1,3 @@
-/**
- * 
- */
 package datastorage;
 
 import java.io.File;
@@ -22,14 +19,6 @@ public class ObjectToPojo {
 	 * an array that is used to separate the Strings of the object
 	 */
 	String[] game;
-	
-	/**
-	 * Getter for the StringBuilder.
-	 * @return the StringBuilder sb, with all the game information
-	 */
-	//public StringBuilder getSb() {
-	//	return sb;
-	//}
 
 	/**
 	 * This method deals with a part of the deserializing process.

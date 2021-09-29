@@ -19,16 +19,6 @@ public class GameValue {
 	private IntegerProperty day = new SimpleIntegerProperty();
 	
 	/**
-	 * This constructor will be used for reloading the game.
-	 * @param cash
-	 * @param day
-	 */
-	//public GameValue(int cash, int day) {
-	//	this.cash.set(cash);
-	//	this.day.set(day);
-	//}
-	
-	/**
 	 * This constructor will be used for starting a new game.
 	 */
 	public GameValue() {

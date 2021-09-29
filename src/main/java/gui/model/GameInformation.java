@@ -13,7 +13,7 @@ import gui.view.InformationBox;
  * @author Judith
  */
 public class GameInformation {
-    private InformationBox informationBox;
+    private final InformationBox INFORMATION_BOX;
 
     /**
      * This method constructs an object of the class GameInformation. When it is called it gets the actual
@@ -28,7 +28,7 @@ public class GameInformation {
      */
     public GameInformation(InformationBox informationBox, GameValue gameValue, Tractor tractor, Harvester harvester,
                            Silo silo) {
-        this.informationBox = informationBox;
+        INFORMATION_BOX = informationBox;
         synchronizeInformation(gameValue, tractor, harvester, silo);
     }
 
@@ -42,18 +42,18 @@ public class GameInformation {
      */
     private void synchronizeInformation(GameValue gameValue, Tractor tractor, Harvester harvester, Silo silo){
         gameValue.cash().addListener((observableValue, number, t1) ->
-                informationBox.getMoneyField().setText("money: " + gameValue.getCashAsString()));
+                INFORMATION_BOX.getMoneyField().setText("money: " + gameValue.getCashAsString()));
 
         gameValue.day().addListener((observableValue, number, t1) ->
-                informationBox.getTimeField().setText("day: " + gameValue.getDayAsString()));
+                INFORMATION_BOX.getTimeField().setText("day: " + gameValue.getDayAsString()));
 
         tractor.petrolTankFillLevel().addListener((observableValue, number, t1) ->
-                informationBox.getTractorField().setText("petrol tractor: " + tractor.getPetrolTankFillLevelAsString()));
+                INFORMATION_BOX.getTractorField().setText("petrol tractor: " + tractor.getPetrolTankFillLevelAsString()));
 
         harvester.petrolTankFillLevel().addListener((observableValue, number, t1) ->
-                informationBox.getHarvesterField().setText("petrol harvester: " + harvester.getPetrolTankFillLevelAsString()));
+                INFORMATION_BOX.getHarvesterField().setText("petrol harvester: " + harvester.getPetrolTankFillLevelAsString()));
 
         silo.capacity().addListener((observableValue, number, t1) ->
-                informationBox.getSiloField().setText("corn in silo: " + silo.getFillLevelAsString()));
+                INFORMATION_BOX.getSiloField().setText("corn in silo: " + silo.getFillLevelAsString()));
     }
 }

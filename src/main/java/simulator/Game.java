@@ -26,7 +26,7 @@ public class Game {
 	/**
 	 * an object of the class MovingObject to hold the different moving objects in the game
 	 */
-    MovingObject movingObject;
+    private MovingObject movingObject;
 	/**
 	 * an object of the class Farmer that is initialized in the methods to start or reload a game
 	 */
@@ -78,7 +78,7 @@ public class Game {
 	/**
 	 * an object of the class GameController that is initialized in the methods to start or reload a game
 	 */
-	GameController gameController;
+	private GameController gameController;
 
 	/**
 	 * This method deals with starting a new game, the param Level Of Difficulty has to be transferred.
@@ -227,7 +227,6 @@ public class Game {
     	otp.toDeserialize();
         GameScene gameScene = new GameScene();
 		String[] deserializedGame = otp.getDeserializedGameObjects();
-		System.out.println(deserializedGame[0]);
 		Jsonb jb = JsonbBuilder.create();
 	
 		gameValue = jb.fromJson(deserializedGame[0], GameValue.class);

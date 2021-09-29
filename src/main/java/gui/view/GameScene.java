@@ -82,13 +82,9 @@ public class GameScene {
         initializeMatchfield(stageOfGrowthField1, stageOfGrowthField2, stageOfGrowthField3, selectedObject, column, row);
         movingObject.setX(column);
         movingObject.setY(row);
-        gameScene.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) ->{
-            gameController.setBooleansPressed(event);
-        });
+        gameScene.addEventHandler(KeyEvent.KEY_PRESSED, gameController::setBooleansPressed);
 
-        gameScene.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
-            gameController.setBooleansReleased(event);
-        });
+        gameScene.addEventHandler(KeyEvent.KEY_RELEASED, gameController::setBooleansReleased);
     }
 
     /**

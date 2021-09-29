@@ -13,16 +13,5 @@ public class Farmer extends MovingObject{
 	public Farmer(){
 		super(27, 5, true);
 	}
-
-	/**
-	 * Constructor with parameters.
-	 * @param x the x-value to which the object is set on the matchfield
-	 * @param y the y-value to which the object is set on the matchfield
-	 * @param selected sets whether the object is selected or not
-	 */
-	public Farmer(int x, int y, boolean selected){
-		super(x, y, selected);
-	}
-	
 	
 }

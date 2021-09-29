@@ -32,21 +32,9 @@ public class MenuScene {
      */
     private static final String PATH_TO_BACKGROUND_IMAGE = "src/main/java/gui/view/resources/background/field.jpg";
     /**
-     * button for a new game
-     */
-    private LSButton buttonNewGame;
-    /**
      * button for reloading the old game
      */
     private LSButton buttonLoadGame;
-    /**
-     * button for the helpScene
-     */
-    private LSButton buttonHelp;
-    /**
-     * button to end the game
-     */
-    private LSButton buttonEnd;
 
     /**
      * Constructs an object of the class MenuScene. It initializes the menuPane with the method initializeMenuPane().
@@ -80,16 +68,16 @@ public class MenuScene {
         menuBox.setLayoutX(WIDTH/2 - 100);
         menuBox.setLayoutY(HEIGHT/2 - 150);
 
-        buttonNewGame = new LSButton("new game", 50, 250, HEIGHT/2,
+        LSButton buttonNewGame = new LSButton("new game", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonNewGame.setOnMouseClicked(sceneController.setSceneToDifficultyScene);
         buttonLoadGame = new LSButton("load game",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonLoadGame.setOnMouseClicked(sceneController.setSceneToReloadGameScene);
-        buttonHelp = new LSButton("help",50, 250, HEIGHT/2,
+        LSButton buttonHelp = new LSButton("help",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonHelp.setOnMouseClicked(sceneController.setSceneToHelpScene);
-        buttonEnd = new LSButton("end game",50, 250, HEIGHT/2,
+        LSButton buttonEnd = new LSButton("end game",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonEnd.setOnMouseClicked(sceneController.endGame);
 

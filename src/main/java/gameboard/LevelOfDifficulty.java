@@ -16,7 +16,7 @@ public class LevelOfDifficulty {
 	/**
 	 * This constructor deals with setting a level of difficulty of the game.
 	 * It will be used for reloading and starting the game.
-	 * @param level
+	 * @param level the value that is set as level of difficulty
 	 */
 	public LevelOfDifficulty(int level) {
 		this.level = level;
@@ -44,13 +44,4 @@ public class LevelOfDifficulty {
 	public void setLevel(int level) {
 		this.level = level;
 	}
-
-	/**
-	 * This method is needed for serializing this class into JSONB.
-	 */
-	//@Override
-	//public String toString() {
-	//	return "LevelOfDifficulty [level=" + level + "]";
-	//}
-		
 }

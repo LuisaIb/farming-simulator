@@ -20,19 +20,6 @@ public class Tractor extends Machine {
 	}
 
 	/**
-	 *Constructor of Tractor for reloading / continuing the game
-	 * @param x the x-value to which the object is set on the matchfield
-	 * @param y the y-value to which the object is set on the matchfield
-	 * @param selected sets whether the object is selected or not
-	 * @param petrolTankFillLevel the value that is set as the fill level of the petrol tank
-	 * @param attachement sets whether a working device it attached or nor
-	 */
-	public Tractor(int x, int y, boolean selected, int petrolTankFillLevel, boolean attachement){
-		super(x, y, selected, petrolTankFillLevel);
-		this.attachement = attachement;
-	}
-
-	/**
 	 * Getter for the attachment.
 	 * @return the requested boolean attachment
 	 */

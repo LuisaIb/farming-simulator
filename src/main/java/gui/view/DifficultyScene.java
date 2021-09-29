@@ -18,22 +18,6 @@ import static gui.view.ViewManager.HEIGHT;
  */
 public class DifficultyScene {
     /**
-     * button to choose an easy game
-     */
-    private LSButton buttonEasy;
-    /**
-     * button to choose a medium hard game
-     */
-    private LSButton buttonMedium;
-    /**
-     * button to choose a hard game
-     */
-    private LSButton buttonHard;
-    /**
-     * button to go back to the gameScene
-     */
-    private LSButton buttonBackToScene;
-    /**
      * new Pane that holds the nodes of the difficultyScene
      */
     private Pane difficultyPane =  new Pane();
@@ -83,16 +67,16 @@ public class DifficultyScene {
         difficultyBox.setLayoutX(WIDTH/2 - 100);
         difficultyBox.setLayoutY(HEIGHT/2 - 150);
 
-        buttonEasy = new LSButton("easy", 50, 250, HEIGHT/2,
+        LSButton buttonEasy = new LSButton("easy", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonEasy.setOnMouseClicked(sceneController.setSceneToEasyGameScene);
-        buttonMedium = new LSButton("medium", 50, 250, HEIGHT/2,
+        LSButton buttonMedium = new LSButton("medium", 50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonMedium.setOnMouseClicked(sceneController.setSceneToMediumGameScene);
-        buttonHard = new LSButton("hard",50, 250, HEIGHT/2,
+        LSButton buttonHard = new LSButton("hard",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonHard.setOnMouseClicked(sceneController.setSceneToHardGameScene);
-        buttonBackToScene = new LSButton("back",50, 250, HEIGHT/2,
+        LSButton buttonBackToScene = new LSButton("back",50, 250, HEIGHT/2,
                 WIDTH/2, 20);
         buttonBackToScene.setOnMouseClicked(sceneController.setSceneToMenuScene);
 

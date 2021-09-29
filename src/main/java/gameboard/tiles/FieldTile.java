@@ -96,25 +96,6 @@ public class FieldTile {
 	public FieldTile() {
 		initializeHashMaps();
 	}
-	
-	/**
-	 * This constructor sets the growthState for each field tile
-	 * @param growthState
-	 * @param growthState2
-	 * @param growthState3
-	 */
-	//public FieldTile(int growthState, int growthState2, int growthState3, int sellingPrice, int harvest, boolean owningField1,
-	//				 boolean owningField2, boolean owningField3) {
-	//	this.growthState = growthState;
-	//	this.growthState2 = growthState2;
-	//	this.growthState3 = growthState3;
-	//	this.sellingPrice = sellingPrice;
-	//	this.harvest = harvest;
-	//	this.owningField1 = owningField1;
-	//	this.owningField2 = owningField2;
-	//	this.owningField3 = owningField3;
-	//	initializeHashMaps();
-	//}
 
 	/**
 	 * Constructor for starting a new game. The selling price to buy a field depends on the level of difficulty.

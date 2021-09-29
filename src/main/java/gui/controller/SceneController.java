@@ -103,8 +103,4 @@ public class SceneController {
         Platform.exit();
         System.exit(0);
     };
-
-
-
-
 }

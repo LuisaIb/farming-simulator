@@ -3,6 +3,7 @@ package gameboard.objects;
 import gameboard.GameValue;
 import gameboard.tiles.CourtTrade;
 import gameboard.tiles.Silo;
+import gui.view.InformationBox;
 
 /**
  * This class implements the properties and functionalities of a DumpTruck.
@@ -42,22 +43,10 @@ public class DumpTruck extends WorkingDevice {
 	}
 	
 	/**
-	 * this method loads the Dump Truck with harvest
-	 */
-	//public void load() {
-	//	if(grainFillLevel < grainTankCapacity) {
-	//		grainFillLevel++;
-	//	}
-	//	else if(grainFillLevel == grainTankCapacity) {
-	//		System.out.println("The Dump Truck must be unloaded!");
-	//	}
-	//}
-	
-	/**
 	 * This method represents the functionality to unload grain from
 	 * the Dump Truck into the Silo.
 	 */
-	public void unloadToSilo(Silo silo) {
+	public void unloadToSilo(Silo silo, InformationBox informationBox) {
 		int siloFillLevel = silo.getFillLevel();
 		// the maximum amount of grain that can be filled into the silo until it's full
 		int grainToFill = silo.getCapacity() - siloFillLevel;
@@ -70,7 +59,7 @@ public class DumpTruck extends WorkingDevice {
 			// the new amount of grain on the dump truck is the amount minus the grain that fits into the silo
 			grainFillLevel = grainFillLevel - grainToFill;
 			silo.setFillLevel(silo.getFillLevel() + grainToFill);
-//			informationBox.getNewsField().setText("The Silo is full!");
+			informationBox.getNewsField().setText("The Silo is full!");
 		}
 	}
 

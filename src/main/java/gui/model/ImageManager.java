@@ -8,6 +8,9 @@ import javafx.scene.image.Image;
  * @author Judith
  */
 public class ImageManager {
+    /**
+     * image that is filled and returned in the method getImage()
+     */
     private Image image;
     /**
      * This method returns an image from the path that is given to it in the parameters by using a constructor of

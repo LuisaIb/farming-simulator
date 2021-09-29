@@ -253,7 +253,6 @@ public class SideControlPane {
         buttonUp = new LSButton("W", 50, 50,95,HEIGHT/100*70, 14);
         buttonUp.setOnMousePressed(MouseEvent -> {
             gameController.setUpPressed(true);
-            System.out.println("up pressed");
         });
         buttonUp.setOnMouseReleased(MouseEvent -> {
             gameController.setUpPressed(false);

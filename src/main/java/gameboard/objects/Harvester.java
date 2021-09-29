@@ -26,39 +26,6 @@ public class Harvester extends Machine {
 	}
 
 	/**
-	 * Constructor of Harvester for reloading / continuing the game.
-	 * @param x the x-value to which the object is set on the matchfield
-	 * @param y the y-value to which the object is set on the matchfield
-	 * @param selected sets whether the object is selected or not
-	 * @param petrolTankFillLevel the value that is set as petrol tank fill level
-	 * @param grainTankFillLevel the value that is set as grain tank fill level
-	 */
-	public Harvester(int x, int y, boolean selected, int petrolTankFillLevel, int grainTankFillLevel){
-		super(x, y, selected, petrolTankFillLevel);
-		this.grainTankFillLevel = grainTankFillLevel;
-	}
-	
-	/**
-	 * this method stands for the operation of filling the tank 
-	 * of the harvester with grain
-	 */
-	//public void fillTankWithGrain() { //if animation worked 1 time then full?
-	//		grainTankFillLevel++;
-	//
-	//	if(grainTankFillLevel == GRAIN_TANK_CAPACITY) {
-	//		System.out.println("The harvester needs to be unloaded");
-	//	}
-	//}
-
-	/**
-	 * this method represents the functionality of the Harvester to unload its tank
-	 * to the dump truck or the silo
-	 */
-	//public void unload(){
-	//	grainTankFillLevel = 0;
-	//}
-
-	/**
 	 * Getter for the GrainTankFillLevel of the Harvester.
 	 * @return the requested fill level of the grain tank
 	 */

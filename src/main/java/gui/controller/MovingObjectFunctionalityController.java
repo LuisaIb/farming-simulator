@@ -7,6 +7,7 @@ import gameboard.tiles.FieldTile;
 import gameboard.tiles.Silo;
 import gui.model.LSButton;
 import gui.view.GameScene;
+import gui.view.InformationBox;
 import gui.view.Matchfield;
 import gui.view.SideControlPane;
 
@@ -146,7 +147,7 @@ public class MovingObjectFunctionalityController {
             sellGrain(dumpTruck, gameValue, courtTrade);
         }  else if ((column == 12 || column == 13) && row == 13 && dumpTruck.isSelected()) {
             if (dumpTruck.getGrainFillLevel() != 0) {
-                unloadToSilo(dumpTruck, silo);
+                unloadToSilo(dumpTruck, silo, GAME_SCENE.getInformationBox());
             } else if (dumpTruck.getGrainFillLevel() != dumpTruck.getGrainTankCapacity()) {
                 loadFromSilo(dumpTruck, silo);
             }
@@ -584,9 +585,9 @@ public class MovingObjectFunctionalityController {
      * @param dumpTruck the DumpTruck object of the actual game
      * @param silo the Silo object of the actual game
      */
-    private void unloadToSilo(DumpTruck dumpTruck, Silo silo){
+    private void unloadToSilo(DumpTruck dumpTruck, Silo silo, InformationBox informationBox){
         BUTTON_ACTION.setOnMouseClicked(mouseEvent -> {
-            dumpTruck.unloadToSilo(silo);
+            dumpTruck.unloadToSilo(silo, informationBox);
             if (dumpTruck.getGrainFillLevel() == 0) { // if the dumpTruck is now empty the image has to be changed
                 MATCHFIELD.getMovingObjectImageView().setImage(MATCHFIELD.getTheRightImage(5));
             }
