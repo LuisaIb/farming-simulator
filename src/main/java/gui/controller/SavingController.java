@@ -49,7 +49,7 @@ public class SavingController {
 				levelOfDifficulty, courtTrade, movingObject);
       	// sleep for two seconds so the game doesn't close immediately after clicking on the button end & save
       	try {
-      		TimeUnit.SECONDS.sleep(2);
+      		TimeUnit.SECONDS.sleep(1);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

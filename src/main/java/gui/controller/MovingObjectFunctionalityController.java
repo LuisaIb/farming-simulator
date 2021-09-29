@@ -154,7 +154,7 @@ public class MovingObjectFunctionalityController {
             fillTank(gameValue, tractor, harvester);
         } else if ((column == 16 || column == 17) && row == 13) {
             selectVehicle(movingObject, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
-            selectWorkingDevice(movingObject, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill);
+            selectWorkingDevice(movingObject, farmer, tractor, harvester, cultivator, dumpTruck, seedDrill, column, row);
         } else if (tractor.isSelected()){
             exitVehicle(movingObject, farmer, tractor, cultivator, dumpTruck, seedDrill);
         } else if(farmer.isSelected() && tractorExited && farmer.getX() == columnExited &&
@@ -224,18 +224,20 @@ public class MovingObjectFunctionalityController {
      * @param seedDrill the SeedDrill object of the actual game
      */
     private void selectWorkingDevice(MovingObject movingObject, Farmer farmer, Tractor tractor, Harvester harvester,
-                                       Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
+                                       Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill, int x, int y){
         // the tractor is selected by clicking the button of the tractor which makes the buttons of the
         // working devices clickable
         TRACTOR_BUTTON.setOnMouseClicked(MouseEvent -> {
-            MATCHFIELD.getMovingObjectImageView().setImage(MATCHFIELD.getTheRightImage(2));
-            setMovingObjectToTractor(movingObject, tractor);
-            SIDE_CONTROL_PANE.setButtonsDisabled(false, true, false, true, true,
-                    true);
-            setMovingObjectsSelected(false, true, false, false,
-                    false, false, farmer, tractor, harvester, cultivator, dumpTruck,
-                    seedDrill);
-            tractor.setAttachement(false);
+            if ((movingObject.getX() == 16 || movingObject.getX() == 17) && movingObject.getY() == 13) {
+                MATCHFIELD.getMovingObjectImageView().setImage(MATCHFIELD.getTheRightImage(2));
+                setMovingObjectToTractor(movingObject, tractor);
+                SIDE_CONTROL_PANE.setButtonsDisabled(false, true, false, true, true,
+                        true);
+                setMovingObjectsSelected(false, true, false, false,
+                        false, false, farmer, tractor, harvester, cultivator, dumpTruck,
+                        seedDrill);
+                tractor.setAttachement(false);
+            }
         });
 
         // the cultivator is selected and attached by clicking the button of the cultivator

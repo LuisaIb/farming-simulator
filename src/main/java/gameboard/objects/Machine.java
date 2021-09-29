@@ -10,7 +10,7 @@ import javafx.beans.property.SimpleIntegerProperty;
  * @author Luisaibele, Hanna, Judith
  *
  */
-public class Machine extends MovingObject{
+public abstract class Machine extends MovingObject{
 	/**
 	 * the maximum amount of petrol that fits into the tank of a machine (tractor of harvester)
 	 */

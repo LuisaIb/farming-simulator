@@ -222,7 +222,7 @@ public class GameController {
         // growing of field 1
         if (growthStateField1 > 1 && growthStateField1 < 5) {
             fieldCounter1++;
-            if (fieldCounter1 == 500) {
+            if (fieldCounter1 == 50) {
                 growthStateField1++;
                 fieldTile.setGrowthState(growthStateField1, gameScene.getInformationBox());
                 // indexes of the image on the grid pane
@@ -236,7 +236,7 @@ public class GameController {
         // growing of field 2
         if (growthStateField2 > 1 && growthStateField2 < 5) {
             fieldCounter2++;
-            if (fieldCounter2 == 500) {
+            if (fieldCounter2 == 50) {
                 growthStateField2++;
                 fieldTile.setGrowthState2(growthStateField2, gameScene.getInformationBox());
                 // indexes of the image on the grid pane
@@ -250,7 +250,7 @@ public class GameController {
         // growing of field 3
         if (growthStateField3 > 1 && growthStateField3 < 5) {
             fieldCounter3++;
-            if (fieldCounter3 == 500) {
+            if (fieldCounter3 == 50) {
                 growthStateField3++;
                 fieldTile.setGrowthState3(growthStateField3, gameScene.getInformationBox());
                 // indexes of the image on the grid pane

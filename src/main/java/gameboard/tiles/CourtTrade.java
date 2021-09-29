@@ -6,7 +6,7 @@ package gameboard.tiles;
  * @author Luisaibele, Judith
  *
  */
-public class CourtTrade extends TileWithBuilding{
+public class CourtTrade {
     /**
      * selling price of the grain is set depending on the level of difficulty
      */
@@ -16,7 +16,7 @@ public class CourtTrade extends TileWithBuilding{
      * Empty Constructor of CourtTrade for reloading the game.
      */
     public CourtTrade() {
-    	super();
+    	;
     }
     
     /**
@@ -25,13 +25,12 @@ public class CourtTrade extends TileWithBuilding{
      * @param level the level of difficulty the player has chosen
      */
     public CourtTrade(int level) {
-        super();
         if (level == 1) {
             sellingPrice = 4;
         } else if (level == 2) {
-            sellingPrice = 3;
+            sellingPrice = 5;
         } else if (level == 3) {
-            sellingPrice = 2;
+            sellingPrice = 6;
         }
     }
 

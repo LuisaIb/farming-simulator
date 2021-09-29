@@ -6,7 +6,7 @@ package gameboard.objects;
  * @author Luisaibele
  *
  */
-public class WorkingDevice extends MovingObject{
+public abstract class WorkingDevice extends MovingObject{
    
 	/**
      * Constructor of WorkingDevice for starting a new game.

@@ -3,10 +3,10 @@ package gui.view;
 import gui.controller.SceneController;
 import gui.model.ImageManager;
 import gui.model.LSButton;
-
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import java.io.File;
 
 import static gui.view.ViewManager.HEIGHT;
 import static gui.view.ViewManager.WIDTH;
@@ -95,6 +95,7 @@ public class MenuScene {
 
         menuBox.getChildren().addAll(buttonNewGame, buttonLoadGame, buttonHelp, buttonEnd);
         menuPane.getChildren().add(menuBox);
+        buttonDisabled();
     }
 
     /**
@@ -108,12 +109,13 @@ public class MenuScene {
 
     /**
      * This method helps to set the button load game disabled or not. e.g. when the game is played for the first time,
-     * the button should be disabled as there is nothing to be relaoded.
-     *
-     * @param reloadGame boolean of the disability of the button loadGame
+     * the button should be disabled as there is nothing to be reloaded. Therefore, it proofs if the text file exits.
      */
-    private void buttonsDisabled(boolean reloadGame) {
-        buttonLoadGame.setDisable(reloadGame);
+    private void buttonDisabled() {
+        File gameFile = new File("src/main/java/datastorage/information/farmersimulator.txt");
+        if (!gameFile.exists()) {
+            buttonLoadGame.setDisable(true);
+        }
     }
    
 }

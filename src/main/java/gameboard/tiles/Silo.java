@@ -8,7 +8,7 @@ import javafx.beans.property.SimpleIntegerProperty;
  * @author Luisaibele, Judith
  *
  */
-public class Silo extends TileWithBuilding{
+public class Silo {
 	/**
 	 * IntegerProperty for the amount of grain that is in the silo to make a binding for automatic change possible
 	 */
