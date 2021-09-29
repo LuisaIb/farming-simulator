@@ -182,13 +182,8 @@ public class MovingObjectFunctionalityController {
                                  Cultivator cultivator, DumpTruck dumpTruck, SeedDrill seedDrill){
         BUTTON_ACTION.setOnMouseClicked(MouseEvent -> {
             // if the farmer exited the tractor he can not enter another tractor at the barn
-            if (tractorExited) {
-                SIDE_CONTROL_PANE.setButtonsDisabled(true, false, true, false,
-                        false, false);
-            } else {
-                SIDE_CONTROL_PANE.setButtonsDisabled(true, true, true, false,
-                        false, false);
-            }
+            SIDE_CONTROL_PANE.setButtonsDisabled(true, !tractorExited, true, false,
+                    false, false);
         });
 
         // the farmer is selected by clicking the button of the farmer
@@ -332,9 +327,7 @@ public class MovingObjectFunctionalityController {
      * @param fieldTile the FieldTile object of the actual game
      */
     private void buyField(GameValue gameValue, GameScene gameScene, FieldTile fieldTile){
-        BUTTON_ACTION.setOnMouseClicked(mouseEvent -> {
-            fieldTile.buyField(gameValue, gameScene);
-        });
+        BUTTON_ACTION.setOnMouseClicked(mouseEvent -> fieldTile.buyField(gameValue, gameScene));
     }
 
     /**
