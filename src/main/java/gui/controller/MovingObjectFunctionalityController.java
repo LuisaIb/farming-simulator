@@ -600,7 +600,9 @@ public class MovingObjectFunctionalityController {
     private void loadFromSilo(DumpTruck dumpTruck, Silo silo) {
         BUTTON_ACTION.setOnMouseClicked(mouseEvent -> {
             dumpTruck.loadFromSilo(silo);
-            MATCHFIELD.getMovingObjectImageView().setImage(MATCHFIELD.getTheRightImage(6));
+            if (dumpTruck.getGrainFillLevel() != 0) {
+                MATCHFIELD.getMovingObjectImageView().setImage(MATCHFIELD.getTheRightImage(6));
+            }
         });
     }
 
