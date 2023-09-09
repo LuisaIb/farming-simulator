@@ -1,4 +1,4 @@
-# Landwirtschaftssimulator_SE2
+# Farming Simulator
 
 The 'Landwirtschaftssimulator' is a 2D agricultural simulator in which the player may construct his/her own tiny farm.
 
